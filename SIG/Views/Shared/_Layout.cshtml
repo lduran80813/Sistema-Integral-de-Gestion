@@ -4,13 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sistema de Gestion | Home</title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/root/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="~/root/dist/css/adminlte.min.css" rel="stylesheet" />
-    
-    
+
+
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -43,7 +44,7 @@
                 
                 
                 
-                <li class="nav-item dropdown">
+                @*<li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
@@ -68,7 +69,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li>
+                </li>*@
                 
             </ul>
         </nav>
@@ -97,292 +98,485 @@
                 
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                      
+                        @* Modulo contabilidad *@
+                        <li class="nav-header">Contabilidad</li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v1</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-header">EXAMPLES</li>
-                        <li class="nav-item">
-                            <a href="../calendar.html" class="nav-link">
-                                <i class="fa fa-calculator"></i>
+                                <i class="nav-icon fas fa-calculator"></i>
                                 <p>
                                     Contabilidad
-                                    <span class="badge badge-info right">2</span>
+                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>Registrar ventas y transacciones automáticas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>Generar automáticamente facturas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>cuentas por cobrar y pagar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>recibos por pagos de transportistas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>cierres contables</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>informes de ventas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>ajustes de inventario relacionados con ventas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>notificaciones sobre vencimientos de cuentas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>ajustes manuales en cuentas por cobrar y pagar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>estados financieros mensuales automáticos</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="../gallery.html" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Gallery
-                                </p>
-                            </a>
-                        </li>
+
+                        @* Modulo Provedores *@
+                        <li class="nav-header">Provedores</li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
+                                <i class="nav-icon fas fa-people-arrows"></i>
                                 <p>
-                                    Mailbox
+                                    Provedores
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../mailbox/mailbox.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Inbox</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Registrar proveedor</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../mailbox/compose.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Compose</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Ver lista de proveedores</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../mailbox/read-mail.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Read</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Exportar lista de proveedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Editar proveedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Eliminar proveedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Consultar estado financiero de proveedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Consultar estado financiero general de todos los proveedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Exportar reporte financiero de proveedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Registro de pedido realizado a proveedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Dar seguimiento a pedidos realizados a proveedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Generar reporte de pedido y evaluación de proveedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Exportar reporte de pedidos y evaluación de proveedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Enviar mensaje a proveedor</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Recibir notificación ante disminuciones significativas en inventario de proveedores</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+                        @* Modulo Incidencias *@
+                        <li class="nav-header">Incidencias</li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
+                                <i class="nav-icon fas fa-industry"></i>
                                 <p>
-                                    Pages
+                                    Incidencias
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../examples/invoice.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Invoice</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Agregar incidencia</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/profile.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Profile</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Recibir notificación de nueva incidencia</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/e-commerce.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>E-commerce</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Consultar incidencias registradas</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/projects.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Projects</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Editar incidencia registrada</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/project-add.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Project Add</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Eliminar incidencia registrada</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/project-edit.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Project Edit</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Priorizar y asignar técnico a incidencia</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/project-detail.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Project Detail</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Recibir notificación de incidencia asignada</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/contacts.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Contacts</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Recibir notificación de actualización de incidencia</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Atender incidencia asignada</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Cerrar incidencia atendida</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Recibir notificación de incidencia finalizada</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Consultar histórico de incidencias finalizadas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Consultar histórico de incidencias atendidas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Generar reporte de incidencias atendidas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Consultar histórico de incidencias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Generar reporte de incidencias atendidas por analista y grupo total de analistas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Exportar reporte de incidencias de analistas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Agregar categoría de incidencias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Consultar catálogo de categorías de incidencias</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Actualizar categoría del catálogo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-industry"></i>
+                                        <p>Eliminar categoría del catálogo</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon far fa-plus-square"></i>
+
+                        @* Modulo Empleados *@
+                        <li class="nav-header">Empleados</li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-people-carry"></i>
                                 <p>
-                                    Extras
+                                    Empleados
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../examples/login.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Login</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Registrar nuevos empleados en el sistema</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/register.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Register</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Actualizar información personal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/forgot-password.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Forgot Password</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Solicitar días de vacaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/recover-password.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Recover Password</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Realizar evaluaciones de desempeño a los empleados</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/lockscreen.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lockscreen</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Gestionar las sesiones de capacitación para los empleados</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../examples/legacy-user-menu.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Legacy User Menu</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../examples/language-menu.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Language Menu</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../examples/404.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Error 404</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../examples/500.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Error 500</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../examples/pace.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Pace</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../examples/blank.html" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Blank Page</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../starter.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Starter Page</p>
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Gestionar los pagos de planilla</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-header">MISCELLANEOUS</li>
-                        <li class="nav-item">
-                            <a href="https://adminlte.io/docs/3.0" class="nav-link">
+
+                        @* Modulo Entregas *@
+                        <li class="nav-header">Entregas</li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Entregas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Registrar una nueva entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Visualizar todas las entregas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Actualizar el estado de una entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Recibir notificaciones con actualizaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Confirmar la recepción de mis productos para cerrar el pedidos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        @* Modulo Planes de accion *@
+                        <li class="nav-header">Entregas</li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
-                                <p>Documentation</p>
-                            </a>
-                        </li>
-                        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Level 1</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
                                 <p>
-                                    Level 1
-                                    <i class="right fas fa-angle-left"></i>
+                                    Planes de Acción
+                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Creación de una Nueva Acción</p>
                                     </a>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Level 2
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Level 3</p>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Level 2</p>
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Verificación del estado de las acciones correctivas y preventivas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Asignación de responsabilidades a los usuarios para asegurar cada acción al responsable</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Verificación de los plazos de ejecución de las tareas para gestionar tiempos</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+
+                        @* Modulo De Inicio de Sesion y Registro *@
+                    <li class="nav-header">Modulo Sesion/Registro</li>
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Level 1</p>
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Modulo Sesion/Registro
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>Iniciar sesión con una cuenta y acceder al sistema</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>Iniciar sesión con una cuenta y acceder al sistema con privilegios de administrador</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>Registro de un usuario para crear una cuenta y acceder al sistema</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
+                 
+
+                     
                         <li class="nav-header">LABELS</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
