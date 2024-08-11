@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="~/root/dist/css/adminlte.min.css" rel="stylesheet" />
-
-
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/root/dist/css/Style.css" rel="stylesheet" />
+    
+
+
 </head>
 <body class="hold-transition sidebar-mini">
     
@@ -69,7 +71,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
             <a href="@Url.Action("Index","Home")" class="brand-link">
-                <img src="~/root/dist/img/AdminLTELogo.png"
+                <img src="~/root/dist/img/avatar5.png"
                      alt="SIG Logo"
                      class="brand-image img-circle elevation-3"
                      style="opacity: .8">
@@ -100,21 +102,30 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+
+
+
+                                    <a href="@Url.Action("Registro_Ventas","Contabilidad")" class="nav-link">
                                         <i class="nav-icon fas fa-calculator"></i>
-                                        <p>Registro ventas y transacciones</p>
+                                        <p>ventas y transacciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Generar_Factura","Contabilidad")" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>Generar Factura</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("CxP","Contabilidad")" class="nav-link">
+                                        <i class="nav-icon fas fa-calculator"></i>
+                                        <p>CXP</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-calculator"></i>
-                                        <p>Generar automáticamente facturas</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-calculator"></i>
-                                        <p>cuentas por cobrar y pagar</p>
+                                        <p>CXC</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -174,7 +185,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="@Url.Action("Registro_Proveedores","Proveedores")" class="nav-link">
                                         <i class="nav-icon fas fa-people-arrows"></i>
                                         <p>Registrar proveedor</p>
                                     </a>
@@ -541,18 +552,25 @@
 
         
         <div class="content-wrapper">
-          
-           
 
-     
+
+
+
             <section class="content">
 
 
                 @RenderBody()
 
+                
+
+
+                
 
             </section>
-         
+
+            
+
+
         </div>
        
 

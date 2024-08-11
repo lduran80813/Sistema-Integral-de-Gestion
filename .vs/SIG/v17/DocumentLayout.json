@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\proveedorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\proveedores\\registro_proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\proveedores\\registro_proveedores.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\contabilidad\\cxp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\cxp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\shared\\_layoutexterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layoutexterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,25 +41,22 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_LayoutExterno.cshtml",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Shared\\_LayoutExterno.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_LayoutExterno.cshtml",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Shared\\_LayoutExterno.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Shared\\_LayoutExterno.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAABIAAAA",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-11T14:55:26.35Z",
+              "WhenOpened": "2024-08-11T14:39:42.617Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "SIG\\App_Start\\RouteConfig.cs",
@@ -55,30 +64,75 @@
               "RelativeToolTip": "SIG\\App_Start\\RouteConfig.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-11T14:40:40.74Z"
+              "WhenOpened": "2024-08-11T14:40:40.74Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAACsAAABPAAAA",
+              "Title": "Registro_Proveedores.cshtml",
+              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Proveedores\\Registro_Proveedores.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Proveedores\\Registro_Proveedores.cshtml",
+              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Proveedores\\Registro_Proveedores.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Proveedores\\Registro_Proveedores.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-11T14:39:42.617Z",
+              "WhenOpened": "2024-08-11T22:11:40.461Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ProveedoresController.cs",
+              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\ProveedoresController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\ProveedoresController.cs",
+              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\ProveedoresController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\ProveedoresController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T21:38:26.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CxP.cshtml",
+              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Contabilidad\\CxP.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\CxP.cshtml",
+              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Contabilidad\\CxP.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\CxP.cshtml",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAkwLQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-11T21:33:44.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T20:36:44.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAAGgAAABOAAAA",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAALsAAABcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-11T14:39:43.543Z",
               "EditorCaption": ""

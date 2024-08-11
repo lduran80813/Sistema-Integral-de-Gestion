@@ -6,27 +6,22 @@ using System.Web.Mvc;
 
 namespace SIG.Controllers
 {
-    public class HomeController : Controller
+    public class ContabilidadController : Controller
     {
-        public ActionResult Index()
+        // GET: Contabilidad
+        public ActionResult Registro_Ventas()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Generar_Factura()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult CxP()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
-
-       
     }
 }
