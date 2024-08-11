@@ -44,32 +44,24 @@
                 
                 
                 
-                @*<li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        <i class="far fa-user"></i>
+                        <span class="badge badge-warning navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <span class="dropdown-item dropdown-header">Perfil de Usuario</span>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
+                            <i class="fas fa-user-edit"></i> Editar Perfil
+                            
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
+                            <i class="fas fa-door-closed"></i> Cerrar Sesion
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li>*@
+                </li>
                 
             </ul>
         </nav>
@@ -78,7 +70,7 @@
 
             <a href="@Url.Action("Index","Home")" class="brand-link">
                 <img src="~/root/dist/img/AdminLTELogo.png"
-                     alt="AdminLTE Logo"
+                     alt="SIG Logo"
                      class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">Sistema de Gestion</span>
@@ -87,9 +79,7 @@
             <div class="sidebar">
              
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/root/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
+                    
                     <div class="info">
                         <a href="#" class="d-block">Nombre de Usuario</a>
                     </div>
@@ -99,7 +89,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         @* Modulo contabilidad *@
-                        <li class="nav-header">Contabilidad</li>
+                        <li class="nav-header"></li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-calculator"></i>
@@ -112,7 +102,7 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-calculator"></i>
-                                        <p>Registrar ventas y transacciones automáticas</p>
+                                        <p>Registro ventas y transacciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -173,7 +163,7 @@
                         </li>
 
                         @* Modulo Provedores *@
-                        <li class="nav-header">Provedores</li>
+                        <li class="nav-header"></li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-people-arrows"></i>
@@ -271,7 +261,7 @@
                         </li>
 
                         @* Modulo Incidencias *@
-                        <li class="nav-header">Incidencias</li>
+                        <li class="nav-header"></li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-industry"></i>
@@ -411,7 +401,7 @@
                         </li>
 
                         @* Modulo Empleados *@
-                        <li class="nav-header">Empleados</li>
+                        <li class="nav-header"></li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-people-carry"></i>
@@ -461,7 +451,7 @@
                         </li>
 
                         @* Modulo Entregas *@
-                        <li class="nav-header">Entregas</li>
+                        <li class="nav-header"></li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-bag"></i>
@@ -505,7 +495,7 @@
                         </li>
 
                         @* Modulo Planes de accion *@
-                        <li class="nav-header">Entregas</li>
+                        <li class="nav-header"></li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
@@ -542,60 +532,6 @@
                             </ul>
                         </li>
 
-                        @* Modulo De Inicio de Sesion y Registro *@
-                    <li class="nav-header">Modulo Sesion/Registro</li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Modulo Sesion/Registro
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-user"></i>
-                                        <p>Iniciar sesión con una cuenta y acceder al sistema</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-user"></i>
-                                        <p>Iniciar sesión con una cuenta y acceder al sistema con privilegios de administrador</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-user"></i>
-                                        <p>Registro de un usuario para crear una cuenta y acceder al sistema</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                 
-
-                     
-                        <li class="nav-header">LABELS</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-circle text-danger"></i>
-                                <p class="text">Important</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-circle text-warning"></i>
-                                <p>Warning</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-circle text-info"></i>
-                                <p>Informational</p>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                
