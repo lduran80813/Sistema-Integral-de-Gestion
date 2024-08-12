@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Empleado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .form-group > div {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+                .form-group > div:last-child {
+                    margin-right: 0;
+                }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro de Empleado</h1>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <div>
+                    <label for="first-name">Nombre:</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+                <div>
+                    <label for="last-name">Apellidos:</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="id-number">Número de Identificación:</label>
+                    <input type="text" id="id-number" name="id-number" required>
+                </div>
+                <div>
+                    <label for="birth-date">Fecha de Nacimiento:</label>
+                    <input type="date" id="birth-date" name="birth-date" required>
+                </div>
+            </div>
+
+            <label for="address">Dirección:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+
+            <div class="form-group">
+                <div>
+                    <label for="phone">Teléfono:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div>
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
+            <label for="department">Departamento:</label>
+            <select id="department" name="department" required>
+                <option value="administracion">Administración</option>
+                <option value="finanzas">Finanzas</option>
+                <option value="recursos_humanos">Recursos Humanos</option>
+                <option value="it">IT</option>
+                <option value="ventas">Ventas</option>
+                <!-- Agrega más departamentos según sea necesario -->
+            </select>
+
+            <button type="submit">Registrar Empleado</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+

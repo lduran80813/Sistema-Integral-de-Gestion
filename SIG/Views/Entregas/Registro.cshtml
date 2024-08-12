@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Entrega</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%; /* El contenedor ocupará todo el ancho disponible */
+            max-width: 700px; /* Ajusta el ancho máximo según sea necesario */
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%; /* Asegura que los campos ocupen el 100% del ancho del contenedor */
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .form-group > div {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+                .form-group > div:last-child {
+                    margin-right: 0;
+                }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro de Entrega</h1>
+
+        <form action="#" method="post">
+            <label for="client-name">Nombre del Cliente:</label>
+            <input type="text" id="client-name" name="client-name" required>
+
+            <label for="delivery-address">Dirección de Entrega:</label>
+            <textarea id="delivery-address" name="delivery-address" rows="3" required></textarea>
+
+            <div class="form-group">
+                <div>
+                    <label for="delivery-date">Fecha de Entrega:</label>
+                    <input type="date" id="delivery-date" name="delivery-date" required>
+                </div>
+                <div>
+                    <label for="order-number">Número de Pedido:</label>
+                    <input type="text" id="order-number" name="order-number" required>
+                </div>
+            </div>
+
+            <label for="items-delivered">Artículos Entregados:</label>
+            <textarea id="items-delivered" name="items-delivered" rows="4" required></textarea>
+
+            <label for="notes">Observaciones Adicionales:</label>
+            <textarea id="notes" name="notes" rows="4"></textarea>
+
+            <button type="submit">Registrar Entrega</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+

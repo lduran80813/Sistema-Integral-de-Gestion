@@ -121,7 +121,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContabilidadController.cs" />
+    <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\EntregasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncidenciasController.cs" />
+    <Compile Include="Controllers\Plan_AccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,6 +286,10 @@
     <Content Include="Views\Contabilidad\Generar_Factura.cshtml" />
     <Content Include="Views\Contabilidad\CxP.cshtml" />
     <Content Include="Views\Proveedores\Registro_Proveedores.cshtml" />
+    <Content Include="Views\Incidencias\Registro.cshtml" />
+    <Content Include="Views\Empleados\Registro.cshtml" />
+    <Content Include="Views\Entregas\Registro.cshtml" />
+    <Content Include="Views\Plan_Accion\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
