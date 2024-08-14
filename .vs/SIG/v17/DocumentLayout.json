@@ -3,44 +3,12 @@
   "WorkspaceRootPath": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\plan_accion\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\plan_accion\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\controllers\\plan_accioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\plan_accioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\entregas\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\views\\entregas\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\entregas\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\views\\incidencias\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\incidencias\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\controllers\\entregascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\entregascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\proyecto final sig\\sistema_gestion\\sig_final\\sig\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\empleadoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\sig\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,34 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-11T14:39:42.617Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RouteConfig.cs",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\App_Start\\RouteConfig.cs",
-              "RelativeDocumentMoniker": "SIG\\App_Start\\RouteConfig.cs",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\App_Start\\RouteConfig.cs",
-              "RelativeToolTip": "SIG\\App_Start\\RouteConfig.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-11T14:40:40.74Z",
-              "IsPinned": true
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
@@ -86,91 +28,13 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Registro.cshtml",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Plan_Accion\\Registro.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Plan_Accion\\Registro.cshtml",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Plan_Accion\\Registro.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Plan_Accion\\Registro.cshtml",
-              "ViewState": "AQIAAF4AAAAAAAAAAADwv4YAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-12T02:03:57.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Plan_AccionController.cs",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\Plan_AccionController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\Plan_AccionController.cs",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\Plan_AccionController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\Plan_AccionController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T02:03:28.846Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Registro.cshtml",
               "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Entregas\\Registro.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Entregas\\Registro.cshtml",
               "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Entregas\\Registro.cshtml",
               "RelativeToolTip": "SIG\\Views\\Entregas\\Registro.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-12T01:54:54.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EntregasController.cs",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\EntregasController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\EntregasController.cs",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\EntregasController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\EntregasController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T01:49:45.761Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Registro.cshtml",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Empleados\\Registro.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Empleados\\Registro.cshtml",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Empleados\\Registro.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Empleados\\Registro.cshtml",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAI4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-12T01:45:18.318Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EmpleadosController.cs",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\EmpleadosController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\EmpleadosController.cs",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Controllers\\EmpleadosController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\EmpleadosController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T01:44:48.576Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Registro.cshtml",
-              "DocumentMoniker": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Incidencias\\Registro.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Incidencias\\Registro.cshtml",
-              "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Incidencias\\Registro.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Incidencias\\Registro.cshtml",
-              "ViewState": "AQIAACwAAAAAAAAAAAAkwHEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-12T01:43:20.185Z",
               "EditorCaption": ""
             },
             {
@@ -181,7 +45,7 @@
               "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Proyecto final SIG\\Sistema_Gestion\\SIG_Final\\SIG\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAOsBAAAAAAAAAAAAAAcCAABSAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAABQAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-11T14:39:43.543Z",
               "EditorCaption": ""

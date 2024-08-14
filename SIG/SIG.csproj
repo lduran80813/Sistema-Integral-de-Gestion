@@ -290,6 +290,8 @@
     <Content Include="Views\Empleados\Registro.cshtml" />
     <Content Include="Views\Entregas\Registro.cshtml" />
     <Content Include="Views\Plan_Accion\Registro.cshtml" />
+    <Content Include="Views\Home\Registrousuario.cshtml" />
+    <Content Include="Views\Home\Recuconn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

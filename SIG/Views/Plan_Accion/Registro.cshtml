@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Registro";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -19,12 +18,14 @@
         }
 
         .container {
-            width: 50%;
+            width: 100%;
+            max-width: 700px;
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -55,17 +56,19 @@
 
         .form-group {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
         }
 
-            .form-group > div {
-                flex: 1;
-                margin-right: 10px;
-            }
+        .form-group > div {
+            flex: 1;
+            min-width: calc(50% - 10px);
+            margin-right: 10px;
+        }
 
-                .form-group > div:last-child {
-                    margin-right: 0;
-                }
+        .form-group > div:last-child {
+            margin-right: 0;
+        }
 
         button {
             padding: 10px 15px;
@@ -77,9 +80,10 @@
             font-size: 16px;
         }
 
-            button:hover {
-                background-color: #4cae4c;
-            }
+        button:hover {
+            background-color: #4cae4c;
+        }
+
     </style>
 </head>
 <body>
@@ -87,15 +91,8 @@
     <div class="container">
         <h1>Registro de Plan de Acción</h1>
 
-        <form action="#" method="post">
-            <label for="plan-name">Nombre del Plan:</label>
-            <input type="text" id="plan-name" name="plan-name" required>
-
             <label for="description">Descripción del Plan:</label>
             <textarea id="description" name="description" rows="4" required></textarea>
-
-            <label for="objectives">Objetivos:</label>
-            <textarea id="objectives" name="objectives" rows="3" required></textarea>
 
             <label for="tasks">Tareas a Realizar:</label>
             <textarea id="tasks" name="tasks" rows="4" required></textarea>
@@ -132,5 +129,4 @@
 
 </body>
 </html>
-
 
