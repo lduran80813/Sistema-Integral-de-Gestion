@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "CxP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuentas por Pagar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+            .form-group > div {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+                .form-group > div:last-child {
+                    margin-right: 0;
+                }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            table th, table td {
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+            }
+
+            table th {
+                background-color: #f8f8f8;
+            }
+
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cuentas por Pagar</h1>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <div>
+                    <label for="invoice-number">Número de Factura:</label>
+                    <input type="text" id="invoice-number" name="invoice-number" required>
+                </div>
+                <div>
+                    <label for="provider">Proveedor:</label>
+                    <input type="text" id="provider" name="provider" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="due-date">Fecha de Vencimiento:</label>
+                    <input type="date" id="due-date" name="due-date" required>
+                </div>
+                <div>
+                    <label for="amount">Monto:</label>
+                    <input type="number" id="amount" name="amount" min="0" step="0.01" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="status">Estado del Pago:</label>
+                    <select id="status" name="status" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="pagado">Pagado</option>
+                        <option value="atrasado">Atrasado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-footer">
+                <button type="submit">Agregar Factura</button>
+            </div>
+        </form>
+
+        <h2>Facturas Pendientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Número de Factura</th>
+                    <th>Proveedor</th>
+                    <th>Fecha de Vencimiento</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>00123</td>
+                    <td>Proveedor A</td>
+                    <td>2024-08-20</td>
+                    <td>$1,200.00</td>
+                    <td>Pendiente</td>
+                </tr>
+                <tr>
+                    <td>00124</td>
+                    <td>Proveedor B</td>
+                    <td>2024-08-25</td>
+                    <td>$850.50</td>
+                    <td>Pagado</td>
+                </tr>
+                <!-- Puedes agregar más filas aquí -->
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+
+

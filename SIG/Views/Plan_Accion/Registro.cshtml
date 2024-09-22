@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Plan de Acción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group > div {
+            flex: 1;
+            min-width: calc(50% - 10px);
+            margin-right: 10px;
+        }
+
+        .form-group > div:last-child {
+            margin-right: 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro de Plan de Acción</h1>
+
+            <label for="description">Descripción del Plan:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="tasks">Tareas a Realizar:</label>
+            <textarea id="tasks" name="tasks" rows="4" required></textarea>
+
+            <div class="form-group">
+                <div>
+                    <label for="responsible">Responsable:</label>
+                    <input type="text" id="responsible" name="responsible" required>
+                </div>
+                <div>
+                    <label for="status">Estado:</label>
+                    <select id="status" name="status" required>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en_progreso">En Progreso</option>
+                        <option value="completado">Completado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="start-date">Fecha de Inicio:</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                </div>
+                <div>
+                    <label for="end-date">Fecha de Finalización:</label>
+                    <input type="date" id="end-date" name="end-date" required>
+                </div>
+            </div>
+
+            <button type="submit">Registrar Plan de Acción</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
