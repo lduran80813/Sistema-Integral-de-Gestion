@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SistemaIntegralGestionModelStoreContainer" CdmEntityContainer="SistemaIntegralGestionEntities">
+    <EntitySetMapping Name="Adm_Permiso">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Adm_Permiso">
+        <MappingFragment StoreEntitySet="Adm_Permiso">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="modulo" ColumnName="modulo" />
+          <ScalarProperty Name="permiso" ColumnName="permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adm_Rol">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Adm_Rol">
+        <MappingFragment StoreEntitySet="Adm_Rol">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_rol" ColumnName="nombre_rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conta_Transaccion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_Transaccion">
+        <MappingFragment StoreEntitySet="Conta_Transaccion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tipo_transaccion" ColumnName="tipo_transaccion" />
+          <ScalarProperty Name="referencia_id" ColumnName="referencia_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_BitacoraIngreso">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_BitacoraIngreso">
+        <MappingFragment StoreEntitySet="Emp_BitacoraIngreso">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_ContactoEmergencia">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_ContactoEmergencia">
+        <MappingFragment StoreEntitySet="Emp_ContactoEmergencia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="nombre_contacto" ColumnName="nombre_contacto" />
+          <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
+          <ScalarProperty Name="relacion" ColumnName="relacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Departamento">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Departamento">
+        <MappingFragment StoreEntitySet="Emp_Departamento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_departamento" ColumnName="nombre_departamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Puesto">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Puesto">
+        <MappingFragment StoreEntitySet="Emp_Puesto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_puesto" ColumnName="nombre_puesto" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_RemuneracionDeduccion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_RemuneracionDeduccion">
+        <MappingFragment StoreEntitySet="Emp_RemuneracionDeduccion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Vacaciones">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Vacaciones">
+        <MappingFragment StoreEntitySet="Emp_Vacaciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+          <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entregas">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Entregas">
+        <MappingFragment StoreEntitySet="Entregas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="direccion_entrega" ColumnName="direccion_entrega" />
+          <ScalarProperty Name="articulos_entregados" ColumnName="articulos_entregados" />
+          <ScalarProperty Name="observaciones_adicionales" ColumnName="observaciones_adicionales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PDA_Tarea">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_Tarea">
+        <MappingFragment StoreEntitySet="PDA_Tarea">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+          <ScalarProperty Name="descripcion_tarea" ColumnName="descripcion_tarea" />
+          <ScalarProperty Name="responsable_id" ColumnName="responsable_id" />
+          <ScalarProperty Name="estado_tarea" ColumnName="estado_tarea" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlanDeAccion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PlanDeAccion">
+        <MappingFragment StoreEntitySet="PlanDeAccion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_plan" ColumnName="nombre_plan" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prov_Compra">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Compra">
+        <MappingFragment StoreEntitySet="Prov_Compra">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+          <ScalarProperty Name="fecha_compra" ColumnName="fecha_compra" />
+          <ScalarProperty Name="total_compra" ColumnName="total_compra" />
+          <ScalarProperty Name="no_factura" ColumnName="no_factura" />
+          <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prov_CompraDetalle">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_CompraDetalle">
+        <MappingFragment StoreEntitySet="Prov_CompraDetalle">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="compra_id" ColumnName="compra_id" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio_unidad" ColumnName="precio_unidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prov_Contacto">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Contacto">
+        <MappingFragment StoreEntitySet="Prov_Contacto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+          <ScalarProperty Name="nombre_contacto" ColumnName="nombre_contacto" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="descripcion_adicional" ColumnName="descripcion_adicional" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prov_Pago">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Pago">
+        <MappingFragment StoreEntitySet="Prov_Pago">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+          <ScalarProperty Name="monto_pago" ColumnName="monto_pago" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="autorizador_id" ColumnName="autorizador_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prov_Producto">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Producto">
+        <MappingFragment StoreEntitySet="Prov_Producto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedor">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Proveedor">
+        <MappingFragment StoreEntitySet="Proveedor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket">
+        <MappingFragment StoreEntitySet="Ticket">
+          <ScalarProperty Name="comentarios_usuario" ColumnName="comentarios_usuario" />
+          <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="tipo_incidencia" ColumnName="tipo_incidencia" />
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha_registro_usuario" ColumnName="fecha_registro_usuario" />
+          <ScalarProperty Name="fecha_registra_tecnico" ColumnName="fecha_registra_tecnico" />
+          <ScalarProperty Name="id_tecnico" ColumnName="id_tecnico" />
+          <ScalarProperty Name="comentario_tecnico" ColumnName="comentario_tecnico" />
+          <ScalarProperty Name="fecha_cierre_ticket" ColumnName="fecha_cierre_ticket" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Estado">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket_Estado">
+        <MappingFragment StoreEntitySet="Ticket_Estado">
+          <ScalarProperty Name="estado_ticket" ColumnName="estado_ticket" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Prioridad">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket_Prioridad">
+        <MappingFragment StoreEntitySet="Ticket_Prioridad">
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Tipo">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket_Tipo">
+        <MappingFragment StoreEntitySet="Ticket_Tipo">
+          <ScalarProperty Name="tipo_incidencia" ColumnName="tipo_incidencia" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario1" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Cliente">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
+        <MappingFragment StoreEntitySet="Venta_Cliente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Factura">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Factura">
+        <MappingFragment StoreEntitySet="Venta_Factura">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="fecha_venta" ColumnName="fecha_venta" />
+          <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+          <ScalarProperty Name="total_transaccion" ColumnName="total_transaccion" />
+          <ScalarProperty Name="no_factura" ColumnName="no_factura" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="estado_factura" ColumnName="estado_factura" />
+          <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_FacturaDetalle">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_FacturaDetalle">
+        <MappingFragment StoreEntitySet="Venta_FacturaDetalle">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="factura_id" ColumnName="factura_id" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio_unidad" ColumnName="precio_unidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_MetodoPago">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_MetodoPago">
+        <MappingFragment StoreEntitySet="Venta_MetodoPago">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="metodo" ColumnName="metodo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_PagoCliente">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_PagoCliente">
+        <MappingFragment StoreEntitySet="Venta_PagoCliente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
+          <ScalarProperty Name="monto_pago" ColumnName="monto_pago" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Pedido">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Pedido">
+        <MappingFragment StoreEntitySet="Venta_Pedido">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+          <ScalarProperty Name="numero_pedido" ColumnName="numero_pedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Producto">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Producto">
+        <MappingFragment StoreEntitySet="Venta_Producto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
