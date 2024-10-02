@@ -1,0 +1,131 @@
+﻿@model SIG.BaseDatos.Ticket
+@{
+    ViewBag.Title = "AsignarTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Incidencia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Atender Ticket</h2>
+
+
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert alert-info" role="alert" style="text-align:center">
+                @ViewBag.msj
+            </div>
+        }
+
+        @using (Html.BeginForm("AtenderTicket", "IncidenciasITAnalyst"))
+        {
+            @Html.HiddenFor(m => m.id_ticket)
+
+
+            @Html.Label("Id de Ticket")
+            @Html.TextBoxFor(m => m.id_ticket, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+
+            @Html.Label("Usuario")
+            @Html.DropDownListFor(m => m.id_usuario, ViewBag.Usuarios as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+
+            @Html.Label("Título")
+            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+
+            @Html.Label("Tipo de incidente")
+            @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-select" })
+
+            @Html.Label("Descripción")
+            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @disabled = "true" })
+
+            @Html.Label("Comentarios Usuario")
+            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @disabled = "true" })
+
+            @Html.Label("Fecha de registro")
+            @Html.TextBoxFor(m => m.fecha_registro_usuario, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+
+            @Html.Label("Estado de incidente")
+            @Html.DropDownListFor(m => m.estado, ViewBag.Estados as List<SelectListItem>, new { @class = "form-select" })
+
+            @Html.Label("Prioridad")
+            @Html.DropDownListFor(m => m.prioridad, ViewBag.Prioridades as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+
+            @Html.Label("Técnico asignado")
+            @Html.DropDownListFor(m => m.id_tecnico, ViewBag.Tecnicos as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+
+            @Html.Label("Comentarios Técnico")
+            @Html.TextAreaFor(m => m.comentario_tecnico, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @required = "true" })
+
+            @Html.Label("Fecha de asignada a Técnico")
+            @Html.TextBoxFor(m => m.fecha_registra_tecnico, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+
+            <button type="submit" class="btn btn-primary me-2">Actualizar</button>
+        }
+
+    </div>
+
+</body>
+</html>

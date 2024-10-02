@@ -1,0 +1,857 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adm_Permiso">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rol_id" Type="int" />
+    <Property Name="modulo" Type="varchar" MaxLength="100" />
+    <Property Name="permiso" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Adm_Rol">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Conta_Transaccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_transaccion" Type="varchar" MaxLength="50" />
+    <Property Name="referencia_id" Type="int" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="cliente_id" Type="int" />
+    <Property Name="proveedor_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Emp_BitacoraIngreso">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario_id" Type="int" />
+    <Property Name="fecha_ingreso" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Emp_ContactoEmergencia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empleado_id" Type="int" />
+    <Property Name="nombre_contacto" Type="varchar" MaxLength="255" />
+    <Property Name="telefono_contacto" Type="varchar" MaxLength="50" />
+    <Property Name="relacion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Emp_Departamento">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_departamento" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Emp_Puesto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_puesto" Type="varchar" MaxLength="100" />
+    <Property Name="departamento_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Emp_RemuneracionDeduccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empleado_id" Type="int" />
+    <Property Name="tipo" Type="varchar" MaxLength="100" />
+    <Property Name="monto" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Emp_Vacaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empleado_id" Type="int" />
+    <Property Name="fecha_inicio" Type="date" />
+    <Property Name="fecha_fin" Type="date" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" />
+    <Property Name="apellidos" Type="varchar" MaxLength="255" />
+    <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
+    <Property Name="fecha_nacimiento" Type="date" />
+    <Property Name="direccion" Type="varchar" MaxLength="255" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+    <Property Name="departamento_id" Type="int" />
+    <Property Name="puesto_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Entregas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pedido_id" Type="int" />
+    <Property Name="fecha_entrega" Type="date" />
+    <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
+    <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
+    <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="PDA_Tarea">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="plan_id" Type="int" />
+    <Property Name="descripcion_tarea" Type="varchar" MaxLength="100" />
+    <Property Name="responsable_id" Type="int" />
+    <Property Name="estado_tarea" Type="varchar" MaxLength="100" />
+    <Property Name="fecha_inicio" Type="date" />
+    <Property Name="fecha_finalizacion" Type="date" />
+  </EntityType>
+  <EntityType Name="PlanDeAccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
+    <Property Name="estado" Type="varchar" MaxLength="100" />
+    <Property Name="fecha_inicio" Type="date" />
+    <Property Name="fecha_finalizacion" Type="date" />
+  </EntityType>
+  <EntityType Name="Prov_Compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proveedor_id" Type="int" />
+    <Property Name="fecha_compra" Type="date" />
+    <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="no_factura" Type="varchar" MaxLength="100" />
+    <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Prov_CompraDetalle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="compra_id" Type="int" />
+    <Property Name="producto_id" Type="int" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="precio_unidad" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Prov_Contacto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proveedor_id" Type="int" />
+    <Property Name="nombre_contacto" Type="varchar" MaxLength="255" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+    <Property Name="descripcion_adicional" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Prov_Pago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="proveedor_id" Type="int" />
+    <Property Name="fecha_pago" Type="date" />
+    <Property Name="monto_pago" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="autorizador_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Prov_Producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="proveedor_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="direccion" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="id_ticket" />
+    </Key>
+    <Property Name="id_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="int" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="tipo_incidencia" Type="int" Nullable="false" />
+    <Property Name="prioridad" Type="int" />
+    <Property Name="titulo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="fecha_registro_usuario" Type="datetime" />
+    <Property Name="fecha_registra_tecnico" Type="datetime" />
+    <Property Name="id_tecnico" Type="int" />
+    <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
+    <Property Name="fecha_cierre_ticket" Type="datetime" />
+    <Property Name="comentarios_usuario" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Ticket_Estado">
+    <Key>
+      <PropertyRef Name="estado_ticket" />
+    </Key>
+    <Property Name="estado_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Ticket_Prioridad">
+    <Key>
+      <PropertyRef Name="prioridad" />
+    </Key>
+    <Property Name="prioridad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Ticket_Tipo">
+    <Key>
+      <PropertyRef Name="tipo_incidencia" />
+    </Key>
+    <Property Name="tipo_incidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="100" />
+    <Property Name="contrasena" Type="varchar" MaxLength="255" />
+    <Property Name="rol_id" Type="int" />
+    <Property Name="empleado_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Venta_Cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="direccion" Type="varchar" MaxLength="255" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" />
+    <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta_Factura">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cliente_id" Type="int" />
+    <Property Name="fecha_venta" Type="date" />
+    <Property Name="metodo_pago_id" Type="int" />
+    <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="no_factura" Type="varchar" MaxLength="100" />
+    <Property Name="direccion" Type="varchar" MaxLength="255" />
+    <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+    <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta_FacturaDetalle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="factura_id" Type="int" />
+    <Property Name="producto_id" Type="int" />
+    <Property Name="cantidad" Type="int" />
+    <Property Name="precio_unidad" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Venta_MetodoPago">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="metodo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta_PagoCliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cliente_id" Type="int" />
+    <Property Name="fecha_pago" Type="date" />
+    <Property Name="monto_pago" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta_Pedido">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cliente_id" Type="int" />
+    <Property Name="fecha_pedido" Type="date" />
+    <Property Name="numero_pedido" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Venta_Producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <Association Name="FK__Adm_Permi__rol_i__5535A963">
+    <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
+    <End Role="Adm_Permiso" Type="Self.Adm_Permiso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adm_Rol">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Adm_Permiso">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__clien__656C112C">
+    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="cliente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__prove__66603565">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Emp_Conta__emple__44FF419A">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Emp_ContactoEmergencia" Type="Self.Emp_ContactoEmergencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_ContactoEmergencia">
+        <PropertyRef Name="empleado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Emp_Puest__depar__3E52440B">
+    <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
+    <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emp_Departamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_Puesto">
+        <PropertyRef Name="departamento_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Emp_Remun__emple__4AB81AF0">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Emp_RemuneracionDeduccion" Type="Self.Emp_RemuneracionDeduccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_RemuneracionDeduccion">
+        <PropertyRef Name="empleado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Emp_Vacac__emple__47DBAE45">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_Vacaciones">
+        <PropertyRef Name="empleado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__depart__412EB0B6">
+    <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emp_Departamento">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="departamento_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Empleado__puesto__4222D4EF">
+    <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emp_Puesto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="puesto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Entregas__pedido__05D8E0BE">
+    <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="0..1" />
+    <End Role="Entregas" Type="Self.Entregas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Pedido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Entregas">
+        <PropertyRef Name="pedido_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PDA_Tarea__plan___0A9D95DB">
+    <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanDeAccion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="plan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PDA_Tarea__respo__0B91BA14">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="responsable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Comp__compr__6EF57B66">
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
+    <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_CompraDetalle">
+        <PropertyRef Name="compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Comp__produ__6FE99F9F">
+    <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="0..1" />
+    <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_CompraDetalle">
+        <PropertyRef Name="producto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Comp__prove__693CA210">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Compra">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Cont__prove__398D8EEE">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="Prov_Contacto" Type="Self.Prov_Contacto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Contacto">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Pago__autor__73BA3083">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Pago">
+        <PropertyRef Name="autorizador_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Pago__prove__72C60C4A">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Pago">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Prod__prove__6C190EBB">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+    <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Producto">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__estado__7E37BEF6">
+    <End Role="Ticket_Estado" Type="Self.Ticket_Estado" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Estado">
+        <PropertyRef Name="estado_ticket" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__id_tecni__00200768">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="id_tecnico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__id_usuar__7F2BE32F">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__priorida__7D439ABD">
+    <End Role="Ticket_Prioridad" Type="Self.Ticket_Prioridad" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Prioridad">
+        <PropertyRef Name="prioridad" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="prioridad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__tipo_inc__7C4F7684">
+    <End Role="Ticket_Tipo" Type="Self.Ticket_Tipo" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Tipo">
+        <PropertyRef Name="tipo_incidencia" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="tipo_incidencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__emplead__52593CB8">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="empleado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__rol_id__5165187F">
+    <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adm_Rol">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Fac__clien__5DCAEF64">
+    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Factura">
+        <PropertyRef Name="cliente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Fac__factu__619B8048">
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
+    <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Factura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_FacturaDetalle">
+        <PropertyRef Name="factura_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Fac__metod__5EBF139D">
+    <End Role="Venta_MetodoPago" Type="Self.Venta_MetodoPago" Multiplicity="0..1" />
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_MetodoPago">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Factura">
+        <PropertyRef Name="metodo_pago_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Fac__produ__628FA481">
+    <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="0..1" />
+    <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_FacturaDetalle">
+        <PropertyRef Name="producto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Pag__clien__0E6E26BF">
+    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
+    <End Role="Venta_PagoCliente" Type="Self.Venta_PagoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_PagoCliente">
+        <PropertyRef Name="cliente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Ped__clien__02FC7413">
+    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
+    <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Pedido">
+        <PropertyRef Name="cliente_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SistemaIntegralGestionModelStoreContainer">
+    <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_Departamento" EntityType="Self.Emp_Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_Puesto" EntityType="Self.Emp_Puesto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_RemuneracionDeduccion" EntityType="Self.Emp_RemuneracionDeduccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entregas" EntityType="Self.Entregas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prov_Compra" EntityType="Self.Prov_Compra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prov_CompraDetalle" EntityType="Self.Prov_CompraDetalle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prov_Contacto" EntityType="Self.Prov_Contacto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prov_Pago" EntityType="Self.Prov_Pago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prov_Producto" EntityType="Self.Prov_Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Tipo" EntityType="Self.Ticket_Tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Cliente" EntityType="Self.Venta_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Factura" EntityType="Self.Venta_Factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_FacturaDetalle" EntityType="Self.Venta_FacturaDetalle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_MetodoPago" EntityType="Self.Venta_MetodoPago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_PagoCliente" EntityType="Self.Venta_PagoCliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Pedido" EntityType="Self.Venta_Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Adm_Permi__rol_i__5535A963" Association="Self.FK__Adm_Permi__rol_i__5535A963">
+      <End Role="Adm_Rol" EntitySet="Adm_Rol" />
+      <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__clien__656C112C" Association="Self.FK__Conta_Tra__clien__656C112C">
+      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__prove__66603565" Association="Self.FK__Conta_Tra__prove__66603565">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Emp_Conta__emple__44FF419A" Association="Self.FK__Emp_Conta__emple__44FF419A">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Emp_ContactoEmergencia" EntitySet="Emp_ContactoEmergencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Emp_Puest__depar__3E52440B" Association="Self.FK__Emp_Puest__depar__3E52440B">
+      <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
+      <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Emp_Remun__emple__4AB81AF0" Association="Self.FK__Emp_Remun__emple__4AB81AF0">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Emp_RemuneracionDeduccion" EntitySet="Emp_RemuneracionDeduccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Emp_Vacac__emple__47DBAE45" Association="Self.FK__Emp_Vacac__emple__47DBAE45">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__depart__412EB0B6" Association="Self.FK__Empleado__depart__412EB0B6">
+      <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Empleado__puesto__4222D4EF" Association="Self.FK__Empleado__puesto__4222D4EF">
+      <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Entregas__pedido__05D8E0BE" Association="Self.FK__Entregas__pedido__05D8E0BE">
+      <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
+      <End Role="Entregas" EntitySet="Entregas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__plan___0A9D95DB" Association="Self.FK__PDA_Tarea__plan___0A9D95DB">
+      <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__respo__0B91BA14" Association="Self.FK__PDA_Tarea__respo__0B91BA14">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Comp__compr__6EF57B66" Association="Self.FK__Prov_Comp__compr__6EF57B66">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Comp__produ__6FE99F9F" Association="Self.FK__Prov_Comp__produ__6FE99F9F">
+      <End Role="Prov_Producto" EntitySet="Prov_Producto" />
+      <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Comp__prove__693CA210" Association="Self.FK__Prov_Comp__prove__693CA210">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Cont__prove__398D8EEE" Association="Self.FK__Prov_Cont__prove__398D8EEE">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Prov_Contacto" EntitySet="Prov_Contacto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Pago__autor__73BA3083" Association="Self.FK__Prov_Pago__autor__73BA3083">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Prov_Pago" EntitySet="Prov_Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Pago__prove__72C60C4A" Association="Self.FK__Prov_Pago__prove__72C60C4A">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Prov_Pago" EntitySet="Prov_Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Prod__prove__6C190EBB" Association="Self.FK__Prov_Prod__prove__6C190EBB">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Prov_Producto" EntitySet="Prov_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__estado__7E37BEF6" Association="Self.FK__Ticket__estado__7E37BEF6">
+      <End Role="Ticket_Estado" EntitySet="Ticket_Estado" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__id_tecni__00200768" Association="Self.FK__Ticket__id_tecni__00200768">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__id_usuar__7F2BE32F" Association="Self.FK__Ticket__id_usuar__7F2BE32F">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__priorida__7D439ABD" Association="Self.FK__Ticket__priorida__7D439ABD">
+      <End Role="Ticket_Prioridad" EntitySet="Ticket_Prioridad" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__tipo_inc__7C4F7684" Association="Self.FK__Ticket__tipo_inc__7C4F7684">
+      <End Role="Ticket_Tipo" EntitySet="Ticket_Tipo" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__emplead__52593CB8" Association="Self.FK__Usuario__emplead__52593CB8">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__rol_id__5165187F" Association="Self.FK__Usuario__rol_id__5165187F">
+      <End Role="Adm_Rol" EntitySet="Adm_Rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Fac__clien__5DCAEF64" Association="Self.FK__Venta_Fac__clien__5DCAEF64">
+      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Fac__factu__619B8048" Association="Self.FK__Venta_Fac__factu__619B8048">
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+      <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Fac__metod__5EBF139D" Association="Self.FK__Venta_Fac__metod__5EBF139D">
+      <End Role="Venta_MetodoPago" EntitySet="Venta_MetodoPago" />
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Fac__produ__628FA481" Association="Self.FK__Venta_Fac__produ__628FA481">
+      <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+      <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Pag__clien__0E6E26BF" Association="Self.FK__Venta_Pag__clien__0E6E26BF">
+      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
+      <End Role="Venta_PagoCliente" EntitySet="Venta_PagoCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Ped__clien__02FC7413" Association="Self.FK__Venta_Ped__clien__02FC7413">
+      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
+      <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

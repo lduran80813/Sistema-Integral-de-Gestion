@@ -13,7 +13,6 @@ body, html {
     text-align: center;
 }
 
-}
 
 .logo-container {
     position: relative;
@@ -25,6 +24,35 @@ body, html {
     height: auto;
 }
 
+.nav-item {
+    list-style-type: none;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+    font-size: 16px;
+}
 
 
+/* Indentation for level 1 children */
+.nav-treeview {
+    padding-left: 20px; /* Indentation for the first level of children */
+}
+
+    .nav-treeview .nav-link {
+        padding-left: 20px; /* Padding inside the link for first-level children */
+    }
+
+    /* Indentation for level 2 children (hijos de hijos) */
+    .nav-treeview .nav-treeview {
+        padding-left: 40px; /* Indentation for the second level of children */
+    }
+
+        .nav-treeview .nav-treeview .nav-link {
+            padding-left: 20px; /* Additional padding for second-level links */
+        }
 
