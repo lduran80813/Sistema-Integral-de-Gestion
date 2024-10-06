@@ -12,6 +12,8 @@ namespace SIG.BaseDatos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SistemaIntegralGestionEntities : DbContext
     {
@@ -56,5 +58,109 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_PagoCliente> Venta_PagoCliente { get; set; }
         public virtual DbSet<Venta_Pedido> Venta_Pedido { get; set; }
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
+    
+        public virtual int ActualizarTicket(Nullable<int> idTicket, Nullable<int> estado, Nullable<int> tipoIncidencia, Nullable<int> prioridad, string titulo, string descripcion, string comentariosUsuario, Nullable<System.DateTime> fechaRegistraTecnico, Nullable<int> idTecnico, string comentarioTecnico, Nullable<System.DateTime> fechaCierreTicket)
+        {
+            var idTicketParameter = idTicket.HasValue ?
+                new ObjectParameter("idTicket", idTicket) :
+                new ObjectParameter("idTicket", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
+    
+            var tipoIncidenciaParameter = tipoIncidencia.HasValue ?
+                new ObjectParameter("tipoIncidencia", tipoIncidencia) :
+                new ObjectParameter("tipoIncidencia", typeof(int));
+    
+            var prioridadParameter = prioridad.HasValue ?
+                new ObjectParameter("prioridad", prioridad) :
+                new ObjectParameter("prioridad", typeof(int));
+    
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("titulo", titulo) :
+                new ObjectParameter("titulo", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var comentariosUsuarioParameter = comentariosUsuario != null ?
+                new ObjectParameter("comentariosUsuario", comentariosUsuario) :
+                new ObjectParameter("comentariosUsuario", typeof(string));
+    
+            var fechaRegistraTecnicoParameter = fechaRegistraTecnico.HasValue ?
+                new ObjectParameter("fechaRegistraTecnico", fechaRegistraTecnico) :
+                new ObjectParameter("fechaRegistraTecnico", typeof(System.DateTime));
+    
+            var idTecnicoParameter = idTecnico.HasValue ?
+                new ObjectParameter("idTecnico", idTecnico) :
+                new ObjectParameter("idTecnico", typeof(int));
+    
+            var comentarioTecnicoParameter = comentarioTecnico != null ?
+                new ObjectParameter("comentarioTecnico", comentarioTecnico) :
+                new ObjectParameter("comentarioTecnico", typeof(string));
+    
+            var fechaCierreTicketParameter = fechaCierreTicket.HasValue ?
+                new ObjectParameter("fechaCierreTicket", fechaCierreTicket) :
+                new ObjectParameter("fechaCierreTicket", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarTicket", idTicketParameter, estadoParameter, tipoIncidenciaParameter, prioridadParameter, tituloParameter, descripcionParameter, comentariosUsuarioParameter, fechaRegistraTecnicoParameter, idTecnicoParameter, comentarioTecnicoParameter, fechaCierreTicketParameter);
+        }
+    
+        public virtual int CerrarTicket(Nullable<int> idTicket)
+        {
+            var idTicketParameter = idTicket.HasValue ?
+                new ObjectParameter("idTicket", idTicket) :
+                new ObjectParameter("idTicket", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CerrarTicket", idTicketParameter);
+        }
+    
+        public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string usuario, string contrasena, ObjectParameter id, ObjectParameter loginSuccess)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("Contrasena", contrasena) :
+                new ObjectParameter("Contrasena", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesion_Result>("IniciarSesion", usuarioParameter, contrasenaParameter, id, loginSuccess);
+        }
+    
+        public virtual int InsertarTicket(Nullable<int> idUsuario, string titulo, string descripcion, Nullable<int> tipoIncidencia, string comentariosUsuario, Nullable<System.DateTime> fechaRegistroUsuario, Nullable<int> estado)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("idUsuario", idUsuario) :
+                new ObjectParameter("idUsuario", typeof(int));
+    
+            var tituloParameter = titulo != null ?
+                new ObjectParameter("titulo", titulo) :
+                new ObjectParameter("titulo", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var tipoIncidenciaParameter = tipoIncidencia.HasValue ?
+                new ObjectParameter("tipoIncidencia", tipoIncidencia) :
+                new ObjectParameter("tipoIncidencia", typeof(int));
+    
+            var comentariosUsuarioParameter = comentariosUsuario != null ?
+                new ObjectParameter("comentariosUsuario", comentariosUsuario) :
+                new ObjectParameter("comentariosUsuario", typeof(string));
+    
+            var fechaRegistroUsuarioParameter = fechaRegistroUsuario.HasValue ?
+                new ObjectParameter("fechaRegistroUsuario", fechaRegistroUsuario) :
+                new ObjectParameter("fechaRegistroUsuario", typeof(System.DateTime));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarTicket", idUsuarioParameter, tituloParameter, descripcionParameter, tipoIncidenciaParameter, comentariosUsuarioParameter, fechaRegistroUsuarioParameter, estadoParameter);
+        }
     }
 }

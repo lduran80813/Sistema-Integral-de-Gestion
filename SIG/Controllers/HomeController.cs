@@ -10,9 +10,6 @@ namespace SIG.Controllers
     {
         public ActionResult Index()
         {
-            Session["Usuario"] = "temporal";
-            Session["IdUsuario"] = 3;
-            Session["RolUsuario"] = 3;
             return View();
         }
 

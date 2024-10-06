@@ -161,6 +161,9 @@
     <Compile Include="BaseDatos\Entregas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\IniciarSesion_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,6 +246,7 @@
     <Compile Include="Controllers\IncidenciasController.cs" />
     <Compile Include="Controllers\IncidenciasITAnalystController.cs" />
     <Compile Include="Controllers\IncidenciasITManagerController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Plan_AccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
@@ -253,6 +257,7 @@
     </Compile>
     <Compile Include="Models\CatalogosModel.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -442,6 +447,8 @@
     <Content Include="Views\Incidencias\VerTicket.cshtml" />
     <Content Include="Views\IncidenciasITAnalyst\ListaHistoricoAtendidos.cshtml" />
     <Content Include="Views\IncidenciasITManager\ListaHistoricoTickets.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\CambiarContrasenna.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

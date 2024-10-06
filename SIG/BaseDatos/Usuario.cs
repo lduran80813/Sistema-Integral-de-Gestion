@@ -24,9 +24,10 @@ namespace SIG.BaseDatos
     
         public int id { get; set; }
         public string usuario1 { get; set; }
-        public string contrasena { get; set; }
+        public byte[] contrasena { get; set; }
         public Nullable<int> rol_id { get; set; }
         public Nullable<int> empleado_id { get; set; }
+        public string Sal { get; set; }
     
         public virtual Adm_Rol Adm_Rol { get; set; }
         public virtual Empleado Empleado { get; set; }

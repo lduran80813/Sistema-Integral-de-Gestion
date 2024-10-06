@@ -1,50 +1,10 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
     ViewBag.Title = "Home Page";
 }
 
-<div class="card">
-    <div class="card-body login-card-body">
-        <p class="login-box-msg">Iniciar Sesion</p>
-
-        @using (Html.BeginForm("About","Home"))
-           {
-            <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Correo">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Contraseña">
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                        <span class="fas fa-lock"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-8"> </div>
-
-                <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-                </div>
-
-            </div>
-
-        }
-        
-
-
-        <p class="mb-1">
-            <a href="@Url.Action("Recuconn","Home")">Recuperar Contraseña</a>
-        </p>
-        <p class="mb-0">
-            <a href="@Url.Action("Registrousuario","Home")" class="text-center">Registrar usuario nuevo</a>
-        </p>
-       
-    </div>
-
-</div>
+@if (ViewBag.warning != null)
+{
+    <h3>
+        @ViewBag.warning
+    </h3>
+}

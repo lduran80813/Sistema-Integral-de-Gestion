@@ -214,7 +214,6 @@
     <EntitySetMapping Name="Ticket">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket">
         <MappingFragment StoreEntitySet="Ticket">
-          <ScalarProperty Name="comentarios_usuario" ColumnName="comentarios_usuario" />
           <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="estado" ColumnName="estado" />
@@ -227,6 +226,7 @@
           <ScalarProperty Name="id_tecnico" ColumnName="id_tecnico" />
           <ScalarProperty Name="comentario_tecnico" ColumnName="comentario_tecnico" />
           <ScalarProperty Name="fecha_cierre_ticket" ColumnName="fecha_cierre_ticket" />
+          <ScalarProperty Name="comentarios_usuario" ColumnName="comentarios_usuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -262,6 +262,7 @@
           <ScalarProperty Name="contrasena" ColumnName="contrasena" />
           <ScalarProperty Name="rol_id" ColumnName="rol_id" />
           <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="Sal" ColumnName="Sal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -341,5 +342,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ActualizarTicket" FunctionName="SistemaIntegralGestionModel.Store.ActualizarTicket" />
+    <FunctionImportMapping FunctionImportName="CerrarTicket" FunctionName="SistemaIntegralGestionModel.Store.CerrarTicket" />
+    <FunctionImportMapping FunctionImportName="IniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.IniciarSesion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.IniciarSesion_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertarTicket" FunctionName="SistemaIntegralGestionModel.Store.InsertarTicket" />
   </EntityContainerMapping>
 </Mapping>

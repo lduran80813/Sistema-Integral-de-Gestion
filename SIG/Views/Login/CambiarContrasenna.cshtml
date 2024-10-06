@@ -1,0 +1,30 @@
+﻿@model SIG.Entidades.UsuarioEmpleado
+@{
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+<div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">Iniciar Sesion</p>
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert alert-info" role="alert" style="text-align:center">
+                @ViewBag.msj
+            </div>
+        }
+        @using (Html.BeginForm("CambiarContrasenna", "Login"))
+        {
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @id = "Contrasenna", @placeholder = "Contraseña nueva" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.contrasenaConfirmar, new { @type = "password", @class = "form-control form-control-lg", @id = "ContrasennaConfirma", @placeholder = "Confirmar contraseña" })
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">CAMBIAR CONTRASEÑA</button>
+            </div>
+        }
+    </div>
+
+</div>
