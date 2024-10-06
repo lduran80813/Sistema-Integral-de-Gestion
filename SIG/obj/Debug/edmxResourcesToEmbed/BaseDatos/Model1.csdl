@@ -949,11 +949,23 @@
       <Parameter Name="fechaRegistroUsuario" Mode="In" Type="DateTime" />
       <Parameter Name="estado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="CambiarContrasenna">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+      <Parameter Name="ContrasenaTemporal" Mode="In" Type="String" />
+      <Parameter Name="Resultado" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
+      <Parameter Name="Usuario" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="IniciarSesion_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="rol_id" Nullable="true" />
     <Property Type="Int32" Name="empleado_id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ValidarCorreo_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

@@ -14,5 +14,7 @@ namespace SIG.Entidades
         public int empleado_id { get; set; }
         public string nombre_completo { get; set; }
         public string contrasenaConfirmar { get; set; }
+
+        public string email { get; set; }
     }
 }

@@ -162,5 +162,27 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarTicket", idUsuarioParameter, tituloParameter, descripcionParameter, tipoIncidenciaParameter, comentariosUsuarioParameter, fechaRegistroUsuarioParameter, estadoParameter);
         }
+    
+        public virtual int CambiarContrasenna(string usuario, string contrasenaTemporal, ObjectParameter resultado)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var contrasenaTemporalParameter = contrasenaTemporal != null ?
+                new ObjectParameter("ContrasenaTemporal", contrasenaTemporal) :
+                new ObjectParameter("ContrasenaTemporal", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarContrasenna", usuarioParameter, contrasenaTemporalParameter, resultado);
+        }
+    
+        public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string usuario)
+        {
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", usuarioParameter);
+        }
     }
 }

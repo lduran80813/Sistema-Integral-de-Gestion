@@ -707,6 +707,11 @@
     <Parameter Name="comentarioTecnico" Type="varchar" Mode="In" />
     <Parameter Name="fechaCierreTicket" Type="datetime2" Mode="In" />
   </Function>
+  <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="ContrasenaTemporal" Type="varchar" Mode="In" />
+    <Parameter Name="Resultado" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="CerrarTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idTicket" Type="int" Mode="In" />
   </Function>
@@ -724,6 +729,9 @@
     <Parameter Name="comentariosUsuario" Type="varchar" Mode="In" />
     <Parameter Name="fechaRegistroUsuario" Type="datetime" Mode="In" />
     <Parameter Name="estado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ValidarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="SistemaIntegralGestionModelStoreContainer">
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
