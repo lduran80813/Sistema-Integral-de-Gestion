@@ -68,6 +68,7 @@
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__factu__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__metod__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__4F7CD00D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

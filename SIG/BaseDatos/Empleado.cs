@@ -34,6 +34,9 @@ namespace SIG.BaseDatos
         public string correo_electronico { get; set; }
         public Nullable<int> departamento_id { get; set; }
         public Nullable<int> puesto_id { get; set; }
+        public string usuario { get; set; }
+        public byte[] contrasena { get; set; }
+        public string Sal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emp_ContactoEmergencia> Emp_ContactoEmergencia { get; set; }

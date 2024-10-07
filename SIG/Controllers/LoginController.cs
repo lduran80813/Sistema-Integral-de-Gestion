@@ -33,7 +33,7 @@ namespace SIG.Controllers
                     Session["IdUsuario"] = respuesta.id;
                     Session["RolUsuario"] = respuesta.rol_id;
 
-                    return RedirectToAction("Index", "Home"); 
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -46,7 +46,7 @@ namespace SIG.Controllers
                 ViewBag.msj = ex.Message;
             }
 
-           
+
             return View();
         }
 
@@ -145,6 +145,13 @@ namespace SIG.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public ActionResult registro()
+        {
+            return View();
+        }
 
-    }
+
+
+    } 
 }

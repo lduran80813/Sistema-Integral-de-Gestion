@@ -54,26 +54,35 @@
                     </button>
                     <ul class="navbar-nav navbar-nav-right">
                         <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                                <i class="ti-user"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="@Url.Action("EditarUsuario", "Login")">
-                                    <i class="ti-settings text-primary"></i> Perfil
-                                </a><a class="dropdown-item" href="@Url.Action("CambiarContrasenna", "Login")">
-                                    <i class="ti-settings text-primary"></i> Cambiar contraseña
+                           
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                                    <i class="ti-user"></i>
                                 </a>
-                                <a class="dropdown-item" href="@Url.Action("Logout", "Login")">
-                                    <i class="ti-power-off text-primary"></i> Cerrar sesión
-                                </a>
-
-                            </div>
+                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("EditarUsuario", "Login")">
+                                        <i class="ti-settings text-primary"></i> Perfil
+                                    </a>
+                                    <a class="dropdown-item" href="@Url.Action("CambiarContrasenna", "Login")">
+                                        <i class="ti-settings text-primary"></i> Cambiar contraseña
+                                    </a>
+                                    @if (Session["Tipo"] != null && Session["Tipo"].ToString() == "Admin") // Verifica que el tipo sea "Usuario"
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("registro", "Login")">
+                                            <i class="ti-settings text-primary"></i> Registrar Empleado
+                                        </a>
+                                    }
+                                        <a class="dropdown-item" href="@Url.Action("Logout", "Login")">
+                                            <i class="ti-power-off text-primary"></i> Cerrar sesión
+                                        </a>
+                                    </div>
+                            
                         </li>
                     </ul>
                     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                         <span class="icon-menu"></span>
                     </button>
                 </div>
+
 
             </ul>
         </nav>
@@ -93,7 +102,8 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                     <div class="info">
-                        <a href="#" class="d-block">Nombre de Usuario</a>
+                        <a href="#" class="d-block">@Session["Usuario"]</a>
+                        <a href="#" class="d-block">@Session["Tipo"]</a>
                     </div>
                 </div>
 

@@ -114,6 +114,9 @@
     <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__34C8D9D1" FromRole="Empleado" ToRole="Emp_Vacaciones" />
     <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__787EE5A0" FromRole="Empleado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__emplead__3F466844" FromRole="Empleado" ToRole="Usuario" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contrasena" Type="Binary" MaxLength="64" FixedLength="false" />
+    <Property Name="Sal" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Entregas">
     <Key>
@@ -939,6 +942,7 @@
       <Parameter Name="Contrasena" Mode="In" Type="String" />
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
       <Parameter Name="LoginSuccess" Mode="InOut" Type="Int32" />
+      <Parameter Name="Tipo" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertarTicket">
       <Parameter Name="idUsuario" Mode="In" Type="Int32" />
@@ -957,6 +961,50 @@
     <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
       <Parameter Name="Usuario" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="SistemaIntegralGestionModel.sysdiagrams" />
+    <FunctionImport Name="RegistrarEmpleado">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellidos" Mode="In" Type="String" />
+      <Parameter Name="numero_identificacion" Mode="In" Type="String" />
+      <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="direccion" Mode="In" Type="String" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="correo_electronico" Mode="In" Type="String" />
+      <Parameter Name="departamento_id" Mode="In" Type="Int32" />
+      <Parameter Name="puesto_id" Mode="In" Type="Int32" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="contrasena" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SistemaIntegralGestionModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SistemaIntegralGestionModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <ComplexType Name="IniciarSesion_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -967,5 +1015,26 @@
   <ComplexType Name="ValidarCorreo_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
 </Schema>

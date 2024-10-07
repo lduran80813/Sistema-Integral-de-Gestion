@@ -30,23 +30,31 @@ namespace SIG.Models
                     Direction = ParameterDirection.Output
                 };
 
+                var tipoOutput = new SqlParameter("@Tipo", SqlDbType.NVarChar, 50)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
                 context.Database.ExecuteSqlCommand(
-                    "EXEC IniciarSesion @Usuario, @Contrasena, @Id OUTPUT, @LoginSuccess OUTPUT",
+                    "EXEC IniciarSesion @Usuario, @Contrasena, @Id OUTPUT, @LoginSuccess OUTPUT, @Tipo OUTPUT",
                     new SqlParameter("@Usuario", user.usuario),
                     new SqlParameter("@Contrasena", user.contrasena),
                     idOutput,
-                    loginSuccessOutput
+                    loginSuccessOutput,
+                    tipoOutput
                 );
-
 
                 if (loginSuccessOutput.Value != DBNull.Value && Convert.ToInt32(loginSuccessOutput.Value) == 1)
                 {
+                    // Almacenar el tipo de usuario en la sesión
+                    HttpContext.Current.Session["Tipo"] = tipoOutput.Value.ToString();
+
                     return new IniciarSesion_Result
                     {
                         id = (int)idOutput.Value,
                         usuario = user.usuario,
-                        rol_id = 1,
-                        empleado_id = 0
+                        rol_id = (string)tipoOutput.Value == "Empleado" ? 2 : 1,
+                        empleado_id = (string)tipoOutput.Value == "Empleado" ? (int)idOutput.Value : 0
                     };
                 }
                 else
@@ -56,6 +64,7 @@ namespace SIG.Models
             }
         }
 
+      
 
         public class UsuarioNoEncontradoException : Exception
         {
@@ -93,9 +102,9 @@ namespace SIG.Models
 
         public void EnviarCorreo(string destino, string asunto, string contenido)
         {
-            // Tu dirección de correo de Gmail y la contraseña (o contraseña de aplicación)
-            string cuenta = "lthx05@gmail.com"; // Reemplaza con tu correo
-            string contrasenna = "ebni gxco iflo mdkc"; // Usa la contraseña de aplicación si es necesario
+            
+            string cuenta = "lthx05@gmail.com"; 
+            string contrasenna = "ebni gxco iflo mdkc"; 
 
             try
             {
@@ -110,7 +119,7 @@ namespace SIG.Models
                     using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
                     {
                         client.Credentials = new NetworkCredential(cuenta, contrasenna);
-                        client.EnableSsl = true; // Debe estar habilitado
+                        client.EnableSsl = true; 
                         client.Send(message);
                     }
                 }
