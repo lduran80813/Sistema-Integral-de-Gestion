@@ -90,16 +90,16 @@
             @Html.TextBoxFor(m => m.id_ticket, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
 
             @Html.Label("Título")
-            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @id = "exampleInputName1", @required = "true" })
+            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @maxlength = "20", @id = "exampleInputName1", @required = "true" })
 
             @Html.Label("Tipo de incidente")
             @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
 
             @Html.Label("Descripción")
-            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @required = "true" })
+            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @maxlength = "200", @id = "exampleTextarea1", @rows = "4", @required = "true" })
 
             @Html.Label("Comentarios Usuario")
-            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4" })
+            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @maxlength = "200", @id = "exampleTextarea1", @rows = "4" })
 
             @Html.Label("Fecha de registro")
             @Html.TextBoxFor(m => m.fecha_registro_usuario, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
