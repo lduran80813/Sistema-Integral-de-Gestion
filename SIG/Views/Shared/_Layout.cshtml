@@ -188,86 +188,43 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="@Url.Action("Registro_Proveedores","Proveedores")" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        @*<i class="nav-icon fas fa-people-arrows"></i>*@
                                         <p>Registrar proveedor</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Ver lista de proveedores</p>
+                                    <a href="@Url.Action("ListaProveedores","Proveedores")" class="nav-link">
+                                        @*<i class="nav-icon fas fa-industry"></i>*@
+                                        <p>Lista de Proveedores</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Exportar lista de proveedores</p>
-                                    </a>
-                                </li>
+                                @*
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-people-arrows"></i>
                                         <p>Editar proveedor</p>
                                     </a>
                                 </li>
+                                *@
+
+                                 @*
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-people-arrows"></i>
                                         <p>Eliminar proveedor</p>
                                     </a>
                                 </li>
+                                *@
+
+
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Consultar estado financiero de proveedor</p>
+                                    <a href="@Url.Action("ConsultaEstadoFinanciero", "Proveedores")" class="nav-link">
+                                        <p>Estado financiero específico</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Consultar estado financiero general de todos los proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Exportar reporte financiero de proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Registro de pedido realizado a proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Dar seguimiento a pedidos realizados a proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Generar reporte de pedido y evaluación de proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Exportar reporte de pedidos y evaluación de proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Enviar mensaje a proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Recibir notificación ante disminuciones significativas en inventario de proveedores</p>
+                                    <a href="@Url.Action("ConsultaEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
+                                        <p>Estado financiero general</p>
                                     </a>
                                 </li>
                             </ul>
@@ -367,141 +324,141 @@
                                 }
 
                             </ul>
-                                    </li>
+                        </li>
 
-                                    @* Modulo Empleados *@
-                                    <li class="nav-header"></li>
-                                    <li class="nav-item has-treeview">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-people-carry"></i>
-                                            <p>
-                                                Empleados
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="@Url.Action("Registro","Empleados")" class="nav-link">
-                                                    <i class="nav-icon fas fa-people-carry"></i>
-                                                    <p>Registrar nuevos empleados en el sistema</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-people-carry"></i>
-                                                    <p>Actualizar información personal</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-people-carry"></i>
-                                                    <p>Solicitar días de vacaciones</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-people-carry"></i>
-                                                    <p>Realizar evaluaciones de desempeño a los empleados</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-people-carry"></i>
-                                                    <p>Gestionar las sesiones de capacitación para los empleados</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-people-carry"></i>
-                                                    <p>Gestionar los pagos de planilla</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                        @* Modulo Empleados *@
+                        <li class="nav-header"></li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-people-carry"></i>
+                                <p>
+                                    Empleados
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Registro","Empleados")" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Registrar nuevos empleados en el sistema</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Actualizar información personal</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Solicitar días de vacaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Realizar evaluaciones de desempeño a los empleados</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Gestionar las sesiones de capacitación para los empleados</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Gestionar los pagos de planilla</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                                    @* Modulo Entregas *@
-                                    <li class="nav-header"></li>
-                                    <li class="nav-item has-treeview">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-shopping-bag"></i>
-                                            <p>
-                                                Entregas
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="@Url.Action("Registro","Entregas")" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Registrar una nueva entrega</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Visualizar todas las entregas</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Actualizar el estado de una entrega</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Recibir notificaciones con actualizaciones</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Confirmar la recepción de mis productos para cerrar el pedidos</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                        @* Modulo Entregas *@
+                        <li class="nav-header"></li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Entregas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Registro","Entregas")" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Registrar una nueva entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Visualizar todas las entregas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Actualizar el estado de una entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Recibir notificaciones con actualizaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Confirmar la recepción de mis productos para cerrar el pedidos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                                    @* Modulo Planes de accion *@
-                                    <li class="nav-header"></li>
-                                    <li class="nav-item has-treeview">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-file"></i>
-                                            <p>
-                                                Planes de Acción
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="@Url.Action("Registro","Plan_Accion")" class="nav-link">
-                                                    <i class="nav-icon fas fa-file"></i>
-                                                    <p>Creación de una Nueva Acción</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-file"></i>
-                                                    <p>Verificación del estado de las acciones correctivas y preventivas</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-file"></i>
-                                                    <p>Asignación de responsabilidades a los usuarios para asegurar cada acción al responsable</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-file"></i>
-                                                    <p>Verificación de los plazos de ejecución de las tareas para gestionar tiempos</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                        @* Modulo Planes de accion *@
+                        <li class="nav-header"></li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>
+                                    Planes de Acción
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Registro","Plan_Accion")" class="nav-link">
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Creación de una Nueva Acción</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Verificación del estado de las acciones correctivas y preventivas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Asignación de responsabilidades a los usuarios para asegurar cada acción al responsable</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-file"></i>
+                                        <p>Verificación de los plazos de ejecución de las tareas para gestionar tiempos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                                </ul>
+                    </ul>
                 </nav>
 
             </div>

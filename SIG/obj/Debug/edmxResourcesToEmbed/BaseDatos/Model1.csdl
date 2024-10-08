@@ -222,11 +222,13 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__prove__66603565" FromRole="Proveedor" ToRole="Conta_Transaccion" />
     <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Prov_Comp__prove__693CA210" FromRole="Proveedor" ToRole="Prov_Compra" />
     <NavigationProperty Name="Prov_Contacto" Relationship="Self.FK__Prov_Cont__prove__398D8EEE" FromRole="Proveedor" ToRole="Prov_Contacto" />
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__72C60C4A" FromRole="Proveedor" ToRole="Prov_Pago" />
     <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__6C190EBB" FromRole="Proveedor" ToRole="Prov_Producto" />
+    <NavigationProperty Name="EstadosFinancieros" Relationship="SistemaIntegralGestionModel.FK__EstadosFi__Prove__2DE6D218" FromRole="Proveedor" ToRole="EstadosFinancieros" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -244,12 +246,12 @@
     <Property Name="id_tecnico" Type="Int32" />
     <Property Name="comentario_tecnico" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="fecha_cierre_ticket" Type="DateTime" Precision="3" />
+    <Property Name="comentarios_usuario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Ticket_Estado" Relationship="Self.FK__Ticket__estado__7E37BEF6" FromRole="Ticket" ToRole="Ticket_Estado" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK__Ticket__id_tecni__00200768" FromRole="Ticket" ToRole="Usuario" />
     <NavigationProperty Name="Usuario1" Relationship="Self.FK__Ticket__id_usuar__7F2BE32F" FromRole="Ticket" ToRole="Usuario" />
     <NavigationProperty Name="Ticket_Prioridad" Relationship="Self.FK__Ticket__priorida__7D439ABD" FromRole="Ticket" ToRole="Ticket_Prioridad" />
     <NavigationProperty Name="Ticket_Tipo" Relationship="Self.FK__Ticket__tipo_inc__7C4F7684" FromRole="Ticket" ToRole="Ticket_Tipo" />
-    <Property Name="comentarios_usuario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Ticket_Estado">
     <Key>
@@ -917,5 +919,33 @@
       <End Role="Venta_Producto" EntitySet="Venta_Producto" />
       <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
     </AssociationSet>
+    <EntitySet Name="EstadosFinancieros" EntityType="SistemaIntegralGestionModel.EstadosFinancieros" />
+    <AssociationSet Name="FK__EstadosFi__Prove__2DE6D218" Association="SistemaIntegralGestionModel.FK__EstadosFi__Prove__2DE6D218">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="EstadosFinancieros">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+    <Property Name="Saldo" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Proveedor" Relationship="SistemaIntegralGestionModel.FK__EstadosFi__Prove__2DE6D218" FromRole="EstadosFinancieros" ToRole="Proveedor" />
+  </EntityType>
+  <Association Name="FK__EstadosFi__Prove__2DE6D218">
+    <End Type="SistemaIntegralGestionModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+    <End Type="SistemaIntegralGestionModel.EstadosFinancieros" Role="EstadosFinancieros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EstadosFinancieros">
+        <PropertyRef Name="ProveedorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

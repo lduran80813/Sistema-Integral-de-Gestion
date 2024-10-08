@@ -1,0 +1,98 @@
+﻿@model List<SIG.Entidades.EstadoFinanciero>
+@{
+    ViewBag.Title = "Consulta Estado Financiero Conjunto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Estado Financiero Conjunto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Estados Financieros de los Proveedores</h2>
+
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert alert-info" role="alert">
+                @ViewBag.msj
+            </div>
+        }
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Saldo</th>
+                    <th>Estado Financiero</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+                    <tr>
+                        <td colspan="3" style="text-align:center">No hay datos disponibles.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var estado in Model)
+                    {
+                        <tr>
+                            <td>@estado.NombreProveedor</td>
+                            <td>@estado.Saldo.ToString("C")</td>
+                            <td>@estado.Estado.ToString()</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

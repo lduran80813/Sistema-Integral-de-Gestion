@@ -1,0 +1,63 @@
+﻿@model SIG.Entidades.EstadoFinanciero
+@{
+    ViewBag.Title = "Consulta Estado Financiero";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Estado Financiero</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .resultado {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Estado Financiero del Proveedor</h2>
+
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert alert-info" role="alert">
+                @ViewBag.msj
+            </div>
+        }
+
+        <div class="resultado">
+            <p><strong>Proveedor:</strong> @Model.NombreProveedor</p>
+            <p><strong>Saldo:</strong> @Model.Saldo.ToString("C")</p>
+            <p><strong>Estado Financiero:</strong> @Model.Estado.ToString()</p>
+        </div>
+    </div>
+</body>
+</html>

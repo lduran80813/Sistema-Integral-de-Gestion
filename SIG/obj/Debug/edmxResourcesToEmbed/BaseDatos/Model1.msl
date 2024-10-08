@@ -208,13 +208,13 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Ticket">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket">
         <MappingFragment StoreEntitySet="Ticket">
-          <ScalarProperty Name="comentarios_usuario" ColumnName="comentarios_usuario" />
           <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
           <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
           <ScalarProperty Name="estado" ColumnName="estado" />
@@ -227,6 +227,7 @@
           <ScalarProperty Name="id_tecnico" ColumnName="id_tecnico" />
           <ScalarProperty Name="comentario_tecnico" ColumnName="comentario_tecnico" />
           <ScalarProperty Name="fecha_cierre_ticket" ColumnName="fecha_cierre_ticket" />
+          <ScalarProperty Name="comentarios_usuario" ColumnName="comentarios_usuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -338,6 +339,17 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="precio" ColumnName="precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadosFinancieros">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.EstadosFinancieros">
+        <MappingFragment StoreEntitySet="EstadosFinancieros">
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

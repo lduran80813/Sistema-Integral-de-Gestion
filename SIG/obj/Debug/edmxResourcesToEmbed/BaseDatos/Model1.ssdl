@@ -16,6 +16,118 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Compra' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Compra">
+          <Property Name="id" Type="int" />
+          <Property Name="proveedor_id" Type="int" />
+          <Property Name="fecha_compra" Type="date" />
+          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Empleado' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Empleado">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellidos" Type="varchar" MaxLength="255" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+          <Property Name="departamento_id" Type="int" />
+          <Property Name="puesto_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Entrega' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Entrega">
+          <Property Name="id" Type="int" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
+          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
+          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Factura' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Factura">
+          <Property Name="id" Type="int" />
+          <Property Name="cliente_id" Type="int" />
+          <Property Name="fecha_venta" Type="date" />
+          <Property Name="metodo_pago_id" Type="int" />
+          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_PlanDeAccion">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_finalizacion" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Proveedor' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Proveedor">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Ticket' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Ticket">
+          <Property Name="id_ticket" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="tipo_incidencia" Type="int" />
+          <Property Name="prioridad" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_registro_usuario" Type="datetime" />
+          <Property Name="fecha_registra_tecnico" Type="datetime" />
+          <Property Name="id_tecnico" Type="int" />
+          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_cierre_ticket" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Usuario' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Usuario">
+          <Property Name="id" Type="int" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varchar" MaxLength="255" />
+          <Property Name="rol_id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Vacaciones">
+          <Property Name="id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
   <EntityType Name="Conta_Transaccion">
     <Key>
       <PropertyRef Name="id" />
@@ -107,6 +219,16 @@
     <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
     <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="EstadosFinancieros">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProveedorId" Type="int" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="50" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="PDA_Tarea">
     <Key>
       <PropertyRef Name="id" />
@@ -190,6 +312,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="255" />
     <Property Name="direccion" Type="varchar" MaxLength="255" />
+    <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -426,6 +549,18 @@
       </Principal>
       <Dependent Role="Entregas">
         <PropertyRef Name="pedido_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EstadosFi__Prove__2DE6D218">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="EstadosFinancieros" Type="Self.EstadosFinancieros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EstadosFinancieros">
+        <PropertyRef Name="ProveedorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -705,6 +840,7 @@
     <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Entregas" EntityType="Self.Entregas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prov_Compra" EntityType="Self.Prov_Compra" Schema="dbo" store:Type="Tables" />
@@ -764,6 +900,10 @@
     <AssociationSet Name="FK__Entregas__pedido__05D8E0BE" Association="Self.FK__Entregas__pedido__05D8E0BE">
       <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
       <End Role="Entregas" EntitySet="Entregas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EstadosFi__Prove__2DE6D218" Association="Self.FK__EstadosFi__Prove__2DE6D218">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
     </AssociationSet>
     <AssociationSet Name="FK__PDA_Tarea__plan___0A9D95DB" Association="Self.FK__PDA_Tarea__plan___0A9D95DB">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
