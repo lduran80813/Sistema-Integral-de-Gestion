@@ -84,13 +84,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.CerrarTicket(ticket);
             if (respuesta)
             {
-                ViewBag.msj = "Ticket eliminado correctaqmente";
+                TempData["mensaje"] = "Ticket eliminado correctaqmente";
                 return RedirectToAction("ListaTicketsRegistrados", "IncidenciasITManager");
             }
             else
             {
-                ViewBag.msj = "No se ha podido eliminar el Ticket";
-                return View(ListaTicketsRegistrados());
+                TempData["mensaje"] = "No se ha podido eliminar el Ticket";
+                return RedirectToAction("ListaTicketsRegistrados", "IncidenciasITManager");
             }
         }
 
@@ -129,7 +129,13 @@ namespace SIG.Controllers
         public ActionResult ListaHistoricoTickets()
         {
             var respuesta = ticketM.ListaHistoricoTickets();
-            return View(respuesta);
+            if (respuesta != null)
+                return View(respuesta);
+            else
+            {
+                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
     }

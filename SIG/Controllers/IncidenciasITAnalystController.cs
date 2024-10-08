@@ -79,7 +79,7 @@ namespace SIG.Controllers
                 return View(respuesta);
             else
             {
-                ViewBag.msj = "No se ha podido acceder a la lista de incidencias asignadas";
+                TempData["mensaje"] = "No se ha podido acceder a la lista de incidencias asignadas";
                 return RedirectToAction("Index", "Home");
             }                
         }
@@ -90,14 +90,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.CerrarTicket(ticket);
             if (respuesta)
             {
-                ViewBag.msj = "Ticket eliminado correctaqmente";
-                return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
+                TempData["mensaje"] = "Ticket eliminado correctaqmente";
             }
             else
             {
-                ViewBag.msj = "No se ha podido eliminar el Ticket";
-                return View(ListaTicketsAsignados());
+                TempData["mensaje"] = "No se ha podido eliminar el Ticket";
             }
+            return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
         }
 
         [HttpGet]
@@ -110,7 +109,7 @@ namespace SIG.Controllers
             {
                 if (respuesta.estado == 1 || respuesta.estado == 4)
                 {
-                    TempData["advertencia"] = "Acción denegada: El ticket ya fue cerrado";
+                    TempData["mensaje"] = "Acción denegada: El ticket ya fue cerrado";
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -119,7 +118,7 @@ namespace SIG.Controllers
             }
             else
             {
-                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -133,7 +132,7 @@ namespace SIG.Controllers
                 return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
             else
             {
-                ViewBag.msj = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                ViewBag.msj = "No se ha podido actualizar el Ticket";
                 return View();
             }
         }
@@ -142,7 +141,13 @@ namespace SIG.Controllers
         public ActionResult ListaHistoricoAtendidos()
         {
             var respuesta = ticketM.ListaHistoricoAtendidos();
-            return View(respuesta);
+            if (respuesta != null)
+                return View(respuesta);
+            else
+            {
+                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
     }

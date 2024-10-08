@@ -117,7 +117,7 @@
             @Html.DropDownListFor(m => m.id_tecnico, ViewBag.Tecnicos as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
 
             @Html.Label("Comentarios Técnico")
-            @Html.TextAreaFor(m => m.comentario_tecnico, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @required = "true" })
+            @Html.TextAreaFor(m => m.comentario_tecnico, new { @class = "form-control", @maxlength = "200", @id = "exampleTextarea1", @rows = "4", @required = "true" })
 
             @Html.Label("Fecha de asignada a Técnico")
             @Html.TextBoxFor(m => m.fecha_registra_tecnico, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })

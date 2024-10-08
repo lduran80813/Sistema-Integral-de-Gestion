@@ -77,16 +77,16 @@
         {
 
             @Html.Label("Título", new { @for = "incident-title" })
-            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @id = "incident-title", @name = "incident-title", @required = "true" })
+            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @maxlength = "20", @id = "incident-title", @name = "incident-title", @required = "true" })
 
             @Html.Label("Tipo de incidente", new { @for = "type" })
             @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-select", @id = "type", @name = "type", @required = "true" })
 
             @Html.Label("Descripción", new { @for = "description" })
-            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @id = "description", @name = "description", @rows = "4", @required = "true" })
+            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @maxlength = "200", @id = "description", @name = "description", @rows = "4", @required = "true" })
 
             @Html.Label("Comentarios Usuario", new { @for = "user-comments" })
-            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @id = "user-comments", @name = "user-comments", @rows = "4" })
+            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @maxlength = "200", @id = "user-comments", @name = "user-comments", @rows = "4" })
 
             <button type="submit">Registrar Incidencia</button>
         }
