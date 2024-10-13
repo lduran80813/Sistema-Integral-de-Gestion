@@ -34,12 +34,7 @@ namespace SIG.Controllers
             return View();
         }
 
-        public ActionResult Recuconn()
-        {
-            ViewBag.Message = "Registrar usuario.";
 
-            return View();
-        }
 
     }
 }

@@ -100,6 +100,11 @@
           <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
           <Property Name="departamento_id" Type="int" />
           <Property Name="puesto_id" Type="int" />
+          <Property Name="rol_id" Type="int" />
+          <Property Name="estado_empleado" Type="bit" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varbinary" MaxLength="64" />
+          <Property Name="Sal" Type="varbinary" MaxLength="64" />
         </EntityType>
         <EntityType Name="Entregas">
           <Key>
@@ -235,17 +240,6 @@
           <Property Name="tipo_incidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="30" />
         </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="usuario" Type="varchar" MaxLength="100" />
-          <Property Name="contrasena" Type="varbinary" MaxLength="64" />
-          <Property Name="rol_id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="Sal" Type="nvarchar" MaxLength="36" />
-        </EntityType>
         <EntityType Name="Venta_Cliente">
           <Key>
             <PropertyRef Name="id" />
@@ -315,7 +309,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
-        <Association Name="FK__Adm_Permi__rol_i__4222D4EF">
+        <Association Name="FK__Adm_Permi__rol_i__3F466844">
           <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
           <End Role="Adm_Permiso" Type="Self.Adm_Permiso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,7 +321,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__clien__52593CB8">
+        <Association Name="FK__Conta_Tra__clien__4F7CD00D">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -339,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__prove__534D60F1">
+        <Association Name="FK__Conta_Tra__prove__5070F446">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,7 +345,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Conta__emple__31EC6D26">
+        <Association Name="FK__Emp_Conta__emple__34C8D9D1">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_ContactoEmergencia" Type="Self.Emp_ContactoEmergencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -375,7 +369,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Remun__emple__37A5467C">
+        <Association Name="FK__Emp_Remun__emple__3A81B327">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_RemuneracionDeduccion" Type="Self.Emp_RemuneracionDeduccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,7 +381,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Vacac__emple__34C8D9D1">
+        <Association Name="FK__Emp_Vacac__emple__37A5467C">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -399,7 +393,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__depart__2E1BDC42">
+        <Association Name="FK__Empleado__contra__300424B4">
           <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,7 +405,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__puesto__2F10007B">
+        <Association Name="FK__Empleado__puesto__30F848ED">
           <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -423,7 +417,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Entregas__pedido__72C60C4A">
+        <Association Name="FK__Empleado__rol_id__31EC6D26">
+          <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adm_Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entregas__pedido__6FE99F9F">
           <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="0..1" />
           <End Role="Entregas" Type="Self.Entregas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -435,7 +441,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PDA_Tarea__plan___778AC167">
+        <Association Name="FK__PDA_Tarea__plan___74AE54BC">
           <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,7 +453,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PDA_Tarea__respo__787EE5A0">
+        <Association Name="FK__PDA_Tarea__respo__75A278F5">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -459,7 +465,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__compr__5BE2A6F2">
+        <Association Name="FK__Prov_Comp__compr__59063A47">
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
           <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -471,7 +477,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__produ__5CD6CB2B">
+        <Association Name="FK__Prov_Comp__produ__59FA5E80">
           <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="0..1" />
           <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -483,7 +489,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__prove__5629CD9C">
+        <Association Name="FK__Prov_Comp__prove__534D60F1">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -507,11 +513,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Pago__autor__60A75C0F">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+        <Association Name="FK__Prov_Pago__autor__5DCAEF64">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Empleado">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Prov_Pago">
@@ -519,7 +525,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Pago__prove__5FB337D6">
+        <Association Name="FK__Prov_Pago__prove__5CD6CB2B">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +537,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Prod__prove__59063A47">
+        <Association Name="FK__Prov_Prod__prove__5629CD9C">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,7 +549,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__estado__6B24EA82">
+        <Association Name="FK__Ticket__estado__68487DD7">
           <End Role="Ticket_Estado" Type="Self.Ticket_Estado" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -555,11 +561,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__id_tecni__6D0D32F4">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+        <Association Name="FK__Ticket__id_tecni__6A30C649">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Empleado">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Ticket">
@@ -567,11 +573,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__id_usuar__6C190EBB">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+        <Association Name="FK__Ticket__id_usuar__693CA210">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Empleado">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Ticket">
@@ -579,7 +585,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__priorida__6A30C649">
+        <Association Name="FK__Ticket__priorida__6754599E">
           <End Role="Ticket_Prioridad" Type="Self.Ticket_Prioridad" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -591,7 +597,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__tipo_inc__693CA210">
+        <Association Name="FK__Ticket__tipo_inc__66603565">
           <End Role="Ticket_Tipo" Type="Self.Ticket_Tipo" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -603,31 +609,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__emplead__3F466844">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="empleado_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__Sal__3E52440B">
-          <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm_Rol">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="rol_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Venta_Fac__clien__4AB81AF0">
+        <Association Name="FK__Venta_Fac__clien__47DBAE45">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -639,7 +621,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__factu__4E88ABD4">
+        <Association Name="FK__Venta_Fac__factu__4BAC3F29">
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
           <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -651,7 +633,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__metod__4BAC3F29">
+        <Association Name="FK__Venta_Fac__metod__48CFD27E">
           <End Role="Venta_MetodoPago" Type="Self.Venta_MetodoPago" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -663,7 +645,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__produ__4F7CD00D">
+        <Association Name="FK__Venta_Fac__produ__4CA06362">
           <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="0..1" />
           <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -675,7 +657,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Pag__clien__7B5B524B">
+        <Association Name="FK__Venta_Pag__clien__787EE5A0">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_PagoCliente" Type="Self.Venta_PagoCliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -687,7 +669,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Ped__clien__6FE99F9F">
+        <Association Name="FK__Venta_Ped__clien__6D0D32F4">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -699,36 +681,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="ActualizarTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idTicket" Type="int" Mode="In" />
-          <Parameter Name="estado" Type="int" Mode="In" />
-          <Parameter Name="tipoIncidencia" Type="int" Mode="In" />
-          <Parameter Name="prioridad" Type="int" Mode="In" />
-          <Parameter Name="titulo" Type="varchar" Mode="In" />
-          <Parameter Name="descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="comentariosUsuario" Type="varchar" Mode="In" />
-          <Parameter Name="fechaRegistraTecnico" Type="datetime2" Mode="In" />
-          <Parameter Name="idTecnico" Type="int" Mode="In" />
-          <Parameter Name="comentarioTecnico" Type="varchar" Mode="In" />
-          <Parameter Name="fechaCierreTicket" Type="datetime2" Mode="In" />
+        <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+          <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
         </Function>
-        <Function Name="CerrarTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idTicket" Type="int" Mode="In" />
-        </Function>
-        <Function Name="IniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Usuario" Type="varchar" Mode="In" />
-          <Parameter Name="Contrasena" Type="varchar" Mode="In" />
+        <Function Name="iniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correo_electronico" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contrasena" Type="nvarchar" Mode="In" />
           <Parameter Name="Id" Type="int" Mode="InOut" />
           <Parameter Name="LoginSuccess" Type="int" Mode="InOut" />
+          <Parameter Name="Rol" Type="int" Mode="InOut" />
+          <Parameter Name="Usuario" Type="nvarchar" Mode="InOut" />
         </Function>
-        <Function Name="InsertarTicket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idUsuario" Type="int" Mode="In" />
-          <Parameter Name="titulo" Type="varchar" Mode="In" />
-          <Parameter Name="descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="tipoIncidencia" Type="int" Mode="In" />
-          <Parameter Name="comentariosUsuario" Type="varchar" Mode="In" />
-          <Parameter Name="fechaRegistroUsuario" Type="datetime" Mode="In" />
-          <Parameter Name="estado" Type="int" Mode="In" />
+        <Function Name="registrarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartamentoID" Type="int" Mode="In" />
+          <Parameter Name="PuestoID" Type="int" Mode="In" />
+          <Parameter Name="RolID" Type="int" Mode="In" />
+          <Parameter Name="EstadoEmpleado" Type="bit" Mode="In" />
+          <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contrasena" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="registrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="numero_identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="telefono" Type="varchar" Mode="In" />
+          <Parameter Name="correo_electronico" Type="varchar" Mode="In" />
+          <Parameter Name="departamento_id" Type="int" Mode="In" />
+          <Parameter Name="puesto_id" Type="int" Mode="In" />
+          <Parameter Name="rol_id" Type="int" Mode="In" />
+          <Parameter Name="estado_empleado" Type="bit" Mode="In" />
+          <Parameter Name="usuario" Type="varchar" Mode="In" />
+          <Parameter Name="contrasena" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="ValidarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="SistemaIntegralGestionModelStoreContainer">
           <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
@@ -754,7 +750,6 @@
           <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket_Tipo" EntityType="Self.Ticket_Tipo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_Cliente" EntityType="Self.Venta_Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_Factura" EntityType="Self.Venta_Factura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_FacturaDetalle" EntityType="Self.Venta_FacturaDetalle" Schema="dbo" store:Type="Tables" />
@@ -762,19 +757,19 @@
           <EntitySet Name="Venta_PagoCliente" EntityType="Self.Venta_PagoCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_Pedido" EntityType="Self.Venta_Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Adm_Permi__rol_i__4222D4EF" Association="Self.FK__Adm_Permi__rol_i__4222D4EF">
+          <AssociationSet Name="FK__Adm_Permi__rol_i__3F466844" Association="Self.FK__Adm_Permi__rol_i__3F466844">
             <End Role="Adm_Rol" EntitySet="Adm_Rol" />
             <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__clien__52593CB8" Association="Self.FK__Conta_Tra__clien__52593CB8">
+          <AssociationSet Name="FK__Conta_Tra__clien__4F7CD00D" Association="Self.FK__Conta_Tra__clien__4F7CD00D">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__prove__534D60F1" Association="Self.FK__Conta_Tra__prove__534D60F1">
+          <AssociationSet Name="FK__Conta_Tra__prove__5070F446" Association="Self.FK__Conta_Tra__prove__5070F446">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Conta__emple__31EC6D26" Association="Self.FK__Emp_Conta__emple__31EC6D26">
+          <AssociationSet Name="FK__Emp_Conta__emple__34C8D9D1" Association="Self.FK__Emp_Conta__emple__34C8D9D1">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_ContactoEmergencia" EntitySet="Emp_ContactoEmergencia" />
           </AssociationSet>
@@ -782,43 +777,47 @@
             <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
             <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Remun__emple__37A5467C" Association="Self.FK__Emp_Remun__emple__37A5467C">
+          <AssociationSet Name="FK__Emp_Remun__emple__3A81B327" Association="Self.FK__Emp_Remun__emple__3A81B327">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_RemuneracionDeduccion" EntitySet="Emp_RemuneracionDeduccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Vacac__emple__34C8D9D1" Association="Self.FK__Emp_Vacac__emple__34C8D9D1">
+          <AssociationSet Name="FK__Emp_Vacac__emple__37A5467C" Association="Self.FK__Emp_Vacac__emple__37A5467C">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__depart__2E1BDC42" Association="Self.FK__Empleado__depart__2E1BDC42">
+          <AssociationSet Name="FK__Empleado__contra__300424B4" Association="Self.FK__Empleado__contra__300424B4">
             <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__puesto__2F10007B" Association="Self.FK__Empleado__puesto__2F10007B">
+          <AssociationSet Name="FK__Empleado__puesto__30F848ED" Association="Self.FK__Empleado__puesto__30F848ED">
             <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Entregas__pedido__72C60C4A" Association="Self.FK__Entregas__pedido__72C60C4A">
+          <AssociationSet Name="FK__Empleado__rol_id__31EC6D26" Association="Self.FK__Empleado__rol_id__31EC6D26">
+            <End Role="Adm_Rol" EntitySet="Adm_Rol" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entregas__pedido__6FE99F9F" Association="Self.FK__Entregas__pedido__6FE99F9F">
             <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
             <End Role="Entregas" EntitySet="Entregas" />
           </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__plan___778AC167" Association="Self.FK__PDA_Tarea__plan___778AC167">
+          <AssociationSet Name="FK__PDA_Tarea__plan___74AE54BC" Association="Self.FK__PDA_Tarea__plan___74AE54BC">
             <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__respo__787EE5A0" Association="Self.FK__PDA_Tarea__respo__787EE5A0">
+          <AssociationSet Name="FK__PDA_Tarea__respo__75A278F5" Association="Self.FK__PDA_Tarea__respo__75A278F5">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__compr__5BE2A6F2" Association="Self.FK__Prov_Comp__compr__5BE2A6F2">
+          <AssociationSet Name="FK__Prov_Comp__compr__59063A47" Association="Self.FK__Prov_Comp__compr__59063A47">
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
             <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__produ__5CD6CB2B" Association="Self.FK__Prov_Comp__produ__5CD6CB2B">
+          <AssociationSet Name="FK__Prov_Comp__produ__59FA5E80" Association="Self.FK__Prov_Comp__produ__59FA5E80">
             <End Role="Prov_Producto" EntitySet="Prov_Producto" />
             <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__prove__5629CD9C" Association="Self.FK__Prov_Comp__prove__5629CD9C">
+          <AssociationSet Name="FK__Prov_Comp__prove__534D60F1" Association="Self.FK__Prov_Comp__prove__534D60F1">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
           </AssociationSet>
@@ -826,67 +825,59 @@
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Contacto" EntitySet="Prov_Contacto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Pago__autor__60A75C0F" Association="Self.FK__Prov_Pago__autor__60A75C0F">
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK__Prov_Pago__autor__5DCAEF64" Association="Self.FK__Prov_Pago__autor__5DCAEF64">
+            <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Pago__prove__5FB337D6" Association="Self.FK__Prov_Pago__prove__5FB337D6">
+          <AssociationSet Name="FK__Prov_Pago__prove__5CD6CB2B" Association="Self.FK__Prov_Pago__prove__5CD6CB2B">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Prod__prove__59063A47" Association="Self.FK__Prov_Prod__prove__59063A47">
+          <AssociationSet Name="FK__Prov_Prod__prove__5629CD9C" Association="Self.FK__Prov_Prod__prove__5629CD9C">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Producto" EntitySet="Prov_Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__estado__6B24EA82" Association="Self.FK__Ticket__estado__6B24EA82">
+          <AssociationSet Name="FK__Ticket__estado__68487DD7" Association="Self.FK__Ticket__estado__68487DD7">
             <End Role="Ticket_Estado" EntitySet="Ticket_Estado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__id_tecni__6D0D32F4" Association="Self.FK__Ticket__id_tecni__6D0D32F4">
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK__Ticket__id_tecni__6A30C649" Association="Self.FK__Ticket__id_tecni__6A30C649">
+            <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__id_usuar__6C190EBB" Association="Self.FK__Ticket__id_usuar__6C190EBB">
-            <End Role="Usuario" EntitySet="Usuario" />
+          <AssociationSet Name="FK__Ticket__id_usuar__693CA210" Association="Self.FK__Ticket__id_usuar__693CA210">
+            <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__priorida__6A30C649" Association="Self.FK__Ticket__priorida__6A30C649">
+          <AssociationSet Name="FK__Ticket__priorida__6754599E" Association="Self.FK__Ticket__priorida__6754599E">
             <End Role="Ticket_Prioridad" EntitySet="Ticket_Prioridad" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__tipo_inc__693CA210" Association="Self.FK__Ticket__tipo_inc__693CA210">
+          <AssociationSet Name="FK__Ticket__tipo_inc__66603565" Association="Self.FK__Ticket__tipo_inc__66603565">
             <End Role="Ticket_Tipo" EntitySet="Ticket_Tipo" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__emplead__3F466844" Association="Self.FK__Usuario__emplead__3F466844">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Sal__3E52440B" Association="Self.FK__Usuario__Sal__3E52440B">
-            <End Role="Adm_Rol" EntitySet="Adm_Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__clien__4AB81AF0" Association="Self.FK__Venta_Fac__clien__4AB81AF0">
+          <AssociationSet Name="FK__Venta_Fac__clien__47DBAE45" Association="Self.FK__Venta_Fac__clien__47DBAE45">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__factu__4E88ABD4" Association="Self.FK__Venta_Fac__factu__4E88ABD4">
+          <AssociationSet Name="FK__Venta_Fac__factu__4BAC3F29" Association="Self.FK__Venta_Fac__factu__4BAC3F29">
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
             <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__metod__4BAC3F29" Association="Self.FK__Venta_Fac__metod__4BAC3F29">
+          <AssociationSet Name="FK__Venta_Fac__metod__48CFD27E" Association="Self.FK__Venta_Fac__metod__48CFD27E">
             <End Role="Venta_MetodoPago" EntitySet="Venta_MetodoPago" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__produ__4F7CD00D" Association="Self.FK__Venta_Fac__produ__4F7CD00D">
+          <AssociationSet Name="FK__Venta_Fac__produ__4CA06362" Association="Self.FK__Venta_Fac__produ__4CA06362">
             <End Role="Venta_Producto" EntitySet="Venta_Producto" />
             <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Pag__clien__7B5B524B" Association="Self.FK__Venta_Pag__clien__7B5B524B">
+          <AssociationSet Name="FK__Venta_Pag__clien__787EE5A0" Association="Self.FK__Venta_Pag__clien__787EE5A0">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_PagoCliente" EntitySet="Venta_PagoCliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Ped__clien__6FE99F9F" Association="Self.FK__Venta_Ped__clien__6FE99F9F">
+          <AssociationSet Name="FK__Venta_Ped__clien__6D0D32F4" Association="Self.FK__Venta_Ped__clien__6D0D32F4">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
           </AssociationSet>
@@ -903,7 +894,7 @@
           <Property Name="rol_id" Type="Int32" />
           <Property Name="modulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="permiso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Adm_Permi__rol_i__4222D4EF" FromRole="Adm_Permiso" ToRole="Adm_Rol" />
+          <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Adm_Permi__rol_i__3F466844" FromRole="Adm_Permiso" ToRole="Adm_Rol" />
         </EntityType>
         <EntityType Name="Adm_Rol">
           <Key>
@@ -911,8 +902,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_rol" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Adm_Permiso" Relationship="Self.FK__Adm_Permi__rol_i__4222D4EF" FromRole="Adm_Rol" ToRole="Adm_Permiso" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__Sal__3E52440B" FromRole="Adm_Rol" ToRole="Usuario" />
+          <NavigationProperty Name="Adm_Permiso" Relationship="Self.FK__Adm_Permi__rol_i__3F466844" FromRole="Adm_Rol" ToRole="Adm_Permiso" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__rol_id__31EC6D26" FromRole="Adm_Rol" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Conta_Transaccion">
           <Key>
@@ -926,8 +917,8 @@
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="cliente_id" Type="Int32" />
           <Property Name="proveedor_id" Type="Int32" />
-          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Conta_Tra__clien__52593CB8" FromRole="Conta_Transaccion" ToRole="Venta_Cliente" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Conta_Tra__prove__534D60F1" FromRole="Conta_Transaccion" ToRole="Proveedor" />
+          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Conta_Tra__clien__4F7CD00D" FromRole="Conta_Transaccion" ToRole="Venta_Cliente" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Conta_Tra__prove__5070F446" FromRole="Conta_Transaccion" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Emp_BitacoraIngreso">
           <Key>
@@ -946,7 +937,7 @@
           <Property Name="nombre_contacto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="telefono_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="relacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Conta__emple__31EC6D26" FromRole="Emp_ContactoEmergencia" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Conta__emple__34C8D9D1" FromRole="Emp_ContactoEmergencia" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Emp_Departamento">
           <Key>
@@ -955,7 +946,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_departamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Emp_Puest__depar__2B3F6F97" FromRole="Emp_Departamento" ToRole="Emp_Puesto" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__depart__2E1BDC42" FromRole="Emp_Departamento" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__contra__300424B4" FromRole="Emp_Departamento" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Emp_Puesto">
           <Key>
@@ -965,7 +956,7 @@
           <Property Name="nombre_puesto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="departamento_id" Type="Int32" />
           <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Emp_Puest__depar__2B3F6F97" FromRole="Emp_Puesto" ToRole="Emp_Departamento" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__puesto__2F10007B" FromRole="Emp_Puesto" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__puesto__30F848ED" FromRole="Emp_Puesto" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Emp_RemuneracionDeduccion">
           <Key>
@@ -976,7 +967,7 @@
           <Property Name="tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Remun__emple__37A5467C" FromRole="Emp_RemuneracionDeduccion" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Remun__emple__3A81B327" FromRole="Emp_RemuneracionDeduccion" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Emp_Vacaciones">
           <Key>
@@ -986,7 +977,7 @@
           <Property Name="empleado_id" Type="Int32" />
           <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
           <Property Name="fecha_fin" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__34C8D9D1" FromRole="Emp_Vacaciones" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__37A5467C" FromRole="Emp_Vacaciones" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -1002,13 +993,21 @@
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="departamento_id" Type="Int32" />
           <Property Name="puesto_id" Type="Int32" />
-          <NavigationProperty Name="Emp_ContactoEmergencia" Relationship="Self.FK__Emp_Conta__emple__31EC6D26" FromRole="Empleado" ToRole="Emp_ContactoEmergencia" />
-          <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Empleado__depart__2E1BDC42" FromRole="Empleado" ToRole="Emp_Departamento" />
-          <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__2F10007B" FromRole="Empleado" ToRole="Emp_Puesto" />
-          <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__37A5467C" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
-          <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__34C8D9D1" FromRole="Empleado" ToRole="Emp_Vacaciones" />
-          <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__787EE5A0" FromRole="Empleado" ToRole="PDA_Tarea" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__emplead__3F466844" FromRole="Empleado" ToRole="Usuario" />
+          <Property Name="rol_id" Type="Int32" />
+          <Property Name="estado_empleado" Type="Boolean" />
+          <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contrasena" Type="Binary" MaxLength="64" FixedLength="false" />
+          <Property Name="Sal" Type="Binary" MaxLength="64" FixedLength="false" />
+          <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Empleado__rol_id__31EC6D26" FromRole="Empleado" ToRole="Adm_Rol" />
+          <NavigationProperty Name="Emp_ContactoEmergencia" Relationship="Self.FK__Emp_Conta__emple__34C8D9D1" FromRole="Empleado" ToRole="Emp_ContactoEmergencia" />
+          <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Empleado__contra__300424B4" FromRole="Empleado" ToRole="Emp_Departamento" />
+          <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__30F848ED" FromRole="Empleado" ToRole="Emp_Puesto" />
+          <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__3A81B327" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
+          <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__37A5467C" FromRole="Empleado" ToRole="Emp_Vacaciones" />
+          <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__75A278F5" FromRole="Empleado" ToRole="PDA_Tarea" />
+          <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__5DCAEF64" FromRole="Empleado" ToRole="Prov_Pago" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__id_tecni__6A30C649" FromRole="Empleado" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__693CA210" FromRole="Empleado" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Entregas">
           <Key>
@@ -1020,7 +1019,7 @@
           <Property Name="direccion_entrega" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="articulos_entregados" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="observaciones_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Venta_Pedido" Relationship="Self.FK__Entregas__pedido__72C60C4A" FromRole="Entregas" ToRole="Venta_Pedido" />
+          <NavigationProperty Name="Venta_Pedido" Relationship="Self.FK__Entregas__pedido__6FE99F9F" FromRole="Entregas" ToRole="Venta_Pedido" />
         </EntityType>
         <EntityType Name="PDA_Tarea">
           <Key>
@@ -1033,8 +1032,8 @@
           <Property Name="estado_tarea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
           <Property Name="fecha_finalizacion" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__PDA_Tarea__respo__787EE5A0" FromRole="PDA_Tarea" ToRole="Empleado" />
-          <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PDA_Tarea__plan___778AC167" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__PDA_Tarea__respo__75A278F5" FromRole="PDA_Tarea" ToRole="Empleado" />
+          <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PDA_Tarea__plan___74AE54BC" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
         </EntityType>
         <EntityType Name="PlanDeAccion">
           <Key>
@@ -1045,7 +1044,7 @@
           <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
           <Property Name="fecha_finalizacion" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__plan___778AC167" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
+          <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__plan___74AE54BC" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
         </EntityType>
         <EntityType Name="Prov_Compra">
           <Key>
@@ -1057,8 +1056,8 @@
           <Property Name="total_compra" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="no_factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__compr__5BE2A6F2" FromRole="Prov_Compra" ToRole="Prov_CompraDetalle" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Comp__prove__5629CD9C" FromRole="Prov_Compra" ToRole="Proveedor" />
+          <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__compr__59063A47" FromRole="Prov_Compra" ToRole="Prov_CompraDetalle" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Comp__prove__534D60F1" FromRole="Prov_Compra" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Prov_CompraDetalle">
           <Key>
@@ -1069,8 +1068,8 @@
           <Property Name="producto_id" Type="Int32" />
           <Property Name="cantidad" Type="Int32" />
           <Property Name="precio_unidad" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Prov_Comp__compr__5BE2A6F2" FromRole="Prov_CompraDetalle" ToRole="Prov_Compra" />
-          <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Comp__produ__5CD6CB2B" FromRole="Prov_CompraDetalle" ToRole="Prov_Producto" />
+          <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Prov_Comp__compr__59063A47" FromRole="Prov_CompraDetalle" ToRole="Prov_Compra" />
+          <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Comp__produ__59FA5E80" FromRole="Prov_CompraDetalle" ToRole="Prov_Producto" />
         </EntityType>
         <EntityType Name="Prov_Contacto">
           <Key>
@@ -1094,8 +1093,8 @@
           <Property Name="monto_pago" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="autorizador_id" Type="Int32" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Prov_Pago__autor__60A75C0F" FromRole="Prov_Pago" ToRole="Usuario" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Pago__prove__5FB337D6" FromRole="Prov_Pago" ToRole="Proveedor" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Prov_Pago__autor__5DCAEF64" FromRole="Prov_Pago" ToRole="Empleado" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Pago__prove__5CD6CB2B" FromRole="Prov_Pago" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Prov_Producto">
           <Key>
@@ -1107,8 +1106,8 @@
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="proveedor_id" Type="Int32" />
-          <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__produ__5CD6CB2B" FromRole="Prov_Producto" ToRole="Prov_CompraDetalle" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Prod__prove__59063A47" FromRole="Prov_Producto" ToRole="Proveedor" />
+          <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__produ__59FA5E80" FromRole="Prov_Producto" ToRole="Prov_CompraDetalle" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Prod__prove__5629CD9C" FromRole="Prov_Producto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -1117,11 +1116,11 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__prove__534D60F1" FromRole="Proveedor" ToRole="Conta_Transaccion" />
-          <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Prov_Comp__prove__5629CD9C" FromRole="Proveedor" ToRole="Prov_Compra" />
+          <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__prove__5070F446" FromRole="Proveedor" ToRole="Conta_Transaccion" />
+          <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Prov_Comp__prove__534D60F1" FromRole="Proveedor" ToRole="Prov_Compra" />
           <NavigationProperty Name="Prov_Contacto" Relationship="Self.FK__Prov_Cont__prove__267ABA7A" FromRole="Proveedor" ToRole="Prov_Contacto" />
-          <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__5FB337D6" FromRole="Proveedor" ToRole="Prov_Pago" />
-          <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__59063A47" FromRole="Proveedor" ToRole="Prov_Producto" />
+          <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__5CD6CB2B" FromRole="Proveedor" ToRole="Prov_Pago" />
+          <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__5629CD9C" FromRole="Proveedor" ToRole="Prov_Producto" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -1140,11 +1139,11 @@
           <Property Name="comentario_tecnico" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="fecha_cierre_ticket" Type="DateTime" Precision="3" />
           <Property Name="comentarios_usuario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ticket_Estado" Relationship="Self.FK__Ticket__estado__6B24EA82" FromRole="Ticket" ToRole="Ticket_Estado" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__Ticket__id_tecni__6D0D32F4" FromRole="Ticket" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.FK__Ticket__id_usuar__6C190EBB" FromRole="Ticket" ToRole="Usuario" />
-          <NavigationProperty Name="Ticket_Prioridad" Relationship="Self.FK__Ticket__priorida__6A30C649" FromRole="Ticket" ToRole="Ticket_Prioridad" />
-          <NavigationProperty Name="Ticket_Tipo" Relationship="Self.FK__Ticket__tipo_inc__693CA210" FromRole="Ticket" ToRole="Ticket_Tipo" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Ticket__id_tecni__6A30C649" FromRole="Ticket" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado1" Relationship="Self.FK__Ticket__id_usuar__693CA210" FromRole="Ticket" ToRole="Empleado" />
+          <NavigationProperty Name="Ticket_Estado" Relationship="Self.FK__Ticket__estado__68487DD7" FromRole="Ticket" ToRole="Ticket_Estado" />
+          <NavigationProperty Name="Ticket_Prioridad" Relationship="Self.FK__Ticket__priorida__6754599E" FromRole="Ticket" ToRole="Ticket_Prioridad" />
+          <NavigationProperty Name="Ticket_Tipo" Relationship="Self.FK__Ticket__tipo_inc__66603565" FromRole="Ticket" ToRole="Ticket_Tipo" />
         </EntityType>
         <EntityType Name="Ticket_Estado">
           <Key>
@@ -1152,7 +1151,7 @@
           </Key>
           <Property Name="estado_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__estado__6B24EA82" FromRole="Ticket_Estado" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__estado__68487DD7" FromRole="Ticket_Estado" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Ticket_Prioridad">
           <Key>
@@ -1160,7 +1159,7 @@
           </Key>
           <Property Name="prioridad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__priorida__6A30C649" FromRole="Ticket_Prioridad" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__priorida__6754599E" FromRole="Ticket_Prioridad" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Ticket_Tipo">
           <Key>
@@ -1168,23 +1167,7 @@
           </Key>
           <Property Name="tipo_incidencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__tipo_inc__693CA210" FromRole="Ticket_Tipo" ToRole="Ticket" />
-        </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="contrasena" Type="Binary" MaxLength="64" FixedLength="false" />
-          <Property Name="rol_id" Type="Int32" />
-          <Property Name="empleado_id" Type="Int32" />
-          <Property Name="Sal" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Usuario__Sal__3E52440B" FromRole="Usuario" ToRole="Adm_Rol" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Usuario__emplead__3F466844" FromRole="Usuario" ToRole="Empleado" />
-          <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__60A75C0F" FromRole="Usuario" ToRole="Prov_Pago" />
-          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__id_tecni__6D0D32F4" FromRole="Usuario" ToRole="Ticket" />
-          <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__6C190EBB" FromRole="Usuario" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__tipo_inc__66603565" FromRole="Ticket_Tipo" ToRole="Ticket" />
         </EntityType>
         <EntityType Name="Venta_Cliente">
           <Key>
@@ -1195,10 +1178,10 @@
           <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__clien__52593CB8" FromRole="Venta_Cliente" ToRole="Conta_Transaccion" />
-          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__4AB81AF0" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
-          <NavigationProperty Name="Venta_PagoCliente" Relationship="Self.FK__Venta_Pag__clien__7B5B524B" FromRole="Venta_Cliente" ToRole="Venta_PagoCliente" />
-          <NavigationProperty Name="Venta_Pedido" Relationship="Self.FK__Venta_Ped__clien__6FE99F9F" FromRole="Venta_Cliente" ToRole="Venta_Pedido" />
+          <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__clien__4F7CD00D" FromRole="Venta_Cliente" ToRole="Conta_Transaccion" />
+          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__47DBAE45" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
+          <NavigationProperty Name="Venta_PagoCliente" Relationship="Self.FK__Venta_Pag__clien__787EE5A0" FromRole="Venta_Cliente" ToRole="Venta_PagoCliente" />
+          <NavigationProperty Name="Venta_Pedido" Relationship="Self.FK__Venta_Ped__clien__6D0D32F4" FromRole="Venta_Cliente" ToRole="Venta_Pedido" />
         </EntityType>
         <EntityType Name="Venta_Factura">
           <Key>
@@ -1213,9 +1196,9 @@
           <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="estado_factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Fac__clien__4AB81AF0" FromRole="Venta_Factura" ToRole="Venta_Cliente" />
-          <NavigationProperty Name="Venta_FacturaDetalle" Relationship="Self.FK__Venta_Fac__factu__4E88ABD4" FromRole="Venta_Factura" ToRole="Venta_FacturaDetalle" />
-          <NavigationProperty Name="Venta_MetodoPago" Relationship="Self.FK__Venta_Fac__metod__4BAC3F29" FromRole="Venta_Factura" ToRole="Venta_MetodoPago" />
+          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Fac__clien__47DBAE45" FromRole="Venta_Factura" ToRole="Venta_Cliente" />
+          <NavigationProperty Name="Venta_FacturaDetalle" Relationship="Self.FK__Venta_Fac__factu__4BAC3F29" FromRole="Venta_Factura" ToRole="Venta_FacturaDetalle" />
+          <NavigationProperty Name="Venta_MetodoPago" Relationship="Self.FK__Venta_Fac__metod__48CFD27E" FromRole="Venta_Factura" ToRole="Venta_MetodoPago" />
         </EntityType>
         <EntityType Name="Venta_FacturaDetalle">
           <Key>
@@ -1226,8 +1209,8 @@
           <Property Name="producto_id" Type="Int32" />
           <Property Name="cantidad" Type="Int32" />
           <Property Name="precio_unidad" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__factu__4E88ABD4" FromRole="Venta_FacturaDetalle" ToRole="Venta_Factura" />
-          <NavigationProperty Name="Venta_Producto" Relationship="Self.FK__Venta_Fac__produ__4F7CD00D" FromRole="Venta_FacturaDetalle" ToRole="Venta_Producto" />
+          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__factu__4BAC3F29" FromRole="Venta_FacturaDetalle" ToRole="Venta_Factura" />
+          <NavigationProperty Name="Venta_Producto" Relationship="Self.FK__Venta_Fac__produ__4CA06362" FromRole="Venta_FacturaDetalle" ToRole="Venta_Producto" />
         </EntityType>
         <EntityType Name="Venta_MetodoPago">
           <Key>
@@ -1235,7 +1218,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="metodo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__metod__4BAC3F29" FromRole="Venta_MetodoPago" ToRole="Venta_Factura" />
+          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__metod__48CFD27E" FromRole="Venta_MetodoPago" ToRole="Venta_Factura" />
         </EntityType>
         <EntityType Name="Venta_PagoCliente">
           <Key>
@@ -1246,7 +1229,7 @@
           <Property Name="fecha_pago" Type="DateTime" Precision="0" />
           <Property Name="monto_pago" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Pag__clien__7B5B524B" FromRole="Venta_PagoCliente" ToRole="Venta_Cliente" />
+          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Pag__clien__787EE5A0" FromRole="Venta_PagoCliente" ToRole="Venta_Cliente" />
         </EntityType>
         <EntityType Name="Venta_Pedido">
           <Key>
@@ -1256,8 +1239,8 @@
           <Property Name="cliente_id" Type="Int32" />
           <Property Name="fecha_pedido" Type="DateTime" Precision="0" />
           <Property Name="numero_pedido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Entregas" Relationship="Self.FK__Entregas__pedido__72C60C4A" FromRole="Venta_Pedido" ToRole="Entregas" />
-          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Ped__clien__6FE99F9F" FromRole="Venta_Pedido" ToRole="Venta_Cliente" />
+          <NavigationProperty Name="Entregas" Relationship="Self.FK__Entregas__pedido__6FE99F9F" FromRole="Venta_Pedido" ToRole="Entregas" />
+          <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Ped__clien__6D0D32F4" FromRole="Venta_Pedido" ToRole="Venta_Cliente" />
         </EntityType>
         <EntityType Name="Venta_Producto">
           <Key>
@@ -1267,9 +1250,9 @@
           <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Venta_FacturaDetalle" Relationship="Self.FK__Venta_Fac__produ__4F7CD00D" FromRole="Venta_Producto" ToRole="Venta_FacturaDetalle" />
+          <NavigationProperty Name="Venta_FacturaDetalle" Relationship="Self.FK__Venta_Fac__produ__4CA06362" FromRole="Venta_Producto" ToRole="Venta_FacturaDetalle" />
         </EntityType>
-        <Association Name="FK__Adm_Permi__rol_i__4222D4EF">
+        <Association Name="FK__Adm_Permi__rol_i__3F466844">
           <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
           <End Role="Adm_Permiso" Type="Self.Adm_Permiso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1281,19 +1264,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Sal__3E52440B">
+        <Association Name="FK__Empleado__rol_id__31EC6D26">
           <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Adm_Rol">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Usuario">
+            <Dependent Role="Empleado">
               <PropertyRef Name="rol_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__clien__52593CB8">
+        <Association Name="FK__Conta_Tra__clien__4F7CD00D">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1305,7 +1288,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__prove__534D60F1">
+        <Association Name="FK__Conta_Tra__prove__5070F446">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1317,7 +1300,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Conta__emple__31EC6D26">
+        <Association Name="FK__Emp_Conta__emple__34C8D9D1">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_ContactoEmergencia" Type="Self.Emp_ContactoEmergencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1341,7 +1324,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__depart__2E1BDC42">
+        <Association Name="FK__Empleado__contra__300424B4">
           <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1353,7 +1336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__puesto__2F10007B">
+        <Association Name="FK__Empleado__puesto__30F848ED">
           <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1365,7 +1348,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Remun__emple__37A5467C">
+        <Association Name="FK__Emp_Remun__emple__3A81B327">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_RemuneracionDeduccion" Type="Self.Emp_RemuneracionDeduccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1377,7 +1360,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Vacac__emple__34C8D9D1">
+        <Association Name="FK__Emp_Vacac__emple__37A5467C">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1389,7 +1372,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PDA_Tarea__respo__787EE5A0">
+        <Association Name="FK__PDA_Tarea__respo__75A278F5">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1401,19 +1384,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__emplead__3F466844">
+        <Association Name="FK__Prov_Pago__autor__5DCAEF64">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="empleado_id" />
+            <Dependent Role="Prov_Pago">
+              <PropertyRef Name="autorizador_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Entregas__pedido__72C60C4A">
+        <Association Name="FK__Ticket__id_tecni__6A30C649">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__id_usuar__693CA210">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entregas__pedido__6FE99F9F">
           <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="0..1" />
           <End Role="Entregas" Type="Self.Entregas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1425,7 +1432,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PDA_Tarea__plan___778AC167">
+        <Association Name="FK__PDA_Tarea__plan___74AE54BC">
           <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1437,7 +1444,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__compr__5BE2A6F2">
+        <Association Name="FK__Prov_Comp__compr__59063A47">
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
           <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1449,7 +1456,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__prove__5629CD9C">
+        <Association Name="FK__Prov_Comp__prove__534D60F1">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1461,7 +1468,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__produ__5CD6CB2B">
+        <Association Name="FK__Prov_Comp__produ__59FA5E80">
           <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="0..1" />
           <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1485,19 +1492,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Pago__autor__60A75C0F">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Prov_Pago">
-              <PropertyRef Name="autorizador_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prov_Pago__prove__5FB337D6">
+        <Association Name="FK__Prov_Pago__prove__5CD6CB2B">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1509,7 +1504,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Prod__prove__59063A47">
+        <Association Name="FK__Prov_Prod__prove__5629CD9C">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1521,7 +1516,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__estado__6B24EA82">
+        <Association Name="FK__Ticket__estado__68487DD7">
           <End Role="Ticket_Estado" Type="Self.Ticket_Estado" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1533,31 +1528,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__id_tecni__6D0D32F4">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
-          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Ticket">
-              <PropertyRef Name="id_tecnico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Ticket__id_usuar__6C190EBB">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Ticket">
-              <PropertyRef Name="id_usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Ticket__priorida__6A30C649">
+        <Association Name="FK__Ticket__priorida__6754599E">
           <End Role="Ticket_Prioridad" Type="Self.Ticket_Prioridad" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1569,7 +1540,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__tipo_inc__693CA210">
+        <Association Name="FK__Ticket__tipo_inc__66603565">
           <End Role="Ticket_Tipo" Type="Self.Ticket_Tipo" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1581,7 +1552,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__clien__4AB81AF0">
+        <Association Name="FK__Venta_Fac__clien__47DBAE45">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1593,7 +1564,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Pag__clien__7B5B524B">
+        <Association Name="FK__Venta_Pag__clien__787EE5A0">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_PagoCliente" Type="Self.Venta_PagoCliente" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1605,7 +1576,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Ped__clien__6FE99F9F">
+        <Association Name="FK__Venta_Ped__clien__6D0D32F4">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1617,7 +1588,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__factu__4E88ABD4">
+        <Association Name="FK__Venta_Fac__factu__4BAC3F29">
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
           <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1629,7 +1600,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__metod__4BAC3F29">
+        <Association Name="FK__Venta_Fac__metod__48CFD27E">
           <End Role="Venta_MetodoPago" Type="Self.Venta_MetodoPago" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1641,7 +1612,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__produ__4F7CD00D">
+        <Association Name="FK__Venta_Fac__produ__4CA06362">
           <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="0..1" />
           <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1677,7 +1648,6 @@
           <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" />
           <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" />
           <EntitySet Name="Ticket_Tipo" EntityType="Self.Ticket_Tipo" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Venta_Cliente" EntityType="Self.Venta_Cliente" />
           <EntitySet Name="Venta_Factura" EntityType="Self.Venta_Factura" />
           <EntitySet Name="Venta_FacturaDetalle" EntityType="Self.Venta_FacturaDetalle" />
@@ -1685,23 +1655,23 @@
           <EntitySet Name="Venta_PagoCliente" EntityType="Self.Venta_PagoCliente" />
           <EntitySet Name="Venta_Pedido" EntityType="Self.Venta_Pedido" />
           <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" />
-          <AssociationSet Name="FK__Adm_Permi__rol_i__4222D4EF" Association="Self.FK__Adm_Permi__rol_i__4222D4EF">
+          <AssociationSet Name="FK__Adm_Permi__rol_i__3F466844" Association="Self.FK__Adm_Permi__rol_i__3F466844">
             <End Role="Adm_Rol" EntitySet="Adm_Rol" />
             <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Sal__3E52440B" Association="Self.FK__Usuario__Sal__3E52440B">
+          <AssociationSet Name="FK__Empleado__rol_id__31EC6D26" Association="Self.FK__Empleado__rol_id__31EC6D26">
             <End Role="Adm_Rol" EntitySet="Adm_Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__clien__52593CB8" Association="Self.FK__Conta_Tra__clien__52593CB8">
+          <AssociationSet Name="FK__Conta_Tra__clien__4F7CD00D" Association="Self.FK__Conta_Tra__clien__4F7CD00D">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__prove__534D60F1" Association="Self.FK__Conta_Tra__prove__534D60F1">
+          <AssociationSet Name="FK__Conta_Tra__prove__5070F446" Association="Self.FK__Conta_Tra__prove__5070F446">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Conta__emple__31EC6D26" Association="Self.FK__Emp_Conta__emple__31EC6D26">
+          <AssociationSet Name="FK__Emp_Conta__emple__34C8D9D1" Association="Self.FK__Emp_Conta__emple__34C8D9D1">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_ContactoEmergencia" EntitySet="Emp_ContactoEmergencia" />
           </AssociationSet>
@@ -1709,47 +1679,55 @@
             <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
             <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__depart__2E1BDC42" Association="Self.FK__Empleado__depart__2E1BDC42">
+          <AssociationSet Name="FK__Empleado__contra__300424B4" Association="Self.FK__Empleado__contra__300424B4">
             <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__puesto__2F10007B" Association="Self.FK__Empleado__puesto__2F10007B">
+          <AssociationSet Name="FK__Empleado__puesto__30F848ED" Association="Self.FK__Empleado__puesto__30F848ED">
             <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Remun__emple__37A5467C" Association="Self.FK__Emp_Remun__emple__37A5467C">
+          <AssociationSet Name="FK__Emp_Remun__emple__3A81B327" Association="Self.FK__Emp_Remun__emple__3A81B327">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_RemuneracionDeduccion" EntitySet="Emp_RemuneracionDeduccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Vacac__emple__34C8D9D1" Association="Self.FK__Emp_Vacac__emple__34C8D9D1">
+          <AssociationSet Name="FK__Emp_Vacac__emple__37A5467C" Association="Self.FK__Emp_Vacac__emple__37A5467C">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__respo__787EE5A0" Association="Self.FK__PDA_Tarea__respo__787EE5A0">
+          <AssociationSet Name="FK__PDA_Tarea__respo__75A278F5" Association="Self.FK__PDA_Tarea__respo__75A278F5">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__emplead__3F466844" Association="Self.FK__Usuario__emplead__3F466844">
+          <AssociationSet Name="FK__Prov_Pago__autor__5DCAEF64" Association="Self.FK__Prov_Pago__autor__5DCAEF64">
             <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Entregas__pedido__72C60C4A" Association="Self.FK__Entregas__pedido__72C60C4A">
+          <AssociationSet Name="FK__Ticket__id_tecni__6A30C649" Association="Self.FK__Ticket__id_tecni__6A30C649">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__id_usuar__693CA210" Association="Self.FK__Ticket__id_usuar__693CA210">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entregas__pedido__6FE99F9F" Association="Self.FK__Entregas__pedido__6FE99F9F">
             <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
             <End Role="Entregas" EntitySet="Entregas" />
           </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__plan___778AC167" Association="Self.FK__PDA_Tarea__plan___778AC167">
+          <AssociationSet Name="FK__PDA_Tarea__plan___74AE54BC" Association="Self.FK__PDA_Tarea__plan___74AE54BC">
             <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__compr__5BE2A6F2" Association="Self.FK__Prov_Comp__compr__5BE2A6F2">
+          <AssociationSet Name="FK__Prov_Comp__compr__59063A47" Association="Self.FK__Prov_Comp__compr__59063A47">
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
             <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__prove__5629CD9C" Association="Self.FK__Prov_Comp__prove__5629CD9C">
+          <AssociationSet Name="FK__Prov_Comp__prove__534D60F1" Association="Self.FK__Prov_Comp__prove__534D60F1">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__produ__5CD6CB2B" Association="Self.FK__Prov_Comp__produ__5CD6CB2B">
+          <AssociationSet Name="FK__Prov_Comp__produ__59FA5E80" Association="Self.FK__Prov_Comp__produ__59FA5E80">
             <End Role="Prov_Producto" EntitySet="Prov_Producto" />
             <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
           </AssociationSet>
@@ -1757,99 +1735,129 @@
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Contacto" EntitySet="Prov_Contacto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Pago__autor__60A75C0F" Association="Self.FK__Prov_Pago__autor__60A75C0F">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Prov_Pago" EntitySet="Prov_Pago" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prov_Pago__prove__5FB337D6" Association="Self.FK__Prov_Pago__prove__5FB337D6">
+          <AssociationSet Name="FK__Prov_Pago__prove__5CD6CB2B" Association="Self.FK__Prov_Pago__prove__5CD6CB2B">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Prod__prove__59063A47" Association="Self.FK__Prov_Prod__prove__59063A47">
+          <AssociationSet Name="FK__Prov_Prod__prove__5629CD9C" Association="Self.FK__Prov_Prod__prove__5629CD9C">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Producto" EntitySet="Prov_Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__estado__6B24EA82" Association="Self.FK__Ticket__estado__6B24EA82">
+          <AssociationSet Name="FK__Ticket__estado__68487DD7" Association="Self.FK__Ticket__estado__68487DD7">
             <End Role="Ticket_Estado" EntitySet="Ticket_Estado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__id_tecni__6D0D32F4" Association="Self.FK__Ticket__id_tecni__6D0D32F4">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Ticket" EntitySet="Ticket" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Ticket__id_usuar__6C190EBB" Association="Self.FK__Ticket__id_usuar__6C190EBB">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Ticket" EntitySet="Ticket" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Ticket__priorida__6A30C649" Association="Self.FK__Ticket__priorida__6A30C649">
+          <AssociationSet Name="FK__Ticket__priorida__6754599E" Association="Self.FK__Ticket__priorida__6754599E">
             <End Role="Ticket_Prioridad" EntitySet="Ticket_Prioridad" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__tipo_inc__693CA210" Association="Self.FK__Ticket__tipo_inc__693CA210">
+          <AssociationSet Name="FK__Ticket__tipo_inc__66603565" Association="Self.FK__Ticket__tipo_inc__66603565">
             <End Role="Ticket_Tipo" EntitySet="Ticket_Tipo" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__clien__4AB81AF0" Association="Self.FK__Venta_Fac__clien__4AB81AF0">
+          <AssociationSet Name="FK__Venta_Fac__clien__47DBAE45" Association="Self.FK__Venta_Fac__clien__47DBAE45">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Pag__clien__7B5B524B" Association="Self.FK__Venta_Pag__clien__7B5B524B">
+          <AssociationSet Name="FK__Venta_Pag__clien__787EE5A0" Association="Self.FK__Venta_Pag__clien__787EE5A0">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_PagoCliente" EntitySet="Venta_PagoCliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Ped__clien__6FE99F9F" Association="Self.FK__Venta_Ped__clien__6FE99F9F">
+          <AssociationSet Name="FK__Venta_Ped__clien__6D0D32F4" Association="Self.FK__Venta_Ped__clien__6D0D32F4">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__factu__4E88ABD4" Association="Self.FK__Venta_Fac__factu__4E88ABD4">
+          <AssociationSet Name="FK__Venta_Fac__factu__4BAC3F29" Association="Self.FK__Venta_Fac__factu__4BAC3F29">
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
             <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__metod__4BAC3F29" Association="Self.FK__Venta_Fac__metod__4BAC3F29">
+          <AssociationSet Name="FK__Venta_Fac__metod__48CFD27E" Association="Self.FK__Venta_Fac__metod__48CFD27E">
             <End Role="Venta_MetodoPago" EntitySet="Venta_MetodoPago" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__produ__4F7CD00D" Association="Self.FK__Venta_Fac__produ__4F7CD00D">
+          <AssociationSet Name="FK__Venta_Fac__produ__4CA06362" Association="Self.FK__Venta_Fac__produ__4CA06362">
             <End Role="Venta_Producto" EntitySet="Venta_Producto" />
             <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
           </AssociationSet>
-          <FunctionImport Name="ActualizarTicket">
-            <Parameter Name="idTicket" Mode="In" Type="Int32" />
-            <Parameter Name="estado" Mode="In" Type="Int32" />
-            <Parameter Name="tipoIncidencia" Mode="In" Type="Int32" />
-            <Parameter Name="prioridad" Mode="In" Type="Int32" />
-            <Parameter Name="titulo" Mode="In" Type="String" />
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="comentariosUsuario" Mode="In" Type="String" />
-            <Parameter Name="fechaRegistraTecnico" Mode="In" Type="DateTime" />
-            <Parameter Name="idTecnico" Mode="In" Type="Int32" />
-            <Parameter Name="comentarioTecnico" Mode="In" Type="String" />
-            <Parameter Name="fechaCierreTicket" Mode="In" Type="DateTime" />
+          <FunctionImport Name="CambiarContrasenna">
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+            <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="CerrarTicket">
-          <Parameter Name="idTicket" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="IniciarSesion" ReturnType="Collection(SistemaIntegralGestionModel.IniciarSesion_Result)">
-            <Parameter Name="Usuario" Mode="In" Type="String" />
+          <FunctionImport Name="iniciarSesion" ReturnType="Collection(SistemaIntegralGestionModel.iniciarSesion_Result)">
+            <Parameter Name="correo_electronico" Mode="In" Type="String" />
             <Parameter Name="Contrasena" Mode="In" Type="String" />
             <Parameter Name="Id" Mode="InOut" Type="Int32" />
             <Parameter Name="LoginSuccess" Mode="InOut" Type="Int32" />
+            <Parameter Name="Rol" Mode="InOut" Type="Int32" />
+            <Parameter Name="Usuario" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertarTicket">
-            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
-            <Parameter Name="titulo" Mode="In" Type="String" />
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="tipoIncidencia" Mode="In" Type="Int32" />
-            <Parameter Name="comentariosUsuario" Mode="In" Type="String" />
-            <Parameter Name="fechaRegistroUsuario" Mode="In" Type="DateTime" />
-            <Parameter Name="estado" Mode="In" Type="Int32" />
+          <FunctionImport Name="registrarEmpleado">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="DepartamentoID" Mode="In" Type="Int32" />
+            <Parameter Name="PuestoID" Mode="In" Type="Int32" />
+            <Parameter Name="RolID" Mode="In" Type="Int32" />
+            <Parameter Name="EstadoEmpleado" Mode="In" Type="Boolean" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasena" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="registrarUsuario" ReturnType="Collection(Decimal)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="numero_identificacion" Mode="In" Type="String" />
+            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="correo_electronico" Mode="In" Type="String" />
+            <Parameter Name="departamento_id" Mode="In" Type="Int32" />
+            <Parameter Name="puesto_id" Mode="In" Type="Int32" />
+            <Parameter Name="rol_id" Mode="In" Type="Int32" />
+            <Parameter Name="estado_empleado" Mode="In" Type="Boolean" />
+            <Parameter Name="usuario" Mode="In" Type="String" />
+            <Parameter Name="contrasena" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="IniciarSesion_Result">
+        <ComplexType Name="iniciarSesion_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="departamento_id" Nullable="true" />
+          <Property Type="Int32" Name="puesto_id" Nullable="true" />
           <Property Type="Int32" Name="rol_id" Nullable="true" />
-          <Property Type="Int32" Name="empleado_id" Nullable="true" />
+          <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+          <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
+          <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
+        </ComplexType>
+        <ComplexType Name="ValidarCorreo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="departamento_id" Nullable="true" />
+          <Property Type="Int32" Name="puesto_id" Nullable="true" />
+          <Property Type="Int32" Name="rol_id" Nullable="true" />
+          <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+          <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
+          <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1960,6 +1968,11 @@
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
                 <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
                 <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="Sal" ColumnName="Sal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2110,18 +2123,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="usuario1" ColumnName="usuario" />
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
-                <ScalarProperty Name="Sal" ColumnName="Sal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Venta_Cliente">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
               <MappingFragment StoreEntitySet="Venta_Cliente">
@@ -2198,19 +2199,51 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ActualizarTicket" FunctionName="SistemaIntegralGestionModel.Store.ActualizarTicket" />
-          <FunctionImportMapping FunctionImportName="CerrarTicket" FunctionName="SistemaIntegralGestionModel.Store.CerrarTicket" />
-          <FunctionImportMapping FunctionImportName="IniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.IniciarSesion">
+          <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
+          <FunctionImportMapping FunctionImportName="iniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.iniciarSesion">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.IniciarSesion_Result">
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.iniciarSesion_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+                <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
                 <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+                <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="Sal" ColumnName="Sal" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="InsertarTicket" FunctionName="SistemaIntegralGestionModel.Store.InsertarTicket" />
+          <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
+          <FunctionImportMapping FunctionImportName="registrarUsuario" FunctionName="SistemaIntegralGestionModel.Store.registrarUsuario" />
+          <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+                <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="Sal" ColumnName="Sal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

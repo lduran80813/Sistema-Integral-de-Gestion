@@ -50,7 +50,6 @@ namespace SIG.BaseDatos
         public virtual DbSet<Ticket_Estado> Ticket_Estado { get; set; }
         public virtual DbSet<Ticket_Prioridad> Ticket_Prioridad { get; set; }
         public virtual DbSet<Ticket_Tipo> Ticket_Tipo { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Venta_Cliente> Venta_Cliente { get; set; }
         public virtual DbSet<Venta_Factura> Venta_Factura { get; set; }
         public virtual DbSet<Venta_FacturaDetalle> Venta_FacturaDetalle { get; set; }
@@ -59,66 +58,74 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_Pedido> Venta_Pedido { get; set; }
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
     
-        public virtual int ActualizarTicket(Nullable<int> idTicket, Nullable<int> estado, Nullable<int> tipoIncidencia, Nullable<int> prioridad, string titulo, string descripcion, string comentariosUsuario, Nullable<System.DateTime> fechaRegistraTecnico, Nullable<int> idTecnico, string comentarioTecnico, Nullable<System.DateTime> fechaCierreTicket)
+        public virtual int CambiarContrasenna(ObjectParameter id, string nuevaContrasena)
         {
-            var idTicketParameter = idTicket.HasValue ?
-                new ObjectParameter("idTicket", idTicket) :
-                new ObjectParameter("idTicket", typeof(int));
+            var nuevaContrasenaParameter = nuevaContrasena != null ?
+                new ObjectParameter("nuevaContrasena", nuevaContrasena) :
+                new ObjectParameter("nuevaContrasena", typeof(string));
     
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(int));
-    
-            var tipoIncidenciaParameter = tipoIncidencia.HasValue ?
-                new ObjectParameter("tipoIncidencia", tipoIncidencia) :
-                new ObjectParameter("tipoIncidencia", typeof(int));
-    
-            var prioridadParameter = prioridad.HasValue ?
-                new ObjectParameter("prioridad", prioridad) :
-                new ObjectParameter("prioridad", typeof(int));
-    
-            var tituloParameter = titulo != null ?
-                new ObjectParameter("titulo", titulo) :
-                new ObjectParameter("titulo", typeof(string));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("descripcion", descripcion) :
-                new ObjectParameter("descripcion", typeof(string));
-    
-            var comentariosUsuarioParameter = comentariosUsuario != null ?
-                new ObjectParameter("comentariosUsuario", comentariosUsuario) :
-                new ObjectParameter("comentariosUsuario", typeof(string));
-    
-            var fechaRegistraTecnicoParameter = fechaRegistraTecnico.HasValue ?
-                new ObjectParameter("fechaRegistraTecnico", fechaRegistraTecnico) :
-                new ObjectParameter("fechaRegistraTecnico", typeof(System.DateTime));
-    
-            var idTecnicoParameter = idTecnico.HasValue ?
-                new ObjectParameter("idTecnico", idTecnico) :
-                new ObjectParameter("idTecnico", typeof(int));
-    
-            var comentarioTecnicoParameter = comentarioTecnico != null ?
-                new ObjectParameter("comentarioTecnico", comentarioTecnico) :
-                new ObjectParameter("comentarioTecnico", typeof(string));
-    
-            var fechaCierreTicketParameter = fechaCierreTicket.HasValue ?
-                new ObjectParameter("fechaCierreTicket", fechaCierreTicket) :
-                new ObjectParameter("fechaCierreTicket", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarTicket", idTicketParameter, estadoParameter, tipoIncidenciaParameter, prioridadParameter, tituloParameter, descripcionParameter, comentariosUsuarioParameter, fechaRegistraTecnicoParameter, idTecnicoParameter, comentarioTecnicoParameter, fechaCierreTicketParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarContrasenna", id, nuevaContrasenaParameter);
         }
     
-        public virtual int CerrarTicket(Nullable<int> idTicket)
+        public virtual ObjectResult<iniciarSesion_Result> iniciarSesion(string correo_electronico, string contrasena, ObjectParameter id, ObjectParameter loginSuccess, ObjectParameter rol, ObjectParameter usuario)
         {
-            var idTicketParameter = idTicket.HasValue ?
-                new ObjectParameter("idTicket", idTicket) :
-                new ObjectParameter("idTicket", typeof(int));
+            var correo_electronicoParameter = correo_electronico != null ?
+                new ObjectParameter("correo_electronico", correo_electronico) :
+                new ObjectParameter("correo_electronico", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CerrarTicket", idTicketParameter);
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("Contrasena", contrasena) :
+                new ObjectParameter("Contrasena", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<iniciarSesion_Result>("iniciarSesion", correo_electronicoParameter, contrasenaParameter, id, loginSuccess, rol, usuario);
         }
     
-        public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string usuario, string contrasena, ObjectParameter id, ObjectParameter loginSuccess)
+        public virtual int registrarEmpleado(string nombre, string apellidos, string numeroIdentificacion, Nullable<System.DateTime> fechaNacimiento, string direccion, string telefono, string correoElectronico, Nullable<int> departamentoID, Nullable<int> puestoID, Nullable<int> rolID, Nullable<bool> estadoEmpleado, string usuario, string contrasena)
         {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("Apellidos", apellidos) :
+                new ObjectParameter("Apellidos", typeof(string));
+    
+            var numeroIdentificacionParameter = numeroIdentificacion != null ?
+                new ObjectParameter("NumeroIdentificacion", numeroIdentificacion) :
+                new ObjectParameter("NumeroIdentificacion", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var departamentoIDParameter = departamentoID.HasValue ?
+                new ObjectParameter("DepartamentoID", departamentoID) :
+                new ObjectParameter("DepartamentoID", typeof(int));
+    
+            var puestoIDParameter = puestoID.HasValue ?
+                new ObjectParameter("PuestoID", puestoID) :
+                new ObjectParameter("PuestoID", typeof(int));
+    
+            var rolIDParameter = rolID.HasValue ?
+                new ObjectParameter("RolID", rolID) :
+                new ObjectParameter("RolID", typeof(int));
+    
+            var estadoEmpleadoParameter = estadoEmpleado.HasValue ?
+                new ObjectParameter("EstadoEmpleado", estadoEmpleado) :
+                new ObjectParameter("EstadoEmpleado", typeof(bool));
+    
             var usuarioParameter = usuario != null ?
                 new ObjectParameter("Usuario", usuario) :
                 new ObjectParameter("Usuario", typeof(string));
@@ -127,40 +134,73 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Contrasena", contrasena) :
                 new ObjectParameter("Contrasena", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesion_Result>("IniciarSesion", usuarioParameter, contrasenaParameter, id, loginSuccess);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("registrarEmpleado", nombreParameter, apellidosParameter, numeroIdentificacionParameter, fechaNacimientoParameter, direccionParameter, telefonoParameter, correoElectronicoParameter, departamentoIDParameter, puestoIDParameter, rolIDParameter, estadoEmpleadoParameter, usuarioParameter, contrasenaParameter);
         }
     
-        public virtual int InsertarTicket(Nullable<int> idUsuario, string titulo, string descripcion, Nullable<int> tipoIncidencia, string comentariosUsuario, Nullable<System.DateTime> fechaRegistroUsuario, Nullable<int> estado)
+        public virtual ObjectResult<Nullable<decimal>> registrarUsuario(string nombre, string apellidos, string numero_identificacion, Nullable<System.DateTime> fecha_nacimiento, string direccion, string telefono, string correo_electronico, Nullable<int> departamento_id, Nullable<int> puesto_id, Nullable<int> rol_id, Nullable<bool> estado_empleado, string usuario, byte[] contrasena)
         {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("idUsuario", idUsuario) :
-                new ObjectParameter("idUsuario", typeof(int));
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
     
-            var tituloParameter = titulo != null ?
-                new ObjectParameter("titulo", titulo) :
-                new ObjectParameter("titulo", typeof(string));
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("apellidos", apellidos) :
+                new ObjectParameter("apellidos", typeof(string));
     
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("descripcion", descripcion) :
-                new ObjectParameter("descripcion", typeof(string));
+            var numero_identificacionParameter = numero_identificacion != null ?
+                new ObjectParameter("numero_identificacion", numero_identificacion) :
+                new ObjectParameter("numero_identificacion", typeof(string));
     
-            var tipoIncidenciaParameter = tipoIncidencia.HasValue ?
-                new ObjectParameter("tipoIncidencia", tipoIncidencia) :
-                new ObjectParameter("tipoIncidencia", typeof(int));
+            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
+                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
+                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
     
-            var comentariosUsuarioParameter = comentariosUsuario != null ?
-                new ObjectParameter("comentariosUsuario", comentariosUsuario) :
-                new ObjectParameter("comentariosUsuario", typeof(string));
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("direccion", direccion) :
+                new ObjectParameter("direccion", typeof(string));
     
-            var fechaRegistroUsuarioParameter = fechaRegistroUsuario.HasValue ?
-                new ObjectParameter("fechaRegistroUsuario", fechaRegistroUsuario) :
-                new ObjectParameter("fechaRegistroUsuario", typeof(System.DateTime));
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("telefono", telefono) :
+                new ObjectParameter("telefono", typeof(string));
     
-            var estadoParameter = estado.HasValue ?
-                new ObjectParameter("estado", estado) :
-                new ObjectParameter("estado", typeof(int));
+            var correo_electronicoParameter = correo_electronico != null ?
+                new ObjectParameter("correo_electronico", correo_electronico) :
+                new ObjectParameter("correo_electronico", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarTicket", idUsuarioParameter, tituloParameter, descripcionParameter, tipoIncidenciaParameter, comentariosUsuarioParameter, fechaRegistroUsuarioParameter, estadoParameter);
+            var departamento_idParameter = departamento_id.HasValue ?
+                new ObjectParameter("departamento_id", departamento_id) :
+                new ObjectParameter("departamento_id", typeof(int));
+    
+            var puesto_idParameter = puesto_id.HasValue ?
+                new ObjectParameter("puesto_id", puesto_id) :
+                new ObjectParameter("puesto_id", typeof(int));
+    
+            var rol_idParameter = rol_id.HasValue ?
+                new ObjectParameter("rol_id", rol_id) :
+                new ObjectParameter("rol_id", typeof(int));
+    
+            var estado_empleadoParameter = estado_empleado.HasValue ?
+                new ObjectParameter("estado_empleado", estado_empleado) :
+                new ObjectParameter("estado_empleado", typeof(bool));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("usuario", usuario) :
+                new ObjectParameter("usuario", typeof(string));
+    
+            var contrasenaParameter = contrasena != null ?
+                new ObjectParameter("contrasena", contrasena) :
+                new ObjectParameter("contrasena", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("registrarUsuario", nombreParameter, apellidosParameter, numero_identificacionParameter, fecha_nacimientoParameter, direccionParameter, telefonoParameter, correo_electronicoParameter, departamento_idParameter, puesto_idParameter, rol_idParameter, estado_empleadoParameter, usuarioParameter, contrasenaParameter);
+        }
+    
+        public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", emailParameter);
         }
     }
 }

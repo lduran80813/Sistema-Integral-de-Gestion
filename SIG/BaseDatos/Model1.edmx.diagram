@@ -4,70 +4,68 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b4e09bf7c7e2425eb086dbcc9ef09bdb" Name="Diagram1">
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="10.5" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_Transaccion" Width="1.5" PointX="16" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_BitacoraIngreso" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_ContactoEmergencia" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Departamento" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Puesto" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_RemuneracionDeduccion" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Vacaciones" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Empleado" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Entregas" Width="1.5" PointX="15.25" PointY="30.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.PDA_Tarea" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.PlanDeAccion" Width="1.5" PointX="8.25" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Compra" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_CompraDetalle" Width="1.5" PointX="16" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Contacto" Width="1.5" PointX="12.75" PointY="34" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Pago" Width="1.5" PointX="12.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Producto" Width="1.5" PointX="12.75" PointY="37.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Proveedor" Width="1.5" PointX="10.5" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket" Width="1.5" PointX="15.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Estado" Width="1.5" PointX="13.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Prioridad" Width="1.5" PointX="13.5" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Tipo" Width="1.5" PointX="13.5" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Usuario" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Cliente" Width="1.5" PointX="10.75" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Factura" Width="1.5" PointX="13" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_FacturaDetalle" Width="1.5" PointX="15.25" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_MetodoPago" Width="1.5" PointX="10.75" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_PagoCliente" Width="1.5" PointX="13" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Pedido" Width="1.5" PointX="13" PointY="30.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Producto" Width="1.5" PointX="13" PointY="17.75" IsExpanded="true" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Adm_Permi__rol_i__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Usuario__Sal__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Conta_Tra__clien__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Conta_Tra__prove__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Conta__emple__31EC6D26" ManuallyRouted="false" />
+      <Diagram DiagramId="5af12ede0b684712b5a65133d9aec9b2" Name="Diagram1">
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_Transaccion" Width="1.5" PointX="16" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_BitacoraIngreso" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_ContactoEmergencia" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Departamento" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Puesto" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_RemuneracionDeduccion" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Vacaciones" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Empleado" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Entregas" Width="1.5" PointX="18.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.PDA_Tarea" Width="1.5" PointX="11.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.PlanDeAccion" Width="1.5" PointX="9" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Compra" Width="1.5" PointX="11.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_CompraDetalle" Width="1.5" PointX="13.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Contacto" Width="1.5" PointX="11.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Pago" Width="1.5" PointX="11.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Producto" Width="1.5" PointX="11.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Proveedor" Width="1.5" PointX="9" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket" Width="1.5" PointX="11.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Estado" Width="1.5" PointX="9" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Prioridad" Width="1.5" PointX="9" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Tipo" Width="1.5" PointX="9" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Cliente" Width="1.5" PointX="13.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Factura" Width="1.5" PointX="19" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_FacturaDetalle" Width="1.5" PointX="21.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_MetodoPago" Width="1.5" PointX="16.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_PagoCliente" Width="1.5" PointX="16" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Pedido" Width="1.5" PointX="16" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Producto" Width="1.5" PointX="19" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Adm_Permi__rol_i__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__rol_id__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Conta_Tra__clien__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Conta_Tra__prove__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Conta__emple__34C8D9D1" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Puest__depar__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__depart__2E1BDC42" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__puesto__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Remun__emple__37A5467C" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__PDA_Tarea__respo__787EE5A0" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Usuario__emplead__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Entregas__pedido__72C60C4A" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__PDA_Tarea__plan___778AC167" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Comp__compr__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Comp__prove__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Comp__produ__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__contra__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__puesto__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Remun__emple__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__PDA_Tarea__respo__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Pago__autor__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__id_tecni__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__id_usuar__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Entregas__pedido__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__PDA_Tarea__plan___74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Comp__compr__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Comp__prove__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Comp__produ__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Cont__prove__267ABA7A" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Pago__autor__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Pago__prove__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Prod__prove__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__estado__6B24EA82" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__id_tecni__6D0D32F4" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__id_usuar__6C190EBB" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__priorida__6A30C649" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__tipo_inc__693CA210" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__clien__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Pag__clien__7B5B524B" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Ped__clien__6FE99F9F" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__factu__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__metod__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Pago__prove__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Prov_Prod__prove__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__estado__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__priorida__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Ticket__tipo_inc__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__clien__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Pag__clien__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Ped__clien__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__factu__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__metod__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__4CA06362" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

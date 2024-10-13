@@ -11,7 +11,7 @@ namespace SIG.BaseDatos
 {
     using System;
     
-    public partial class iniciarSesion_Result
+    public partial class ValidarCorreo_Result
     {
         public int id { get; set; }
         public string nombre { get; set; }

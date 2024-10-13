@@ -21,7 +21,7 @@ namespace SIG.BaseDatos
         public string descripcion { get; set; }
         public Nullable<int> autorizador_id { get; set; }
     
-        public virtual Usuario Usuario { get; set; }
+        public virtual Empleado Empleado { get; set; }
         public virtual Proveedor Proveedor { get; set; }
     }
 }

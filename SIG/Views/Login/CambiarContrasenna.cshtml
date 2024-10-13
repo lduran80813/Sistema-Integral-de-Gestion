@@ -6,13 +6,16 @@
 
 <div class="card">
     <div class="card-body login-card-body">
-        <p class="login-box-msg">Iniciar Sesion</p>
+        <h4 class="login-box-msg">Cambiar Contraseña</h4>
+
+        <h6 class="font-weight-light">Actualice su contraseña</h6>
         @if (ViewBag.msj != null)
         {
             <div class="alert alert-info" role="alert" style="text-align:center">
                 @ViewBag.msj
             </div>
         }
+
         @using (Html.BeginForm("CambiarContrasenna", "Login"))
         {
             <div class="form-group">
@@ -26,5 +29,6 @@
             </div>
         }
     </div>
-
 </div>
+
+

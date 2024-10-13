@@ -104,6 +104,11 @@
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
           <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
           <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="Sal" ColumnName="Sal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -254,18 +259,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuario">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Usuario">
-        <MappingFragment StoreEntitySet="Usuario">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="usuario1" ColumnName="usuario" />
-          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
-          <ScalarProperty Name="Sal" ColumnName="Sal" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Venta_Cliente">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
         <MappingFragment StoreEntitySet="Venta_Cliente">
@@ -342,18 +335,50 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="ActualizarTicket" FunctionName="SistemaIntegralGestionModel.Store.ActualizarTicket" />
-    <FunctionImportMapping FunctionImportName="CerrarTicket" FunctionName="SistemaIntegralGestionModel.Store.CerrarTicket" />
-    <FunctionImportMapping FunctionImportName="IniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.IniciarSesion">
+    <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
+    <FunctionImportMapping FunctionImportName="iniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.iniciarSesion">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.IniciarSesion_Result">
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.iniciarSesion_Result">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+          <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
           <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="Sal" ColumnName="Sal" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="InsertarTicket" FunctionName="SistemaIntegralGestionModel.Store.InsertarTicket" />
+    <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
+    <FunctionImportMapping FunctionImportName="registrarUsuario" FunctionName="SistemaIntegralGestionModel.Store.registrarUsuario" />
+    <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+          <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="Sal" ColumnName="Sal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

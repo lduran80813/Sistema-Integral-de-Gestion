@@ -13,70 +13,87 @@ namespace SIG.Models
 {
     public class UsuarioModel
     {
-        public IniciarSesion_Result IniciarSesion(UsuarioEmpleado user)
+        public iniciarSesion_Result IniciarSesion(UsuarioEmpleado user)
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                var idOutput = new SqlParameter("@Id", SqlDbType.Int)
+                // Parámetros de salida
+                var idParam = new SqlParameter
                 {
+                    ParameterName = "@Id",
+                    SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Output
                 };
-
-                var loginSuccessOutput = new SqlParameter("@LoginSuccess", SqlDbType.Int)
+                var loginSuccessParam = new SqlParameter
                 {
+                    ParameterName = "@LoginSuccess",
+                    SqlDbType = SqlDbType.Int,
                     Direction = ParameterDirection.Output
                 };
-
+                var rolParam = new SqlParameter
+                {
+                    ParameterName = "@Rol",
+                    SqlDbType = SqlDbType.Int, // Cambiado a INT
+                    Direction = ParameterDirection.Output
+                };
+                var usuarioParam = new SqlParameter
+                {
+                    ParameterName = "@Usuario",
+                    SqlDbType = SqlDbType.NVarChar,
+                    Size = 100,
+                    Direction = ParameterDirection.Output
+                };
                 context.Database.ExecuteSqlCommand(
-                    "EXEC IniciarSesion @Usuario, @Contrasena, @Id OUTPUT, @LoginSuccess OUTPUT",
-                    new SqlParameter("@Usuario", user.usuario),
-                    new SqlParameter("@Contrasena", user.contrasena), 
-                    idOutput,
-                    loginSuccessOutput
+                    "EXEC iniciarSesion @correo_electronico, @Contrasena, @Id OUTPUT, @LoginSuccess OUTPUT, @Rol OUTPUT, @Usuario OUTPUT",
+                    new SqlParameter("@correo_electronico", user.correo_electronico),
+                    new SqlParameter("@Contrasena", user.contrasena), // Usar directamente la contraseña sin hashear
+                    idParam,
+                    loginSuccessParam,
+                    rolParam,
+                    usuarioParam
                 );
-
-                if ((int)loginSuccessOutput.Value == 1)
+                if (loginSuccessParam.Value != DBNull.Value && (int)loginSuccessParam.Value == 1)
                 {
-                    return new IniciarSesion_Result
+                    return new iniciarSesion_Result
                     {
-                        id = (int)idOutput.Value,
-                        usuario = user.usuario,
-                        rol_id = 1, 
-                        empleado_id = 0 
+                        id = (int)idParam.Value,
+                        nombre = (string)usuarioParam.Value,
+                        rol_id = (int)rolParam.Value
                     };
                 }
                 else
                 {
-                    return null;
+                    throw new Exception("Usuario o contraseña incorrectos.");
                 }
             }
         }
-        public bool CambiarContrasenna(string usuario, string contrasennaTemporal)
+
+        public class UsuarioNoEncontradoException : Exception
+        {
+            public UsuarioNoEncontradoException() : base("El usuario no existe en la base de datos.")
+            {
+            }
+        }
+        public bool CambiarContrasenna(int id, string contrasennaTemporal)
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
+                // Parámetros de entrada
+                var usuarioParameter = new SqlParameter("@Id", id) { Direction = ParameterDirection.InputOutput }; // Salida
+                var contrasenaParameter = new SqlParameter("@nuevaContrasena", contrasennaTemporal);  // Mantenlo como NVARCHAR
 
-                var resultadoParameter = new SqlParameter("@Resultado", SqlDbType.Int)
-                {
-                    Direction = ParameterDirection.Output
-                };
-
-
-                var usuarioParameter = new SqlParameter("@Usuario", usuario);
-                var contrasenaParameter = new SqlParameter("@ContrasenaTemporal", contrasennaTemporal);
-
-
-                context.Database.ExecuteSqlCommand(
-                    "EXEC CambiarContrasenna @Usuario, @ContrasenaTemporal, @Resultado OUTPUT",
+                // Ejecutar el procedimiento almacenado
+                var result = context.Database.ExecuteSqlCommand(
+                    "EXEC CambiarContrasenna @id OUTPUT, @nuevaContrasena",
                     usuarioParameter,
-                    contrasenaParameter,
-                    resultadoParameter
+                    contrasenaParameter
                 );
 
-           
-                return (int)resultadoParameter.Value == 1; 
+                // Si se actualizó al menos una fila, el cambio fue exitoso
+                return (int)usuarioParameter.Value == id;
             }
         }
+
 
 
 
