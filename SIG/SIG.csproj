@@ -203,6 +203,15 @@
     <Compile Include="BaseDatos\Prov_Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -213,6 +222,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Ticket_Tipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ValidarCorreo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\ValidarCorreo_Result.cs">
@@ -256,6 +268,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CatalogosModel.cs" />
+    <Compile Include="Models\FiltroSeguridad.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,6 +303,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Password.html" />
     <Content Include="root\dist\css\adminlte.css" />
     <Content Include="root\dist\css\adminlte.min.css" />
     <Content Include="root\dist\css\alt\adminlte.components.css" />
@@ -450,6 +464,8 @@
     <Content Include="Views\Login\CambiarContrasenna1.cshtml" />
     <Content Include="Views\Login\recuperarAcceso.cshtml" />
     <Content Include="Views\Login\CambiarContrasenna.cshtml" />
+    <Content Include="Views\Login\recuperarAcceso.cshtml" />
+    <Content Include="Views\Login\registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
