@@ -202,5 +202,14 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", emailParameter);
         }
+    
+        public virtual ObjectResult<ValidarCorreo1_Result> ValidarCorreo1(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo1_Result>("ValidarCorreo1", emailParameter);
+        }
     }
 }

@@ -359,24 +359,12 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
     <FunctionImportMapping FunctionImportName="registrarUsuario" FunctionName="SistemaIntegralGestionModel.Store.registrarUsuario" />
-    <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
+    <FunctionImportMapping FunctionImportName="ValidarCorreo1" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo1_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-          <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
-          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
-          <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
-          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-          <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-          <ScalarProperty Name="Sal" ColumnName="Sal" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

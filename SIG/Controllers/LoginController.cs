@@ -133,7 +133,7 @@ namespace SIG.Controllers
         public ActionResult RecuperarAcceso(UsuarioEmpleado u)
         {
             // Verificar si el objeto usuario está inicializado
-            if (u == null || string.IsNullOrWhiteSpace(u.usuario))
+            if (u == null || string.IsNullOrWhiteSpace(u.correo_electronico))
             {
                 ViewBag.msj = "El objeto usuario no está inicializado o el correo electrónico no es válido.";
                 return View(); // o redirigir según sea necesario

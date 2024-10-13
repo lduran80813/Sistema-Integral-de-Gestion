@@ -938,6 +938,9 @@
     <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ValidarCorreo1" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo1_Result)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="iniciarSesion_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -972,5 +975,10 @@
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
     <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
     <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
+  </ComplexType>
+  <ComplexType Name="ValidarCorreo1_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>
