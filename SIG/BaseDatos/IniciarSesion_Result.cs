@@ -27,6 +27,5 @@ namespace SIG.BaseDatos
         public Nullable<bool> estado_empleado { get; set; }
         public string usuario { get; set; }
         public byte[] contrasena { get; set; }
-        public byte[] Sal { get; set; }
     }
 }

@@ -108,7 +108,6 @@
           <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
           <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-          <ScalarProperty Name="Sal" ColumnName="Sal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -353,15 +352,13 @@
           <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
           <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-          <ScalarProperty Name="Sal" ColumnName="Sal" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
-    <FunctionImportMapping FunctionImportName="registrarUsuario" FunctionName="SistemaIntegralGestionModel.Store.registrarUsuario" />
-    <FunctionImportMapping FunctionImportName="ValidarCorreo1" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
+    <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo1_Result">
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />

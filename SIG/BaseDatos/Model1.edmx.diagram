@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5af12ede0b684712b5a65133d9aec9b2" Name="Diagram1">
+      <Diagram DiagramId="ab5584ba6d834f11a4738fe93f172c33" Name="Diagram1">
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_Transaccion" Width="1.5" PointX="16" PointY="7.875" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Puesto" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_RemuneracionDeduccion" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Vacaciones" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Empleado" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Empleado" Width="1.5" PointX="6" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Entregas" Width="1.5" PointX="18.25" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.PDA_Tarea" Width="1.5" PointX="11.25" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.PlanDeAccion" Width="1.5" PointX="9" PointY="19.875" IsExpanded="true" />

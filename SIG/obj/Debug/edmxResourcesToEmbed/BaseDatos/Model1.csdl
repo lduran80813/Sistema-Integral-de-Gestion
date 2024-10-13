@@ -111,7 +111,6 @@
     <Property Name="estado_empleado" Type="Boolean" />
     <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="contrasena" Type="Binary" MaxLength="64" FixedLength="false" />
-    <Property Name="Sal" Type="Binary" MaxLength="64" FixedLength="false" />
     <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Empleado__rol_id__31EC6D26" FromRole="Empleado" ToRole="Adm_Rol" />
     <NavigationProperty Name="Emp_ContactoEmergencia" Relationship="Self.FK__Emp_Conta__emple__34C8D9D1" FromRole="Empleado" ToRole="Emp_ContactoEmergencia" />
     <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Empleado__contra__300424B4" FromRole="Empleado" ToRole="Emp_Departamento" />
@@ -905,7 +904,7 @@
       <Parameter Name="Rol" Mode="InOut" Type="Int32" />
       <Parameter Name="Usuario" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="registrarEmpleado">
+    <FunctionImport Name="registrarEmpleado" ReturnType="Collection(Decimal)">
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Apellidos" Mode="In" Type="String" />
       <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
@@ -920,25 +919,7 @@
       <Parameter Name="Usuario" Mode="In" Type="String" />
       <Parameter Name="Contrasena" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="registrarUsuario" ReturnType="Collection(Decimal)">
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="apellidos" Mode="In" Type="String" />
-      <Parameter Name="numero_identificacion" Mode="In" Type="String" />
-      <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="direccion" Mode="In" Type="String" />
-      <Parameter Name="telefono" Mode="In" Type="String" />
-      <Parameter Name="correo_electronico" Mode="In" Type="String" />
-      <Parameter Name="departamento_id" Mode="In" Type="Int32" />
-      <Parameter Name="puesto_id" Mode="In" Type="Int32" />
-      <Parameter Name="rol_id" Mode="In" Type="Int32" />
-      <Parameter Name="estado_empleado" Mode="In" Type="Boolean" />
-      <Parameter Name="usuario" Mode="In" Type="String" />
-      <Parameter Name="contrasena" Mode="In" Type="Binary" />
-    </FunctionImport>
     <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
-      <Parameter Name="Email" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="ValidarCorreo1" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo1_Result)">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
@@ -957,26 +938,8 @@
     <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
     <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
-    <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
   </ComplexType>
   <ComplexType Name="ValidarCorreo_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
-    <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
-    <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="departamento_id" Nullable="true" />
-    <Property Type="Int32" Name="puesto_id" Nullable="true" />
-    <Property Type="Int32" Name="rol_id" Nullable="true" />
-    <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
-    <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
-    <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
-    <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
-  </ComplexType>
-  <ComplexType Name="ValidarCorreo1_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />

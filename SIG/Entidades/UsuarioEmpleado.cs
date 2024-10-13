@@ -37,8 +37,11 @@ namespace SIG.Entidades
 
         public string correo_electronico { get; set; }
 
+        public byte[] contrasenaBytes { get; set; }
 
         public int departamento_id { get; set; }
+
+        public int estado_usuario { get; set; }
 
         public int puesto_id { get; set; }
     }

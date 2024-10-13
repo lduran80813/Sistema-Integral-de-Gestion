@@ -15,18 +15,6 @@ namespace SIG.BaseDatos
     {
         public int id { get; set; }
         public string nombre { get; set; }
-        public string apellidos { get; set; }
-        public string numero_identificacion { get; set; }
-        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
-        public string direccion { get; set; }
-        public string telefono { get; set; }
         public string correo_electronico { get; set; }
-        public Nullable<int> departamento_id { get; set; }
-        public Nullable<int> puesto_id { get; set; }
-        public Nullable<int> rol_id { get; set; }
-        public Nullable<bool> estado_empleado { get; set; }
-        public string usuario { get; set; }
-        public byte[] contrasena { get; set; }
-        public byte[] Sal { get; set; }
     }
 }

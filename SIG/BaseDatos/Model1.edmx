@@ -21,118 +21,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Compra' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Compra">
-          <Property Name="id" Type="int" />
-          <Property Name="proveedor_id" Type="int" />
-          <Property Name="fecha_compra" Type="date" />
-          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="no_factura" Type="varchar" MaxLength="100" />
-          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Empleado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Empleado">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" />
-          <Property Name="apellidos" Type="varchar" MaxLength="255" />
-          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
-          <Property Name="fecha_nacimiento" Type="date" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="telefono" Type="varchar" MaxLength="50" />
-          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
-          <Property Name="departamento_id" Type="int" />
-          <Property Name="puesto_id" Type="int" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Entrega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Entrega">
-          <Property Name="id" Type="int" />
-          <Property Name="pedido_id" Type="int" />
-          <Property Name="fecha_entrega" Type="date" />
-          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
-          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
-          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Factura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Factura">
-          <Property Name="id" Type="int" />
-          <Property Name="cliente_id" Type="int" />
-          <Property Name="fecha_venta" Type="date" />
-          <Property Name="metodo_pago_id" Type="int" />
-          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="no_factura" Type="varchar" MaxLength="100" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
-          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_PlanDeAccion">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
-          <Property Name="estado" Type="varchar" MaxLength="100" />
-          <Property Name="fecha_inicio" Type="date" />
-          <Property Name="fecha_finalizacion" Type="date" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Proveedor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Proveedor">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre" Type="varchar" MaxLength="255" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Ticket' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Ticket">
-          <Property Name="id_ticket" Type="int" />
-          <Property Name="id_usuario" Type="int" />
-          <Property Name="estado" Type="int" />
-          <Property Name="tipo_incidencia" Type="int" />
-          <Property Name="prioridad" Type="int" />
-          <Property Name="titulo" Type="varchar" MaxLength="30" />
-          <Property Name="descripcion" Type="varchar" MaxLength="200" />
-          <Property Name="fecha_registro_usuario" Type="datetime" />
-          <Property Name="fecha_registra_tecnico" Type="datetime" />
-          <Property Name="id_tecnico" Type="int" />
-          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
-          <Property Name="fecha_cierre_ticket" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Usuario">
-          <Property Name="id" Type="int" />
-          <Property Name="usuario" Type="varchar" MaxLength="100" />
-          <Property Name="contrasena" Type="varchar" MaxLength="255" />
-          <Property Name="rol_id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Vacaciones">
-          <Property Name="id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="fecha_inicio" Type="date" />
-          <Property Name="fecha_fin" Type="date" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
         <EntityType Name="Conta_Transaccion">
           <Key>
             <PropertyRef Name="id" />
@@ -216,7 +104,6 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
           <Property Name="estado_empleado" Type="bit" />
           <Property Name="usuario" Type="varchar" MaxLength="100" />
           <Property Name="contrasena" Type="varbinary" MaxLength="64" />
-          <Property Name="Sal" Type="varbinary" MaxLength="64" />
         </EntityType>
         <EntityType Name="Entregas">
           <Key>
@@ -818,22 +705,7 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
           <Parameter Name="RolID" Type="int" Mode="In" />
           <Parameter Name="EstadoEmpleado" Type="bit" Mode="In" />
           <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
-          <Parameter Name="Contrasena" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="registrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="nombre" Type="varchar" Mode="In" />
-          <Parameter Name="apellidos" Type="varchar" Mode="In" />
-          <Parameter Name="numero_identificacion" Type="varchar" Mode="In" />
-          <Parameter Name="fecha_nacimiento" Type="date" Mode="In" />
-          <Parameter Name="direccion" Type="varchar" Mode="In" />
-          <Parameter Name="telefono" Type="varchar" Mode="In" />
-          <Parameter Name="correo_electronico" Type="varchar" Mode="In" />
-          <Parameter Name="departamento_id" Type="int" Mode="In" />
-          <Parameter Name="puesto_id" Type="int" Mode="In" />
-          <Parameter Name="rol_id" Type="int" Mode="In" />
-          <Parameter Name="estado_empleado" Type="bit" Mode="In" />
-          <Parameter Name="usuario" Type="varchar" Mode="In" />
-          <Parameter Name="contrasena" Type="varbinary" Mode="In" />
+          <Parameter Name="Contrasena" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="ValidarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="varchar" Mode="In" />
@@ -1109,7 +981,6 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
           <Property Name="estado_empleado" Type="Boolean" />
           <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="contrasena" Type="Binary" MaxLength="64" FixedLength="false" />
-          <Property Name="Sal" Type="Binary" MaxLength="64" FixedLength="false" />
           <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Empleado__rol_id__31EC6D26" FromRole="Empleado" ToRole="Adm_Rol" />
           <NavigationProperty Name="Emp_ContactoEmergencia" Relationship="Self.FK__Emp_Conta__emple__34C8D9D1" FromRole="Empleado" ToRole="Emp_ContactoEmergencia" />
           <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Empleado__contra__300424B4" FromRole="Empleado" ToRole="Emp_Departamento" />
@@ -1903,7 +1774,7 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
             <Parameter Name="Rol" Mode="InOut" Type="Int32" />
             <Parameter Name="Usuario" Mode="InOut" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="registrarEmpleado">
+          <FunctionImport Name="registrarEmpleado" ReturnType="Collection(Decimal)">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Apellidos" Mode="In" Type="String" />
             <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
@@ -1918,25 +1789,7 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Contrasena" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="registrarUsuario" ReturnType="Collection(Decimal)">
-            <Parameter Name="nombre" Mode="In" Type="String" />
-            <Parameter Name="apellidos" Mode="In" Type="String" />
-            <Parameter Name="numero_identificacion" Mode="In" Type="String" />
-            <Parameter Name="fecha_nacimiento" Mode="In" Type="DateTime" />
-            <Parameter Name="direccion" Mode="In" Type="String" />
-            <Parameter Name="telefono" Mode="In" Type="String" />
-            <Parameter Name="correo_electronico" Mode="In" Type="String" />
-            <Parameter Name="departamento_id" Mode="In" Type="Int32" />
-            <Parameter Name="puesto_id" Mode="In" Type="Int32" />
-            <Parameter Name="rol_id" Mode="In" Type="Int32" />
-            <Parameter Name="estado_empleado" Mode="In" Type="Boolean" />
-            <Parameter Name="usuario" Mode="In" Type="String" />
-            <Parameter Name="contrasena" Mode="In" Type="Binary" />
-          </FunctionImport>
           <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
-          <Parameter Name="Email" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="ValidarCorreo1" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo1_Result)">
           <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -1955,26 +1808,8 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
           <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
           <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
           <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
-          <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
         </ComplexType>
         <ComplexType Name="ValidarCorreo_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
-          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="departamento_id" Nullable="true" />
-          <Property Type="Int32" Name="puesto_id" Nullable="true" />
-          <Property Type="Int32" Name="rol_id" Nullable="true" />
-          <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
-          <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
-          <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
-          <Property Type="Binary" Name="Sal" Nullable="true" MaxLength="64" />
-        </ComplexType>
-        <ComplexType Name="ValidarCorreo1_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
@@ -2092,7 +1927,6 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
                 <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="Sal" ColumnName="Sal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2337,15 +2171,13 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
                 <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="Sal" ColumnName="Sal" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
-          <FunctionImportMapping FunctionImportName="registrarUsuario" FunctionName="SistemaIntegralGestionModel.Store.registrarUsuario" />
-          <FunctionImportMapping FunctionImportName="ValidarCorreo1" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
+          <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo1_Result">
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />

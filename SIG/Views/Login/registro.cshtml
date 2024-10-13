@@ -14,12 +14,18 @@
                 @ViewBag.msj
             </div>
         }
+        @if (!string.IsNullOrEmpty(ViewBag.msj))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.msj
+            </div>
+        }
 
         @using (Html.BeginForm("registro", "Login", FormMethod.Post))
         {
 
             <div class="form-group">
-                @Html.TextBoxFor(m => m.nombre_completo, new { @class = "form-control form-control-lg", @placeholder = "Nombre Completo", @required = "true" })
+                @Html.TextBoxFor(m => m.nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre Completo", @required = "true" })
             </div>
             <div class="form-group">
                 @Html.TextBoxFor(m => m.apellidos, new { @class = "form-control form-control-lg", @placeholder = "Apellidos", @required = "true" })
@@ -27,21 +33,18 @@
             <div class="form-group">
                 @Html.TextBoxFor(m => m.numero_identificacion, new { @class = "form-control form-control-lg", @placeholder = "Cédula", @required = "true", @id = "cedula" })
             </div>
-            @*<div class="form-group">
-                @Html.LabelFor(m => m.fecha_nacimiento, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.fecha_nacimiento, new
-                {
-                    @class = "form-control form-control-lg",
-                    @placeholder = "Fecha de nacimiento",
-                    @required = "true",
-                    type = "date" // Especifica el tipo de entrada como "date"
-                })
-            </div>*@
             <div class="form-group">
-                @Html.TextBoxFor(m => m.direccion, new { @class = "form-control form-control-lg", @placeholder = "direccion", @required = "true" })
+                @Html.LabelFor(m => m.fecha_nacimiento, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.fecha_nacimiento, new { @class = "form-control form-control-lg", @placeholder = "Fecha de nacimiento", @required = "true", type = "date" })
             </div>
             <div class="form-group">
-                @Html.TextBoxFor(m => m.email, new { @type = "email", @class = "form-control form-control-lg", @placeholder = "Email", @required = "true", @id = "email" })
+                @Html.TextBoxFor(m => m.direccion, new { @class = "form-control form-control-lg", @placeholder = "Dirección", @required = "true" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.telefono, new { @class = "form-control form-control-lg", @placeholder = "Telefono", @required = "true" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.correo_electronico, new { @type = "email", @class = "form-control form-control-lg", @placeholder = "Email", @required = "true", @id = "email" })
             </div>
             <div class="form-group">
                 @Html.TextBoxFor(m => m.usuario, new { @class = "form-control form-control-lg", @placeholder = "Nombre de Usuario", @required = "true", @id = "usuario" })
@@ -49,14 +52,16 @@
             <div class="form-group">
                 @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña", @required = "true" })
             </div>
-            <div class="form-group">
-                @Html.TextBoxFor(m => m.departamento_id, new { @class = "form-control form-control-lg", @placeholder = "departamento", @required = "true" })
+
+            <!-- Campos ocultos para los IDs -->
+            <div class="form-group" style="display:none;">
+                @Html.HiddenFor(m => m.departamento_id, new { Value = 1 })
             </div>
-            <div class="form-group">
-                @Html.TextBoxFor(m => m.puesto_id, new { @class = "form-control form-control-lg", @placeholder = "Puesto", @required = "true" })
+            <div class="form-group" style="display:none;">
+                @Html.HiddenFor(m => m.puesto_id, new { Value = 1 })
             </div>
-            <div class="form-group">
-                @Html.TextBoxFor(m => m.telefono, new { @class = "form-control form-control-lg", @placeholder = "Teléfono", @required = "true" })
+            <div class="form-group" style="display:none;">
+                @Html.HiddenFor(m => m.rol, new { Value = 1 })
             </div>
 
 

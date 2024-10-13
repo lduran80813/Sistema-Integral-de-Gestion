@@ -80,7 +80,7 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<iniciarSesion_Result>("iniciarSesion", correo_electronicoParameter, contrasenaParameter, id, loginSuccess, rol, usuario);
         }
     
-        public virtual int registrarEmpleado(string nombre, string apellidos, string numeroIdentificacion, Nullable<System.DateTime> fechaNacimiento, string direccion, string telefono, string correoElectronico, Nullable<int> departamentoID, Nullable<int> puestoID, Nullable<int> rolID, Nullable<bool> estadoEmpleado, string usuario, string contrasena)
+        public virtual ObjectResult<Nullable<decimal>> registrarEmpleado(string nombre, string apellidos, string numeroIdentificacion, Nullable<System.DateTime> fechaNacimiento, string direccion, string telefono, string correoElectronico, Nullable<int> departamentoID, Nullable<int> puestoID, Nullable<int> rolID, Nullable<bool> estadoEmpleado, string usuario, string contrasena)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -134,64 +134,7 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Contrasena", contrasena) :
                 new ObjectParameter("Contrasena", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("registrarEmpleado", nombreParameter, apellidosParameter, numeroIdentificacionParameter, fechaNacimientoParameter, direccionParameter, telefonoParameter, correoElectronicoParameter, departamentoIDParameter, puestoIDParameter, rolIDParameter, estadoEmpleadoParameter, usuarioParameter, contrasenaParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<decimal>> registrarUsuario(string nombre, string apellidos, string numero_identificacion, Nullable<System.DateTime> fecha_nacimiento, string direccion, string telefono, string correo_electronico, Nullable<int> departamento_id, Nullable<int> puesto_id, Nullable<int> rol_id, Nullable<bool> estado_empleado, string usuario, byte[] contrasena)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var apellidosParameter = apellidos != null ?
-                new ObjectParameter("apellidos", apellidos) :
-                new ObjectParameter("apellidos", typeof(string));
-    
-            var numero_identificacionParameter = numero_identificacion != null ?
-                new ObjectParameter("numero_identificacion", numero_identificacion) :
-                new ObjectParameter("numero_identificacion", typeof(string));
-    
-            var fecha_nacimientoParameter = fecha_nacimiento.HasValue ?
-                new ObjectParameter("fecha_nacimiento", fecha_nacimiento) :
-                new ObjectParameter("fecha_nacimiento", typeof(System.DateTime));
-    
-            var direccionParameter = direccion != null ?
-                new ObjectParameter("direccion", direccion) :
-                new ObjectParameter("direccion", typeof(string));
-    
-            var telefonoParameter = telefono != null ?
-                new ObjectParameter("telefono", telefono) :
-                new ObjectParameter("telefono", typeof(string));
-    
-            var correo_electronicoParameter = correo_electronico != null ?
-                new ObjectParameter("correo_electronico", correo_electronico) :
-                new ObjectParameter("correo_electronico", typeof(string));
-    
-            var departamento_idParameter = departamento_id.HasValue ?
-                new ObjectParameter("departamento_id", departamento_id) :
-                new ObjectParameter("departamento_id", typeof(int));
-    
-            var puesto_idParameter = puesto_id.HasValue ?
-                new ObjectParameter("puesto_id", puesto_id) :
-                new ObjectParameter("puesto_id", typeof(int));
-    
-            var rol_idParameter = rol_id.HasValue ?
-                new ObjectParameter("rol_id", rol_id) :
-                new ObjectParameter("rol_id", typeof(int));
-    
-            var estado_empleadoParameter = estado_empleado.HasValue ?
-                new ObjectParameter("estado_empleado", estado_empleado) :
-                new ObjectParameter("estado_empleado", typeof(bool));
-    
-            var usuarioParameter = usuario != null ?
-                new ObjectParameter("usuario", usuario) :
-                new ObjectParameter("usuario", typeof(string));
-    
-            var contrasenaParameter = contrasena != null ?
-                new ObjectParameter("contrasena", contrasena) :
-                new ObjectParameter("contrasena", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("registrarUsuario", nombreParameter, apellidosParameter, numero_identificacionParameter, fecha_nacimientoParameter, direccionParameter, telefonoParameter, correo_electronicoParameter, departamento_idParameter, puesto_idParameter, rol_idParameter, estado_empleadoParameter, usuarioParameter, contrasenaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("registrarEmpleado", nombreParameter, apellidosParameter, numeroIdentificacionParameter, fechaNacimientoParameter, direccionParameter, telefonoParameter, correoElectronicoParameter, departamentoIDParameter, puestoIDParameter, rolIDParameter, estadoEmpleadoParameter, usuarioParameter, contrasenaParameter);
         }
     
         public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string email)
@@ -201,15 +144,6 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Email", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", emailParameter);
-        }
-    
-        public virtual ObjectResult<ValidarCorreo1_Result> ValidarCorreo1(string email)
-        {
-            var emailParameter = email != null ?
-                new ObjectParameter("Email", email) :
-                new ObjectParameter("Email", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo1_Result>("ValidarCorreo1", emailParameter);
         }
     }
 }
