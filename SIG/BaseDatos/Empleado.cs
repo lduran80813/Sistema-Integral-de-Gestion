@@ -36,6 +36,11 @@ namespace SIG.BaseDatos
         public string correo_electronico { get; set; }
         public Nullable<int> departamento_id { get; set; }
         public Nullable<int> puesto_id { get; set; }
+        public Nullable<int> rol_id { get; set; }
+        public Nullable<bool> estado_empleado { get; set; }
+        public string usuario { get; set; }
+        public byte[] contrasena { get; set; }
+        public byte[] Sal { get; set; }
     
         public virtual Adm_Rol Adm_Rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

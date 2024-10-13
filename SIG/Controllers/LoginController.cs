@@ -129,7 +129,52 @@ namespace SIG.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult RecuperarAcceso(UsuarioEmpleado u)
+        {
+            // Verificar si el objeto usuario está inicializado
+            if (u == null || string.IsNullOrWhiteSpace(u.usuario))
+            {
+                ViewBag.msj = "El objeto usuario no está inicializado o el correo electrónico no es válido.";
+                return View(); // o redirigir según sea necesario
+            }
 
+            // Validar si el correo existe
+            var respuesta = usuarioM.ValidarCorreo(u.usuario);
+
+            if (respuesta == null)
+            {
+                ViewBag.msj = "No fue posible encontrar un usuario asociado al correo " + u.usuario;
+                return View();
+            }
+
+            // Generar una nueva contraseña temporal
+            var contrasennaTemporal = usuarioM.CreatePassword();
+
+            // Actualizar la contraseña del usuario
+            var actualizacion = usuarioM.CambiarContrasenna(respuesta.id, contrasennaTemporal);
+
+            if (!actualizacion)
+            {
+                ViewBag.msj = "No se pudo actualizar la contraseña. Intente nuevamente.";
+                return View();
+            }
+
+            // Leer el contenido del email
+            string ruta = AppDomain.CurrentDomain.BaseDirectory + "Password.html";
+            string contenido = System.IO.File.ReadAllText(ruta);
+
+            // Reemplazar los marcadores en el contenido del correo
+            contenido = contenido.Replace("@@Nombre", respuesta.usuario);
+            contenido = contenido.Replace("@@Contrasenna", contrasennaTemporal);
+
+            // Enviar el correo con la nueva contraseña
+            usuarioM.EnviarCorreo(respuesta.usuario, "Recuperar Acceso Sistema Incidencias", contenido);
+
+            // Redirigir a la página de login con un mensaje de éxito
+            ViewBag.msj = "Se ha enviado un correo con la nueva contraseña a " + u.usuario;
+            return RedirectToAction("Index", "Home");
+        }
 
 
     }

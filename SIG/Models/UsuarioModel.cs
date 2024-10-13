@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -96,6 +98,56 @@ namespace SIG.Models
 
 
 
+        public ValidarCorreo_Result ValidarCorreo(string correo)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return (context.ValidarCorreo(correo).FirstOrDefault());
+            }
+        }
+
+        public string CreatePassword()
+        {
+            int length = 6;
+            const string valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(valid[rnd.Next(valid.Length)]);
+            }
+            return res.ToString();
+        }
+
+        public void EnviarCorreo(string destino, string asunto, string contenido)
+        {
+
+            string cuenta = "lthx05@gmail.com";
+            string contrasenna = "ebni gxco iflo mdkc";
+
+            try
+            {
+                using (MailMessage message = new MailMessage())
+                {
+                    message.From = new MailAddress(cuenta);
+                    message.To.Add(new MailAddress(destino));
+                    message.Subject = asunto;
+                    message.Body = contenido;
+                    message.IsBodyHtml = true;
+
+                    using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        client.Credentials = new NetworkCredential(cuenta, contrasenna);
+                        client.EnableSsl = true;
+                        client.Send(message);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al enviar el correo: " + ex.Message);
+            }
+        }
 
 
     }
