@@ -69,11 +69,18 @@
                                         <i class="ti-power-off text-primary"></i>Registrar un empleado
                                     </a>
                                 }
-                                    <a class="dropdown-item" href="@Url.Action("Logout", "Login")">
-                                        <i class="ti-power-off text-primary"></i> Cerrar sesión
+                                @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "1")
+                                {
+                                    <a class="nav-link" href="@Url.Action("ListarUsuarios", "Login")">
+                                        <i class="icon-list menu-icon"></i>
+                                        <span class="menu-title">Listar empleados</span>
                                     </a>
+                                }
+                                <a class="dropdown-item" href="@Url.Action("Logout", "Login")">
+                                    <i class="ti-power-off text-primary"></i> Cerrar sesión
+                                </a>
 
-                                </div>
+                            </div>
                         </li>
                     </ul>
                     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">

@@ -179,6 +179,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\ObtenerEmpleadoPorFiltro_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\PDA_Tarea.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -239,6 +242,7 @@
     <Compile Include="BaseDatos\Venta_Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ActionResult.cs" />
     <Compile Include="Controllers\ContabilidadController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\EntregasController.cs" />
@@ -403,6 +407,9 @@
     <Content Include="BaseDatos\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -452,6 +459,8 @@
     <Content Include="Views\Login\CambiarContrasenna.cshtml" />
     <Content Include="Views\Login\registro.cshtml" />
     <Content Include="Views\Login\RecuperarAcceso.cshtml" />
+    <Content Include="Views\Login\ListarUsuarios.cshtml" />
+    <Content Include="Views\Login\BuscarEmpleados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

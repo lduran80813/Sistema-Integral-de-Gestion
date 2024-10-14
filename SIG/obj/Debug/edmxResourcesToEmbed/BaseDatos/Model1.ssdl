@@ -687,6 +687,11 @@
     <Parameter Name="Rol" Type="int" Mode="InOut" />
     <Parameter Name="Usuario" Type="nvarchar" Mode="InOut" />
   </Function>
+  <Function Name="ObtenerEmpleadoPorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+    <Parameter Name="NumeroCedula" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="registrarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />

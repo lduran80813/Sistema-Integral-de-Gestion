@@ -26,7 +26,7 @@ namespace SIG.Entidades
         public string numero_identificacion { get; set; }
 
 
-        public DateTime fecha_nacimiento { get; set; }
+        public DateTime? fecha_nacimiento { get; set; }
 
 
         public string direccion { get; set; }
@@ -42,7 +42,11 @@ namespace SIG.Entidades
         public int departamento_id { get; set; }
 
         public int estado_usuario { get; set; }
+        public bool estado { get; set; }
 
         public int puesto_id { get; set; }
+
     }
+
+
 }

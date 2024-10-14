@@ -3,12 +3,11 @@ using SIG.Entidades;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using static SIG.Models.UsuarioModel;
+
 
 namespace SIG.Controllers
 {
@@ -16,9 +15,9 @@ namespace SIG.Controllers
     {
         UsuarioModel usuarioM = new UsuarioModel();
 
-        public ActionResult Login() 
+        public ActionResult Login()
         {
-        return View();
+            return View();
         }
 
 
@@ -94,18 +93,18 @@ namespace SIG.Controllers
                 if (resultado)
                 {
                     ViewBag.msj = "La contraseña se ha actualizado exitosamente.";
-                    return RedirectToAction("Logout", "Login"); 
+                    return RedirectToAction("Logout", "Login");
                 }
                 else
                 {
                     ViewBag.msj = $"No se pudo actualizar la contraseña para el usuario con ID {usuarioId}.";
-                    return View(); 
+                    return View();
                 }
             }
             catch (Exception ex)
             {
                 ViewBag.msj = $"Ocurrió un error al intentar cambiar la contraseña: {ex.Message}";
-                return View(); 
+                return View();
             }
         }
 
@@ -186,6 +185,36 @@ namespace SIG.Controllers
 
             return View(user);
         }
+
+        private UsuarioModel usuarioService = new UsuarioModel();
+
+        public ActionResult ListarUsuarios()
+        {
+            // Obtener la lista de empleados desde el servicio
+            var usuariosBaseDatos = usuarioService.ListarEmpleados();
+
+            // Convertir la lista de empleados a una lista de UsuarioEmpleado
+            var usuariosEntidades = usuariosBaseDatos.Select(u => new UsuarioEmpleado
+            {
+                id_usuario = u.id, // Asegúrate de que este campo sea parte de UsuarioEmpleado
+                nombre = u.nombre,
+                apellidos = u.apellidos, // Asegúrate de que este campo esté definido en UsuarioEmpleado
+                correo_electronico = u.correo_electronico,
+                estado = u.estado_empleado??false, // Asegúrate de que este campo sea de tipo booleano
+                usuario = u.usuario,
+                telefono = u.telefono,
+                direccion = u.direccion,
+                fecha_nacimiento = u.fecha_nacimiento == null ? (DateTime?)null : u.fecha_nacimiento,
+                numero_identificacion = u.numero_identificacion
+                // Asigna otras propiedades según sea necesario
+            }).ToList();
+
+            // Devuelve la vista con la lista de UsuarioEmpleado
+            return View(usuariosEntidades);
+        }
+
+
+
 
     }
 }

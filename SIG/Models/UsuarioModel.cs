@@ -197,6 +197,16 @@ namespace SIG.Models
         }
 
 
+        public List<Empleado> ListarEmpleados() 
+        {
+            using(var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Empleado.ToList();
+            }
+        
+        }
+
+
 
 
     }

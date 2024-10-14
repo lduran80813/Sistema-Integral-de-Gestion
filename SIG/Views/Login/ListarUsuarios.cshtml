@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SIG.Entidades.UsuarioEmpleado>
+
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- Formulario de búsqueda -->
+<form method="get" action="@Url.Action("ListarUsuarios")">
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre Completo</th>
+            <th>Email</th>
+            <th>Estado</th>
+            <th>Usuario</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Número de Identificación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id_usuario</td>
+                <td>@item.nombre @item.apellidos</td>
+                <td>@item.correo_electronico</td>
+                <td>@(item.estado ? "Activo" : "Inactivo")</td>
+                <td>@item.usuario</td>
+                <td>@item.telefono</td>
+                <td>@item.direccion</td>
+                <td>@(item.fecha_nacimiento.HasValue ? item.fecha_nacimiento.Value.ToString("dd/MM/yyyy") : "N/A")</td>
+                <td>@item.numero_identificacion</td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarRol", new { IdUsuario = item.id_usuario }, new { @class = "btn btn-primary" }) |
+                    @using (Html.BeginForm("Eliminar", "Login", FormMethod.Post, new { id = "form" + item.id_usuario, @class = "d-inline" }))
+                    {
+                        @Html.Hidden("id", item.id_usuario)
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este usuario?');">Eliminar</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+

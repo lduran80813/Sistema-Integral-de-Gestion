@@ -692,6 +692,11 @@
           <Parameter Name="Rol" Type="int" Mode="InOut" />
           <Parameter Name="Usuario" Type="nvarchar" Mode="InOut" />
         </Function>
+        <Function Name="ObtenerEmpleadoPorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroCedula" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="registrarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
           <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
@@ -1792,6 +1797,11 @@
           <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
           <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ObtenerEmpleadoPorFiltro" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="NumeroCedula" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="iniciarSesion_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1813,6 +1823,21 @@
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="ObtenerEmpleadoPorFiltro_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="departamento_id" Nullable="true" />
+          <Property Type="Int32" Name="puesto_id" Nullable="true" />
+          <Property Type="Int32" Name="rol_id" Nullable="true" />
+          <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2181,6 +2206,25 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerEmpleadoPorFiltro" FunctionName="SistemaIntegralGestionModel.Store.ObtenerEmpleadoPorFiltro">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+                <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

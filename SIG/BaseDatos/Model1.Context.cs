@@ -145,5 +145,22 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", emailParameter);
         }
+    
+        public virtual ObjectResult<ObtenerEmpleadoPorFiltro_Result> ObtenerEmpleadoPorFiltro(string nombre, string correoElectronico, string numeroCedula)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var numeroCedulaParameter = numeroCedula != null ?
+                new ObjectParameter("NumeroCedula", numeroCedula) :
+                new ObjectParameter("NumeroCedula", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpleadoPorFiltro_Result>("ObtenerEmpleadoPorFiltro", nombreParameter, correoElectronicoParameter, numeroCedulaParameter);
+        }
     }
 }
