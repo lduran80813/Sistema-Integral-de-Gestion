@@ -190,26 +190,24 @@ namespace SIG.Controllers
 
         public ActionResult ListarUsuarios()
         {
-            // Obtener la lista de empleados desde el servicio
             var usuariosBaseDatos = usuarioService.ListarEmpleados();
 
-            // Convertir la lista de empleados a una lista de UsuarioEmpleado
+
             var usuariosEntidades = usuariosBaseDatos.Select(u => new UsuarioEmpleado
             {
-                id_usuario = u.id, // Asegúrate de que este campo sea parte de UsuarioEmpleado
+                id_usuario = u.id, 
                 nombre = u.nombre,
-                apellidos = u.apellidos, // Asegúrate de que este campo esté definido en UsuarioEmpleado
+                apellidos = u.apellidos, 
                 correo_electronico = u.correo_electronico,
-                estado = u.estado_empleado??false, // Asegúrate de que este campo sea de tipo booleano
+                estado = u.estado_empleado??false, 
                 usuario = u.usuario,
                 telefono = u.telefono,
                 direccion = u.direccion,
                 fecha_nacimiento = u.fecha_nacimiento == null ? (DateTime?)null : u.fecha_nacimiento,
                 numero_identificacion = u.numero_identificacion
-                // Asigna otras propiedades según sea necesario
+
             }).ToList();
 
-            // Devuelve la vista con la lista de UsuarioEmpleado
             return View(usuariosEntidades);
         }
 
