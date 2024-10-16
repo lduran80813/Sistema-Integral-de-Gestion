@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Empleados Eliminados";
+}
+@model IEnumerable<SIG.Entidades.UsuarioEmpleado>
+
+<h2>Empleados Eliminados</h2>
+
+<!-- Tabla de empleados eliminados -->
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre Completo</th>
+            <th>Email</th>
+            <th>Usuario</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Número de Identificación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.id_usuario</td>
+                <td>@item.nombre @item.apellidos</td>
+                <td>@item.correo_electronico</td>
+                <td>@item.usuario</td>
+                <td>@item.telefono</td>
+                <td>@item.direccion</td>
+                <td>@(item.fecha_nacimiento.HasValue ? item.fecha_nacimiento.Value.ToString("dd/MM/yyyy") : "N/A")</td>
+                <td>@item.numero_identificacion</td>
+                <td>
+                    @Html.ActionLink("Restaurar", "RestaurarEmpleado", new { IdUsuario = item.id_usuario }, new { @class = "btn btn-success" }) |
+                    @using (Html.BeginForm("EliminarEmpleado", "Empleado", FormMethod.Post))
+                    {
+                        @Html.Hidden("id", item.id_usuario)
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este usuario?');">Eliminar Definitivamente</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            "pageLength": 50 // Muestra 50 registros por defecto
+        });
+    });</script>

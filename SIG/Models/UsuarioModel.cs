@@ -206,7 +206,72 @@ namespace SIG.Models
         
         }
 
+        public bool EliminarEmpleadoPorId(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var empleado = context.Empleado.FirstOrDefault(e => e.id == id);
+                if (empleado != null)
+                {
 
+                    empleado.estado_empleado = false; 
+
+
+                    context.SaveChanges();
+                    return true; 
+                }
+
+                return false;
+            }
+        }
+
+        public bool RestaurarEmpleado(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var empleado = context.Empleado.FirstOrDefault(e => e.id == id);
+                if (empleado != null)
+                {
+                    empleado.estado_empleado = true; // Cambiar el estado a activo
+                    context.SaveChanges(); // Guardar los cambios
+                    return true; // Indicar que la restauración fue exitosa
+                }
+                return false; // Si no se encontró el empleado
+            }
+        }
+
+        public Empleado ObtenerEmpleadoPorId(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Empleado.FirstOrDefault(e => e.id == id);
+            }
+        }
+
+
+        public bool ActualizarEmpleado(UsuarioEmpleado empleado)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var empleadoExistente = context.Empleado.FirstOrDefault(e => e.id == empleado.id_usuario);
+                if (empleadoExistente != null)
+                {
+                    // Actualiza las propiedades necesarias
+                    empleadoExistente.nombre = empleado.nombre;
+                    empleadoExistente.apellidos = empleado.apellidos;
+                    empleadoExistente.correo_electronico = empleado.correo_electronico;
+                    empleadoExistente.usuario = empleado.usuario;
+                    empleadoExistente.telefono = empleado.telefono;
+                    empleadoExistente.direccion = empleado.direccion;
+                    empleadoExistente.fecha_nacimiento = empleado.fecha_nacimiento;
+                    empleadoExistente.numero_identificacion = empleado.numero_identificacion;
+
+                    context.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
 
 
     }

@@ -109,8 +109,41 @@ namespace SIG.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult EliminarEmpleado(int id)
+        {
+            // Llamar al método que realiza el borrado lógico
+            bool resultado = usuarioM.EliminarEmpleadoPorId(id);
+
+            if (resultado)
+            {
+                // Si fue exitoso, redirigir a la lista de usuarios
+                return RedirectToAction("ListarUsuarios");
+            }
+
+            // Si no fue exitoso, mostrar una vista de error
+            return View("Error");
+        }
 
 
+        [HttpPost]
+        public ActionResult RestaurarEmpleado(int id)
+        {
+            bool resultado = usuarioM.RestaurarEmpleado(id); // Llamar al método del servicio
+
+            if (resultado)
+            {
+                // Puedes agregar un mensaje de éxito aquí si lo deseas
+                TempData["Mensaje"] = "Empleado restaurado exitosamente.";
+            }
+            else
+            {
+                // Puedes agregar un mensaje de error aquí si lo deseas
+                TempData["Mensaje"] = "No se pudo restaurar el empleado.";
+            }
+
+            return RedirectToAction("ListarUsuarios"); // Redirigir a la lista de empleados
+        }
 
         [HttpGet]
         public ActionResult RecuperarAcceso()
@@ -210,9 +243,29 @@ namespace SIG.Controllers
 
             return View(usuariosEntidades);
         }
+        [HttpGet]
+        public ActionResult EditarEmpleado(int id)
+        {
+            var empleado = usuarioM.ObtenerEmpleadoPorId(id);
+            if (empleado == null)
+            {
+                return HttpNotFound();
+            }
+            return View(empleado); // Asegúrate de que esto es del tipo correcto
+        }
 
+        [HttpPost]
+        public ActionResult EditarEmpleado(UsuarioEmpleado modelo)
+        {
+            if (ModelState.IsValid)
+            {
+                usuarioM.ActualizarEmpleado(modelo); // Actualizar el empleado
+                return RedirectToAction("Index"); // Redirige a la lista de empleados (o a donde necesites)
+            }
+            return View(modelo); // Si hay errores, vuelve a mostrar la vista
+        }
 
-
+        
 
     }
 }

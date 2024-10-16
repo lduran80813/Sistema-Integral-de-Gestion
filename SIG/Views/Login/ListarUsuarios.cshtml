@@ -1,23 +1,11 @@
 ﻿@model IEnumerable<SIG.Entidades.UsuarioEmpleado>
 
-
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-
 <form method="get" action="@Url.Action("ListarUsuarios")">
-
 </form>
 
-<table class="table">
+<table id="tablaUsuarios" class="table display">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Nombre Completo</th>
             <th>Email</th>
             <th>Estado</th>
@@ -32,8 +20,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.id_usuario</td>
+            <tr class="@(item.estado ? "" : "table-danger")">
                 <td>@item.nombre @item.apellidos</td>
                 <td>@item.correo_electronico</td>
                 <td>@(item.estado ? "Activo" : "Inactivo")</td>
@@ -41,13 +28,29 @@
                 <td>@item.telefono</td>
                 <td>@item.direccion</td>
                 <td>@(item.fecha_nacimiento.HasValue ? item.fecha_nacimiento.Value.ToString("dd/MM/yyyy") : "N/A")</td>
-                <td>@item.numero_identificacion</td>
+                <td style="text-align: center ">@item.numero_identificacion</td>
                 <td>
-                    @Html.ActionLink("Editar", "EditarRol", new { IdUsuario = item.id_usuario }, new { @class = "btn btn-primary" }) |
-                    @using (Html.BeginForm("Eliminar", "Login", FormMethod.Post, new { id = "form" + item.id_usuario, @class = "d-inline" }))
+                    @if (!item.estado)
                     {
-                        @Html.Hidden("id", item.id_usuario)
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este usuario?');">Eliminar</button>
+                        using (Html.BeginForm("RestaurarEmpleado", "Login", FormMethod.Post, new { id = "restaurarForm" + item.id_usuario, @class = "d-inline" }))
+                        {
+                            @Html.Hidden("id", item.id_usuario)
+                            <button type="submit" class="btn btn-success" onclick="return confirm('¿Está seguro de que desea restaurar este usuario?');">Restaurar</button>
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("EditarEmpleado", "Login", FormMethod.Get, new { id = "editarForm" + item.id_usuario, @class = "d-inline" }))
+                        {
+                            @Html.Hidden("id", item.id_usuario)
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro de que desea editar este usuario?');">Editar</button>
+                        }
+                        <span>-</span>
+                        using (Html.BeginForm("EliminarEmpleado", "Login", FormMethod.Post, new { id = "form" + item.id_usuario, @class = "d-inline" }))
+                        {
+                            @Html.Hidden("id", item.id_usuario)
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este usuario?');">Eliminar</button>
+                        }
                     }
                 </td>
             </tr>
@@ -56,5 +59,8 @@
 </table>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="~/root/dist/js/Listar.js"></script>
 
 

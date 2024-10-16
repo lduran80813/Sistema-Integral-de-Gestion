@@ -330,6 +330,7 @@
     <Content Include="root\dist\js\adminlte.js" />
     <Content Include="root\dist\js\adminlte.min.js" />
     <Content Include="root\dist\js\demo.js" />
+    <Content Include="root\dist\js\Listar.js" />
     <Content Include="root\dist\js\pages\dashboard.js" />
     <Content Include="root\dist\js\pages\dashboard2.js" />
     <Content Include="root\dist\js\pages\dashboard3.js" />
@@ -461,6 +462,8 @@
     <Content Include="Views\Login\RecuperarAcceso.cshtml" />
     <Content Include="Views\Login\ListarUsuarios.cshtml" />
     <Content Include="Views\Login\BuscarEmpleados.cshtml" />
+    <Content Include="Views\Login\ListarEmpleadosEliminados.cshtml" />
+    <Content Include="Views\Login\EditarEmpleado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
