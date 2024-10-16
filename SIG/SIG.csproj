@@ -245,6 +245,7 @@
     <Compile Include="Controllers\IncidenciasITManagerController.cs" />
     <Compile Include="Controllers\Plan_AccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Entidades\CategoriaIncidencia.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
@@ -442,6 +443,9 @@
     <Content Include="Views\Incidencias\VerTicket.cshtml" />
     <Content Include="Views\IncidenciasITAnalyst\ListaHistoricoAtendidos.cshtml" />
     <Content Include="Views\IncidenciasITManager\ListaHistoricoTickets.cshtml" />
+    <Content Include="Views\IncidenciasITManager\ListaTiposTicket.cshtml" />
+    <Content Include="Views\IncidenciasITManager\CrearCategoria.cshtml" />
+    <Content Include="Views\IncidenciasITManager\EditarCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

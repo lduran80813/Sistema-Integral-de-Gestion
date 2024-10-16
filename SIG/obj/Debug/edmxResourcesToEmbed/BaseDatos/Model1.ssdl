@@ -190,6 +190,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="255" />
     <Property Name="direccion" Type="varchar" MaxLength="255" />
+    <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -229,6 +230,7 @@
     </Key>
     <Property Name="tipo_incidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="30" />
+    <Property Name="estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>

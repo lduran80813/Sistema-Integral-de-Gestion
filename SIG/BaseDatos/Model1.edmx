@@ -195,6 +195,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="255" />
           <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -234,6 +235,7 @@
           </Key>
           <Property Name="tipo_incidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="30" />
+          <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -1090,6 +1092,7 @@
           <NavigationProperty Name="Prov_Contacto" Relationship="Self.FK__Prov_Cont__prove__398D8EEE" FromRole="Proveedor" ToRole="Prov_Contacto" />
           <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__72C60C4A" FromRole="Proveedor" ToRole="Prov_Pago" />
           <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__6C190EBB" FromRole="Proveedor" ToRole="Prov_Producto" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -1137,6 +1140,7 @@
           <Property Name="tipo_incidencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__tipo_inc__7C4F7684" FromRole="Ticket_Tipo" ToRole="Ticket" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -1991,6 +1995,7 @@
           <EntitySetMapping Name="Proveedor">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
@@ -2035,6 +2040,7 @@
           <EntitySetMapping Name="Ticket_Tipo">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket_Tipo">
               <MappingFragment StoreEntitySet="Ticket_Tipo">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="tipo_incidencia" ColumnName="tipo_incidencia" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>

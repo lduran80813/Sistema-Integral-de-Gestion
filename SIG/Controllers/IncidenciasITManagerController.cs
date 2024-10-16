@@ -73,6 +73,11 @@ namespace SIG.Controllers
         [HttpGet]
         public ActionResult ListaTicketsRegistrados()
         {
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
             var respuesta = ticketM.ListaTicketsRegistrados();
             return View(respuesta);
         }
@@ -101,7 +106,7 @@ namespace SIG.Controllers
 
             if (respuesta.estado != 1)
             {
-                TempData["advertencia"] = "Acción denegada: El ticket ya fue asignado y priorizado";
+                TempData["mensaje"] = "Acción denegada: El ticket ya fue asignado y priorizado";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -116,11 +121,11 @@ namespace SIG.Controllers
             var respuesta = ticketM.AsignarTicket(ticket);
             if (respuesta)
             {
-                TempData["advertencia"] = "Ticket asignado existosamente";                
+                TempData["mensaje"] = "Ticket asignado existosamente";                
             }                
             else
             {
-                TempData["advertencia"] = "No se ha podido actualizar el ticket";
+                TempData["mensaje"] = "No se ha podido actualizar el ticket";
             }
             return RedirectToAction("ListaTicketsRegistrados", "IncidenciasITManager");
         }
@@ -133,8 +138,100 @@ namespace SIG.Controllers
                 return View(respuesta);
             else
             {
-                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ListaTiposTicket()
+        {
+            var respuesta = catalogosM.ConsultarTicketTipo();
+
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
+
+            if (respuesta != null)
+                return View(respuesta);
+            else
+            {
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder a los tipos de incidencias";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DesactivarTipoIncidencia(BaseDatos.Ticket_Tipo tipo)
+        {
+            var respuesta = ticketM.DesactivarTipoIncidencia(tipo);
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Tipo de incidencia desactivada correctamente";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+            else
+            {
+                TempData["mensaje"] = "No se ha podido desactivar el tipo de incidencia";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult CrearCategoria()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CrearCategoria(Entidades.CategoriaIncidencia categoria)
+        {
+            var respuesta = ticketM.CrearCategoria(categoria);
+
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Categoría creada exitosamente";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+            else
+            {
+                ViewBag.msj = "No se ha podido crear categoría";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarCategoria(int idCategoria)
+        {
+            var respuesta = ticketM.verCategoria(idCategoria);
+
+
+            if (respuesta != null)
+            {
+                return View(respuesta);
+            }
+            else
+            {
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder a los tipos de incidencias";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditarCategoria(BaseDatos.Ticket_Tipo categoria)
+        {
+            var respuesta = ticketM.ActualizarCategoria(categoria);
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Categoría actualizada exitosamente";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+            else
+            {
+                ViewBag.msj = "No se ha podido actualizar la categoría";
+                return View();
             }
         }
 

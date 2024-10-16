@@ -98,7 +98,7 @@ namespace SIG.Controllers
             if (respuesta)
             {
                 TempData["mensaje"] = "Incidencia creada exitosamente";
-                return RedirectToAction("About", "Home");
+                return RedirectToAction("ListaIncidenciasUsuario", "Incidencias");
             }                
             else
             {
@@ -124,6 +124,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.ListaIncidenciasUsuario();
             if (respuesta == null) 
                 ViewBag.msj = "No se ha podido conectar con la base de datos";
+
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
+
             return View(respuesta);
         }
 
@@ -205,7 +212,7 @@ namespace SIG.Controllers
             }
             else
             {
-                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
             }
         }

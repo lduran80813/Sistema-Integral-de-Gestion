@@ -74,6 +74,12 @@ namespace SIG.Controllers
         [HttpGet]
         public ActionResult ListaTicketsAsignados()
         {
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
+
             var respuesta = ticketM.ListaTicketsAsignados();
             if (respuesta != null) 
                 return View(respuesta);
@@ -129,7 +135,10 @@ namespace SIG.Controllers
         {
             var respuesta = ticketM.AtenderTicket(ticket);
             if (respuesta)
+            {
+                TempData["mensaje"] = "Ticket actualizado exitosamente";
                 return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
+            }
             else
             {
                 ViewBag.msj = "No se ha podido actualizar el Ticket";

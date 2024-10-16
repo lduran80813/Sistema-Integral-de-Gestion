@@ -205,6 +205,7 @@
     <EntitySetMapping Name="Proveedor">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Proveedor">
         <MappingFragment StoreEntitySet="Proveedor">
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
@@ -249,6 +250,7 @@
     <EntitySetMapping Name="Ticket_Tipo">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket_Tipo">
         <MappingFragment StoreEntitySet="Ticket_Tipo">
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="tipo_incidencia" ColumnName="tipo_incidencia" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
         </MappingFragment>

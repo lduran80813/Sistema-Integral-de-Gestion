@@ -1,0 +1,128 @@
+﻿@model List<SIG.BaseDatos.Ticket_Tipo>
+@{
+    ViewBag.Title = "ListaTiposTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.warning != null)
+{
+    <h3>
+        @ViewBag.msj
+    </h3>
+}
+
+
+    <body>
+
+        <div class="container">
+            <h2>Categorías de incidencias</h2>
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <a class="btn btn-primary" href="@Url.Action("CrearCategoria", "IncidenciasITManager")"><i class="fa fa-plus"></i> Nueva categoría</a>
+                    @if (Model.Count == 0)
+                    {
+                        <h3>No existen categorías registradas</h3>
+                        // crear botón para añadir una categoría
+                    }
+                    else
+                    {
+                        if (ViewBag.msj != null)
+                        {
+                            <br>
+                            <div class="alert alert-info" role="alert" style="text-align:center">
+                                @ViewBag.msj
+                            </div>
+                        }
+                        <table id="tablaTipos" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tipo ID</th>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>Desactivar</th>
+                                    <th>Editar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.tipo_incidencia</td>
+                                        <td>@item.descripcion</td>
+                                        @if (item.estado == true)
+                                        {
+                                            <td>Activa</td>
+                                            <td style="text-align:center">
+                                                <button type="button" class="btn btn-primary AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.tipo_incidencia" data-name="@item.descripcion">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                            <td style="text-align:center">
+                                                <a class="btn btn-primary" href="@Url.Action("EditarCategoria", "IncidenciasITManager", new { idCategoria = item.tipo_incidencia })">
+                                                    <i class="fa fa-user"></i>
+                                                </a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>Inactiva</td>
+                                            <td style="text-align:center">
+                                            </td>
+                                            <td style="text-align:center">
+                                            </td>
+                                        }
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>                    
+            </div>
+        </div>
+    </body>
+
+
+
+
+<div class="modal fade" id="ModalTicket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("DesactivarTipoIncidencia", "IncidenciasITManager"))
+                {
+                    <div class="modal-body">
+                        @Html.Hidden("tipo_incidencia", "")
+                        ¿Desea desactivar la categoría <label id="Nombre"></label>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Desactivar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaTipos").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    })
+    $(document).on("click", ".AbrirModal", function () {
+        $("#tipo_incidencia").val($(this).attr('data-id'));
+        $("#Nombre").text($(this).attr('data-name'));
+    });
+</script>
+

@@ -290,5 +290,69 @@ namespace SIG.Models
                         }).ToList();
             }
         }
+
+        public bool DesactivarTipoIncidencia(BaseDatos.Ticket_Tipo t)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tipo = context.Ticket_Tipo.FirstOrDefault(x => x.tipo_incidencia == t.tipo_incidencia);
+                tipo.estado = false;
+                rowsAffected = context.SaveChanges();
+            }
+
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public bool CrearCategoria(Entidades.CategoriaIncidencia c)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tTicket_Tipo = new BaseDatos.Ticket_Tipo();
+                tTicket_Tipo.descripcion = c.descripcion;
+                tTicket_Tipo.estado = true;
+
+                context.Ticket_Tipo.Add(tTicket_Tipo);
+                rowsAffected = context.SaveChanges();
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public BaseDatos.Ticket_Tipo verCategoria(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var query = (from x in context.Ticket_Tipo
+                             where x.tipo_incidencia == id
+                             select x).FirstOrDefault();
+
+                if (query != null)
+                    return query;
+                else return null;
+            }
+        }
+
+        public bool ActualizarCategoria(BaseDatos.Ticket_Tipo c)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+
+                var ticket = context.Ticket_Tipo.FirstOrDefault(x => x.tipo_incidencia == c.tipo_incidencia);
+
+                if (ticket != null)
+                {                  
+                    if (ticket.descripcion != c.descripcion & c.descripcion != null) ticket.descripcion = c.descripcion;
+                }
+                rowsAffected = context.SaveChanges();
+            }
+
+            return (rowsAffected > 0 ? true : false);
+        }
+
     }
 }
