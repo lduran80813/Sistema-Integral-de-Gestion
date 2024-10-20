@@ -5,9 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditarEmpleado</h2>
-
-
 @using (Html.BeginForm("Editar", "Login", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.id)

@@ -113,16 +113,14 @@ namespace SIG.Controllers
         [HttpPost]
         public ActionResult EliminarEmpleado(int id)
         {
-            // Llamar al método que realiza el borrado lógico
+
             bool resultado = usuarioM.EliminarEmpleadoPorId(id);
 
             if (resultado)
             {
-                // Si fue exitoso, redirigir a la lista de usuarios
                 return RedirectToAction("ListarUsuarios");
             }
 
-            // Si no fue exitoso, mostrar una vista de error
             return View("Error");
         }
 
@@ -255,8 +253,10 @@ namespace SIG.Controllers
 
                 if (empleado == null)
                 {
-                    return HttpNotFound();
+                    return HttpNotFound(); 
                 }
+
+                // Cargar listas para dropdowns
                 ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
                 ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
                 ViewBag.Roles = usuarioM.ObtenerListaRoles();
@@ -267,7 +267,7 @@ namespace SIG.Controllers
             {
                 // Manejo de excepciones
                 ModelState.AddModelError("", $"Error al cargar el empleado: {ex.Message}");
-                return RedirectToAction("Index"); // Redirigir a la lista de empleados o manejar el error
+                return RedirectToAction("Index");
             }
         }
 
@@ -276,20 +276,21 @@ namespace SIG.Controllers
 
         public ActionResult Editar(Empleado empleado)
         {
-
-                // Llamar al servicio para editar el empleado
+            if (ModelState.IsValid)
+            {
                 var resultado = usuarioM.EditarEmpleado(empleado);
                 if (resultado)
                 {
-                    return RedirectToAction("ListarUsuarios", "Login");
+                    return RedirectToAction("ListarUsuarios");
                 }
-                else
+                ModelState.AddModelError("", "Error al editar el empleado. Intente nuevamente.");
+            }
 
             ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
             ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
             ViewBag.Roles = usuarioM.ObtenerListaRoles();
 
-            return View(empleado); // Si hay un error, volver a mostrar la vista de edición
+            return View(empleado);
         }
 
 

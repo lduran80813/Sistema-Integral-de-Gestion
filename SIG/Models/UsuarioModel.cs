@@ -21,7 +21,6 @@ namespace SIG.Models
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                // Parámetros de salida
                 var idParam = new SqlParameter
                 {
                     ParameterName = "@Id",
@@ -188,10 +187,10 @@ namespace SIG.Models
                 return context.Emp_Departamento
                     .Select(d => new SelectListItem
                     {
-                        Value = d.id.ToString(), // Valor que se enviará al servidor
-                        Text = d.nombre_departamento // Texto que verá el usuario
+                        Value = d.id.ToString(),
+                        Text = d.nombre_departamento
                     })
-                    .ToList(); // Asegúrate de que esto devuelve una lista de SelectListItem
+                    .ToList();
             }
         }
 
@@ -200,11 +199,11 @@ namespace SIG.Models
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                return context.Emp_Puesto // Asumiendo que tienes una tabla "Puestos"
+                return context.Emp_Puesto
                     .Select(p => new SelectListItem
                     {
-                        Value = p.id.ToString(), // Cambiar a id_puesto para el valor
-                        Text = p.nombre_puesto // Suponiendo que el nombre del puesto se llama nombre_puesto
+                        Value = p.id.ToString(),
+                        Text = p.nombre_puesto 
                     })
                     .ToList();
             }
@@ -214,11 +213,10 @@ namespace SIG.Models
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                return context.Adm_Rol // Asumiendo que tienes una tabla "Roles"
+                return context.Adm_Rol 
                     .Select(r => new SelectListItem
                     {
-                        Value = r.id.ToString(), // Cambiar a id_rol para el valor
-                        Text = r.nombre_rol // Suponiendo que el nombre del rol se llama nombre_rol
+                        Value = r.id.ToString(),
                     })
                     .ToList();
             }
@@ -295,38 +293,26 @@ namespace SIG.Models
 
         public bool EditarEmpleado(Empleado empleado)
         {
-            try
+            using (var context = new SistemaIntegralGestionEntities())
             {
-                using (var context = new SistemaIntegralGestionEntities())
-                {
-                    var idParam = new SqlParameter("@Id", empleado.id);
-                    var nombreParam = new SqlParameter("@Nombre", empleado.nombre);
-                    var apellidosParam = new SqlParameter("@Apellidos", empleado.apellidos);
-                    var correoParam = new SqlParameter("@CorreoElectronico", empleado.correo_electronico);
-                    var telefonoParam = new SqlParameter("@Telefono", empleado.telefono);
-                    var direccionParam = new SqlParameter("@Direccion", empleado.direccion);
-                    var fechaNacimientoParam = new SqlParameter("@FechaNacimiento", (object)empleado.fecha_nacimiento ?? DBNull.Value);
-                    var numeroIdentificacionParam = new SqlParameter("@NumeroIdentificacion", empleado.numero_identificacion);
-                    var departamentoIdParam = new SqlParameter("@DepartamentoId", empleado.departamento_id);
-                    var puestoIdParam = new SqlParameter("@PuestoId", empleado.puesto_id);
-                    var rolIdParam = new SqlParameter("@RolId", empleado.rol_id);
+                var idParam = new SqlParameter("@Id", empleado.id);
+                var nombreParam = new SqlParameter("@Nombre", empleado.nombre);
+                var apellidosParam = new SqlParameter("@Apellidos", empleado.apellidos);
+                var correoParam = new SqlParameter("@CorreoElectronico", empleado.correo_electronico);
+                var telefonoParam = new SqlParameter("@Telefono", empleado.telefono);
+                var direccionParam = new SqlParameter("@Direccion", empleado.direccion);
+                var fechaNacimientoParam = new SqlParameter("@FechaNacimiento", (object)empleado.fecha_nacimiento ?? DBNull.Value);
+                var numeroIdentificacionParam = new SqlParameter("@NumeroIdentificacion", empleado.numero_identificacion);
+                var departamentoIdParam = new SqlParameter("@DepartamentoId", empleado.departamento_id);
+                var puestoIdParam = new SqlParameter("@PuestoId", empleado.puesto_id);
+                var rolIdParam = new SqlParameter("@RolId", empleado.rol_id);
 
-                    // Ejecutar el SP
-                    int filasAfectadas = context.Database.ExecuteSqlCommand(
-                        "EXEC EditarEmpleado @Id, @Nombre, @Apellidos, @CorreoElectronico, @Telefono, @Direccion, @FechaNacimiento, @NumeroIdentificacion, @DepartamentoId, @PuestoId, @RolId",
-                        idParam, nombreParam, apellidosParam, correoParam, telefonoParam, direccionParam, fechaNacimientoParam, numeroIdentificacionParam, departamentoIdParam, puestoIdParam, rolIdParam);
+                context.Database.ExecuteSqlCommand("EditarEmpleado @Id, @Nombre, @Apellidos, @CorreoElectronico, @Telefono, @Direccion, @FechaNacimiento, @NumeroIdentificacion, @DepartamentoId, @PuestoId, @RolId",
+                    idParam, nombreParam, apellidosParam, correoParam, telefonoParam, direccionParam, fechaNacimientoParam, numeroIdentificacionParam, departamentoIdParam, puestoIdParam, rolIdParam);
 
-                    return filasAfectadas > 0; // Retorna verdadero si se actualizaron filas
-                }
-            }
-            catch (Exception ex)
-            {
-                // Manejo de excepciones: loguear o manejar según sea necesario
-                Console.WriteLine($"Error al editar empleado: {ex.Message}");
-                return false; // Retorna falso si ocurre un error
+                return true;
             }
         }
-
 
 
     }
