@@ -162,5 +162,54 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpleadoPorFiltro_Result>("ObtenerEmpleadoPorFiltro", nombreParameter, correoElectronicoParameter, numeroCedulaParameter);
         }
+    
+        public virtual int EditarEmpleado(Nullable<int> id, string nombre, string apellidos, string correoElectronico, string telefono, string direccion, Nullable<System.DateTime> fechaNacimiento, string numeroIdentificacion, Nullable<int> departamentoId, Nullable<int> puestoId, Nullable<int> rolId)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("Apellidos", apellidos) :
+                new ObjectParameter("Apellidos", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var numeroIdentificacionParameter = numeroIdentificacion != null ?
+                new ObjectParameter("NumeroIdentificacion", numeroIdentificacion) :
+                new ObjectParameter("NumeroIdentificacion", typeof(string));
+    
+            var departamentoIdParameter = departamentoId.HasValue ?
+                new ObjectParameter("DepartamentoId", departamentoId) :
+                new ObjectParameter("DepartamentoId", typeof(int));
+    
+            var puestoIdParameter = puestoId.HasValue ?
+                new ObjectParameter("PuestoId", puestoId) :
+                new ObjectParameter("PuestoId", typeof(int));
+    
+            var rolIdParameter = rolId.HasValue ?
+                new ObjectParameter("RolId", rolId) :
+                new ObjectParameter("RolId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditarEmpleado", idParameter, nombreParameter, apellidosParameter, correoElectronicoParameter, telefonoParameter, direccionParameter, fechaNacimientoParameter, numeroIdentificacionParameter, departamentoIdParameter, puestoIdParameter, rolIdParameter);
+        }
     }
 }

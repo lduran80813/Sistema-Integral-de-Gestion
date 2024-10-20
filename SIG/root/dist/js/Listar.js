@@ -4,7 +4,7 @@
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
         },
         "searching": true,
-        "pageLength": 20,  // Mostrar 50 registros por defecto
+        "pageLength": 20,  
         "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
     });
 });
@@ -17,8 +17,8 @@ function eliminarEmpleado(id) {
             type: 'POST',
             data: { id: id },
             success: function (result) {
-                // Recargar la página o manejar el resultado de la eliminación
-                location.reload(); // Recargar la página para ver los cambios
+                
+                location.reload(); 
             },
             error: function (xhr, status, error) {
                 alert('Ocurrió un error al eliminar el usuario: ' + error);
@@ -31,6 +31,6 @@ function eliminarEmpleado(id) {
 
 function restaurarEmpleado(id) {
     if (confirm('¿Está seguro de que desea restaurar este usuario?')) {
-        window.location.href = '@Url.Action("RestaurarEmpleado", "Login")/' + id; // Redirigir a la acción de restaurar
+        window.location.href = '@Url.Action("RestaurarEmpleado", "Login")/' + id; 
     }
 }

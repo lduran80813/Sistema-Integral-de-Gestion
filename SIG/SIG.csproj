@@ -461,9 +461,8 @@
     <Content Include="Views\Login\registro.cshtml" />
     <Content Include="Views\Login\RecuperarAcceso.cshtml" />
     <Content Include="Views\Login\ListarUsuarios.cshtml" />
-    <Content Include="Views\Login\BuscarEmpleados.cshtml" />
     <Content Include="Views\Login\ListarEmpleadosEliminados.cshtml" />
-    <Content Include="Views\Login\EditarEmpleado.cshtml" />
+    <Content Include="Views\Login\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

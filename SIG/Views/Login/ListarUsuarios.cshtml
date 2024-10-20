@@ -40,7 +40,7 @@
                     }
                     else
                     {
-                        using (Html.BeginForm("EditarEmpleado", "Login", FormMethod.Get, new { id = "editarForm" + item.id_usuario, @class = "d-inline" }))
+                        using (Html.BeginForm("Editar", "Login", FormMethod.Get, new { id = "editarForm" + item.id_usuario, @class = "d-inline" }))
                         {
                             @Html.Hidden("id", item.id_usuario)
                             <button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro de que desea editar este usuario?');">Editar</button>

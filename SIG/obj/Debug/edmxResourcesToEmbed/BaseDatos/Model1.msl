@@ -384,5 +384,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EditarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.EditarEmpleado" />
   </EntityContainerMapping>
 </Mapping>

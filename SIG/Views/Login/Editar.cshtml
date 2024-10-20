@@ -1,4 +1,4 @@
-﻿@model SIG.Entidades.UsuarioEmpleado
+﻿@model SIG.BaseDatos.Empleado
 
 @{
     ViewBag.Title = "EditarEmpleado";
@@ -7,10 +7,10 @@
 
 <h2>EditarEmpleado</h2>
 
-<!-- Formulario para editar empleado -->
-@using (Html.BeginForm("ActualizarEmpleado", "Login", FormMethod.Post))
+
+@using (Html.BeginForm("Editar", "Login", FormMethod.Post))
 {
-    @Html.HiddenFor(m => m.id_usuario) // Oculta el ID del empleado
+    @Html.HiddenFor(m => m.id)
 
     <div class="form-group">
         <label for="nombre">Nombre:</label>
@@ -52,8 +52,23 @@
         @Html.TextBoxFor(m => m.numero_identificacion, new { @class = "form-control", required = "required" })
     </div>
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.departamento_id, "Departamento", new { @class = "control-label" })
+        @Html.DropDownList("departamento_id", (IEnumerable<SelectListItem>)ViewBag.Departamentos, "Seleccione un departamento", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.puesto_id, "Puesto", new { @class = "control-label" })
+        @Html.DropDownList("puesto_id", (IEnumerable<SelectListItem>)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.rol_id, "Rol", new { @class = "control-label" })
+        @Html.DropDownList("rol_id", (IEnumerable<SelectListItem>)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control" })
+    </div>
+
     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    @Html.ActionLink("Cancelar", "ListarEmpleados", null, new { @class = "btn btn-secondary" })
+    @Html.ActionLink("Cancelar", "ListarUsuarios", null, new { @class = "btn btn-secondary" })
 }
 
 @if (ViewBag.ErrorMessage != null)
@@ -65,4 +80,3 @@
 {
     <div class="alert alert-success">@ViewBag.SuccessMessage</div>
 }
-    

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.ApplicationServices;
 
 
 namespace SIG.Controllers
@@ -243,29 +244,54 @@ namespace SIG.Controllers
 
             return View(usuariosEntidades);
         }
-        [HttpGet]
-        public ActionResult EditarEmpleado(int id)
+
+
+
+        public ActionResult Editar(int id)
         {
-            var empleado = usuarioM.ObtenerEmpleadoPorId(id);
-            if (empleado == null)
+            try
             {
-                return HttpNotFound();
+                var empleado = usuarioM.ObtenerEmpleadoPorId(id);
+
+                if (empleado == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
+                ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
+                ViewBag.Roles = usuarioM.ObtenerListaRoles();
+
+                return View(empleado);
             }
-            return View(empleado); // Asegúrate de que esto es del tipo correcto
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                ModelState.AddModelError("", $"Error al cargar el empleado: {ex.Message}");
+                return RedirectToAction("Index"); // Redirigir a la lista de empleados o manejar el error
+            }
         }
+
 
         [HttpPost]
-        public ActionResult EditarEmpleado(UsuarioEmpleado modelo)
+
+        public ActionResult Editar(Empleado empleado)
         {
-            if (ModelState.IsValid)
-            {
-                usuarioM.ActualizarEmpleado(modelo); // Actualizar el empleado
-                return RedirectToAction("Index"); // Redirige a la lista de empleados (o a donde necesites)
-            }
-            return View(modelo); // Si hay errores, vuelve a mostrar la vista
+
+                // Llamar al servicio para editar el empleado
+                var resultado = usuarioM.EditarEmpleado(empleado);
+                if (resultado)
+                {
+                    return RedirectToAction("ListarUsuarios", "Login");
+                }
+                else
+
+            ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
+            ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
+            ViewBag.Roles = usuarioM.ObtenerListaRoles();
+
+            return View(empleado); // Si hay un error, volver a mostrar la vista de edición
         }
 
-        
 
     }
 }

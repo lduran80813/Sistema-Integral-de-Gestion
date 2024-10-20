@@ -927,6 +927,19 @@
       <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
       <Parameter Name="NumeroCedula" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="EditarEmpleado">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="DepartamentoId" Mode="In" Type="Int32" />
+      <Parameter Name="PuestoId" Mode="In" Type="Int32" />
+      <Parameter Name="RolId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="iniciarSesion_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

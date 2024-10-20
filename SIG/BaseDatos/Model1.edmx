@@ -684,6 +684,19 @@
           <Parameter Name="Id" Type="int" Mode="InOut" />
           <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="EditarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+          <Parameter Name="NumeroIdentificacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartamentoId" Type="int" Mode="In" />
+          <Parameter Name="PuestoId" Type="int" Mode="In" />
+          <Parameter Name="RolId" Type="int" Mode="In" />
+        </Function>
         <Function Name="iniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="correo_electronico" Type="nvarchar" Mode="In" />
           <Parameter Name="Contrasena" Type="nvarchar" Mode="In" />
@@ -1802,6 +1815,19 @@
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="NumeroCedula" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="EditarEmpleado">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="NumeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="DepartamentoId" Mode="In" Type="Int32" />
+            <Parameter Name="PuestoId" Mode="In" Type="Int32" />
+            <Parameter Name="RolId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="iniciarSesion_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -2228,6 +2254,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EditarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.EditarEmpleado" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
