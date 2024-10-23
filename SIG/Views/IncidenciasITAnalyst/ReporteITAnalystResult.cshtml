@@ -1,0 +1,79 @@
+﻿@model SIG.Entidades.Ticket
+@{
+    Layout = null;
+}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados del Reporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <div class="container">
+        <h1>Resultados del Reporte</h1>
+
+        <br />
+        <h3>Id IT-Manager: @Model.id_tecnico</h3>
+
+        @Html.Label("Fechas del reporte:", new { @class = "dates-label" })
+
+        <div class="dates-container">
+            <span>Inicio: @Model.inicioCorte.ToString("yyyy-MM-dd")</span>
+            <br />
+            <span>Fin: @Model.finCorte.ToString("yyyy-MM-dd")</span>
+        </div>
+        <br
+        @Html.Label("Casos Asignados:")
+        @Html.TextBoxFor(m => m.casosAsignados, new { @class = "form-control", @readonly = "true" })
+
+
+        @Html.Label("Casos Finalizados:")
+        @Html.TextBoxFor(m => m.casosFinalizados, new { @class = "form-control", @readonly = "true" })
+
+
+        @Html.Label("Casos Pendientes:")
+        @Html.TextBoxFor(m => m.casosPendientes, new { @class = "form-control", @readonly = "true" })
+
+
+        @Html.Label("Duración media (horas):")
+        @Html.TextBoxFor(m => m.duracionMedia, new { @class = "form-control", @readonly = "true" })
+
+
+        @Html.Label("Reporte generado:")
+        <input type="text" class="form-control" readonly value="@DateTime.Now" />
+    </div>
+</body>
+</html>

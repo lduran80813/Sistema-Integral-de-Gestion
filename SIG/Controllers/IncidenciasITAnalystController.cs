@@ -174,7 +174,8 @@ namespace SIG.Controllers
 
             if (respuesta != null)
                 return View(respuesta);
-                
+            //return View("ReporteITAnalystResult", respuesta);
+
             else
                 ViewBag.msj = "No hay datos disponibles para el rango indicado";
             return View();
@@ -187,9 +188,9 @@ namespace SIG.Controllers
             Entidades.Ticket reporte = ticketM.reporteTecnico(ticket);
 
             if (reporte != null)
-            return new ViewAsPdf("ReporteITAnalyst", reporte)
+            return new ViewAsPdf("ReporteITAnalystResult", reporte)
             {
-                FileName = "ReporteITAnalyst.pdf",
+                FileName = "ReporteITAnalyst_" + ticket.id_tecnico + "_" + DateTime.Now + ".pdf",
                 PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
                 PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
             };
