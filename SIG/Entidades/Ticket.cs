@@ -20,5 +20,14 @@ namespace SIG.Entidades
         public int id_tecnico { get; set; }
         public string comentario_tecnico { get; set; }
         public System.DateTime fecha_cierre_ticket { get; set; }
+        public System.DateTime inicioCorte { get; set; }
+        public System.DateTime finCorte { get; set; }
+        public int casosAsignados { get; set; }
+        public int casosFinalizados { get; set; }
+        public int casosPendientes { get; set; }
+        public float duracionMedia { get; set; }
+        public bool activa { get; set; }
+
+
     }
 }

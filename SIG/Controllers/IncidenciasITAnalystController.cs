@@ -1,4 +1,5 @@
-﻿using SIG.Models;
+﻿using Rotativa;
+using SIG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,6 +158,42 @@ namespace SIG.Controllers
                 TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITAnalyst()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReporteITAnalyst(Entidades.Ticket ticket)
+        {
+            ticket.id_tecnico = int.Parse(Session["IdUsuario"].ToString());
+            Entidades.Ticket respuesta = ticketM.reporteTecnico(ticket);
+
+            if (respuesta != null)
+                return View(respuesta);
+                
+            else
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITAnalystPDF(Entidades.Ticket ticket)
+        {
+            ticket.id_tecnico = int.Parse(Session["IdUsuario"].ToString());
+            Entidades.Ticket reporte = ticketM.reporteTecnico(ticket);
+
+            if (reporte != null)
+            return new ViewAsPdf("ReporteITAnalyst", reporte)
+            {
+                FileName = "ReporteITAnalyst.pdf",
+                PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+            };
+            return RedirectToAction("ReporteITAnalyst", "IncidenciasITManager");
         }
 
     }
