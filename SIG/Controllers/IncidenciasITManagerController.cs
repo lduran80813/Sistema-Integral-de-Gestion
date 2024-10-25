@@ -1,4 +1,5 @@
-﻿using SIG.Models;
+﻿using Rotativa;
+using SIG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -235,5 +236,69 @@ namespace SIG.Controllers
             }
         }
 
+        public void ListaTecnicos()
+        {
+            // Lista de técnicos
+            var tecnicos = catalogosM.ConsultarTecnicos();
+
+            List<SelectListItem> lstTecnicos = new List<SelectListItem>();
+            lstTecnicos.Add(new SelectListItem { Value = "0", Text = "Todos (grupal)" });
+            foreach (var item in tecnicos)
+            {
+                lstTecnicos.Add(new SelectListItem { Value = item.id_usuario.ToString(), Text = item.nombre_completo.ToString() });
+            }
+
+            ViewBag.Tecnicos = lstTecnicos;
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITManager()
+        {
+            ListaTecnicos();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ReporteITManager(Entidades.Ticket ticket)
+        {
+            Entidades.Ticket respuesta = new Entidades.Ticket();
+            if (ticket.id_tecnico != 0)
+                respuesta = ticketM.reporteTecnico(ticket);
+            else respuesta = ticketM.reporteTecnicos(ticket);
+
+
+            if (respuesta != null)
+            {
+                ListaTecnicos();
+                return View(respuesta);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                ListaTecnicos();
+                return View();
+            }
+                
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITManagerPDF(Entidades.Ticket ticket)
+        {
+            Entidades.Ticket reporte= new Entidades.Ticket();
+            if (ticket.id_tecnico != 0)
+                reporte = ticketM.reporteTecnico(ticket);
+            else reporte = ticketM.reporteTecnicos(ticket);
+
+            if (reporte != null)
+                return new ViewAsPdf("ReporteITManagerResult", reporte)
+                {
+                    FileName = "ReporteITManager_" + ticket.id_tecnico + "_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("ReporteITManager", "IncidenciasITManager");
+        }
     }
 }

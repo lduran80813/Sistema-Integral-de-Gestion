@@ -46,7 +46,14 @@
         <h1>Resultados del Reporte</h1>
 
         <br />
-        <h3>Id IT-Analyst: @Model.id_tecnico</h3>
+        @if (Model.id_tecnico != 0)
+        {
+            <h3>Id IT-Analyst: @Model.id_tecnico</h3>
+        }
+        else
+        {
+            <h3>Reporte grupal</h3>
+        }
 
         @Html.Label("Fechas del reporte:", new { @class = "dates-label" })
 
@@ -56,23 +63,15 @@
             <span>Fin: @Model.finCorte.ToString("yyyy-MM-dd")</span>
         </div>
         <br />
-        @Html.Label("Casos Asignados:")
-        @Html.TextBoxFor(m => m.casosAsignados, new { @class = "form-control", @readonly = "true" })
-
-
-        @Html.Label("Casos Finalizados:")
-        @Html.TextBoxFor(m => m.casosFinalizados, new { @class = "form-control", @readonly = "true" })
-
-
-        @Html.Label("Casos Pendientes:")
-        @Html.TextBoxFor(m => m.casosPendientes, new { @class = "form-control", @readonly = "true" })
-
-
-        @Html.Label("Duración media (horas):")
-        @Html.TextBoxFor(m => m.duracionMedia, new { @class = "form-control", @readonly = "true" })
-
-
-        @Html.Label("Reporte generado:")
+            @Html.Label("Casos Asignados:")
+            @Html.TextBoxFor(m => m.casosAsignados, new { @class = "form-control", @readonly = "true" })
+            @Html.Label("Casos Finalizados:")
+            @Html.TextBoxFor(m => m.casosFinalizados, new { @class = "form-control", @readonly = "true" })
+            @Html.Label("Casos Pendientes:")
+            @Html.TextBoxFor(m => m.casosPendientes, new { @class = "form-control", @readonly = "true" })
+            @Html.Label("Duración media (horas):")
+            @Html.TextBoxFor(m => m.duracionMedia, new { @class = "form-control", @readonly = "true" })
+            @Html.Label("Reporte generado:")
         <input type="text" class="form-control" readonly value="@DateTime.Now" />
     </div>
 </body>

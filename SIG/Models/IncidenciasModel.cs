@@ -360,13 +360,13 @@ namespace SIG.Models
             {
                 int asignados = (from x in context.Ticket
                                join e in context.Ticket_Estado on x.estado equals e.estado_ticket
-                               where (x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) || 
-                               (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)
-                               select x).Count();
+                               where ((x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) || 
+                               (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)) && x.id_tecnico == ticket.id_tecnico
+                                 select x).Count();
 
                 int finalizados = (from x in context.Ticket
-                                 where (x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
-                               (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)
+                                 where ((x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
+                               (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte))
                                  && x.id_tecnico == ticket.id_tecnico && x.estado == 4
                                  select x).Count();
 
@@ -374,11 +374,56 @@ namespace SIG.Models
 
 
                 var duracion = (from x in context.Ticket
-                                           where x.fecha_registra_tecnico >= ticket.inicioCorte && x.id_tecnico == ticket.id_tecnico && x.estado == 4
+                                           where x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte 
+                                           && x.id_tecnico == ticket.id_tecnico && x.estado == 4
                                            select new {
                                                fecha_registra_tecnico = x.fecha_registra_tecnico,
                                                fecha_cierre_ticket = x.fecha_cierre_ticket
                                            }).
+                                           ToList();//.Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
+                var duracion2 = duracion
+    .Select(t => (t.fecha_cierre_ticket - t.fecha_registra_tecnico) ?? TimeSpan.Zero)
+    .Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
+
+                float promedioAtencion = finalizados > 0 ? (float)(duracion2.TotalHours / finalizados) : 0;
+
+                ticket.casosAsignados = asignados;
+                ticket.casosFinalizados = finalizados;
+                ticket.casosPendientes = pendientes;
+                ticket.duracionMedia = promedioAtencion;
+                ticket.activa = true;
+                return ticket;
+
+            }
+        }
+
+        public Entidades.Ticket reporteTecnicos(Entidades.Ticket ticket)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int asignados = (from x in context.Ticket
+                                 join e in context.Ticket_Estado on x.estado equals e.estado_ticket
+                                 where (x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
+                                 (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)
+                                 select x).Count();
+
+                int finalizados = (from x in context.Ticket
+                                   where (x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
+                                 (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)
+                                   && x.estado == 4
+                                   select x).Count();
+
+                int pendientes = asignados - finalizados;
+
+
+                var duracion = (from x in context.Ticket
+                                where x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte
+                                           && x.estado == 4
+                                select new
+                                {
+                                    fecha_registra_tecnico = x.fecha_registra_tecnico,
+                                    fecha_cierre_ticket = x.fecha_cierre_ticket
+                                }).
                                            ToList();//.Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
                 var duracion2 = duracion
     .Select(t => (t.fecha_cierre_ticket - t.fecha_registra_tecnico) ?? TimeSpan.Zero)

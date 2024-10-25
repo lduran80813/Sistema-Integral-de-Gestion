@@ -824,6 +824,8 @@
     <Content Include="Views\IncidenciasITManager\EditarCategoria.cshtml" />
     <Content Include="Views\IncidenciasITAnalyst\ReporteITAnalyst.cshtml" />
     <Content Include="Views\IncidenciasITAnalyst\ReporteITAnalystResult.cshtml" />
+    <Content Include="Views\IncidenciasITManager\ReporteITManager.cshtml" />
+    <Content Include="Views\IncidenciasITManager\ReporteITManagerResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

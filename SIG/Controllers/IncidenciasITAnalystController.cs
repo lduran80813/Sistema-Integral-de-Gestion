@@ -194,7 +194,7 @@ namespace SIG.Controllers
                 PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
                 PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
             };
-            return RedirectToAction("ReporteITAnalyst", "IncidenciasITManager");
+            return RedirectToAction("ReporteITAnalyst", "IncidenciasITAnalyst");
         }
 
     }
