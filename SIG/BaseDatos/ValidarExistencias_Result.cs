@@ -10,17 +10,11 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Entregas
+    public partial class ValidarExistencias_Result
     {
-        public int id { get; set; }
-        public Nullable<int> factura_id { get; set; }
-        public Nullable<System.DateTime> fecha_entrega { get; set; }
-        public string direccion_entrega { get; set; }
-        public string articulos_entregados { get; set; }
-        public string observaciones_adicionales { get; set; }
-    
-        public virtual Venta_Factura Venta_Factura { get; set; }
+        public int IdProducto { get; set; }
+        public string descripcion { get; set; }
+        public int Inventario { get; set; }
     }
 }

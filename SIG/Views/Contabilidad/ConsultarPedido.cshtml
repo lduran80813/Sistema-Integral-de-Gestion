@@ -1,0 +1,118 @@
+﻿@model SIG.Entidades.Carrito
+@{
+    ViewBag.Title = "ConsultarPedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+
+    <div class="container">
+        <h2>Consulta de pedido</h2>
+        <div class="row">
+            <div class="col-12">
+
+
+
+                @if (ViewBag.msj != null)
+                {
+                    <div class="alert alert-info" role="alert" style="text-align:center">
+                        @ViewBag.msj
+                    </div>
+                }
+
+                <table id="tablaCarrito" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio Unitario</th>
+                            <th>Cantidad</th>
+                            <th>SubTotal</th>
+                            <th>Impuesto</th>
+                            <th>Total</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DatosCarrito)
+                        {
+                            <tr>
+                                <td>@item.descripcion</td>
+                                <td>@item.Precio.ToString("N2")</td>
+                                <td>@item.Cantidad</td>
+                                <td>@item.SubTotal.Value.ToString("N2")</td>
+                                <td>@item.Impuesto.Value.ToString("N2")</td>
+                                <td>@item.Total.Value.ToString("N2")</td>
+
+                                <td style="text-align:center">
+                                    <button type="button" class="btn btn-primary AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalCarrito"
+                                            data-id="@item.id" data-name="@item.descripcion">
+                                        <i class="fa fa-share-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <br /><br />
+
+                <div class="row">
+                    <div class="col-3">
+                        <p style="font-size:14pt; margin-top:2%">El monto a cancelar es de: ₡<b>@decimal.Parse(Session["Total"].ToString()).ToString("N2")</b></p>
+                    </div>
+                    <div>
+                        @if (Session["Total"].ToString() != "0")
+                        {
+                            using (Html.BeginForm("ProcesarPedido", "Contabilidad"))
+                            {
+                                <button type="submit" class="btn btn-outline-primary" style="width:200px">Procesar</button>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<div class="modal fade" id="ModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("EliminarProductoPedido", "Contabilidad"))
+                {
+                    <div class="modal-body">
+                        @Html.Hidden("IdProducto", "")
+                        ¿Desea remover de su pedido el producto <label id="Nombre"></label>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Remover</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaCarrito").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4, 5] }]
+        });
+    })
+    $(document).on("click", ".AbrirModal", function () {
+        $("#IdProducto").val($(this).attr('data-id'));
+        $("#Nombre").text($(this).attr('data-name'));
+    });
+</script>

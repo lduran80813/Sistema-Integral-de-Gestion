@@ -15,15 +15,15 @@ namespace SIG.BaseDatos
     public partial class Conta_Transaccion
     {
         public int id { get; set; }
-        public string tipo_transaccion { get; set; }
-        public Nullable<int> referencia_id { get; set; }
+        public int tipo_transaccion { get; set; }
+        public Nullable<int> compra_id { get; set; }
+        public Nullable<int> venta_id { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<decimal> monto { get; set; }
         public string descripcion { get; set; }
-        public Nullable<int> cliente_id { get; set; }
-        public Nullable<int> proveedor_id { get; set; }
     
-        public virtual Venta_Cliente Venta_Cliente { get; set; }
-        public virtual Proveedor Proveedor { get; set; }
+        public virtual Conta_TipoTransaccion Conta_TipoTransaccion { get; set; }
+        public virtual Prov_Compra Prov_Compra { get; set; }
+        public virtual Venta_Factura Venta_Factura { get; set; }
     }
 }

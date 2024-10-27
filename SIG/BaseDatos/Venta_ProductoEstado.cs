@@ -12,21 +12,18 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Venta_Pedido
+    public partial class Venta_ProductoEstado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venta_Pedido()
+        public Venta_ProductoEstado()
         {
-            this.Entregas = new HashSet<Entregas>();
+            this.Venta_Producto = new HashSet<Venta_Producto>();
         }
     
         public int id { get; set; }
-        public Nullable<int> cliente_id { get; set; }
-        public Nullable<System.DateTime> fecha_pedido { get; set; }
-        public string numero_pedido { get; set; }
+        public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Entregas> Entregas { get; set; }
-        public virtual Venta_Cliente Venta_Cliente { get; set; }
+        public virtual ICollection<Venta_Producto> Venta_Producto { get; set; }
     }
 }

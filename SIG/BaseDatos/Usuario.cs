@@ -20,6 +20,7 @@ namespace SIG.BaseDatos
             this.Prov_Pago = new HashSet<Prov_Pago>();
             this.Ticket = new HashSet<Ticket>();
             this.Ticket1 = new HashSet<Ticket>();
+            this.Venta_Carrito = new HashSet<Venta_Carrito>();
         }
     
         public int id { get; set; }
@@ -36,5 +37,7 @@ namespace SIG.BaseDatos
         public virtual ICollection<Ticket> Ticket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Venta_Carrito> Venta_Carrito { get; set; }
     }
 }

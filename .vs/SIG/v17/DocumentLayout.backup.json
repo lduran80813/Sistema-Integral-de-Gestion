@@ -3,16 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\models\\incidenciasmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\incidenciasmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\productomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\productomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\controllers\\incidenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\incidenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\consultarpedido.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\consultarpedido.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\incidencias\\nuevoticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\incidencias\\nuevoticket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\contabilidadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\contabilidadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\incidencias\\listaincidenciasusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\incidencias\\listaincidenciasusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\productos_ventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\productos_ventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\registro_ventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\registro_ventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\entidades\\carrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\entidades\\carrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +46,127 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IncidenciasController.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\IncidenciasController.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\IncidenciasController.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAowF8AAAAyAAAAAAAAAA==",
+              "Title": "ConsultarPedido.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAFgAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-27T06:47:13.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Carrito.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\Carrito.cs",
+              "RelativeDocumentMoniker": "SIG\\Entidades\\Carrito.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\Carrito.cs",
+              "RelativeToolTip": "SIG\\Entidades\\Carrito.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T22:16:24.159Z",
+              "WhenOpened": "2024-10-27T05:44:18.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T05:16:31.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4CAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-27T05:01:01.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Productos_Ventas.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\Productos_Ventas.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\Productos_Ventas.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\Productos_Ventas.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\Productos_Ventas.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-27T05:00:33.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ListaIncidenciasUsuario.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Incidencias\\ListaIncidenciasUsuario.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Incidencias\\ListaIncidenciasUsuario.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Incidencias\\ListaIncidenciasUsuario.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Incidencias\\ListaIncidenciasUsuario.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-27T04:43:36.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Registro_Ventas.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\Registro_Ventas.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\Registro_Ventas.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\Registro_Ventas.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\Registro_Ventas.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-27T04:40:09.359Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IncidenciasModel.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\IncidenciasModel.cs",
-              "RelativeDocumentMoniker": "SIG\\Models\\IncidenciasModel.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\IncidenciasModel.cs",
-              "RelativeToolTip": "SIG\\Models\\IncidenciasModel.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAQAAAAAAAAAA==",
+              "Title": "ProductoModel.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ProductoModel.cs",
+              "RelativeDocumentMoniker": "SIG\\Models\\ProductoModel.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ProductoModel.cs",
+              "RelativeToolTip": "SIG\\Models\\ProductoModel.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAUwEUAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T22:16:25.417Z",
+              "WhenOpened": "2024-10-27T04:32:08.727Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "NuevoTicket.cshtml",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Incidencias\\NuevoTicket.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Incidencias\\NuevoTicket.cshtml",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Incidencias\\NuevoTicket.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Incidencias\\NuevoTicket.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEsAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-02T00:21:05.481Z",
+              "Title": "ContabilidadController.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\ContabilidadController.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\ContabilidadController.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAUwEMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-27T04:25:04.662Z",
               "EditorCaption": ""
             }
           ]
