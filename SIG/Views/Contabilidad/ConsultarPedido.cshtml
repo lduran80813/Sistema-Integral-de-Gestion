@@ -3,7 +3,64 @@
     ViewBag.Title = "ConsultarPedido";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
+    .container {
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input, select, textarea {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+</style>
 
 <body>
 
@@ -64,9 +121,44 @@
                     <div>
                         @if (Session["Total"].ToString() != "0")
                         {
-                            using (Html.BeginForm("ProcesarPedido", "Contabilidad"))
+                            <br /><br />
+                            <h5>Seleccione al cliente que realiza el pedido</h5>
+                            <table id="tablaClientes" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Teléfono</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Clientes)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td id="nombre-@item.id">@item.nombre</td>
+                                            <td>@item.telefono</td>
+                                            <td>@item.correo_electronico</td>
+
+                                            <td style="text-align:center">
+                                                <a onclick="SeleccionarCliente(@item.id)" class="card-link btn btn-primary text-white"><i class="fa fa-check"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            using (Html.BeginForm("ProcesarPedido", "Contabilidad", FormMethod.Post, new { id = "procesarPedido"}))
                             {
-                                <button type="submit" class="btn btn-outline-primary" style="width:200px">Procesar</button>
+                                <br />
+                                <input type="hidden" id="idCliente" name="idCliente" />
+                                <label>Nombre de cliente seleccionado:</label>
+                                <input type="text" id="nombreCliente" readonly />
+                                <br />
+                                <label>Notas adicionales (en caso de ser requerido):</label>
+                                <textarea id="notasAdicionales" name="notasAdicionales" maxlength="100"></textarea>
+                                <button id="btn-procesar" type="submit" class="btn btn-outline-primary" style="align-items:center">Procesar</button>
                             }
                         }
                     </div>
@@ -110,9 +202,50 @@
             },
             columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4, 5] }]
         });
+        $("#tablaClientes").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4] }]
+        });
     })
     $(document).on("click", ".AbrirModal", function () {
         $("#IdProducto").val($(this).attr('data-id'));
         $("#Nombre").text($(this).attr('data-name'));
     });
+
+    $(document).ready(function () {
+        $('#procesarPedido').on("submit", function (e) {
+            let idCliente = $("#idCliente").val();
+
+            if (idCliente == "") {
+                e.preventDefault();
+                MostrarMensaje("Información", "Debe seleccionar un cliente para poder continuar", "error");
+                return;
+                }
+        });
+    });
+    
+
+    function SeleccionarCliente(id) {
+        let nombre = $("#nombre-" + id).text();
+        $("#idCliente").val(id);
+        $("#nombreCliente").val(nombre);
+    }
+
+    function MostrarMensaje(titulo, mensaje, icono) {
+        Swal.fire({
+            title: titulo,
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: "Aceptar",
+            text: mensaje,
+            icon: icono
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Contabilidad/ConsultarPedido'
+            }
+        });
+    }
+
 </script>

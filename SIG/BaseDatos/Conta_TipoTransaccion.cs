@@ -14,16 +14,7 @@ namespace SIG.BaseDatos
     
     public partial class Conta_TipoTransaccion
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Conta_TipoTransaccion()
-        {
-            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
-        }
-    
         public int id { get; set; }
         public string descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
     }
 }

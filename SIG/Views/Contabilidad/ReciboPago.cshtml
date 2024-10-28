@@ -1,0 +1,71 @@
+﻿@model SIG.BaseDatos.datosRecibo_Result
+@{
+    Layout = null;
+}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados del Reporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <div class="container">
+        <h1>Recibo de pago</h1>
+
+        <br />
+
+        <h3>N° de recibo: @Model.venta_id</h3>
+        <h3>Fecha: @Model.fecha</h3>
+        <br />
+        <h4>Rajasa de Coro S.A.</h4>
+        <h4>Cédula Jurídica: 3101305112</h4>
+        <h4>Dirección: Condominio de Bodegas El Sol, local #32. Santa Rosa, Santo Domingo, Heredia, Costa Rica.</h4>
+        <h4>Correo Electrónico: atencioncliente@rajasadecoro.com</h4>
+        <h4>Teléfonos: (506) 2237-6776, (506) 2260-5001, (506) 2262-6507</h4>
+        <br />
+        <br />
+        <h4>Cliente: @Model.nombre</h4>
+        <h4>Dirección: @Model.direccion</h4>
+        <h4>Correo electrónico: @Model.correo_electronico</h4>
+        <br />
+        <h4>Detalle: @Model.descripcion</h4>
+        <h4>Monto cancelado: ₡@Model.monto</h4>
+        <h4>Medio de pago: @Model.MetodoPago</h4>
+        <br />
+        <p>------- Última Línea -------</p>
+    </div>
+</body>
+</html>

@@ -17,6 +17,7 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
+            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
             this.Prov_Pago = new HashSet<Prov_Pago>();
             this.Ticket = new HashSet<Ticket>();
             this.Ticket1 = new HashSet<Ticket>();
@@ -30,6 +31,8 @@ namespace SIG.BaseDatos
         public Nullable<int> empleado_id { get; set; }
     
         public virtual Adm_Rol Adm_Rol { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
         public virtual Empleado Empleado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prov_Pago> Prov_Pago { get; set; }

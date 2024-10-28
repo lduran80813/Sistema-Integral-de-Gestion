@@ -73,5 +73,65 @@ namespace SIG.Models
             return (rowsAffected > 0 ? true : false);
         }
 
+        public bool ProcesarCarrito(int idCliente, int estado, string notasAdicionales)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                // El cliente debe incluirse en formulario antes de procesar estos datos, está pendiente
+
+                int Consecutivo = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
+                rowsAffected = context.ProcesarCarrito(idCliente, Consecutivo, estado, notasAdicionales);
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public List<ConsultarPedidos_Result> ConsultarPedidos()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.ConsultarPedidos().ToList();
+            }
+        }
+        public List<ConsultarDetallePedido_Result> ConsultarDetallePedido(int idPedido)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.ConsultarDetallePedido(idPedido).ToList();
+            }
+        }
+
+        public bool FacturarPedido(PedidoFactura ent)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                rowsAffected = context.FacturarPedido(ent.idFacturar, ent.tipo_venta);
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public bool ContaPagoFactura(PedidoFactura ent)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int Consecutivo = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
+                rowsAffected = context.PagoPedido(ent.idPagar, ent.tipo_venta, ent.metodo_pago, ent.entidadFinanciera, ent.transaccionRef, ent.montoPago, ent.descripcion, Consecutivo);
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public datosRecibo_Result DatosRecibo(int idPedido)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.datosRecibo(idPedido).FirstOrDefault();
+            }
+        }
+
     }
 }

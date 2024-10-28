@@ -29,6 +29,7 @@ namespace SIG.BaseDatos
     
         public virtual DbSet<Adm_Permiso> Adm_Permiso { get; set; }
         public virtual DbSet<Adm_Rol> Adm_Rol { get; set; }
+        public virtual DbSet<Conta_CuentasContables> Conta_CuentasContables { get; set; }
         public virtual DbSet<Conta_TipoTransaccion> Conta_TipoTransaccion { get; set; }
         public virtual DbSet<Conta_Transaccion> Conta_Transaccion { get; set; }
         public virtual DbSet<Emp_BitacoraIngreso> Emp_BitacoraIngreso { get; set; }
@@ -38,6 +39,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Emp_RemuneracionDeduccion> Emp_RemuneracionDeduccion { get; set; }
         public virtual DbSet<Emp_Vacaciones> Emp_Vacaciones { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<EntidadesFinancieras> EntidadesFinancieras { get; set; }
         public virtual DbSet<Entregas> Entregas { get; set; }
         public virtual DbSet<PDA_Tarea> PDA_Tarea { get; set; }
         public virtual DbSet<PlanDeAccion> PlanDeAccion { get; set; }
@@ -52,6 +54,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Ticket_Prioridad> Ticket_Prioridad { get; set; }
         public virtual DbSet<Ticket_Tipo> Ticket_Tipo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Venta_Carrito> Venta_Carrito { get; set; }
         public virtual DbSet<Venta_Cliente> Venta_Cliente { get; set; }
         public virtual DbSet<Venta_Estado> Venta_Estado { get; set; }
         public virtual DbSet<Venta_Factura> Venta_Factura { get; set; }
@@ -59,7 +62,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_MetodoPago> Venta_MetodoPago { get; set; }
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
         public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
-        public virtual DbSet<Venta_Carrito> Venta_Carrito { get; set; }
+        public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
     
         public virtual ObjectResult<ConsultarCarrito_Result> ConsultarCarrito(Nullable<int> idUsuario)
         {
@@ -68,6 +71,129 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCarrito_Result>("ConsultarCarrito", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarClientes_Result> ConsultarClientes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarClientes_Result>("ConsultarClientes");
+        }
+    
+        public virtual ObjectResult<ConsultarDetallePedido_Result> ConsultarDetallePedido(Nullable<int> idPedido)
+        {
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarDetallePedido_Result>("ConsultarDetallePedido", idPedidoParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarPedidos_Result> ConsultarPedidos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarPedidos_Result>("ConsultarPedidos");
+        }
+    
+        public virtual int EliminarProductoCarrito(Nullable<int> idUsuario, Nullable<int> idProducto)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoCarrito", idUsuarioParameter, idProductoParameter);
+        }
+    
+        public virtual int FacturarPedido(Nullable<int> id_Pedido, Nullable<int> tipo_venta)
+        {
+            var id_PedidoParameter = id_Pedido.HasValue ?
+                new ObjectParameter("Id_Pedido", id_Pedido) :
+                new ObjectParameter("Id_Pedido", typeof(int));
+    
+            var tipo_ventaParameter = tipo_venta.HasValue ?
+                new ObjectParameter("Tipo_venta", tipo_venta) :
+                new ObjectParameter("Tipo_venta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FacturarPedido", id_PedidoParameter, tipo_ventaParameter);
+        }
+    
+        public virtual ObjectResult<ListaCuentasContables_Result> ListaCuentasContables()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaCuentasContables_Result>("ListaCuentasContables");
+        }
+    
+        public virtual ObjectResult<ListaEntidadesFinancieras_Result> ListaEntidadesFinancieras()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaEntidadesFinancieras_Result>("ListaEntidadesFinancieras");
+        }
+    
+        public virtual ObjectResult<listaMetodoPago_Result> listaMetodoPago()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaMetodoPago_Result>("listaMetodoPago");
+        }
+    
+        public virtual ObjectResult<listaTipoVenta_Result> listaTipoVenta()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTipoVenta_Result>("listaTipoVenta");
+        }
+    
+        public virtual int PagoPedido(Nullable<int> id_Pedido, Nullable<int> tipo_venta, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario)
+        {
+            var id_PedidoParameter = id_Pedido.HasValue ?
+                new ObjectParameter("Id_Pedido", id_Pedido) :
+                new ObjectParameter("Id_Pedido", typeof(int));
+    
+            var tipo_ventaParameter = tipo_venta.HasValue ?
+                new ObjectParameter("Tipo_venta", tipo_venta) :
+                new ObjectParameter("Tipo_venta", typeof(int));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            var entidadFinancieraParameter = entidadFinanciera != null ?
+                new ObjectParameter("EntidadFinanciera", entidadFinanciera) :
+                new ObjectParameter("EntidadFinanciera", typeof(string));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("Monto", monto) :
+                new ObjectParameter("Monto", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagoPedido", id_PedidoParameter, tipo_ventaParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual int ProcesarCarrito(Nullable<int> idCliente, Nullable<int> idUsuario, Nullable<int> estado, string notasAdicionales)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("IdCliente", idCliente) :
+                new ObjectParameter("IdCliente", typeof(int));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(int));
+    
+            var notasAdicionalesParameter = notasAdicionales != null ?
+                new ObjectParameter("NotasAdicionales", notasAdicionales) :
+                new ObjectParameter("NotasAdicionales", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProcesarCarrito", idClienteParameter, idUsuarioParameter, estadoParameter, notasAdicionalesParameter);
         }
     
         public virtual int RegistrarCarrito(Nullable<int> idUsuario, Nullable<int> idProducto, Nullable<int> cantidad)
@@ -96,17 +222,13 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
     
-        public virtual int EliminarProductoCarrito(Nullable<int> idUsuario, Nullable<int> idProducto)
+        public virtual ObjectResult<datosRecibo_Result> datosRecibo(Nullable<int> idFactura)
         {
-            var idUsuarioParameter = idUsuario.HasValue ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(int));
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
     
-            var idProductoParameter = idProducto.HasValue ?
-                new ObjectParameter("IdProducto", idProducto) :
-                new ObjectParameter("IdProducto", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoCarrito", idUsuarioParameter, idProductoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<datosRecibo_Result>("datosRecibo", idFacturaParameter);
         }
     }
 }

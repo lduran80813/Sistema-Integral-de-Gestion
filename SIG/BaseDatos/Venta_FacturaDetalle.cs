@@ -20,7 +20,7 @@ namespace SIG.BaseDatos
         public Nullable<int> cantidad { get; set; }
         public decimal precio_unidad { get; set; }
         public decimal monto { get; set; }
-        public decimal descuento { get; set; }
+        public Nullable<decimal> descuento { get; set; }
         public decimal impuesto { get; set; }
         public decimal monto_final { get; set; }
     

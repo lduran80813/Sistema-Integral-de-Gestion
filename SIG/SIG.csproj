@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -137,10 +140,25 @@
     <Compile Include="BaseDatos\ConsultarCarrito_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\ConsultarClientes_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ConsultarDetallePedido_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ConsultarPedidos_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Conta_CuentasContables.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Conta_TipoTransaccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Conta_Transaccion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\datosRecibo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Empleado.cs">
@@ -164,7 +182,22 @@
     <Compile Include="BaseDatos\Emp_Vacaciones.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\EntidadesFinancieras.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Entregas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ListaCuentasContables_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ListaEntidadesFinancieras_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\listaMetodoPago_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\listaTipoVenta_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Model1.Context.cs">
@@ -248,6 +281,9 @@
     <Compile Include="BaseDatos\Venta_ProductoEstado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\Venta_Tipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ContabilidadController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\EntregasController.cs" />
@@ -258,6 +294,7 @@
     <Compile Include="Controllers\Plan_AccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Entidades\Carrito.cs" />
+    <Compile Include="Entidades\PedidoFactura.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Ticket.cs" />
@@ -365,6 +402,10 @@
     <Content Include="root\plugins\jquery\jquery.min.js" />
     <Content Include="root\plugins\jquery\jquery.slim.js" />
     <Content Include="root\plugins\jquery\jquery.slim.min.js" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -411,6 +452,7 @@
     <Content Include="BaseDatos\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -459,6 +501,9 @@
     <Content Include="Views\IncidenciasITManager\ListaHistoricoTickets.cshtml" />
     <Content Include="Views\Contabilidad\Productos_Ventas.cshtml" />
     <Content Include="Views\Contabilidad\ConsultarPedido.cshtml" />
+    <Content Include="Views\Contabilidad\ListaPedidos.cshtml" />
+    <Content Include="Views\Contabilidad\DetallePedido.cshtml" />
+    <Content Include="Views\Contabilidad\ReciboPago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

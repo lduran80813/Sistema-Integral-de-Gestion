@@ -1,8 +1,11 @@
-﻿using SIG.Entidades;
+﻿using Rotativa;
+using SIG.BaseDatos;
+using SIG.Entidades;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,6 +14,7 @@ namespace SIG.Controllers
     public class ContabilidadController : Controller
     {
         ProductoModel productosM = new ProductoModel();
+        CatalogosModel catalogosM = new CatalogosModel();
 
         private void CargarVariablesCarrito()
         {
@@ -47,7 +51,19 @@ namespace SIG.Controllers
 
             return Json("", JsonRequestBehavior.AllowGet);
         }
+        //public void ListaClientes()
+        //{
+        //    // Lista de usuarios
+        //    var usuarios = catalogosM.ConsultarUsuarios();
 
+        //    List<SelectListItem> lstUsuarios = new List<SelectListItem>();
+        //    foreach (var item in usuarios)
+        //    {
+        //        lstUsuarios.Add(new SelectListItem { Value = item.id_usuario.ToString(), Text = item.nombre_completo.ToString() });
+        //    }
+
+        //    ViewBag.Usuarios = lstUsuarios;
+        //}
         [HttpGet]
         public ActionResult ConsultarPedido()
         {
@@ -56,6 +72,7 @@ namespace SIG.Controllers
             // Se setea el objeto general que tiene el id del producto necesario del modal y la lista actual del carrito
             Carrito carrito = new Carrito();
             carrito.DatosCarrito = datos;
+            carrito.Clientes = catalogosM.ConsultarClientes();
 
             Session["Cantidad"] = datos.Sum(c => c.Cantidad);
             Session["SubTotal"] = datos.Sum(c => c.SubTotal);
@@ -70,6 +87,138 @@ namespace SIG.Controllers
             productosM.EliminarProductoPedido(ent.IdProducto);
             return RedirectToAction("ConsultarPedido", "Contabilidad");
         }
+
+        [HttpPost]
+        public ActionResult ProcesarPedido(int idCliente, string notasAdicionales)
+        {
+            var datos = productosM.ValidarExistencias();
+
+            // No hay existencia en incumplimiento
+            if (datos.Count() <= 0)
+            {
+                productosM.ProcesarCarrito(idCliente, 1, notasAdicionales);
+                return RedirectToAction("ListaPedidos", "Contabilidad");
+            }
+            else
+            {
+                var productosEnCarrito = productosM.ConsultarCarrito();
+
+                // Se setea el objeto general que tiene el id del producto necesario del modal y la lista actual del carrito
+                Carrito carrito = new Carrito();
+                carrito.DatosCarrito = productosEnCarrito;
+
+                var mensaje = "";
+                var contador = 0;
+                foreach (var item in datos)
+                {
+                    if (contador == datos.Count())
+                    {
+                        mensaje += "y " + item.descripcion;
+                    }
+                    else
+                    {
+                        mensaje += item.descripcion + ", ";
+                        contador += 1;
+                    }
+                }
+
+                ViewBag.msj = "No se puede realizar el pago, los productos " + mensaje + " superan la cantidad en el inventario disponible";
+                return View("ConsultarPedido", carrito);
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult ListaPedidos()
+        {
+            // Tipo Venta
+            var tipo = catalogosM.ConsultarTipoVenta();
+
+            List<SelectListItem> lstTipoVentas = new List<SelectListItem>();
+            foreach (var item in tipo)
+            {
+                lstTipoVentas.Add(new SelectListItem { Value = item.id.ToString(), Text = item.descripcion.ToString() });
+            }
+
+            ViewBag.TipoVentas = lstTipoVentas;
+
+            // Método pago
+            var metodoPago = catalogosM.ConsultarMetodoPago();
+
+            List<SelectListItem> lstMetodoPago = new List<SelectListItem>();
+            foreach (var item in metodoPago)
+            {
+                lstMetodoPago.Add(new SelectListItem { Value = item.id.ToString(), Text = item.metodo.ToString() });
+            }
+
+            ViewBag.MetodoPago = lstMetodoPago;
+
+            CatalogosTransaccionesFinancieras();
+
+            PedidoFactura pf = new PedidoFactura();
+            pf.Pedidos = productosM.ConsultarPedidos();
+            return View(pf);
+        }
+
+        public void CatalogosTransaccionesFinancieras()
+        {
+            // Lista de Cuentas Contables
+            var cuentasContables = catalogosM.ConsultarCuentasContables();
+
+            List<SelectListItem> lstCuentasContables = new List<SelectListItem>();
+            foreach (var item in cuentasContables)
+            {
+                lstCuentasContables.Add(new SelectListItem { Value = item.Codigo.ToString(), Text = item.Descripcion});
+            }
+
+            ViewBag.CuentasContables = lstCuentasContables;
+
+            // Lista de Entidades Financieras
+            var entidadesFinancieras = catalogosM.ConsultarEntidadesFinancieras();
+
+            List<SelectListItem> lstEntidadesFinancieras = new List<SelectListItem>();
+            foreach (var item in entidadesFinancieras)
+            {
+                lstEntidadesFinancieras.Add(new SelectListItem { Value = item.IdEntidad, Text = item.NombreEntidad });
+            }
+
+            ViewBag.EntidadesFinancieras = lstEntidadesFinancieras;
+        }
+
+        [HttpGet]
+        public ActionResult DetallePedido(int idPedido)
+        {
+            var detalle = productosM.ConsultarDetallePedido(idPedido);
+            return View(detalle);
+        }
+
+        [HttpPost]
+        public ActionResult FacturarPedido(PedidoFactura ent)
+        {
+            var resultado = productosM.FacturarPedido(ent);
+            if (!resultado)
+                ViewBag.msj = "No fue posible facturar el pedido";
+            return RedirectToAction("ListaPedidos", "Contabilidad");
+        }
+
+        [HttpPost]
+        public ActionResult ContaPagoFactura(PedidoFactura ent)
+        {
+            var resultado = productosM.ContaPagoFactura(ent);
+            if (!resultado)
+                ViewBag.msj = "No fue posible facturar el pedido";
+            // Aquí ejecutar el recibo 
+            var reporte = productosM.DatosRecibo(ent.idPagar);
+            if (reporte != null)
+                return new ViewAsPdf("ReciboPago", reporte)
+                {
+                    FileName = "Recibo_" + ent.idPagar + "_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("ListaPedidos", "Contabilidad");
+        }
+
 
         public ActionResult Generar_Factura()
         {

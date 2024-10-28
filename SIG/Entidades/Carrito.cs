@@ -7,7 +7,9 @@ using System.Web;
 namespace SIG.Entidades
 {
     public class Carrito
-    {        public int IdProducto { get; set; }
+    {        
+        public int IdProducto { get; set; }
         public List<ConsultarCarrito_Result> DatosCarrito { get; set; }
+        public List<ConsultarClientes_Result> Clientes { get; set; }
     }
 }

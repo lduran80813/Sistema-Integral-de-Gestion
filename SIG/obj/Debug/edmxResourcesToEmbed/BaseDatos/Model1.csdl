@@ -19,27 +19,40 @@
     <NavigationProperty Name="Adm_Permiso" Relationship="Self.FK__Adm_Permi__rol_i__7B5B524B" FromRole="Adm_Rol" ToRole="Adm_Permiso" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__rol_id__10566F31" FromRole="Adm_Rol" ToRole="Usuario" />
   </EntityType>
+  <EntityType Name="Conta_CuentasContables">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TipoCuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__cuent__3B40CD36" FromRole="Conta_CuentasContables" ToRole="Conta_Transaccion" />
+  </EntityType>
   <EntityType Name="Conta_TipoTransaccion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__tipo___160F4887" FromRole="Conta_TipoTransaccion" ToRole="Conta_Transaccion" />
   </EntityType>
   <EntityType Name="Conta_Transaccion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="tipo_transaccion" Type="Int32" Nullable="false" />
     <Property Name="compra_id" Type="Int32" />
     <Property Name="venta_id" Type="Int32" />
     <Property Name="fecha" Type="DateTime" Precision="0" />
     <Property Name="monto" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Conta_TipoTransaccion" Relationship="Self.FK__Conta_Tra__tipo___160F4887" FromRole="Conta_Transaccion" ToRole="Conta_TipoTransaccion" />
+    <Property Name="cuenta_contable" Type="Int32" Nullable="false" />
+    <Property Name="entidad_financiera" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="transaccion_referencia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="usuario_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Conta_CuentasContables" Relationship="Self.FK__Conta_Tra__cuent__3B40CD36" FromRole="Conta_Transaccion" ToRole="Conta_CuentasContables" />
     <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Conta_Tra__compr__17036CC0" FromRole="Conta_Transaccion" ToRole="Prov_Compra" />
+    <NavigationProperty Name="EntidadesFinancieras" Relationship="Self.FK__Conta_Tra__entid__3D2915A8" FromRole="Conta_Transaccion" ToRole="EntidadesFinancieras" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Conta_Tra__usuar__3E1D39E1" FromRole="Conta_Transaccion" ToRole="Usuario" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Conta_Tra__venta__17F790F9" FromRole="Conta_Transaccion" ToRole="Venta_Factura" />
   </EntityType>
   <EntityType Name="Emp_BitacoraIngreso">
@@ -122,6 +135,14 @@
     <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__7F2BE32F" FromRole="Empleado" ToRole="Emp_Vacaciones" />
     <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__02FC7413" FromRole="Empleado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__emplead__0F624AF8" FromRole="Empleado" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="EntidadesFinancieras">
+    <Key>
+      <PropertyRef Name="IdEntidad" />
+    </Key>
+    <Property Name="IdEntidad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NombreEntidad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__entid__3D2915A8" FromRole="EntidadesFinancieras" ToRole="Conta_Transaccion" />
   </EntityType>
   <EntityType Name="Entregas">
     <Key>
@@ -295,11 +316,24 @@
     <Property Name="rol_id" Type="Int32" />
     <Property Name="empleado_id" Type="Int32" />
     <NavigationProperty Name="Adm_Rol" Relationship="Self.FK__Usuario__rol_id__10566F31" FromRole="Usuario" ToRole="Adm_Rol" />
+    <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__usuar__3E1D39E1" FromRole="Usuario" ToRole="Conta_Transaccion" />
     <NavigationProperty Name="Empleado" Relationship="Self.FK__Usuario__emplead__0F624AF8" FromRole="Usuario" ToRole="Empleado" />
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__07C12930" FromRole="Usuario" ToRole="Prov_Pago" />
     <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__id_tecni__0B91BA14" FromRole="Usuario" ToRole="Ticket" />
     <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__0C85DE4D" FromRole="Usuario" ToRole="Ticket" />
-    <NavigationProperty Name="Venta_Carrito" Relationship="SistemaIntegralGestionModel.FK__Venta_Car__IdUsu__282DF8C2" FromRole="Usuario" ToRole="Venta_Carrito" />
+    <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdUsu__282DF8C2" FromRole="Usuario" ToRole="Venta_Carrito" />
+  </EntityType>
+  <EntityType Name="Venta_Carrito">
+    <Key>
+      <PropertyRef Name="IdCarrito" />
+    </Key>
+    <Property Name="IdCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Venta_Car__IdUsu__282DF8C2" FromRole="Venta_Carrito" ToRole="Usuario" />
+    <NavigationProperty Name="Venta_Producto" Relationship="Self.FK__Venta_Car__IdPro__2739D489" FromRole="Venta_Carrito" ToRole="Venta_Producto" />
   </EntityType>
   <EntityType Name="Venta_Cliente">
     <Key>
@@ -328,19 +362,21 @@
     <Property Name="cliente_id" Type="Int32" />
     <Property Name="fecha" Type="DateTime" Precision="0" />
     <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="descuento" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="descuento" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="impuesto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_transaccion" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="metodo_pago_id" Type="Int32" />
-    <Property Name="no_factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="Int32" Nullable="false" />
     <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_venta" Type="Int32" />
+    <Property Name="fecha_factura" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__venta__17F790F9" FromRole="Venta_Factura" ToRole="Conta_Transaccion" />
     <NavigationProperty Name="Entregas" Relationship="Self.FK__Entregas__factur__18EBB532" FromRole="Venta_Factura" ToRole="Entregas" />
     <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Fac__clien__19DFD96B" FromRole="Venta_Factura" ToRole="Venta_Cliente" />
     <NavigationProperty Name="Venta_Estado" Relationship="Self.FK__Venta_Fac__estad__151B244E" FromRole="Venta_Factura" ToRole="Venta_Estado" />
     <NavigationProperty Name="Venta_FacturaDetalle" Relationship="Self.FK__Venta_Fac__factu__123EB7A3" FromRole="Venta_Factura" ToRole="Venta_FacturaDetalle" />
     <NavigationProperty Name="Venta_MetodoPago" Relationship="Self.FK__Venta_Fac__metod__114A936A" FromRole="Venta_Factura" ToRole="Venta_MetodoPago" />
+    <NavigationProperty Name="Venta_Tipo" Relationship="Self.FK__Venta_Fac__tipo___30C33EC3" FromRole="Venta_Factura" ToRole="Venta_Tipo" />
   </EntityType>
   <EntityType Name="Venta_FacturaDetalle">
     <Key>
@@ -352,7 +388,7 @@
     <Property Name="cantidad" Type="Int32" />
     <Property Name="precio_unidad" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="descuento" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="descuento" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="impuesto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="monto_final" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__factu__123EB7A3" FromRole="Venta_FacturaDetalle" ToRole="Venta_Factura" />
@@ -376,9 +412,9 @@
     <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="estado" Type="Int32" Nullable="false" />
     <Property Name="inventario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdPro__2739D489" FromRole="Venta_Producto" ToRole="Venta_Carrito" />
     <NavigationProperty Name="Venta_FacturaDetalle" Relationship="Self.FK__Venta_Fac__produ__1332DBDC" FromRole="Venta_Producto" ToRole="Venta_FacturaDetalle" />
     <NavigationProperty Name="Venta_ProductoEstado" Relationship="Self.FK__Venta_Pro__estad__14270015" FromRole="Venta_Producto" ToRole="Venta_ProductoEstado" />
-    <NavigationProperty Name="Venta_Carrito" Relationship="SistemaIntegralGestionModel.FK__Venta_Car__IdPro__2739D489" FromRole="Venta_Producto" ToRole="Venta_Carrito" />
   </EntityType>
   <EntityType Name="Venta_ProductoEstado">
     <Key>
@@ -387,6 +423,14 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Venta_Producto" Relationship="Self.FK__Venta_Pro__estad__14270015" FromRole="Venta_ProductoEstado" ToRole="Venta_Producto" />
+  </EntityType>
+  <EntityType Name="Venta_Tipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__tipo___30C33EC3" FromRole="Venta_Tipo" ToRole="Venta_Factura" />
   </EntityType>
   <Association Name="FK__Adm_Permi__rol_i__7B5B524B">
     <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
@@ -412,15 +456,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Conta_Tra__tipo___160F4887">
-    <End Role="Conta_TipoTransaccion" Type="Self.Conta_TipoTransaccion" Multiplicity="1" />
+  <Association Name="FK__Conta_Tra__cuent__3B40CD36">
+    <End Role="Conta_CuentasContables" Type="Self.Conta_CuentasContables" Multiplicity="1" />
     <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Conta_TipoTransaccion">
-        <PropertyRef Name="id" />
+      <Principal Role="Conta_CuentasContables">
+        <PropertyRef Name="Codigo" />
       </Principal>
       <Dependent Role="Conta_Transaccion">
-        <PropertyRef Name="tipo_transaccion" />
+        <PropertyRef Name="cuenta_contable" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -433,6 +477,30 @@
       </Principal>
       <Dependent Role="Conta_Transaccion">
         <PropertyRef Name="compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__entid__3D2915A8">
+    <End Role="EntidadesFinancieras" Type="Self.EntidadesFinancieras" Multiplicity="0..1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EntidadesFinancieras">
+        <PropertyRef Name="IdEntidad" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="entidad_financiera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__usuar__3E1D39E1">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="usuario_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -712,6 +780,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Venta_Car__IdUsu__282DF8C2">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Venta_Carrito" Type="Self.Venta_Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Carrito">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Car__IdPro__2739D489">
+    <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="1" />
+    <End Role="Venta_Carrito" Type="Self.Venta_Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Carrito">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Venta_Fac__clien__19DFD96B">
     <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
     <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
@@ -760,6 +852,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Venta_Fac__tipo___30C33EC3">
+    <End Role="Venta_Tipo" Type="Self.Venta_Tipo" Multiplicity="0..1" />
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Tipo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Factura">
+        <PropertyRef Name="tipo_venta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Venta_Fac__produ__1332DBDC">
     <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="0..1" />
     <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
@@ -787,6 +891,7 @@
   <EntityContainer Name="SistemaIntegralGestionEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" />
     <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" />
+    <EntitySet Name="Conta_CuentasContables" EntityType="Self.Conta_CuentasContables" />
     <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" />
     <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" />
     <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" />
@@ -796,6 +901,7 @@
     <EntitySet Name="Emp_RemuneracionDeduccion" EntityType="Self.Emp_RemuneracionDeduccion" />
     <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" />
     <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="EntidadesFinancieras" EntityType="Self.EntidadesFinancieras" />
     <EntitySet Name="Entregas" EntityType="Self.Entregas" />
     <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" />
     <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" />
@@ -810,6 +916,7 @@
     <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" />
     <EntitySet Name="Ticket_Tipo" EntityType="Self.Ticket_Tipo" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="Venta_Carrito" EntityType="Self.Venta_Carrito" />
     <EntitySet Name="Venta_Cliente" EntityType="Self.Venta_Cliente" />
     <EntitySet Name="Venta_Estado" EntityType="Self.Venta_Estado" />
     <EntitySet Name="Venta_Factura" EntityType="Self.Venta_Factura" />
@@ -817,6 +924,7 @@
     <EntitySet Name="Venta_MetodoPago" EntityType="Self.Venta_MetodoPago" />
     <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" />
     <EntitySet Name="Venta_ProductoEstado" EntityType="Self.Venta_ProductoEstado" />
+    <EntitySet Name="Venta_Tipo" EntityType="Self.Venta_Tipo" />
     <AssociationSet Name="FK__Adm_Permi__rol_i__7B5B524B" Association="Self.FK__Adm_Permi__rol_i__7B5B524B">
       <End Role="Adm_Rol" EntitySet="Adm_Rol" />
       <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
@@ -825,12 +933,20 @@
       <End Role="Adm_Rol" EntitySet="Adm_Rol" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
-    <AssociationSet Name="FK__Conta_Tra__tipo___160F4887" Association="Self.FK__Conta_Tra__tipo___160F4887">
-      <End Role="Conta_TipoTransaccion" EntitySet="Conta_TipoTransaccion" />
+    <AssociationSet Name="FK__Conta_Tra__cuent__3B40CD36" Association="Self.FK__Conta_Tra__cuent__3B40CD36">
+      <End Role="Conta_CuentasContables" EntitySet="Conta_CuentasContables" />
       <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
     </AssociationSet>
     <AssociationSet Name="FK__Conta_Tra__compr__17036CC0" Association="Self.FK__Conta_Tra__compr__17036CC0">
       <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__entid__3D2915A8" Association="Self.FK__Conta_Tra__entid__3D2915A8">
+      <End Role="EntidadesFinancieras" EntitySet="EntidadesFinancieras" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__usuar__3E1D39E1" Association="Self.FK__Conta_Tra__usuar__3E1D39E1">
+      <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
     </AssociationSet>
     <AssociationSet Name="FK__Conta_Tra__venta__17F790F9" Association="Self.FK__Conta_Tra__venta__17F790F9">
@@ -925,6 +1041,14 @@
       <End Role="Ticket_Tipo" EntitySet="Ticket_Tipo" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
+    <AssociationSet Name="FK__Venta_Car__IdUsu__282DF8C2" Association="Self.FK__Venta_Car__IdUsu__282DF8C2">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Car__IdPro__2739D489" Association="Self.FK__Venta_Car__IdPro__2739D489">
+      <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+      <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
+    </AssociationSet>
     <AssociationSet Name="FK__Venta_Fac__clien__19DFD96B" Association="Self.FK__Venta_Fac__clien__19DFD96B">
       <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
       <End Role="Venta_Factura" EntitySet="Venta_Factura" />
@@ -941,6 +1065,10 @@
       <End Role="Venta_MetodoPago" EntitySet="Venta_MetodoPago" />
       <End Role="Venta_Factura" EntitySet="Venta_Factura" />
     </AssociationSet>
+    <AssociationSet Name="FK__Venta_Fac__tipo___30C33EC3" Association="Self.FK__Venta_Fac__tipo___30C33EC3">
+      <End Role="Venta_Tipo" EntitySet="Venta_Tipo" />
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+    </AssociationSet>
     <AssociationSet Name="FK__Venta_Fac__produ__1332DBDC" Association="Self.FK__Venta_Fac__produ__1332DBDC">
       <End Role="Venta_Producto" EntitySet="Venta_Producto" />
       <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
@@ -949,17 +1077,41 @@
       <End Role="Venta_ProductoEstado" EntitySet="Venta_ProductoEstado" />
       <End Role="Venta_Producto" EntitySet="Venta_Producto" />
     </AssociationSet>
-    <EntitySet Name="Venta_Carrito" EntityType="SistemaIntegralGestionModel.Venta_Carrito" />
-    <AssociationSet Name="FK__Venta_Car__IdUsu__282DF8C2" Association="SistemaIntegralGestionModel.FK__Venta_Car__IdUsu__282DF8C2">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Venta_Car__IdPro__2739D489" Association="SistemaIntegralGestionModel.FK__Venta_Car__IdPro__2739D489">
-      <End Role="Venta_Producto" EntitySet="Venta_Producto" />
-      <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
-    </AssociationSet>
     <FunctionImport Name="ConsultarCarrito" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarCarrito_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarClientes" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarClientes_Result)" />
+    <FunctionImport Name="ConsultarDetallePedido" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarDetallePedido_Result)">
+      <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarPedidos_Result)" />
+    <FunctionImport Name="EliminarProductoCarrito">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FacturarPedido">
+      <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ListaCuentasContables" ReturnType="Collection(SistemaIntegralGestionModel.ListaCuentasContables_Result)" />
+    <FunctionImport Name="ListaEntidadesFinancieras" ReturnType="Collection(SistemaIntegralGestionModel.ListaEntidadesFinancieras_Result)" />
+    <FunctionImport Name="listaMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.listaMetodoPago_Result)" />
+    <FunctionImport Name="listaTipoVenta" ReturnType="Collection(SistemaIntegralGestionModel.listaTipoVenta_Result)" />
+    <FunctionImport Name="PagoPedido">
+      <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
+      <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
+      <Parameter Name="Metodo_Pago" Mode="In" Type="Int32" />
+      <Parameter Name="EntidadFinanciera" Mode="In" Type="String" />
+      <Parameter Name="TransaccionReferencia" Mode="In" Type="Decimal" />
+      <Parameter Name="Monto" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProcesarCarrito">
+      <Parameter Name="IdCliente" Mode="In" Type="Int32" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="Estado" Mode="In" Type="Int32" />
+      <Parameter Name="NotasAdicionales" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="RegistrarCarrito">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -969,47 +1121,10 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="EliminarProductoCarrito">
-      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+    <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
+      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
-  <EntityType Name="Venta_Carrito">
-    <Key>
-      <PropertyRef Name="IdCarrito" />
-    </Key>
-    <Property Name="IdCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-    <Property Name="IdProducto" Type="Int32" Nullable="false" />
-    <Property Name="Cantidad" Type="Int32" Nullable="false" />
-    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Usuario" Relationship="SistemaIntegralGestionModel.FK__Venta_Car__IdUsu__282DF8C2" FromRole="Venta_Carrito" ToRole="Usuario" />
-    <NavigationProperty Name="Venta_Producto" Relationship="SistemaIntegralGestionModel.FK__Venta_Car__IdPro__2739D489" FromRole="Venta_Carrito" ToRole="Venta_Producto" />
-  </EntityType>
-  <Association Name="FK__Venta_Car__IdUsu__282DF8C2">
-    <End Type="SistemaIntegralGestionModel.Usuario" Role="Usuario" Multiplicity="1" />
-    <End Type="SistemaIntegralGestionModel.Venta_Carrito" Role="Venta_Carrito" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Venta_Carrito">
-        <PropertyRef Name="IdUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Venta_Car__IdPro__2739D489">
-    <End Type="SistemaIntegralGestionModel.Venta_Producto" Role="Venta_Producto" Multiplicity="1" />
-    <End Type="SistemaIntegralGestionModel.Venta_Carrito" Role="Venta_Carrito" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Venta_Producto">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Venta_Carrito">
-        <PropertyRef Name="IdProducto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <ComplexType Name="ConsultarCarrito_Result">
     <Property Type="Int32" Name="IdCarrito" Nullable="false" />
     <Property Type="Int32" Name="IdUsuario" Nullable="false" />
@@ -1022,9 +1137,70 @@
     <Property Type="Int32" Name="Cantidad" Nullable="false" />
     <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
   </ComplexType>
+  <ComplexType Name="ConsultarClientes_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ConsultarDetallePedido_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="factura_id" Nullable="true" />
+    <Property Type="Int32" Name="producto_id" Nullable="true" />
+    <Property Type="Int32" Name="cantidad" Nullable="true" />
+    <Property Type="Decimal" Name="precio_unidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="descuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="impuesto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="monto_final" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="ConsultarPedidos_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="cliente_id" Nullable="true" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="descuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="impuesto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="total_transaccion" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="metodo_pago_id" Nullable="true" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+    <Property Type="String" Name="notas_adicionales" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="tipo_venta" Nullable="true" />
+    <Property Type="DateTime" Name="fecha_factura" Nullable="true" Precision="23" />
+    <Property Type="String" Name="estadoD" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ListaCuentasContables_Result">
+    <Property Type="Int32" Name="Codigo" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TipoCuenta" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="ListaEntidadesFinancieras_Result">
+    <Property Type="String" Name="IdEntidad" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="NombreEntidad" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="listaMetodoPago_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="metodo" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="listaTipoVenta_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+  </ComplexType>
   <ComplexType Name="ValidarExistencias_Result">
     <Property Type="Int32" Name="IdProducto" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="datosRecibo_Result">
+    <Property Type="Int32" Name="venta_id" Nullable="true" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

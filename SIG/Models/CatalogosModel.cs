@@ -65,5 +65,43 @@ namespace SIG.Models
             }
         }
 
+        public List<ConsultarClientes_Result> ConsultarClientes()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.ConsultarClientes().ToList();
+            }
+        }
+
+        public List<listaMetodoPago_Result> ConsultarMetodoPago()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.listaMetodoPago().ToList();
+            }
+        }
+
+        public List<listaTipoVenta_Result> ConsultarTipoVenta()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.listaTipoVenta().ToList();
+            }
+        }
+        public List<ListaCuentasContables_Result> ConsultarCuentasContables()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.ListaCuentasContables().ToList();
+            }
+        }
+        public List<ListaEntidadesFinancieras_Result> ConsultarEntidadesFinancieras()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.ListaEntidadesFinancieras().ToList();
+            }
+        }
+
     }
 }
