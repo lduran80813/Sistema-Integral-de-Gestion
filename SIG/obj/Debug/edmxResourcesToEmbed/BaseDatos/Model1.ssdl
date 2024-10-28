@@ -831,6 +831,12 @@
     <Parameter Name="Id_Pedido" Type="int" Mode="In" />
     <Parameter Name="Tipo_venta" Type="int" Mode="In" />
   </Function>
+  <Function Name="GeneraFacturaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFactura" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFactura" Type="int" Mode="In" />
+  </Function>
   <Function Name="ListaCuentasContables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="ListaEntidadesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="listaMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />

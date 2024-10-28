@@ -1124,6 +1124,12 @@
     <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
       <Parameter Name="IdFactura" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
+      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
+      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ConsultarCarrito_Result">
     <Property Type="Int32" Name="IdCarrito" Nullable="false" />
@@ -1202,5 +1208,31 @@
     <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GeneraFacturaDetalle_Result">
+    <Property Type="Int32" Name="Linea_id" Nullable="false" />
+    <Property Type="Int32" Name="producto_id" Nullable="true" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="cantidad" Nullable="true" />
+    <Property Type="Decimal" Name="precio" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="impuesto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="monto_final" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="GeneraFacturaEncabezado_Result">
+    <Property Type="Int32" Name="Factura_id" Nullable="false" />
+    <Property Type="Int32" Name="cliente_id" Nullable="true" />
+    <Property Type="String" Name="nombreCliente" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="fecha" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="impuesto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="total_transaccion" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EstadoFactura" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="notas_adicionales" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TipoVenta" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

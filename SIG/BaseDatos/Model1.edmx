@@ -836,6 +836,12 @@
           <Parameter Name="Id_Pedido" Type="int" Mode="In" />
           <Parameter Name="Tipo_venta" Type="int" Mode="In" />
         </Function>
+        <Function Name="GeneraFacturaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdFactura" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdFactura" Type="int" Mode="In" />
+        </Function>
         <Function Name="ListaCuentasContables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ListaEntidadesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="listaMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -2180,6 +2186,12 @@
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
+          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
             <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -2260,6 +2272,32 @@
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GeneraFacturaDetalle_Result">
+          <Property Type="Int32" Name="Linea_id" Nullable="false" />
+          <Property Type="Int32" Name="producto_id" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="precio" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="monto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="impuesto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="monto_final" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="GeneraFacturaEncabezado_Result">
+          <Property Type="Int32" Name="Factura_id" Nullable="false" />
+          <Property Type="Int32" Name="cliente_id" Nullable="true" />
+          <Property Type="String" Name="nombreCliente" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" />
+          <Property Type="Decimal" Name="monto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="impuesto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="total_transaccion" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EstadoFactura" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="notas_adicionales" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TipoVenta" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2779,6 +2817,40 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GeneraFacturaDetalle" FunctionName="SistemaIntegralGestionModel.Store.GeneraFacturaDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GeneraFacturaDetalle_Result">
+                <ScalarProperty Name="Linea_id" ColumnName="Linea_id" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+                <ScalarProperty Name="monto_final" ColumnName="monto_final" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GeneraFacturaEncabezado" FunctionName="SistemaIntegralGestionModel.Store.GeneraFacturaEncabezado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result">
+                <ScalarProperty Name="Factura_id" ColumnName="Factura_id" />
+                <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+                <ScalarProperty Name="nombreCliente" ColumnName="nombreCliente" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+                <ScalarProperty Name="total_transaccion" ColumnName="total_transaccion" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+                <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+                <ScalarProperty Name="TipoVenta" ColumnName="TipoVenta" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

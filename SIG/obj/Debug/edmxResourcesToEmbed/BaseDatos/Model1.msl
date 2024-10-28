@@ -516,5 +516,39 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GeneraFacturaDetalle" FunctionName="SistemaIntegralGestionModel.Store.GeneraFacturaDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GeneraFacturaDetalle_Result">
+          <ScalarProperty Name="Linea_id" ColumnName="Linea_id" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="monto_final" ColumnName="monto_final" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GeneraFacturaEncabezado" FunctionName="SistemaIntegralGestionModel.Store.GeneraFacturaEncabezado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result">
+          <ScalarProperty Name="Factura_id" ColumnName="Factura_id" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="nombreCliente" ColumnName="nombreCliente" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="total_transaccion" ColumnName="total_transaccion" />
+          <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+          <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+          <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+          <ScalarProperty Name="TipoVenta" ColumnName="TipoVenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

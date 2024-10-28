@@ -230,5 +230,23 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<datosRecibo_Result>("datosRecibo", idFacturaParameter);
         }
+    
+        public virtual ObjectResult<GeneraFacturaDetalle_Result> GeneraFacturaDetalle(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaDetalle_Result>("GeneraFacturaDetalle", idFacturaParameter);
+        }
+    
+        public virtual ObjectResult<GeneraFacturaEncabezado_Result> GeneraFacturaEncabezado(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaEncabezado_Result>("GeneraFacturaEncabezado", idFacturaParameter);
+        }
     }
 }

@@ -119,7 +119,7 @@
                                                 Pago y recibo
                                             </button>
                                         }
-                                        <a class="btn btn-primary text-white">Exportar PDF</a>
+                                        <a class="btn btn-primary text-white"  href="@Url.Action("GenFacturaPdf", "Contabilidad", new { idFactura = item.id})">Exportar PDF</a>
                                     }
                                     <a class="btn btn-primary text-white" href="@Url.Action("DetallePedido", "Contabilidad", new { idPedido = item.id})">Ver Productos</a>
                                     @*Si no está facturado, mostrar una opción para facturar y otra para cancelar*@
@@ -272,6 +272,35 @@
             alert("El monto del abono no puede ser superior al total de la transacción: " + totalTransaccion.toFixed(2));
             $(this).val(totalTransaccion.toFixed(2)); 
         }
+    });
+    $(document).ready(function () {
+        $("#ModalPagoRecibo form").on("submit", function (e) {
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        $('#ModalPagoRecibo').modal('hide');
+
+                        window.location.href = response.pdfUrl;
+
+                        
+                        setTimeout(function () {
+                            window.location.href = '/Contabilidad/ListaPedidos';
+                        }, 1000); 
+                    } else {
+                        alert(response.message || "Hubo un error al procesar el pago.");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
+                }
+            });
+        });
     });
     
 

@@ -133,5 +133,22 @@ namespace SIG.Models
             }
         }
 
+        public GeneraFacturaEncabezado_Result DatosFacturaEncabezado(int idFactura)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.GeneraFacturaEncabezado(idFactura).FirstOrDefault();
+            }
+        }
+
+
+        public List<GeneraFacturaDetalle_Result> DatosFacturaDetalle(int idFactura)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.GeneraFacturaDetalle(idFactura).ToList();
+            }
+        }
+
     }
 }

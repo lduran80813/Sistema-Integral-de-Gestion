@@ -1,0 +1,112 @@
+﻿@model SIG.Entidades.FacturaPDF
+@{
+    Layout = null;
+}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados del Reporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table {
+            width: 75%;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <div class="container">
+        <h1>Factura</h1>
+
+        <br />
+
+        <h3>N° de factura: @Model.Encabezado.Factura_id</h3>
+        <h3>Fecha: @Model.Encabezado.fecha</h3>
+        <br />
+        <h4>Rajasa de Coro S.A.</h4>
+        <h4>Cédula Jurídica: 3101305112</h4>
+        <h4>Dirección: Condominio de Bodegas El Sol, local #32. Santa Rosa, Santo Domingo, Heredia, Costa Rica.</h4>
+        <h4>Correo Electrónico: atencioncliente@rajasadecoro.com</h4>
+        <h4>Teléfonos: (506) 2237-6776, (506) 2260-5001, (506) 2262-6507</h4>
+        <br />
+        <br />
+        <h4>Cliente: @Model.Encabezado.nombreCliente</h4>
+        <h4>Dirección: @Model.Encabezado.direccion</h4>
+        <h4>Correo electrónico: @Model.Encabezado.correo_electronico</h4>
+        <br />
+        <h4>Tipo de venta: @Model.Encabezado.TipoVenta</h4>
+        <h4>Estado de factura: @Model.Encabezado.EstadoFactura</h4>
+        <h4>Medio de pago: @Model.Encabezado.MetodoPago</h4>
+        <h4>Monto (sin impuestos): @Model.Encabezado.monto</h4>
+        <h4>Impuestos: @Model.Encabezado.impuesto</h4>
+        <h4>Monto final: ₡@Model.Encabezado.total_transaccion</h4>
+
+        @if (Model.Encabezado.notas_adicionales != "")
+        {
+            <h4>Notas adci: @Model.Encabezado.notas_adicionales</h4>
+        }
+        <br />
+        <br />
+        <h3>Detalle de factura</h3>
+        <br />
+        <table id="tablaDetalle" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Monto</th>
+                    <th>Impuesto</th>
+                    <th>Monto final</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Detalle)
+                {
+                    <tr>
+                        <td>@item.nombre</td>
+                        <td>@item.cantidad</td>
+                        <td>@(item.precio?.ToString("N2") ?? "0.00")</td>
+                        <td>@item.monto.ToString("N2")</td>
+                        <td>@item.impuesto.ToString("N2")</td>
+                        <td>@item.monto_final.ToString("N2")</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>------- Última Línea -------</p>
+    </div>
+</body>
+</html>

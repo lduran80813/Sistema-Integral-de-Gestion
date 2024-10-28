@@ -206,18 +206,56 @@ namespace SIG.Controllers
         {
             var resultado = productosM.ContaPagoFactura(ent);
             if (!resultado)
-                ViewBag.msj = "No fue posible facturar el pedido";
-            // Aquí ejecutar el recibo 
+            {
+                return Json(new { success = false, message = "No fue posible facturar el pedido" });
+            }
+
             var reporte = productosM.DatosRecibo(ent.idPagar);
             if (reporte != null)
-                return new ViewAsPdf("ReciboPago", reporte)
-                {
-                    FileName = "Recibo_" + ent.idPagar + "_" + DateTime.Now + ".pdf",
-                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
-                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
-                };
-            return RedirectToAction("ListaPedidos", "Contabilidad");
+            {
+                // Devuelve la URL del archivo PDF en lugar de redirigir o descargar directamente
+                var pdfUrl = Url.Action("GenReciboPdf", new { idPagar = ent.idPagar });
+                return Json(new { success = true, pdfUrl = pdfUrl });
+            }
+
+            return Json(new { success = false, message = "Error al generar el reporte" });
         }
+
+        public ActionResult GenReciboPdf(int idPagar)
+        {
+            var reporte = productosM.DatosRecibo(idPagar);
+            if (reporte == null)
+            {
+                ViewBag.msj = "No fue posible generar el recibo";
+                return RedirectToAction("ListaPedidos", "Contabilidad");
+            }
+
+            return new ViewAsPdf("ReciboPago", reporte)
+            {
+                FileName = "Recibo_" + idPagar + "_" + DateTime.Now.ToString("yyyy_MM_dd HH_mm_ss") + ".pdf",
+                PageSize = Rotativa.Options.Size.A4,
+                PageOrientation = Rotativa.Options.Orientation.Portrait,
+            };
+        }
+        public ActionResult GenFacturaPdf(int idFactura)
+        {
+            FacturaPDF pdf = new FacturaPDF();
+            pdf.Encabezado = productosM.DatosFacturaEncabezado(idFactura);
+            pdf.Detalle = productosM.DatosFacturaDetalle(idFactura);
+            if (pdf.Encabezado == null || pdf.Detalle == null)
+            {
+                ViewBag.msj = "No fue posible generar la factura";
+                return RedirectToAction("ListaPedidos", "Contabilidad");
+            }
+
+            return new ViewAsPdf("FacturaPDF", pdf)
+            {
+                FileName = "Factura_" + idFactura + "_" + DateTime.Now.ToString("yyyy_MM_dd HH_mm_ss") + ".pdf",
+                PageSize = Rotativa.Options.Size.A4,
+                PageOrientation = Rotativa.Options.Orientation.Portrait,
+            };
+        }
+
 
 
         public ActionResult Generar_Factura()
