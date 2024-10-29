@@ -17,6 +17,7 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Venta_Factura()
         {
+            this.Conta_CxC = new HashSet<Conta_CxC>();
             this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
             this.Entregas = new HashSet<Entregas>();
             this.Venta_FacturaDetalle = new HashSet<Venta_FacturaDetalle>();
@@ -35,6 +36,8 @@ namespace SIG.BaseDatos
         public Nullable<int> tipo_venta { get; set; }
         public Nullable<System.DateTime> fecha_factura { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conta_CxC> Conta_CxC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

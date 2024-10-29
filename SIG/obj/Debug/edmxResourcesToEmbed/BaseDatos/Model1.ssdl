@@ -16,6 +16,118 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Compra' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Compra">
+          <Property Name="id" Type="int" />
+          <Property Name="proveedor_id" Type="int" />
+          <Property Name="fecha_compra" Type="date" />
+          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Empleado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Empleado">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellidos" Type="varchar" MaxLength="255" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+          <Property Name="departamento_id" Type="int" />
+          <Property Name="puesto_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Entrega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Entrega">
+          <Property Name="id" Type="int" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
+          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
+          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Factura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Factura">
+          <Property Name="id" Type="int" />
+          <Property Name="cliente_id" Type="int" />
+          <Property Name="fecha_venta" Type="date" />
+          <Property Name="metodo_pago_id" Type="int" />
+          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_PlanDeAccion">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_finalizacion" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Proveedor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Proveedor">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Ticket' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Ticket">
+          <Property Name="id_ticket" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="tipo_incidencia" Type="int" />
+          <Property Name="prioridad" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_registro_usuario" Type="datetime" />
+          <Property Name="fecha_registra_tecnico" Type="datetime" />
+          <Property Name="id_tecnico" Type="int" />
+          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_cierre_ticket" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Usuario">
+          <Property Name="id" Type="int" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varchar" MaxLength="255" />
+          <Property Name="rol_id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Vacaciones">
+          <Property Name="id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
   <EntityType Name="Conta_CuentasContables">
     <Key>
       <PropertyRef Name="Codigo" />
@@ -23,6 +135,28 @@
     <Property Name="Codigo" Type="int" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="TipoCuenta" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_CxC">
+    <Key>
+      <PropertyRef Name="id_CxC" />
+    </Key>
+    <Property Name="id_CxC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdFactura" Type="int" Nullable="false" />
+    <Property Name="SaldoAnterior" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Abono" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_CxP">
+    <Key>
+      <PropertyRef Name="id_CxP" />
+    </Key>
+    <Property Name="id_CxP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCompra" Type="int" Nullable="false" />
+    <Property Name="SaldoAnterior" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Abono" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Conta_TipoTransaccion">
     <Key>
@@ -365,6 +499,30 @@
       </Principal>
       <Dependent Role="Adm_Permiso">
         <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_CxC__IdFac__55009F39">
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="1" />
+    <End Role="Conta_CxC" Type="Self.Conta_CxC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Factura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_CxC">
+        <PropertyRef Name="IdFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_CxP__IdCom__57DD0BE4">
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="1" />
+    <End Role="Conta_CxP" Type="Self.Conta_CxP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_CxP">
+        <PropertyRef Name="IdCompra" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -840,7 +998,27 @@
   <Function Name="ListaCuentasContables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="ListaEntidadesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="listaMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="listaTipoVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PagarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Pedido" Type="int" Mode="In" />
+    <Parameter Name="monto" Type="decimal" Mode="In" />
+    <Parameter Name="Metodo_Pago" Type="int" Mode="In" />
+    <Parameter Name="EntidadFinanciera" Type="varchar" Mode="In" />
+    <Parameter Name="TransaccionReferencia" Type="numeric" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PagarCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Compra" Type="int" Mode="In" />
+    <Parameter Name="monto" Type="decimal" Mode="In" />
+    <Parameter Name="Metodo_Pago" Type="int" Mode="In" />
+    <Parameter Name="EntidadFinanciera" Type="varchar" Mode="In" />
+    <Parameter Name="TransaccionReferencia" Type="numeric" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="PagoPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id_Pedido" Type="int" Mode="In" />
     <Parameter Name="Tipo_venta" Type="int" Mode="In" />
@@ -869,6 +1047,8 @@
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conta_CuentasContables" EntityType="Self.Conta_CuentasContables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_CxC" EntityType="Self.Conta_CxC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" Schema="dbo" store:Type="Tables" />
@@ -905,6 +1085,14 @@
     <AssociationSet Name="FK__Adm_Permi__rol_i__7B5B524B" Association="Self.FK__Adm_Permi__rol_i__7B5B524B">
       <End Role="Adm_Rol" EntitySet="Adm_Rol" />
       <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_CxC__IdFac__55009F39" Association="Self.FK__Conta_CxC__IdFac__55009F39">
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+      <End Role="Conta_CxC" EntitySet="Conta_CxC" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_CxP__IdCom__57DD0BE4" Association="Self.FK__Conta_CxP__IdCom__57DD0BE4">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Conta_CxP" EntitySet="Conta_CxP" />
     </AssociationSet>
     <AssociationSet Name="FK__Conta_Tra__compr__17036CC0" Association="Self.FK__Conta_Tra__compr__17036CC0">
       <End Role="Prov_Compra" EntitySet="Prov_Compra" />

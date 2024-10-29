@@ -17,6 +17,7 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Prov_Compra()
         {
+            this.Conta_CxP = new HashSet<Conta_CxP>();
             this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
             this.Prov_CompraDetalle = new HashSet<Prov_CompraDetalle>();
         }
@@ -28,6 +29,8 @@ namespace SIG.BaseDatos
         public string no_factura { get; set; }
         public string notas_adicionales { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conta_CxP> Conta_CxP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

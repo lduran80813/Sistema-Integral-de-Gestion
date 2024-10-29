@@ -152,6 +152,12 @@
     <Compile Include="BaseDatos\Conta_CuentasContables.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\Conta_CxC.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Conta_CxP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Conta_TipoTransaccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,6 +207,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\listaMetodoPago_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ListarCxC_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ListarCxP_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\listaTipoVenta_Result.cs">
@@ -300,6 +312,7 @@
     <Compile Include="Controllers\Plan_AccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Entidades\Carrito.cs" />
+    <Compile Include="Entidades\CuentasCredito.cs" />
     <Compile Include="Entidades\FacturaPDF.cs" />
     <Compile Include="Entidades\PedidoFactura.cs" />
     <Compile Include="Entidades\Producto.cs" />
@@ -310,6 +323,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CatalogosModel.cs" />
+    <Compile Include="Models\ContabilidadModel.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -452,6 +466,7 @@
     <Content Include="root\plugins\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="root\plugins\jquery\jquery.min.map" />
     <Content Include="root\plugins\jquery\jquery.slim.min.map" />
+    <Content Include="App_Browsers\qt.browser" />
     <EntityDeploy Include="BaseDatos\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -459,7 +474,6 @@
     <Content Include="BaseDatos\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -512,6 +526,7 @@
     <Content Include="Views\Contabilidad\DetallePedido.cshtml" />
     <Content Include="Views\Contabilidad\ReciboPago.cshtml" />
     <Content Include="Views\Contabilidad\FacturaPDF.cshtml" />
+    <Content Include="Views\Contabilidad\CxC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

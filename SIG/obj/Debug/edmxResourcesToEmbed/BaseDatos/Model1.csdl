@@ -28,6 +28,30 @@
     <Property Name="TipoCuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__cuent__3B40CD36" FromRole="Conta_CuentasContables" ToRole="Conta_Transaccion" />
   </EntityType>
+  <EntityType Name="Conta_CxC">
+    <Key>
+      <PropertyRef Name="id_CxC" />
+    </Key>
+    <Property Name="id_CxC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdFactura" Type="Int32" Nullable="false" />
+    <Property Name="SaldoAnterior" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Abono" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Conta_CxC__IdFac__55009F39" FromRole="Conta_CxC" ToRole="Venta_Factura" />
+  </EntityType>
+  <EntityType Name="Conta_CxP">
+    <Key>
+      <PropertyRef Name="id_CxP" />
+    </Key>
+    <Property Name="id_CxP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCompra" Type="Int32" Nullable="false" />
+    <Property Name="SaldoAnterior" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Abono" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Prov_Compra" Relationship="Self.FK__Conta_CxP__IdCom__57DD0BE4" FromRole="Conta_CxP" ToRole="Prov_Compra" />
+  </EntityType>
   <EntityType Name="Conta_TipoTransaccion">
     <Key>
       <PropertyRef Name="id" />
@@ -191,6 +215,7 @@
     <Property Name="total_compra" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="no_factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Conta_CxP" Relationship="Self.FK__Conta_CxP__IdCom__57DD0BE4" FromRole="Prov_Compra" ToRole="Conta_CxP" />
     <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__compr__17036CC0" FromRole="Prov_Compra" ToRole="Conta_Transaccion" />
     <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__compr__04E4BC85" FromRole="Prov_Compra" ToRole="Prov_CompraDetalle" />
     <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Comp__prove__03F0984C" FromRole="Prov_Compra" ToRole="Proveedor" />
@@ -370,6 +395,7 @@
     <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="tipo_venta" Type="Int32" />
     <Property Name="fecha_factura" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Conta_CxC" Relationship="Self.FK__Conta_CxC__IdFac__55009F39" FromRole="Venta_Factura" ToRole="Conta_CxC" />
     <NavigationProperty Name="Conta_Transaccion" Relationship="Self.FK__Conta_Tra__venta__17F790F9" FromRole="Venta_Factura" ToRole="Conta_Transaccion" />
     <NavigationProperty Name="Entregas" Relationship="Self.FK__Entregas__factur__18EBB532" FromRole="Venta_Factura" ToRole="Entregas" />
     <NavigationProperty Name="Venta_Cliente" Relationship="Self.FK__Venta_Fac__clien__19DFD96B" FromRole="Venta_Factura" ToRole="Venta_Cliente" />
@@ -465,6 +491,30 @@
       </Principal>
       <Dependent Role="Conta_Transaccion">
         <PropertyRef Name="cuenta_contable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_CxC__IdFac__55009F39">
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="1" />
+    <End Role="Conta_CxC" Type="Self.Conta_CxC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Factura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_CxC">
+        <PropertyRef Name="IdFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_CxP__IdCom__57DD0BE4">
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="1" />
+    <End Role="Conta_CxP" Type="Self.Conta_CxP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_CxP">
+        <PropertyRef Name="IdCompra" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -892,6 +942,8 @@
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" />
     <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" />
     <EntitySet Name="Conta_CuentasContables" EntityType="Self.Conta_CuentasContables" />
+    <EntitySet Name="Conta_CxC" EntityType="Self.Conta_CxC" />
+    <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" />
     <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" />
     <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" />
     <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" />
@@ -936,6 +988,14 @@
     <AssociationSet Name="FK__Conta_Tra__cuent__3B40CD36" Association="Self.FK__Conta_Tra__cuent__3B40CD36">
       <End Role="Conta_CuentasContables" EntitySet="Conta_CuentasContables" />
       <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_CxC__IdFac__55009F39" Association="Self.FK__Conta_CxC__IdFac__55009F39">
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+      <End Role="Conta_CxC" EntitySet="Conta_CxC" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_CxP__IdCom__57DD0BE4" Association="Self.FK__Conta_CxP__IdCom__57DD0BE4">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Conta_CxP" EntitySet="Conta_CxP" />
     </AssociationSet>
     <AssociationSet Name="FK__Conta_Tra__compr__17036CC0" Association="Self.FK__Conta_Tra__compr__17036CC0">
       <End Role="Prov_Compra" EntitySet="Prov_Compra" />
@@ -1085,6 +1145,9 @@
       <Parameter Name="IdPedido" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarPedidos_Result)" />
+    <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
+      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="EliminarProductoCarrito">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
       <Parameter Name="IdProducto" Mode="In" Type="Int32" />
@@ -1093,10 +1156,36 @@
       <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
       <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
+      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
+      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="ListaCuentasContables" ReturnType="Collection(SistemaIntegralGestionModel.ListaCuentasContables_Result)" />
     <FunctionImport Name="ListaEntidadesFinancieras" ReturnType="Collection(SistemaIntegralGestionModel.ListaEntidadesFinancieras_Result)" />
     <FunctionImport Name="listaMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.listaMetodoPago_Result)" />
+    <FunctionImport Name="ListarCxC" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxC_Result)" />
+    <FunctionImport Name="ListarCxP" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxP_Result)" />
     <FunctionImport Name="listaTipoVenta" ReturnType="Collection(SistemaIntegralGestionModel.listaTipoVenta_Result)" />
+    <FunctionImport Name="PagarCxC">
+      <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
+      <Parameter Name="monto" Mode="In" Type="Decimal" />
+      <Parameter Name="Metodo_Pago" Mode="In" Type="Int32" />
+      <Parameter Name="EntidadFinanciera" Mode="In" Type="String" />
+      <Parameter Name="TransaccionReferencia" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PagarCxP">
+      <Parameter Name="Id_Compra" Mode="In" Type="Int32" />
+      <Parameter Name="monto" Mode="In" Type="Decimal" />
+      <Parameter Name="Metodo_Pago" Mode="In" Type="Int32" />
+      <Parameter Name="EntidadFinanciera" Mode="In" Type="String" />
+      <Parameter Name="TransaccionReferencia" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="PagoPedido">
       <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
       <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
@@ -1120,15 +1209,6 @@
     </FunctionImport>
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
-      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
-      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
-      <Parameter Name="IdFactura" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ConsultarCarrito_Result">
@@ -1177,28 +1257,6 @@
     <Property Type="DateTime" Name="fecha_factura" Nullable="true" Precision="23" />
     <Property Type="String" Name="estadoD" Nullable="true" MaxLength="100" />
   </ComplexType>
-  <ComplexType Name="ListaCuentasContables_Result">
-    <Property Type="Int32" Name="Codigo" Nullable="false" />
-    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="TipoCuenta" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="ListaEntidadesFinancieras_Result">
-    <Property Type="String" Name="IdEntidad" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="NombreEntidad" Nullable="true" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="listaMetodoPago_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="metodo" Nullable="true" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="listaTipoVenta_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="ValidarExistencias_Result">
-    <Property Type="Int32" Name="IdProducto" Nullable="false" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="Inventario" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="datosRecibo_Result">
     <Property Type="Int32" Name="venta_id" Nullable="true" />
     <Property Type="DateTime" Name="fecha" Nullable="true" />
@@ -1234,5 +1292,45 @@
     <Property Type="String" Name="EstadoFactura" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="notas_adicionales" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="TipoVenta" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ListaCuentasContables_Result">
+    <Property Type="Int32" Name="Codigo" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TipoCuenta" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="ListaEntidadesFinancieras_Result">
+    <Property Type="String" Name="IdEntidad" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="NombreEntidad" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="listaMetodoPago_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="metodo" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ListarCxC_Result">
+    <Property Type="Int32" Name="id_CxC" Nullable="false" />
+    <Property Type="Int32" Name="IdFactura" Nullable="false" />
+    <Property Type="Decimal" Name="SaldoAnterior" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Abono" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Saldo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="linea" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="ListarCxP_Result">
+    <Property Type="Int32" Name="id_CxP" Nullable="false" />
+    <Property Type="Int32" Name="IdCompra" Nullable="false" />
+    <Property Type="Decimal" Name="SaldoAnterior" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Abono" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="Saldo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="linea" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="listaTipoVenta_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ValidarExistencias_Result">
+    <Property Type="Int32" Name="IdProducto" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Inventario" Nullable="false" />
   </ComplexType>
 </Schema>

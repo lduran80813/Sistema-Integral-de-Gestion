@@ -15,6 +15,7 @@ namespace SIG.Controllers
     {
         ProductoModel productosM = new ProductoModel();
         CatalogosModel catalogosM = new CatalogosModel();
+        ContabilidadModel contabilidadM = new ContabilidadModel();
 
         private void CargarVariablesCarrito()
         {
@@ -257,15 +258,96 @@ namespace SIG.Controllers
         }
 
 
+        [HttpGet]
+        public ActionResult CxC()
+        {
+            // Método pago
+            var metodoPago = catalogosM.ConsultarMetodoPago();
+
+            List<SelectListItem> lstMetodoPago = new List<SelectListItem>();
+            foreach (var item in metodoPago)
+            {
+                lstMetodoPago.Add(new SelectListItem { Value = item.id.ToString(), Text = item.metodo.ToString() });
+            }
+
+            ViewBag.MetodoPago = lstMetodoPago;
+
+            CatalogosTransaccionesFinancieras();
+
+            CuentasCredito cc = new CuentasCredito();
+            cc.ListaCxC = contabilidadM.ListaCxC();
+            if (cc.ListaCxC != null)
+                return View(cc);
+            else
+            {
+                ViewBag.msj = "No fue posible obtener la lista";
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ContaCobroCxC(CuentasCredito ent)
+        {
+            var resultado = contabilidadM.ContaPagoCxC(ent);
+            if (!resultado)
+            {
+                return Json(new { success = false, message = "No fue posible pagar la cuenta" });
+            }
+
+            var reporte = productosM.DatosRecibo(ent.Id_Cuenta);
+            if (reporte != null)
+            {
+                // Devuelve la URL del archivo PDF en lugar de redirigir o descargar directamente
+                var pdfUrl = Url.Action("GenReciboPdf", new { idPagar = ent.Id_Cuenta });
+                return Json(new { success = true, pdfUrl = pdfUrl });
+            }
+
+            return Json(new { success = false, message = "Error al generar el reporte" });
+        }
+
+        [HttpGet]
+        public ActionResult CxP()
+        {
+            // Método pago
+            var metodoPago = catalogosM.ConsultarMetodoPago();
+
+            List<SelectListItem> lstMetodoPago = new List<SelectListItem>();
+            foreach (var item in metodoPago)
+            {
+                lstMetodoPago.Add(new SelectListItem { Value = item.id.ToString(), Text = item.metodo.ToString() });
+            }
+
+            ViewBag.MetodoPago = lstMetodoPago;
+
+            CatalogosTransaccionesFinancieras();
+
+            CuentasCredito cp = new CuentasCredito();
+            cp.ListaCxP = contabilidadM.ListaCxP();
+            if (cp.ListaCxP != null)
+                return View(cp);
+            else
+            {
+                ViewBag.msj = "No fue posible obtener la lista";
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ContaPagoCxP(CuentasCredito ent)
+        {
+            var resultado = contabilidadM.ContaPagoCxP(ent);
+            if (!resultado)
+                TempData["mensaje"] = "No fue posible pagar la cuenta";
+            else
+                TempData["mensaje"] = "Cuenta actualizada exitosamente";
+            return RedirectToAction("CxP", "Contabilidad");
+            
+        }
 
         public ActionResult Generar_Factura()
         {
             return View();
         }
 
-        public ActionResult CxP()
-        {
-            return View();
-        }
     }
 }

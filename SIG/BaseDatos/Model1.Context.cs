@@ -30,6 +30,8 @@ namespace SIG.BaseDatos
         public virtual DbSet<Adm_Permiso> Adm_Permiso { get; set; }
         public virtual DbSet<Adm_Rol> Adm_Rol { get; set; }
         public virtual DbSet<Conta_CuentasContables> Conta_CuentasContables { get; set; }
+        public virtual DbSet<Conta_CxC> Conta_CxC { get; set; }
+        public virtual DbSet<Conta_CxP> Conta_CxP { get; set; }
         public virtual DbSet<Conta_TipoTransaccion> Conta_TipoTransaccion { get; set; }
         public virtual DbSet<Conta_Transaccion> Conta_Transaccion { get; set; }
         public virtual DbSet<Emp_BitacoraIngreso> Emp_BitacoraIngreso { get; set; }
@@ -92,6 +94,15 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarPedidos_Result>("ConsultarPedidos");
         }
     
+        public virtual ObjectResult<datosRecibo_Result> datosRecibo(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<datosRecibo_Result>("datosRecibo", idFacturaParameter);
+        }
+    
         public virtual int EliminarProductoCarrito(Nullable<int> idUsuario, Nullable<int> idProducto)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -118,6 +129,24 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FacturarPedido", id_PedidoParameter, tipo_ventaParameter);
         }
     
+        public virtual ObjectResult<GeneraFacturaDetalle_Result> GeneraFacturaDetalle(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaDetalle_Result>("GeneraFacturaDetalle", idFacturaParameter);
+        }
+    
+        public virtual ObjectResult<GeneraFacturaEncabezado_Result> GeneraFacturaEncabezado(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaEncabezado_Result>("GeneraFacturaEncabezado", idFacturaParameter);
+        }
+    
         public virtual ObjectResult<ListaCuentasContables_Result> ListaCuentasContables()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaCuentasContables_Result>("ListaCuentasContables");
@@ -133,9 +162,85 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaMetodoPago_Result>("listaMetodoPago");
         }
     
+        public virtual ObjectResult<ListarCxC_Result> ListarCxC()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListarCxC_Result>("ListarCxC");
+        }
+    
+        public virtual ObjectResult<ListarCxP_Result> ListarCxP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListarCxP_Result>("ListarCxP");
+        }
+    
         public virtual ObjectResult<listaTipoVenta_Result> listaTipoVenta()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTipoVenta_Result>("listaTipoVenta");
+        }
+    
+        public virtual int PagarCxC(Nullable<int> id_Pedido, Nullable<decimal> monto, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, string descripcion, Nullable<int> id_Usuario)
+        {
+            var id_PedidoParameter = id_Pedido.HasValue ?
+                new ObjectParameter("Id_Pedido", id_Pedido) :
+                new ObjectParameter("Id_Pedido", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("monto", monto) :
+                new ObjectParameter("monto", typeof(decimal));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            var entidadFinancieraParameter = entidadFinanciera != null ?
+                new ObjectParameter("EntidadFinanciera", entidadFinanciera) :
+                new ObjectParameter("EntidadFinanciera", typeof(string));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagarCxC", id_PedidoParameter, montoParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual int PagarCxP(Nullable<int> id_Compra, Nullable<decimal> monto, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, string descripcion, Nullable<int> id_Usuario)
+        {
+            var id_CompraParameter = id_Compra.HasValue ?
+                new ObjectParameter("Id_Compra", id_Compra) :
+                new ObjectParameter("Id_Compra", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("monto", monto) :
+                new ObjectParameter("monto", typeof(decimal));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            var entidadFinancieraParameter = entidadFinanciera != null ?
+                new ObjectParameter("EntidadFinanciera", entidadFinanciera) :
+                new ObjectParameter("EntidadFinanciera", typeof(string));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagarCxP", id_CompraParameter, montoParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, descripcionParameter, id_UsuarioParameter);
         }
     
         public virtual int PagoPedido(Nullable<int> id_Pedido, Nullable<int> tipo_venta, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario)
@@ -220,33 +325,6 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
-        }
-    
-        public virtual ObjectResult<datosRecibo_Result> datosRecibo(Nullable<int> idFactura)
-        {
-            var idFacturaParameter = idFactura.HasValue ?
-                new ObjectParameter("IdFactura", idFactura) :
-                new ObjectParameter("IdFactura", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<datosRecibo_Result>("datosRecibo", idFacturaParameter);
-        }
-    
-        public virtual ObjectResult<GeneraFacturaDetalle_Result> GeneraFacturaDetalle(Nullable<int> idFactura)
-        {
-            var idFacturaParameter = idFactura.HasValue ?
-                new ObjectParameter("IdFactura", idFactura) :
-                new ObjectParameter("IdFactura", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaDetalle_Result>("GeneraFacturaDetalle", idFacturaParameter);
-        }
-    
-        public virtual ObjectResult<GeneraFacturaEncabezado_Result> GeneraFacturaEncabezado(Nullable<int> idFactura)
-        {
-            var idFacturaParameter = idFactura.HasValue ?
-                new ObjectParameter("IdFactura", idFactura) :
-                new ObjectParameter("IdFactura", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaEncabezado_Result>("GeneraFacturaEncabezado", idFacturaParameter);
         }
     }
 }
