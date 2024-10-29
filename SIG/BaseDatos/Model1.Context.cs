@@ -339,5 +339,26 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cierre_contable_Result>("cierre_contable", fecha_InicioParameter, fecha_FinParameter);
         }
+    
+        public virtual int RegistrarTransaccionesFinancieras(Nullable<int> cuenta, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario)
+        {
+            var cuentaParameter = cuenta.HasValue ?
+                new ObjectParameter("Cuenta", cuenta) :
+                new ObjectParameter("Cuenta", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("Monto", monto) :
+                new ObjectParameter("Monto", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarTransaccionesFinancieras", cuentaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
+        }
     }
 }

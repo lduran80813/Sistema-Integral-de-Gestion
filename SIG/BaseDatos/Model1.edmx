@@ -937,6 +937,12 @@
           <Parameter Name="IdProducto" Type="int" Mode="In" />
           <Parameter Name="Cantidad" Type="int" Mode="In" />
         </Function>
+        <Function Name="RegistrarTransaccionesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cuenta" Type="int" Mode="In" />
+          <Parameter Name="Monto" Type="decimal" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="ValidarExistencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
@@ -2358,6 +2364,12 @@
             <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="RegistrarTransaccionesFinancieras">
+            <Parameter Name="Cuenta" Mode="In" Type="Int32" />
+            <Parameter Name="Monto" Mode="In" Type="Decimal" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ConsultarCarrito_Result">
           <Property Type="Int32" Name="IdCarrito" Nullable="false" />
@@ -3108,6 +3120,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -322,6 +322,7 @@
     <Compile Include="Entidades\RangoFecha.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Ticket.cs" />
+    <Compile Include="Entidades\TransaccionFinanciera.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -531,6 +532,7 @@
     <Content Include="Views\Contabilidad\CxC.cshtml" />
     <Content Include="Views\Contabilidad\ContaCierreCorte.cshtml" />
     <Content Include="Views\Contabilidad\CierreContableReporte.cshtml" />
+    <Content Include="Views\Contabilidad\RegistroTransacciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

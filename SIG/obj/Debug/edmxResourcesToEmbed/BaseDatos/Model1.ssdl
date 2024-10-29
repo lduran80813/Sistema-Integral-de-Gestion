@@ -932,6 +932,12 @@
     <Parameter Name="IdProducto" Type="int" Mode="In" />
     <Parameter Name="Cantidad" Type="int" Mode="In" />
   </Function>
+  <Function Name="RegistrarTransaccionesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cuenta" Type="int" Mode="In" />
+    <Parameter Name="Monto" Type="decimal" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="ValidarExistencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
   </Function>

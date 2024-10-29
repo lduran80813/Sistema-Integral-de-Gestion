@@ -1214,6 +1214,12 @@
       <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
       <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="RegistrarTransaccionesFinancieras">
+      <Parameter Name="Cuenta" Mode="In" Type="Int32" />
+      <Parameter Name="Monto" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ConsultarCarrito_Result">
     <Property Type="Int32" Name="IdCarrito" Nullable="false" />

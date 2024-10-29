@@ -385,5 +385,54 @@ namespace SIG.Controllers
             return RedirectToAction("ContaCierreCorte", "Contabilidad");
         }
 
+        [HttpGet]
+        public ActionResult RegistroTransacciones()
+        {
+            CatalogosTransaccionesFinancieras();
+            return View();
+
+        }
+
+        //[HttpPost]
+        //public ActionResult RegistroTransacciones(TransaccionFinanciera tf)
+        //{
+        //    for (int i = 0; i < tf.IdCuenta.Count; i++)
+        //    {
+        //        var registro = new TransaccionFinanciera
+        //        {
+        //            IdCuenta = tf.IdCuenta[i],
+        //            Monto = tf.Monto[i]
+        //        };
+        //        //registro.GuardarEnBaseDatos();
+        //    }
+
+        //CatalogosTransaccionesFinancieras();
+
+        //    return View();
+
+        //}
+
+        [HttpPost]
+        public ActionResult RegistroTransacciones(List<TransaccionFinanciera> ListaTransacciones)
+        {
+            if (ListaTransacciones != null && ListaTransacciones.Count > 0)
+            {
+                int contador = 0;
+                foreach (var transaccion in ListaTransacciones)
+                {
+                    var respuesta = contabilidadM.RegistroTransaccionFinanciera(transaccion);
+
+                    if (!respuesta)
+                    {
+                        ViewBag.msj = "Error en el contador a partir de la línea" + contador;
+                        CatalogosTransaccionesFinancieras();
+                        return View();
+                    }
+                    contador++;
+                }
+            }
+
+            return RedirectToAction("ContaCierreCorte", "Contabilidad");
+        }
     }
 }

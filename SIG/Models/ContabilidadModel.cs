@@ -54,5 +54,17 @@ namespace SIG.Models
                 return context.cierre_contable(fecha.inicioCorte, fecha.finCorte).ToList();
             }
         }
+
+        public bool RegistroTransaccionFinanciera(TransaccionFinanciera ent)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int Consecutivo = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
+                rowsAffected = context.RegistrarTransaccionesFinancieras(ent.IdCuenta, ent.Monto, ent.Descripcion, Consecutivo);
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
     }
 }
