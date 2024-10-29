@@ -57,5 +57,10 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_Pedido> Venta_Pedido { get; set; }
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
         public virtual DbSet<EstadosFinancieros> EstadosFinancieros { get; set; }
+        public virtual DbSet<Catalogo_Compra> Catalogo_Compra { get; set; }
+        public virtual DbSet<Pedido> Pedido { get; set; }
+        public virtual DbSet<HistorialModificacion> HistorialModificacion { get; set; }
+        public virtual DbSet<HistorialPedido> HistorialPedido { get; set; }
+        public virtual DbSet<EstadoCompra> EstadoCompra { get; set; }
     }
 }

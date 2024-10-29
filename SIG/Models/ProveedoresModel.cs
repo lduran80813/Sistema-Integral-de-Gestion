@@ -137,55 +137,58 @@ namespace SIG.Models
             return (rowsAffected > 0 ? true : false);
         }
 
-        public EstadoFinanciero ObtenerEstadoFinanciero(int proveedorId)
+        public List<ProveedorFinanciero> ObtenerEstadoFinanciero(ConsultaEstadoFinanciero consulta)
         {
-            try
+            using (var context = new SistemaIntegralGestionEntities())
             {
-                using (var context = new SistemaIntegralGestionEntities())
-                {
-                    var estadoFinanciero = context.EstadosFinancieros
-                        .FirstOrDefault(e => e.ProveedorId == proveedorId);
+                var estadoFinancieroLista = (from c in context.Prov_Compra
+                                             join t in context.Catalogo_Compra on c.tipo_compra_id equals t.id
+                                             // Aseguramos que c.proveedor_id no sea nulo al hacer la comparación
+                                             where c.proveedor_id.HasValue &&
+                                             consulta.ProveedorIds.Contains(c.proveedor_id.Value) // Convertir a int usando Value
+                                             && c.fecha_compra >= consulta.FechaInicio
+                                             && c.fecha_compra <= consulta.FechaFin
+                                             group new { c, t } by c.proveedor_id into g
+                                             select new ProveedorFinanciero
+                                             {
+                                                 ProveedorId = g.Key.Value,
+                                                 NombreProveedor = (from p in context.Proveedor
+                                                                    where p.id == g.Key.Value
+                                                                    select p.nombre).FirstOrDefault(),
+                                                 TotalComprasContado = (decimal)g.Where(x => x.t.descripcion == "Contado").Sum(x => x.c.total_compra),
+                                                 TotalComprasCredito = (decimal)g.Where(x => x.t.descripcion == "Crédito").Sum(x => x.c.total_compra),
+                                                 TotalCompras = (decimal)g.Sum(x => x.c.total_compra),
+                                                 FechaCorte = consulta.FechaFin
+                                             }).ToList();
 
-                    if (estadoFinanciero != null)
-                    {
-                        return new EstadoFinanciero
-                        {
-                            MensajeError = null,
-                        };
-                    }
-
-                    return new EstadoFinanciero { MensajeError = "Proveedor no encontrado." };
-                }
-            }
-            catch (Exception)
-            {
-                return new EstadoFinanciero { MensajeError = "Error en la conexión a la base de datos." };
+                return estadoFinancieroLista;
             }
         }
 
-
-        public List<EstadoFinanciero> ObtenerEstadoFinancieroConjunto(List<int> proveedoresIds)
+        public List<ProveedorFinanciero> ObtenerEstadoFinancieroConjunto(ConsultaEstadoFinanciero consulta)
         {
-            try
+            using (var context = new SistemaIntegralGestionEntities())
             {
-                using (var context = new SistemaIntegralGestionEntities())
-                {
-                    var estadosFinancieros = context.EstadosFinancieros
-                        .Where(e => proveedoresIds.Contains(e.ProveedorId))
-                        .ToList();
+                var estadoFinancieroLista = (from c in context.Prov_Compra
+                                             join t in context.Catalogo_Compra on c.tipo_compra_id equals t.id
+                                             where c.proveedor_id.HasValue &&
+                                                   consulta.ProveedorIds.Contains(c.proveedor_id.Value)
+                                                   && c.fecha_compra >= consulta.FechaInicio
+                                                   && c.fecha_compra <= consulta.FechaFin
+                                             group new { c, t } by c.proveedor_id into g
+                                             select new ProveedorFinanciero
+                                             {
+                                                 ProveedorId = g.Key.Value,
+                                                 NombreProveedor = (from p in context.Proveedor
+                                                                    where p.id == g.Key.Value
+                                                                    select p.nombre).FirstOrDefault(),
+                                                 TotalComprasContado = g.Where(x => x.t.descripcion == "Contado").Sum(x => (decimal?)x.c.total_compra) ?? 0,
+                                                 TotalComprasCredito = g.Where(x => x.t.descripcion == "Crédito").Sum(x => (decimal?)x.c.total_compra) ?? 0,
+                                                 TotalCompras = g.Sum(x => (decimal?)x.c.total_compra) ?? 0,
+                                                 FechaCorte = consulta.FechaFin
+                                             }).ToList();
 
-                    var result = estadosFinancieros.Select(e => new EstadoFinanciero
-                    {
-                        MensajeError = null,
-
-                    }).ToList();
-
-                    return result;
-                }
-            }
-            catch (Exception)
-            {
-                return new List<EstadoFinanciero> { new EstadoFinanciero { MensajeError = "Error en la conexión a la base de datos." } };
+                return estadoFinancieroLista;
             }
         }
     }

@@ -198,35 +198,46 @@
                                         <p>Lista de Proveedores</p>
                                     </a>
                                 </li>
-                                @*
+
                                 <li class="nav-item">
+                                    <a href="@Url.Action("ConsultarEstadoFinanciero", "Proveedores")" class="nav-link">
+                                        <p>Estado financiero Id</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ConsultarEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
+                                        <p>Estado Financiero Conjunto</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item has-treeview">
                                     <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Editar proveedor</p>
+                                        <i class="nav-icon fas fa-shopping-cart"></i>
+                                        <p>
+                                            Pedidos
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("RegistrarPedido", "Pedidos")" class="nav-link">
+                                                <p>Registrar Pedido</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("ListaPedidos", "Pedidos")" class="nav-link">
+                                                <p>Lista de Pedidos</p>
+                                            </a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("GenerarReporteForm", "Pedidos")" class="nav-link">
+                                                <p>Generar Reporte</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                *@
 
-                                 @*
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Eliminar proveedor</p>
-                                    </a>
-                                </li>
-                                *@
 
-
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ConsultaEstadoFinanciero", "Proveedores")" class="nav-link">
-                                        <p>Estado financiero específico</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ConsultaEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
-                                        <p>Estado financiero general</p>
-                                    </a>
-                                </li>
                             </ul>
                         </li>
 

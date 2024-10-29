@@ -23,6 +23,7 @@ namespace SIG.BaseDatos
             this.Prov_Pago = new HashSet<Prov_Pago>();
             this.Prov_Producto = new HashSet<Prov_Producto>();
             this.EstadosFinancieros = new HashSet<EstadosFinancieros>();
+            this.Pedido = new HashSet<Pedido>();
         }
     
         public int id { get; set; }
@@ -42,5 +43,7 @@ namespace SIG.BaseDatos
         public virtual ICollection<Prov_Producto> Prov_Producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EstadosFinancieros> EstadosFinancieros { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pedido> Pedido { get; set; }
     }
 }

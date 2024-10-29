@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5b4d32d95901402b92e966e176aa4a85" Name="Diagram1">
+      <Diagram DiagramId="5b4d32d95901402b92e966e176aa4a85" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="10.5" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_Transaccion" Width="1.5" PointX="16" PointY="12.125" IsExpanded="true" />
@@ -70,6 +70,18 @@
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__628FA481" ManuallyRouted="false" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.EstadosFinancieros" Width="1.5" PointX="12.75" PointY="40.5" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__EstadosFi__Prove__2DE6D218" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK_Prov_Pago_Compra" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Catalogo_Compra" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Pedido" Width="1.5" PointX="12.75" PointY="43.625" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.HistorialModificacion" Width="1.5" PointX="15" PointY="42.625" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.HistorialPedido" Width="1.5" PointX="15" PointY="45.125" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.EstadoCompra" Width="1.5" PointX="3.375" PointY="3.875" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

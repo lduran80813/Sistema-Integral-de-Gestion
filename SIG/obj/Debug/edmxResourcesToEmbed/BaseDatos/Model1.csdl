@@ -164,6 +164,9 @@
     <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__compr__6EF57B66" FromRole="Prov_Compra" ToRole="Prov_CompraDetalle" />
     <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Comp__prove__693CA210" FromRole="Prov_Compra" ToRole="Proveedor" />
+    <Property Name="tipo_compra_id" Type="Int32" />
+    <NavigationProperty Name="Prov_Pago" Relationship="SistemaIntegralGestionModel.FK_Prov_Pago_Compra" FromRole="Prov_Compra" ToRole="Prov_Pago" />
+    <NavigationProperty Name="Catalogo_Compra" Relationship="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra" FromRole="Prov_Compra" ToRole="Catalogo_Compra" />
   </EntityType>
   <EntityType Name="Prov_CompraDetalle">
     <Key>
@@ -201,6 +204,8 @@
     <Property Name="autorizador_id" Type="Int32" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK__Prov_Pago__autor__73BA3083" FromRole="Prov_Pago" ToRole="Usuario" />
     <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Pago__prove__72C60C4A" FromRole="Prov_Pago" ToRole="Proveedor" />
+    <Property Name="compra_id" Type="Int32" />
+    <NavigationProperty Name="Prov_Compra" Relationship="SistemaIntegralGestionModel.FK_Prov_Pago_Compra" FromRole="Prov_Pago" ToRole="Prov_Compra" />
   </EntityType>
   <EntityType Name="Prov_Producto">
     <Key>
@@ -229,6 +234,7 @@
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__72C60C4A" FromRole="Proveedor" ToRole="Prov_Pago" />
     <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__6C190EBB" FromRole="Proveedor" ToRole="Prov_Producto" />
     <NavigationProperty Name="EstadosFinancieros" Relationship="SistemaIntegralGestionModel.FK__EstadosFi__Prove__2DE6D218" FromRole="Proveedor" ToRole="EstadosFinancieros" />
+    <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337" FromRole="Proveedor" ToRole="Pedido" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -924,6 +930,39 @@
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
     </AssociationSet>
+    <AssociationSet Name="FK_Prov_Pago_Compra" Association="SistemaIntegralGestionModel.FK_Prov_Pago_Compra">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Prov_Pago" EntitySet="Prov_Pago" />
+    </AssociationSet>
+    <EntitySet Name="Catalogo_Compra" EntityType="SistemaIntegralGestionModel.Catalogo_Compra" />
+    <AssociationSet Name="FK_Prov_Compra_TipoCompra" Association="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra">
+      <End Role="Catalogo_Compra" EntitySet="Catalogo_Compra" />
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+    </AssociationSet>
+    <EntitySet Name="Pedido" EntityType="SistemaIntegralGestionModel.Pedido" />
+    <AssociationSet Name="FK__Pedido__proveedo__43D61337" Association="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <EntitySet Name="HistorialModificacion" EntityType="SistemaIntegralGestionModel.HistorialModificacion" />
+    <EntitySet Name="HistorialPedido" EntityType="SistemaIntegralGestionModel.HistorialPedido" />
+    <AssociationSet Name="FK__Historial__Pedid__4A8310C6" Association="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="HistorialModificacion" EntitySet="HistorialModificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Historial__Pedid__46B27FE2" Association="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+    </AssociationSet>
+    <EntitySet Name="EstadoCompra" EntityType="SistemaIntegralGestionModel.EstadoCompra" />
+    <AssociationSet Name="FK__Historial__Estad__47A6A41B" Association="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B">
+      <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+      <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedido__EstadoCo__42E1EEFE" Association="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE">
+      <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="EstadosFinancieros">
     <Key>
@@ -945,6 +984,143 @@
       </Principal>
       <Dependent Role="EstadosFinancieros">
         <PropertyRef Name="ProveedorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prov_Pago_Compra">
+    <End Type="SistemaIntegralGestionModel.Prov_Compra" Role="Prov_Compra" Multiplicity="0..1" />
+    <End Type="SistemaIntegralGestionModel.Prov_Pago" Role="Prov_Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Pago">
+        <PropertyRef Name="compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Catalogo_Compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Prov_Compra" Relationship="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra" FromRole="Catalogo_Compra" ToRole="Prov_Compra" />
+  </EntityType>
+  <Association Name="FK_Prov_Compra_TipoCompra">
+    <End Type="SistemaIntegralGestionModel.Catalogo_Compra" Role="Catalogo_Compra" Multiplicity="0..1" />
+    <End Type="SistemaIntegralGestionModel.Prov_Compra" Role="Prov_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogo_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Compra">
+        <PropertyRef Name="tipo_compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_pedido" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="proveedor_id" Type="Int32" Nullable="false" />
+    <Property Name="total_pedido" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Proveedor" Relationship="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337" FromRole="Pedido" ToRole="Proveedor" />
+    <NavigationProperty Name="HistorialModificacion" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6" FromRole="Pedido" ToRole="HistorialModificacion" />
+    <NavigationProperty Name="HistorialPedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2" FromRole="Pedido" ToRole="HistorialPedido" />
+    <NavigationProperty Name="EstadoCompra" Relationship="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE" FromRole="Pedido" ToRole="EstadoCompra" />
+  </EntityType>
+  <Association Name="FK__Pedido__proveedo__43D61337">
+    <End Type="SistemaIntegralGestionModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+    <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HistorialModificacion">
+    <Key>
+      <PropertyRef Name="PedidoId" />
+      <PropertyRef Name="FechaModificacion" />
+    </Key>
+    <Property Name="PedidoId" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DetallesModificacion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6" FromRole="HistorialModificacion" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="HistorialPedido">
+    <Key>
+      <PropertyRef Name="PedidoId" />
+      <PropertyRef Name="FechaModificacion" />
+    </Key>
+    <Property Name="PedidoId" Type="Int32" Nullable="false" />
+    <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DetalleCambio" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2" FromRole="HistorialPedido" ToRole="Pedido" />
+    <NavigationProperty Name="EstadoCompra" Relationship="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B" FromRole="HistorialPedido" ToRole="EstadoCompra" />
+  </EntityType>
+  <Association Name="FK__Historial__Pedid__4A8310C6">
+    <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="1" />
+    <End Type="SistemaIntegralGestionModel.HistorialModificacion" Role="HistorialModificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HistorialModificacion">
+        <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Historial__Pedid__46B27FE2">
+    <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="1" />
+    <End Type="SistemaIntegralGestionModel.HistorialPedido" Role="HistorialPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HistorialPedido">
+        <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EstadoCompra">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HistorialPedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B" FromRole="EstadoCompra" ToRole="HistorialPedido" />
+    <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE" FromRole="EstadoCompra" ToRole="Pedido" />
+  </EntityType>
+  <Association Name="FK__Historial__Estad__47A6A41B">
+    <End Type="SistemaIntegralGestionModel.EstadoCompra" Role="EstadoCompra" Multiplicity="1" />
+    <End Type="SistemaIntegralGestionModel.HistorialPedido" Role="HistorialPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoCompra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistorialPedido">
+        <PropertyRef Name="EstadoCompraId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedido__EstadoCo__42E1EEFE">
+    <End Type="SistemaIntegralGestionModel.EstadoCompra" Role="EstadoCompra" Multiplicity="1" />
+    <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoCompra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="EstadoCompraId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

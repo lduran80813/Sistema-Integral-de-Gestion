@@ -303,6 +303,9 @@
     <Compile Include="BaseDatos\Adm_Rol.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\Catalogo_Compra.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Conta_Transaccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -330,7 +333,16 @@
     <Compile Include="BaseDatos\Entregas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\EstadoCompra.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\EstadosFinancieros.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\HistorialModificacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\HistorialPedido.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Model1.Context.cs">
@@ -349,6 +361,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\PDA_Tarea.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Pedido.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\PlanDeAccion.cs">
@@ -416,9 +431,16 @@
     <Compile Include="Controllers\IncidenciasITAnalystController.cs" />
     <Compile Include="Controllers\IncidenciasITManagerController.cs" />
     <Compile Include="Controllers\Plan_AccionController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
-    <Compile Include="Entidades\EstadoFinanciero.cs" />
+    <Compile Include="Entidades\ReportePedidos.cs" />
+    <Compile Include="Entidades\EstadoCompra.cs" />
+    <Compile Include="Entidades\ConsultaEstadoFinanciero.cs" />
+    <Compile Include="Entidades\HistorialModificacion.cs" />
+    <Compile Include="Entidades\HistorialPedido.cs" />
+    <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
+    <Compile Include="Entidades\ProveedorFinanciero.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
@@ -427,6 +449,7 @@
     </Compile>
     <Compile Include="Models\CatalogosModel.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
+    <Compile Include="Models\PedidosModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -619,8 +642,16 @@
     <Content Include="Views\IncidenciasITManager\ListaHistoricoTickets.cshtml" />
     <Content Include="Views\Proveedores\ListaProveedores.cshtml" />
     <Content Include="Views\Proveedores\ActualizarProveedor.cshtml" />
-    <Content Include="Views\Proveedores\ConsultaEstadoFinanciero.cshtml" />
-    <Content Include="Views\Proveedores\ConsultaEstadoFinancieroConjunto.cshtml" />
+    <Content Include="Views\Proveedores\ConsultarEstadoFinanciero.cshtml" />
+    <Content Include="Views\Proveedores\ConsultarEstadoFinancieroConjunto.cshtml" />
+    <Content Include="Views\Pedidos\RegistrarPedido.cshtml" />
+    <Content Include="Views\Pedidos\ListaPedidos.cshtml" />
+    <Content Include="Views\Pedidos\DetallesPedido.cshtml" />
+    <Content Include="Views\Pedidos\ModificarPedido.cshtml" />
+    <Content Include="Views\Pedidos\EliminarPedido.cshtml" />
+    <Content Include="Views\Pedidos\VerHistorial.cshtml" />
+    <Content Include="Views\Pedidos\GenerarReporteForm.cshtml" />
+    <Content Include="Views\Pedidos\ReporteGenerado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

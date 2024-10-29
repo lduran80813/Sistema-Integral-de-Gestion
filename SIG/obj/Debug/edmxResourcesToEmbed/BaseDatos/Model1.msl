@@ -146,6 +146,7 @@
     <EntitySetMapping Name="Prov_Compra">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Compra">
         <MappingFragment StoreEntitySet="Prov_Compra">
+          <ScalarProperty Name="tipo_compra_id" ColumnName="tipo_compra_id" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
           <ScalarProperty Name="fecha_compra" ColumnName="fecha_compra" />
@@ -181,6 +182,7 @@
     <EntitySetMapping Name="Prov_Pago">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Pago">
         <MappingFragment StoreEntitySet="Prov_Pago">
+          <ScalarProperty Name="compra_id" ColumnName="compra_id" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
           <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
@@ -349,6 +351,52 @@
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Saldo" ColumnName="Saldo" />
           <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Catalogo_Compra">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Catalogo_Compra">
+        <MappingFragment StoreEntitySet="Catalogo_Compra">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
+          <ScalarProperty Name="total_pedido" ColumnName="total_pedido" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+          <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistorialModificacion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.HistorialModificacion">
+        <MappingFragment StoreEntitySet="HistorialModificacion">
+          <ScalarProperty Name="DetallesModificacion" ColumnName="DetallesModificacion" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistorialPedido">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.HistorialPedido">
+        <MappingFragment StoreEntitySet="HistorialPedido">
+          <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
+          <ScalarProperty Name="DetalleCambio" ColumnName="DetalleCambio" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoCompra">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.EstadoCompra">
+        <MappingFragment StoreEntitySet="EstadoCompra">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

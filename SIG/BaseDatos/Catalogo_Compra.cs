@@ -12,18 +12,18 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Prov_Pago
+    public partial class Catalogo_Compra
     {
-        public int id { get; set; }
-        public Nullable<int> proveedor_id { get; set; }
-        public Nullable<System.DateTime> fecha_pago { get; set; }
-        public Nullable<decimal> monto_pago { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<int> autorizador_id { get; set; }
-        public Nullable<int> compra_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Catalogo_Compra()
+        {
+            this.Prov_Compra = new HashSet<Prov_Compra>();
+        }
     
-        public virtual Usuario Usuario { get; set; }
-        public virtual Proveedor Proveedor { get; set; }
-        public virtual Prov_Compra Prov_Compra { get; set; }
+        public int id { get; set; }
+        public string descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prov_Compra> Prov_Compra { get; set; }
     }
 }

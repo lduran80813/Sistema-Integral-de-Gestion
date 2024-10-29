@@ -1,0 +1,193 @@
+﻿@model List<SIG.Entidades.ProveedorFinanciero>
+
+@{
+    ViewBag.Title = "Consultar Estado Financiero Conjunto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Estado Financiero Conjunto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            table th, table td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+            }
+
+            table th {
+                background-color: #f4f4f4;
+            }
+
+        .alert {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .export-btn {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+            .export-btn button {
+                background-color: #28a745;
+                font-size: 18px;
+            }
+
+                .export-btn button:hover {
+                    background-color: #218838;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Consultar Estado Financiero Conjunto</h2>
+
+        <!-- Formulario de consulta -->
+        @using (Html.BeginForm("ConsultarEstadoFinancieroConjunto", "Proveedores", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de Inicio</label>
+                @Html.TextBox("FechaInicio", null, new { @class = "form-control", type = "date", @id = "fechaInicio" })
+            </div>
+
+            <div class="form-group">
+                <label for="fechaFin">Fecha de Fin</label>
+                @Html.TextBox("FechaFin", null, new { @class = "form-control", type = "date", @id = "fechaFin" })
+            </div>
+
+            <button type="submit">Consultar Estado Financiero</button>
+        }
+
+        <!-- Tabla de resultados -->
+        @if (Model != null && Model.Count > 0)
+        {
+            <h3>Resultados:</h3>
+            <table id="tablaEstadoFinanciero" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Total Compras Contado</th>
+                        <th>Total Compras Crédito</th>
+                        <th>Total Compras</th>
+                        <th>Fecha Corte</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TotalComprasContado.ToString("C")</td>
+                            <td>@item.TotalComprasCredito.ToString("C")</td>
+                            <td>@item.TotalCompras.ToString("C")</td>
+                            <td>@item.FechaCorte.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <!-- Botón de exportación -->
+            <div class="export-btn">
+                @using (Html.BeginForm("ExportarEstadoFinancieroConjunto", "Proveedores", FormMethod.Get))
+                {
+                    @Html.Hidden("FechaInicio", Request.Form["FechaInicio"])
+                    @Html.Hidden("FechaFin", Request.Form["FechaFin"])
+                    <button type="submit">Exportar a Excel</button>
+                }
+            </div>
+        }
+        else
+        {
+            if (ViewBag.msj != null)
+            {
+                <div class="alert">@ViewBag.msj</div>
+            }
+        }
+    </div>
+
+    <!-- Scripts para jQuery y DataTables -->
+    <script src="~/root/plugins/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tablaEstadoFinanciero').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

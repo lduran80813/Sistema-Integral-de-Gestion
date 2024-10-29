@@ -21,118 +21,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Compra' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Compra">
-          <Property Name="id" Type="int" />
-          <Property Name="proveedor_id" Type="int" />
-          <Property Name="fecha_compra" Type="date" />
-          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="no_factura" Type="varchar" MaxLength="100" />
-          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Empleado' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Empleado">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" />
-          <Property Name="apellidos" Type="varchar" MaxLength="255" />
-          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
-          <Property Name="fecha_nacimiento" Type="date" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="telefono" Type="varchar" MaxLength="50" />
-          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
-          <Property Name="departamento_id" Type="int" />
-          <Property Name="puesto_id" Type="int" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Entrega' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Entrega">
-          <Property Name="id" Type="int" />
-          <Property Name="pedido_id" Type="int" />
-          <Property Name="fecha_entrega" Type="date" />
-          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
-          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
-          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Factura' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Factura">
-          <Property Name="id" Type="int" />
-          <Property Name="cliente_id" Type="int" />
-          <Property Name="fecha_venta" Type="date" />
-          <Property Name="metodo_pago_id" Type="int" />
-          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="no_factura" Type="varchar" MaxLength="100" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
-          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_PlanDeAccion">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
-          <Property Name="estado" Type="varchar" MaxLength="100" />
-          <Property Name="fecha_inicio" Type="date" />
-          <Property Name="fecha_finalizacion" Type="date" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Proveedor' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Proveedor">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre" Type="varchar" MaxLength="255" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Ticket' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Ticket">
-          <Property Name="id_ticket" Type="int" />
-          <Property Name="id_usuario" Type="int" />
-          <Property Name="estado" Type="int" />
-          <Property Name="tipo_incidencia" Type="int" />
-          <Property Name="prioridad" Type="int" />
-          <Property Name="titulo" Type="varchar" MaxLength="30" />
-          <Property Name="descripcion" Type="varchar" MaxLength="200" />
-          <Property Name="fecha_registro_usuario" Type="datetime" />
-          <Property Name="fecha_registra_tecnico" Type="datetime" />
-          <Property Name="id_tecnico" Type="int" />
-          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
-          <Property Name="fecha_cierre_ticket" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Usuario' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Usuario">
-          <Property Name="id" Type="int" />
-          <Property Name="usuario" Type="varchar" MaxLength="100" />
-          <Property Name="contrasena" Type="varchar" MaxLength="255" />
-          <Property Name="rol_id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Audit_Vacaciones">
-          <Property Name="id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="fecha_inicio" Type="date" />
-          <Property Name="fecha_fin" Type="date" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
+        <EntityType Name="Catalogo_Compra">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Conta_Transaccion">
           <Key>
             <PropertyRef Name="id" />
@@ -224,6 +119,13 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
           <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="EstadoCompra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="EstadosFinancieros">
           <Key>
             <PropertyRef Name="Id" />
@@ -233,6 +135,25 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="Saldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Estado" Type="varchar" MaxLength="50" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialModificacion">
+          <Key>
+            <PropertyRef Name="PedidoId" />
+            <PropertyRef Name="FechaModificacion" />
+          </Key>
+          <Property Name="PedidoId" Type="int" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="DetallesModificacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialPedido">
+          <Key>
+            <PropertyRef Name="PedidoId" />
+            <PropertyRef Name="FechaModificacion" />
+          </Key>
+          <Property Name="PedidoId" Type="int" Nullable="false" />
+          <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+          <Property Name="DetalleCambio" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="EstadoCompraId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PDA_Tarea">
           <Key>
@@ -245,6 +166,16 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="estado_tarea" Type="varchar" MaxLength="100" />
           <Property Name="fecha_inicio" Type="date" />
           <Property Name="fecha_finalizacion" Type="date" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_pedido" Type="datetime" Nullable="false" />
+          <Property Name="proveedor_id" Type="int" Nullable="false" />
+          <Property Name="total_pedido" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="EstadoCompraId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanDeAccion">
           <Key>
@@ -266,6 +197,7 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
           <Property Name="no_factura" Type="varchar" MaxLength="100" />
           <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_compra_id" Type="int" />
         </EntityType>
         <EntityType Name="Prov_CompraDetalle">
           <Key>
@@ -298,6 +230,7 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="monto_pago" Type="decimal" Precision="10" Scale="2" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
           <Property Name="autorizador_id" Type="int" />
+          <Property Name="compra_id" Type="int" />
         </EntityType>
         <EntityType Name="Prov_Producto">
           <Key>
@@ -569,6 +502,42 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Historial__Estad__47A6A41B">
+          <End Role="EstadoCompra" Type="Self.EstadoCompra" Multiplicity="1" />
+          <End Role="HistorialPedido" Type="Self.HistorialPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCompra">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistorialPedido">
+              <PropertyRef Name="EstadoCompraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__Pedid__46B27FE2">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="HistorialPedido" Type="Self.HistorialPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistorialPedido">
+              <PropertyRef Name="PedidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__Pedid__4A8310C6">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="HistorialModificacion" Type="Self.HistorialModificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistorialModificacion">
+              <PropertyRef Name="PedidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PDA_Tarea__plan___0A9D95DB">
           <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
@@ -590,6 +559,30 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
             </Principal>
             <Dependent Role="PDA_Tarea">
               <PropertyRef Name="responsable_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__EstadoCo__42E1EEFE">
+          <End Role="EstadoCompra" Type="Self.EstadoCompra" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCompra">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="EstadoCompraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__proveedo__43D61337">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="proveedor_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -833,9 +826,34 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Prov_Compra_TipoCompra">
+          <End Role="Catalogo_Compra" Type="Self.Catalogo_Compra" Multiplicity="0..1" />
+          <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo_Compra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prov_Compra">
+              <PropertyRef Name="tipo_compra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prov_Pago_Compra">
+          <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
+          <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prov_Compra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prov_Pago">
+              <PropertyRef Name="compra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SistemaIntegralGestionModelStoreContainer">
           <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catalogo_Compra" EntityType="Self.Catalogo_Compra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" Schema="dbo" store:Type="Tables" />
@@ -845,8 +863,12 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Entregas" EntityType="Self.Entregas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoCompra" EntityType="Self.EstadoCompra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prov_Compra" EntityType="Self.Prov_Compra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prov_CompraDetalle" EntityType="Self.Prov_CompraDetalle" Schema="dbo" store:Type="Tables" />
@@ -910,6 +932,18 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
           </AssociationSet>
+          <AssociationSet Name="FK__Historial__Estad__47A6A41B" Association="Self.FK__Historial__Estad__47A6A41B">
+            <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+            <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__Pedid__46B27FE2" Association="Self.FK__Historial__Pedid__46B27FE2">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__Pedid__4A8310C6" Association="Self.FK__Historial__Pedid__4A8310C6">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="HistorialModificacion" EntitySet="HistorialModificacion" />
+          </AssociationSet>
           <AssociationSet Name="FK__PDA_Tarea__plan___0A9D95DB" Association="Self.FK__PDA_Tarea__plan___0A9D95DB">
             <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
@@ -917,6 +951,14 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <AssociationSet Name="FK__PDA_Tarea__respo__0B91BA14" Association="Self.FK__PDA_Tarea__respo__0B91BA14">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__EstadoCo__42E1EEFE" Association="Self.FK__Pedido__EstadoCo__42E1EEFE">
+            <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__proveedo__43D61337" Association="Self.FK__Pedido__proveedo__43D61337">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
           <AssociationSet Name="FK__Prov_Comp__compr__6EF57B66" Association="Self.FK__Prov_Comp__compr__6EF57B66">
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
@@ -997,6 +1039,14 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <AssociationSet Name="FK__Venta_Ped__clien__02FC7413" Association="Self.FK__Venta_Ped__clien__02FC7413">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prov_Compra_TipoCompra" Association="Self.FK_Prov_Compra_TipoCompra">
+            <End Role="Catalogo_Compra" EntitySet="Catalogo_Compra" />
+            <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prov_Pago_Compra" Association="Self.FK_Prov_Pago_Compra">
+            <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+            <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1167,6 +1217,9 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="notas_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Prov_CompraDetalle" Relationship="Self.FK__Prov_Comp__compr__6EF57B66" FromRole="Prov_Compra" ToRole="Prov_CompraDetalle" />
           <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Comp__prove__693CA210" FromRole="Prov_Compra" ToRole="Proveedor" />
+          <Property Name="tipo_compra_id" Type="Int32" />
+          <NavigationProperty Name="Prov_Pago" Relationship="SistemaIntegralGestionModel.FK_Prov_Pago_Compra" FromRole="Prov_Compra" ToRole="Prov_Pago" />
+          <NavigationProperty Name="Catalogo_Compra" Relationship="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra" FromRole="Prov_Compra" ToRole="Catalogo_Compra" />
         </EntityType>
         <EntityType Name="Prov_CompraDetalle">
           <Key>
@@ -1204,6 +1257,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="autorizador_id" Type="Int32" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK__Prov_Pago__autor__73BA3083" FromRole="Prov_Pago" ToRole="Usuario" />
           <NavigationProperty Name="Proveedor" Relationship="Self.FK__Prov_Pago__prove__72C60C4A" FromRole="Prov_Pago" ToRole="Proveedor" />
+          <Property Name="compra_id" Type="Int32" />
+          <NavigationProperty Name="Prov_Compra" Relationship="SistemaIntegralGestionModel.FK_Prov_Pago_Compra" FromRole="Prov_Pago" ToRole="Prov_Compra" />
         </EntityType>
         <EntityType Name="Prov_Producto">
           <Key>
@@ -1232,6 +1287,7 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__72C60C4A" FromRole="Proveedor" ToRole="Prov_Pago" />
           <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__6C190EBB" FromRole="Proveedor" ToRole="Prov_Producto" />
           <NavigationProperty Name="EstadosFinancieros" Relationship="SistemaIntegralGestionModel.FK__EstadosFi__Prove__2DE6D218" FromRole="Proveedor" ToRole="EstadosFinancieros" />
+          <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337" FromRole="Proveedor" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -1927,6 +1983,39 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
           </AssociationSet>
+          <AssociationSet Name="FK_Prov_Pago_Compra" Association="SistemaIntegralGestionModel.FK_Prov_Pago_Compra">
+            <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+            <End Role="Prov_Pago" EntitySet="Prov_Pago" />
+          </AssociationSet>
+          <EntitySet Name="Catalogo_Compra" EntityType="SistemaIntegralGestionModel.Catalogo_Compra" />
+          <AssociationSet Name="FK_Prov_Compra_TipoCompra" Association="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra">
+            <End Role="Catalogo_Compra" EntitySet="Catalogo_Compra" />
+            <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+          </AssociationSet>
+          <EntitySet Name="Pedido" EntityType="SistemaIntegralGestionModel.Pedido" />
+          <AssociationSet Name="FK__Pedido__proveedo__43D61337" Association="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <EntitySet Name="HistorialModificacion" EntityType="SistemaIntegralGestionModel.HistorialModificacion" />
+          <EntitySet Name="HistorialPedido" EntityType="SistemaIntegralGestionModel.HistorialPedido" />
+          <AssociationSet Name="FK__Historial__Pedid__4A8310C6" Association="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="HistorialModificacion" EntitySet="HistorialModificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__Pedid__46B27FE2" Association="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+          </AssociationSet>
+          <EntitySet Name="EstadoCompra" EntityType="SistemaIntegralGestionModel.EstadoCompra" />
+          <AssociationSet Name="FK__Historial__Estad__47A6A41B" Association="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B">
+            <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+            <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedido__EstadoCo__42E1EEFE" Association="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE">
+            <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="EstadosFinancieros">
           <Key>
@@ -1948,6 +2037,143 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
             </Principal>
             <Dependent Role="EstadosFinancieros">
               <PropertyRef Name="ProveedorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prov_Pago_Compra">
+          <End Type="SistemaIntegralGestionModel.Prov_Compra" Role="Prov_Compra" Multiplicity="0..1" />
+          <End Type="SistemaIntegralGestionModel.Prov_Pago" Role="Prov_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prov_Compra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prov_Pago">
+              <PropertyRef Name="compra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Catalogo_Compra">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Prov_Compra" Relationship="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra" FromRole="Catalogo_Compra" ToRole="Prov_Compra" />
+        </EntityType>
+        <Association Name="FK_Prov_Compra_TipoCompra">
+          <End Type="SistemaIntegralGestionModel.Catalogo_Compra" Role="Catalogo_Compra" Multiplicity="0..1" />
+          <End Type="SistemaIntegralGestionModel.Prov_Compra" Role="Prov_Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo_Compra">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Prov_Compra">
+              <PropertyRef Name="tipo_compra_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_pedido" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="proveedor_id" Type="Int32" Nullable="false" />
+          <Property Name="total_pedido" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proveedor" Relationship="SistemaIntegralGestionModel.FK__Pedido__proveedo__43D61337" FromRole="Pedido" ToRole="Proveedor" />
+          <NavigationProperty Name="HistorialModificacion" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6" FromRole="Pedido" ToRole="HistorialModificacion" />
+          <NavigationProperty Name="HistorialPedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2" FromRole="Pedido" ToRole="HistorialPedido" />
+          <NavigationProperty Name="EstadoCompra" Relationship="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE" FromRole="Pedido" ToRole="EstadoCompra" />
+        </EntityType>
+        <Association Name="FK__Pedido__proveedo__43D61337">
+          <End Type="SistemaIntegralGestionModel.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="proveedor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HistorialModificacion">
+          <Key>
+            <PropertyRef Name="PedidoId" />
+            <PropertyRef Name="FechaModificacion" />
+          </Key>
+          <Property Name="PedidoId" Type="Int32" Nullable="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DetallesModificacion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__4A8310C6" FromRole="HistorialModificacion" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="HistorialPedido">
+          <Key>
+            <PropertyRef Name="PedidoId" />
+            <PropertyRef Name="FechaModificacion" />
+          </Key>
+          <Property Name="PedidoId" Type="Int32" Nullable="false" />
+          <Property Name="FechaModificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DetalleCambio" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Pedid__46B27FE2" FromRole="HistorialPedido" ToRole="Pedido" />
+          <NavigationProperty Name="EstadoCompra" Relationship="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B" FromRole="HistorialPedido" ToRole="EstadoCompra" />
+        </EntityType>
+        <Association Name="FK__Historial__Pedid__4A8310C6">
+          <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="SistemaIntegralGestionModel.HistorialModificacion" Role="HistorialModificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistorialModificacion">
+              <PropertyRef Name="PedidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__Pedid__46B27FE2">
+          <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="SistemaIntegralGestionModel.HistorialPedido" Role="HistorialPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistorialPedido">
+              <PropertyRef Name="PedidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EstadoCompra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HistorialPedido" Relationship="SistemaIntegralGestionModel.FK__Historial__Estad__47A6A41B" FromRole="EstadoCompra" ToRole="HistorialPedido" />
+          <NavigationProperty Name="Pedido" Relationship="SistemaIntegralGestionModel.FK__Pedido__EstadoCo__42E1EEFE" FromRole="EstadoCompra" ToRole="Pedido" />
+        </EntityType>
+        <Association Name="FK__Historial__Estad__47A6A41B">
+          <End Type="SistemaIntegralGestionModel.EstadoCompra" Role="EstadoCompra" Multiplicity="1" />
+          <End Type="SistemaIntegralGestionModel.HistorialPedido" Role="HistorialPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCompra">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistorialPedido">
+              <PropertyRef Name="EstadoCompraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedido__EstadoCo__42E1EEFE">
+          <End Type="SistemaIntegralGestionModel.EstadoCompra" Role="EstadoCompra" Multiplicity="1" />
+          <End Type="SistemaIntegralGestionModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCompra">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="EstadoCompraId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2102,6 +2328,7 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <EntitySetMapping Name="Prov_Compra">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Compra">
               <MappingFragment StoreEntitySet="Prov_Compra">
+                <ScalarProperty Name="tipo_compra_id" ColumnName="tipo_compra_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
                 <ScalarProperty Name="fecha_compra" ColumnName="fecha_compra" />
@@ -2137,6 +2364,7 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <EntitySetMapping Name="Prov_Pago">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Prov_Pago">
               <MappingFragment StoreEntitySet="Prov_Pago">
+                <ScalarProperty Name="compra_id" ColumnName="compra_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
                 <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
@@ -2305,6 +2533,52 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Saldo" ColumnName="Saldo" />
                 <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalogo_Compra">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Catalogo_Compra">
+              <MappingFragment StoreEntitySet="Catalogo_Compra">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
+                <ScalarProperty Name="total_pedido" ColumnName="total_pedido" />
+                <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialModificacion">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.HistorialModificacion">
+              <MappingFragment StoreEntitySet="HistorialModificacion">
+                <ScalarProperty Name="DetallesModificacion" ColumnName="DetallesModificacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialPedido">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.HistorialPedido">
+              <MappingFragment StoreEntitySet="HistorialPedido">
+                <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
+                <ScalarProperty Name="DetalleCambio" ColumnName="DetalleCambio" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoCompra">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.EstadoCompra">
+              <MappingFragment StoreEntitySet="EstadoCompra">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

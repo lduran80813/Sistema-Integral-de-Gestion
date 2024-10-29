@@ -1,6 +1,6 @@
-﻿@model SIG.Entidades.EstadoFinanciero
+﻿@model SIG.Entidades.Pedido
 @{
-    ViewBag.Title = "Consulta Estado Financiero";
+    ViewBag.Title = "Eliminar Pedido";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Estado Financiero</title>
+    <title>Eliminar Pedido</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
         }
 
         .container {
-            width: 50%;
+            width: 80%;
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
@@ -36,28 +36,24 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
-        .resultado {
-            margin: 20px 0;
-        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h2>Estado Financiero del Proveedor</h2>
+        <h2>Eliminar Pedido</h2>
 
-        @if (ViewBag.msj != null)
-        {
-            <div class="alert alert-info" role="alert">
-                @ViewBag.msj
-            </div>
-        }
-
-        <div class="resultado">
-            <p><strong>Proveedor:</strong> @Model.NombreProveedor</p>
-            <p><strong>Saldo:</strong> @Model.Saldo.ToString("C")</p>
-            <p><strong>Estado Financiero:</strong> @Model.Estado.ToString()</p>
+        <div class="alert alert-danger">
+            ¿Está seguro de que desea eliminar el pedido con ID @Model.id?
         </div>
+
+        @using (Html.BeginForm("ConfirmarEliminar", "Pedidos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="@Url.Action("ListaPedidos", "Pedidos")" class="btn btn-secondary">Cancelar</a>
+        }
     </div>
 </body>
 </html>

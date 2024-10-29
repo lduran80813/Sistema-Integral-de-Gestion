@@ -1,0 +1,96 @@
+﻿@model IEnumerable<SIG.Entidades.HistorialPedido>
+
+@{
+    ViewBag.Title = "Historial de Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Pedidos</title>
+    <link rel="stylesheet" href="~/root/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Historial de Pedidos</h2>
+
+        <table id="tablaHistorial" class="table table-striped display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha de Modificación</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var historial in Model)
+                {
+                    <tr>
+                        <td>@historial.PedidoId</td>
+                        <td>@historial.FechaModificacion.ToString("dd/MM/yyyy HH:mm")</td> 
+                        <td>@historial.DetalleCambio</td>
+                        <td>@ViewBag.EstadoDescripciones[historial.EstadoCompraId]</td> 
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script src="~/root/plugins/jquery/jquery.min.js"></script>
+    <script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tablaHistorial').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true
+            });
+        });
+    </script>
+
+</body>
+</html>

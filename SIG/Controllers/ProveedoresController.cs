@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using SIG.Entidades;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
@@ -122,7 +123,6 @@ namespace SIG.Controllers
             return View(respuesta);
         }
 
-        // Pendiente el POST para actualizar datos
         [HttpPost]
         public ActionResult ActualizarProveedor(Entidades.Proveedor proveedor)
         {
@@ -154,44 +154,141 @@ namespace SIG.Controllers
             return RedirectToAction("ListaProveedores", "Proveedores");
         }
 
+        //Específico
+
         [HttpGet]
-        public ActionResult ConsultaEstadoFinanciero()
+        public ActionResult ConsultarEstadoFinanciero()
         {
+            var proveedores = proveedoresM.ListaProveedores();
+            ViewBag.Proveedores = proveedores;
 
             return View();
-
-
         }
-
 
         [HttpPost]
-        public ActionResult ConsultaEstadoFinanciero(Entidades.Proveedor proveedor)
+        public ActionResult ConsultarEstadoFinanciero(Entidades.ConsultaEstadoFinanciero consulta, int[] ProveedorIds)
         {
-            var estadoFinanciero = proveedoresM.ObtenerEstadoFinanciero(proveedor.id);
+            var proveedores = proveedoresM.ListaProveedores();
+            ViewBag.Proveedores = proveedores;
+        
+            if (ProveedorIds != null && ProveedorIds.Length > 0)
+            {              
+                consulta.ProveedorIds = ProveedorIds.ToList(); 
 
-            if (!string.IsNullOrEmpty(estadoFinanciero.MensajeError))
+                var estadoFinanciero = proveedoresM.ObtenerEstadoFinanciero(consulta);
+
+                if (estadoFinanciero.Any())
+                {
+                    return View(estadoFinanciero); 
+                }
+
+                ViewBag.msj = "No se encontraron datos financieros para los proveedores seleccionados en el rango de fechas.";
+            }
+            else
             {
-                ViewBag.Error = estadoFinanciero.MensajeError;
-                return View();
+                ViewBag.msj = "Por favor, seleccione al menos un proveedor.";
             }
 
-            return View(estadoFinanciero);
+            return View();
         }
 
-      
-
+        //En conjunto
         [HttpGet]
-        public ActionResult ConsultaEstadoFinancieroConjunto(List<int> ids)
+        public ActionResult ConsultarEstadoFinancieroConjunto()
         {
-            var estadosFinancieros = proveedoresM.ObtenerEstadoFinancieroConjunto(ids);
+            return View();
+        }
 
-            if (estadosFinancieros.Count == 0 || estadosFinancieros.Any(e => !string.IsNullOrEmpty(e.MensajeError)))
+        [HttpPost]
+        public ActionResult ConsultarEstadoFinancieroConjunto(DateTime fechaInicio, DateTime fechaFin)
+        {
+            
+            var consulta = new ConsultaEstadoFinanciero
             {
-                ViewBag.Error = "No hay datos disponibles o ocurrió un error al consultar.";
-                return View();
+                FechaInicio = fechaInicio,
+                FechaFin = fechaFin,
+                ProveedorIds = proveedoresM.ListaProveedores().Select(p => p.id).ToList()
+            };
+
+            var estadoFinanciero = proveedoresM.ObtenerEstadoFinancieroConjunto(consulta);
+
+            if (estadoFinanciero.Any())
+            {
+                var totalComprasContado = estadoFinanciero.Sum(x => x.TotalComprasContado);
+                var totalComprasCredito = estadoFinanciero.Sum(x => x.TotalComprasCredito);
+                var totalCompras = estadoFinanciero.Sum(x => x.TotalCompras);
+                var resumenFinanciero = new List<ProveedorFinanciero>
+        {
+            new ProveedorFinanciero
+            {
+                TotalComprasContado = totalComprasContado,
+                TotalComprasCredito = totalComprasCredito,
+                TotalCompras = totalCompras,
+                FechaCorte = fechaFin 
+            }
+        };
+
+                return View("ConsultarEstadoFinancieroConjunto", resumenFinanciero);
             }
 
-            return View(estadosFinancieros);
+            ViewBag.msj = "No se encontraron datos financieros para los proveedores seleccionados en el rango de fechas.";
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ExportarEstadoFinancieroConjunto(DateTime fechaInicio, DateTime fechaFin)
+        {
+            try
+            {
+                
+                var consulta = new ConsultaEstadoFinanciero
+                {
+                    FechaInicio = fechaInicio,
+                    FechaFin = fechaFin,
+                    ProveedorIds = proveedoresM.ListaProveedores().Select(p => p.id).ToList()
+                };
+
+                var estadoFinanciero = proveedoresM.ObtenerEstadoFinancieroConjunto(consulta);
+
+                if (!estadoFinanciero.Any())
+                {
+                    TempData["msj"] = "No se encontraron datos para exportar.";
+                    return RedirectToAction("ConsultarEstadoFinancieroConjunto");
+                }
+
+                var totalComprasContado = estadoFinanciero.Sum(x => x.TotalComprasContado);
+                var totalComprasCredito = estadoFinanciero.Sum(x => x.TotalComprasCredito);
+                var totalCompras = estadoFinanciero.Sum(x => x.TotalCompras);
+
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Reporte Financiero Conjunto");
+
+                    worksheet.Cell(1, 1).Value = "Total Compras Contado";
+                    worksheet.Cell(1, 2).Value = "Total Compras Crédito";
+                    worksheet.Cell(1, 3).Value = "Total Compras";
+                    worksheet.Cell(1, 4).Value = "Fecha Corte";
+
+                    worksheet.Cell(2, 1).Value = totalComprasContado;
+                    worksheet.Cell(2, 2).Value = totalComprasCredito;
+                    worksheet.Cell(2, 3).Value = totalCompras;
+                    worksheet.Cell(2, 4).Value = fechaFin.ToShortDateString();
+
+                    worksheet.Columns().AdjustToContents();
+
+                    using (var stream = new MemoryStream())
+                    {
+                        workbook.SaveAs(stream);
+                        var fileName = "ReporteFinancieroConjunto.xlsx";
+                        return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["msj"] = $"Ocurrió un error al generar el reporte: {ex.Message}";
+                return RedirectToAction("ConsultarEstadoFinancieroConjunto");
+            }
         }
     }
 }
