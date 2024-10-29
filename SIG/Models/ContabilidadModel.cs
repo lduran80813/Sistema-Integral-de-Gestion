@@ -46,5 +46,13 @@ namespace SIG.Models
             }
             return (rowsAffected > 0 ? true : false);
         }
+
+        public List<cierre_contable_Result> CierreContable(RangoFecha fecha)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.cierre_contable(fecha.inicioCorte, fecha.finCorte).ToList();
+            }
+        }
     }
 }

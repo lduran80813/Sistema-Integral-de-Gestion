@@ -1210,6 +1210,10 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="cierre_contable" ReturnType="Collection(SistemaIntegralGestionModel.cierre_contable_Result)">
+      <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
+      <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ConsultarCarrito_Result">
     <Property Type="Int32" Name="IdCarrito" Nullable="false" />
@@ -1332,5 +1336,13 @@
     <Property Type="Int32" Name="IdProducto" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="cierre_contable_Result">
+    <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
+    <Property Type="String" Name="descripcion_cuenta" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="tipo_cuenta" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="ingresos" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="egresos" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="balance" Nullable="true" Precision="38" Scale="2" />
   </ComplexType>
 </Schema>

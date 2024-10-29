@@ -602,5 +602,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.cierre_contable_Result">
+          <ScalarProperty Name="codigo_cuenta" ColumnName="codigo_cuenta" />
+          <ScalarProperty Name="descripcion_cuenta" ColumnName="descripcion_cuenta" />
+          <ScalarProperty Name="tipo_cuenta" ColumnName="tipo_cuenta" />
+          <ScalarProperty Name="ingresos" ColumnName="ingresos" />
+          <ScalarProperty Name="egresos" ColumnName="egresos" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

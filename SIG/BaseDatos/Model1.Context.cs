@@ -326,5 +326,18 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
+    
+        public virtual ObjectResult<cierre_contable_Result> cierre_contable(Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin)
+        {
+            var fecha_InicioParameter = fecha_Inicio.HasValue ?
+                new ObjectParameter("Fecha_Inicio", fecha_Inicio) :
+                new ObjectParameter("Fecha_Inicio", typeof(System.DateTime));
+    
+            var fecha_FinParameter = fecha_Fin.HasValue ?
+                new ObjectParameter("Fecha_Fin", fecha_Fin) :
+                new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cierre_contable_Result>("cierre_contable", fecha_InicioParameter, fecha_FinParameter);
+        }
     }
 }

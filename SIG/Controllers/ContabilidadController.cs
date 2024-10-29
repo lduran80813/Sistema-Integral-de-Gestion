@@ -344,9 +344,45 @@ namespace SIG.Controllers
             
         }
 
-        public ActionResult Generar_Factura()
+        [HttpGet]
+        public ActionResult ContaCierreCorte()
         {
             return View();
+
+        }
+        [HttpPost]
+        public ActionResult ContaCierreCorte(RangoFecha fechas)
+        {
+            var cierre = contabilidadM.CierreContable(fechas);
+            if (cierre != null)
+            {
+                fechas.cierreContable = cierre;
+                return View(fechas);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else
+            {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                return View();
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult ReporteCierreContable(RangoFecha fechas)
+        {
+            RangoFecha reporte = new RangoFecha();
+            reporte.cierreContable = contabilidadM.CierreContable(fechas);
+
+            if (reporte.cierreContable != null)
+                return new ViewAsPdf("CierreContableReporte", reporte)
+                {
+                    FileName = "ReporteCierreContable_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("ContaCierreCorte", "Contabilidad");
         }
 
     }
