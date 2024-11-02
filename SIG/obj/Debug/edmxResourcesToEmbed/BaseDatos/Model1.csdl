@@ -133,6 +133,7 @@
     <Property Name="articulos_entregados" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="observaciones_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Venta_Pedido" Relationship="Self.FK__Entregas__pedido__6FE99F9F" FromRole="Entregas" ToRole="Venta_Pedido" />
+    <Property Name="estado_entrega" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="PDA_Tarea">
     <Key>
@@ -940,6 +941,61 @@
       <Parameter Name="PuestoId" Mode="In" Type="Int32" />
       <Parameter Name="RolId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ActualizarVentaPedido">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="cliente_id" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_pedido" Mode="In" Type="DateTime" />
+      <Parameter Name="numero_pedido" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CrearVentaPedido">
+      <Parameter Name="cliente_id" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_pedido" Mode="In" Type="DateTime" />
+      <Parameter Name="numero_pedido" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EliminarVentaPedido">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerVentaPedido" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerVentaPedido_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SistemaIntegralGestionModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SistemaIntegralGestionModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="RegistrarEntrega">
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+      <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="DireccionEntrega" Mode="In" Type="String" />
+      <Parameter Name="ArticulosEntregados" Mode="In" Type="String" />
+      <Parameter Name="ObservacionesAdicionales" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerTodasLasEntregas" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerTodasLasEntregas_Result)" />
   </EntityContainer>
   <ComplexType Name="iniciarSesion_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -976,5 +1032,30 @@
     <Property Type="Int32" Name="rol_id" Nullable="true" />
     <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ObtenerVentaPedido_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="cliente_id" Nullable="true" />
+    <Property Type="DateTime" Name="fecha_pedido" Nullable="true" />
+    <Property Type="String" Name="numero_pedido" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ObtenerTodasLasEntregas_Result">
+    <Property Type="Int32" Name="pedido_id" Nullable="true" />
+    <Property Type="DateTime" Name="fecha_entrega" Nullable="true" />
+    <Property Type="String" Name="direccion_entrega" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="articulos_entregados" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="observaciones_adicionales" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estado_entrega" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

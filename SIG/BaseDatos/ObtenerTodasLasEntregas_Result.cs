@@ -10,18 +10,14 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Entregas
+    public partial class ObtenerTodasLasEntregas_Result
     {
-        public int id { get; set; }
         public Nullable<int> pedido_id { get; set; }
         public Nullable<System.DateTime> fecha_entrega { get; set; }
         public string direccion_entrega { get; set; }
         public string articulos_entregados { get; set; }
         public string observaciones_adicionales { get; set; }
         public string estado_entrega { get; set; }
-    
-        public virtual Venta_Pedido Venta_Pedido { get; set; }
     }
 }
