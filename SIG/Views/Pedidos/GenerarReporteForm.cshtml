@@ -1,0 +1,109 @@
+﻿@model IEnumerable<SIG.Entidades.ReportePedidos>
+
+@{
+    ViewBag.Title = "Generar Reporte de Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Reporte de Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            table th, table td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+            }
+
+            table th {
+                background-color: #f4f4f4;
+            }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Generar Reporte de Pedidos</h2>
+
+        @using (Html.BeginForm("GenerarReporte", "Pedidos", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.Label("Proveedor")
+                @Html.DropDownList("proveedorId", new SelectList(ViewBag.Proveedores, "Id", "Nombre"), "Seleccionar proveedor", new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-primary">Generar Reporte</button>
+        }
+
+        @if (Model != null && Model.Any())
+        {
+            <h3>Reporte de Pedidos</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha de Pedido</th>
+                        <th>Proveedor</th>
+                        <th>Total</th>
+                        <th>Evaluación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        <tr>
+                            <td>@pedido.PedidoId</td>
+                            <td>@pedido.FechaPedido.ToString("dd/MM/yyyy")</td>
+                            <td>@pedido.Proveedor</td>
+                            <td>@pedido.Total.ToString("C")</td>
+                            <td>@pedido.Evaluacion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else if (ViewBag.Reporte != null)
+        {
+            <div class="alert alert-warning">No se encontraron pedidos para el proveedor seleccionado.</div>
+        }
+    </div>
+</body>
+</html>

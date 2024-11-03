@@ -1,0 +1,101 @@
+﻿@model SIG.Entidades.Pedido
+@{
+    ViewBag.Title = "Detalles del Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            table th, table td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+            }
+
+            table th {
+                background-color: #f4f4f4;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Detalles del Pedido</h2>
+
+        <div>
+            <h4>Pedido @Model.id</h4>
+            <hr />
+            <div>
+                <h5>Fecha Pedido:</h5> @Model.fecha_pedido.ToString("d")
+            </div>
+            <div>
+                <h5>Proveedor:</h5> @Model.proveedor_id
+            </div>
+            <div>
+                <h5>Total Pedido:</h5> @Model.total_pedido.ToString("C")
+            </div>
+
+            <h4>Historial de Cambios</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha Modificación</th>
+                        <th>Detalle del Cambio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Historial)
+                    {
+                        <tr>
+                            <td>@item.FechaModificacion.ToString("g")</td>
+                            <td>@item.DetalleCambio</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <p>
+                @Html.ActionLink("Modificar Pedido", "ModificarPedido", new { id = Model.id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Volver a la Lista de Pedidos", "ListaPedidos", null, new { @class = "btn btn-secondary" })
+            </p>
+        </div>
+    </div>
+</body>
+</html>

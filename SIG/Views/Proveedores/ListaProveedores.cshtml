@@ -1,0 +1,120 @@
+﻿@model List<SIG.Entidades.Proveedor>
+@{
+    ViewBag.Title = "Lista de Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.warning != null)
+{
+    <div class="alert alert-warning" role="alert" style="text-align:center; margin: 20px;">
+        @ViewBag.msj
+    </div>
+}
+
+@if (Model.Count == 0)
+{
+    <div class="container mt-4">
+        <h3>No existen proveedores registrados</h3>
+    </div>
+}
+else
+{
+    <div class="container mt-5" style="max-width: 80%;">
+        <div class="p-4 bg-white shadow-sm rounded">
+            <h2 class="text-center mb-4">Proveedores</h2>
+
+            <!-- Mensaje de confirmación -->
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert" style="margin-bottom: 20px;">
+                    @ViewBag.msj
+                </div>
+            }
+
+            <!-- Botón para exportar a Excel -->
+            <div class="d-flex justify-content-end mb-3">
+                <a href="@Url.Action("ExportarProveedores", "Proveedores")" class="btn btn-success">
+                    <i class="fa fa-file-excel"></i> Exportar a Excel
+                </a>
+            </div>
+
+            <!-- Tabla de proveedores -->
+            <table id="tablaProveedores" class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th>Eliminar</th>
+                        <th>Actualizar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.id</td>
+                            <td>@item.nombre</td>
+                            <td>@item.telefono</td>
+                            <td>@(item.estado == 1 ? "Activo" : "Inactivo")</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-danger AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalProveedor" data-id="@item.id" data-name="@item.nombre">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-primary" href="@Url.Action("ActualizarProveedor", "Proveedores", new { id = item.id })">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<!-- Modal de confirmación de eliminación -->
+<div class="modal fade" id="ModalProveedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("EliminarProveedor", "Proveedores"))
+                {
+                    @Html.Hidden("id", "")
+                    <p>¿Desea eliminar el proveedor <strong id="Nombre"></strong>?</p>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts para jQuery y DataTables -->
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaProveedores").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            autoWidth: false,
+            responsive: true,
+            pageLength: 10
+        });
+    });
+
+    $(document).on("click", ".AbrirModal", function () {
+        $("#id").val($(this).data('id'));
+        $("#Nombre").text($(this).data('name'));
+    });
+</script>

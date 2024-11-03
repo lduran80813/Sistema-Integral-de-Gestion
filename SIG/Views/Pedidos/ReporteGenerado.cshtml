@@ -1,0 +1,131 @@
+﻿@model IEnumerable<SIG.Entidades.ReportePedidos>
+
+@{
+    ViewBag.Title = "Resultados del Reporte de Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Reporte de Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            table th, table td {
+                border: 1px solid #ddd;
+                padding: 10px;
+                text-align: center;
+            }
+
+            table th {
+                background-color: #f4f4f4;
+            }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-export {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            .btn-export:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Resultados del Reporte de Pedidos</h2>
+
+        @if (Model != null && Model.Any())
+        {
+            var proveedorId = ViewBag.ProveedorId;
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha de Pedido</th>
+                        <th>Proveedor</th>
+                        <th>Total</th>
+                        <th>Evaluación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pedido in Model)
+                    {
+                        <tr>
+                            <td>@pedido.PedidoId</td>
+                            <td>@pedido.FechaPedido.ToString("dd/MM/yyyy")</td>
+                            <td>@pedido.Proveedor</td>
+                            <td>@pedido.Total.ToString("C")</td>
+                            <td>@pedido.Evaluacion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <input type="hidden" id="proveedorId" value="@proveedorId" />
+            <button id="exportExcelButton" class="btn-export">Exportar a Excel</button>
+        }
+        else
+        {
+            <div class="alert alert-warning">No se encontraron resultados para los parámetros especificados.</div>
+        }
+
+        <p>
+            @Html.ActionLink("Generar otro Reporte", "GenerarReporteForm", "Pedidos", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Volver a la Lista de Pedidos", "ListaPedidos", null, new { @class = "btn btn-secondary" })
+        </p>
+    </div>
+
+    <script>
+        document.getElementById("exportExcelButton").addEventListener("click", function() {
+            var proveedorId = document.getElementById("proveedorId").value;
+            window.location.href = '@Url.Action("ExportarReporte", "Pedidos")?proveedorId=' + proveedorId;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+﻿@model IEnumerable<SIG.Entidades.Pedido>
+
+@{
+    ViewBag.Title = "Lista de Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pedidos</title>
+    <link rel="stylesheet" href="~/root/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Lista de Pedidos</h2>
+
+        <table id="tablaPedidos" class="table table-striped display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Proveedor ID</th>
+                    <th>Total de Pedido</th>
+                    <th>Estado</th>
+                    <th>Historial</th>
+                    <th>Eliminar</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pedido in Model)
+                {
+                    <tr>
+                        <td>@pedido.id</td>
+                        <td>@pedido.fecha_pedido.ToString("dd/MM/yyyy")</td>
+                        <td>@pedido.proveedor_id</td>
+                        <td>@pedido.total_pedido.ToString("0.00")</td>
+                        <td>@ViewBag.EstadoDescripciones[pedido.EstadoCompraId]</td>
+                        <td class="text-center">
+                            <a class="btn btn-info" href="@Url.Action("VerHistorial", "Pedidos", new { id = pedido.id })">
+                                <i class="fa fa-history"></i> Historial
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-danger AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalPedido" data-id="@pedido.id" data-name="@pedido.fecha_pedido.ToString("dd/MM/yyyy")">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" href="@Url.Action("ModificarPedido", "Pedidos", new { id = pedido.id })">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="ModalPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("EliminarPedido", "Proveedores"))
+                    {
+                        @Html.Hidden("id", "")
+                        <p>¿Desea eliminar el pedido realizado el <strong id="FechaPedido"></strong>?</p>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/root/plugins/jquery/jquery.min.js"></script>
+    <script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tablaPedidos').DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                },
+                paging: true,
+                searching: true,
+                ordering: true,
+                info: true
+            });
+        });
+
+        $(document).on("click", ".AbrirModal", function () {
+            $("#id").val($(this).data('id'));
+            $("#FechaPedido").text($(this).data('name'));
+        });
+    </script>
+
+</body>
+</html>

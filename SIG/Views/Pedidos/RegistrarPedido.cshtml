@@ -1,0 +1,120 @@
+﻿@model SIG.Entidades.Pedido
+@{
+    ViewBag.Title = "Registrar Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px; 
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, textarea, select {
+            margin-bottom: 20px; 
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #4cae4c; 
+            }
+
+        .alert {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registrar Pedido</h2>
+
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert">@ViewBag.msj</div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fecha_pedido, "Fecha de Pedido")
+                @Html.TextBoxFor(model => model.fecha_pedido, new { @class = "form-control", @type = "date" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.proveedor_id, "Proveedor")
+                @Html.DropDownListFor(model => model.proveedor_id, new SelectList(ViewBag.Proveedores, "id", "nombre"), "Seleccione un proveedor", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.total_pedido, "Total de Pedido")
+                @Html.TextBoxFor(model => model.total_pedido, new { @class = "form-control", @type = "number", step = "1", value = "0", min = "0" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EstadoCompraId, "Estado de Compra")
+                @Html.DropDownListFor(model => model.EstadoCompraId, new SelectList(ViewBag.EstadosCompra, "id", "nombre"), "Seleccione un estado", new { @class = "form-control" })
+            </div>
+
+            <button type="submit">Registrar Pedido</button>
+        }
+    </div>
+
+    <script src="~/root/plugins/jquery/jquery.min.js"></script>
+    <script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

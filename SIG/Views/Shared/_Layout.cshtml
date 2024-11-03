@@ -204,88 +204,56 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="@Url.Action("Registro_Proveedores","Proveedores")" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        @*<i class="nav-icon fas fa-people-arrows"></i>*@
                                         <p>Registrar proveedor</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Ver lista de proveedores</p>
+                                    <a href="@Url.Action("ListaProveedores","Proveedores")" class="nav-link">
+                                        @*<i class="nav-icon fas fa-industry"></i>*@
+                                        <p>Lista de Proveedores</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ConsultarEstadoFinanciero", "Proveedores")" class="nav-link">
+                                        <p>Estado financiero Id</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Exportar lista de proveedores</p>
+                                    <a href="@Url.Action("ConsultarEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
+                                        <p>Estado Financiero Conjunto</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+
+                                <li class="nav-item has-treeview">
                                     <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Editar proveedor</p>
+                                        <i class="nav-icon fas fa-shopping-cart"></i>
+                                        <p>
+                                            Pedidos
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
                                     </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("RegistrarPedido", "Pedidos")" class="nav-link">
+                                                <p>Registrar Pedido</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("ListaPedidos", "Pedidos")" class="nav-link">
+                                                <p>Lista de Pedidos</p>
+                                            </a>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("GenerarReporteForm", "Pedidos")" class="nav-link">
+                                                <p>Generar Reporte</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Eliminar proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Consultar estado financiero de proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Consultar estado financiero general de todos los proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Exportar reporte financiero de proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Registro de pedido realizado a proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Dar seguimiento a pedidos realizados a proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Generar reporte de pedido y evaluación de proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Exportar reporte de pedidos y evaluación de proveedores</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Enviar mensaje a proveedor</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-arrows"></i>
-                                        <p>Recibir notificación ante disminuciones significativas en inventario de proveedores</p>
-                                    </a>
-                                </li>
+
+
                             </ul>
                         </li>
 

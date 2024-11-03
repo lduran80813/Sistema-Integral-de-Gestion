@@ -1,0 +1,121 @@
+﻿@model SIG.Entidades.Pedido
+@{
+    ViewBag.Title = "Modificar Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #d9534f;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>@ViewBag.Title</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+
+            if (ViewBag.msj != null)
+            {
+                <div class="alert">@ViewBag.msj</div>
+            }
+
+            <div class="form-group">
+                @Html.Label("Fecha del Pedido")
+                @Html.TextBoxFor(m => m.fecha_pedido, new { @class = "form-control", type = "date", Value = Model.fecha_pedido.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(m => m.fecha_pedido, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Proveedor")
+                @Html.DropDownListFor(m => m.proveedor_id, new SelectList(ViewBag.Proveedores, "id", "nombre", Model.proveedor_id), "Seleccione un proveedor", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.proveedor_id, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Total del Pedido (entero)")
+                @Html.TextBoxFor(m => m.total_pedido, new { @class = "form-control", type = "number", min = "0", step = "1" })
+                @Html.ValidationMessageFor(m => m.total_pedido, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Estado de Compra")
+                @Html.DropDownListFor(m => m.EstadoCompraId, new SelectList(ViewBag.EstadosCompra, "Id", "Nombre", Model.EstadoCompraId), "Seleccione un estado", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EstadoCompraId, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit">Modificar</button>
+        }
+    </div>
+</body>
+</html>

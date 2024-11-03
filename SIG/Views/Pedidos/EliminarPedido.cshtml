@@ -1,0 +1,59 @@
+﻿@model SIG.Entidades.Pedido
+@{
+    ViewBag.Title = "Eliminar Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .alert {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Eliminar Pedido</h2>
+
+        <div class="alert alert-danger">
+            ¿Está seguro de que desea eliminar el pedido con ID @Model.id?
+        </div>
+
+        @using (Html.BeginForm("ConfirmarEliminar", "Pedidos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="@Url.Action("ListaPedidos", "Pedidos")" class="btn btn-secondary">Cancelar</a>
+        }
+    </div>
+</body>
+</html>
