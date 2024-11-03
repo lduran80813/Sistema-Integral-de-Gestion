@@ -290,5 +290,156 @@ namespace SIG.Models
                         }).ToList();
             }
         }
+
+        public bool DesactivarTipoIncidencia(BaseDatos.Ticket_Tipo t)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tipo = context.Ticket_Tipo.FirstOrDefault(x => x.tipo_incidencia == t.tipo_incidencia);
+                tipo.estado = false;
+                rowsAffected = context.SaveChanges();
+            }
+
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public bool CrearCategoria(Entidades.CategoriaIncidencia c)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tTicket_Tipo = new BaseDatos.Ticket_Tipo();
+                tTicket_Tipo.descripcion = c.descripcion;
+                tTicket_Tipo.estado = true;
+
+                context.Ticket_Tipo.Add(tTicket_Tipo);
+                rowsAffected = context.SaveChanges();
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public BaseDatos.Ticket_Tipo verCategoria(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var query = (from x in context.Ticket_Tipo
+                             where x.tipo_incidencia == id
+                             select x).FirstOrDefault();
+
+                if (query != null)
+                    return query;
+                else return null;
+            }
+        }
+
+        public bool ActualizarCategoria(BaseDatos.Ticket_Tipo c)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+
+                var ticket = context.Ticket_Tipo.FirstOrDefault(x => x.tipo_incidencia == c.tipo_incidencia);
+
+                if (ticket != null)
+                {                  
+                    if (ticket.descripcion != c.descripcion & c.descripcion != null) ticket.descripcion = c.descripcion;
+                }
+                rowsAffected = context.SaveChanges();
+            }
+
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        public Entidades.Ticket reporteTecnico(Entidades.Ticket ticket)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int asignados = (from x in context.Ticket
+                               join e in context.Ticket_Estado on x.estado equals e.estado_ticket
+                               where ((x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) || 
+                               (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)) && x.id_tecnico == ticket.id_tecnico
+                                 select x).Count();
+
+                int finalizados = (from x in context.Ticket
+                                 where ((x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
+                               (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte))
+                                 && x.id_tecnico == ticket.id_tecnico && x.estado == 4
+                                 select x).Count();
+
+                int pendientes = asignados - finalizados;
+
+
+                var duracion = (from x in context.Ticket
+                                           where x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte 
+                                           && x.id_tecnico == ticket.id_tecnico && x.estado == 4
+                                           select new {
+                                               fecha_registra_tecnico = x.fecha_registra_tecnico,
+                                               fecha_cierre_ticket = x.fecha_cierre_ticket
+                                           }).
+                                           ToList();//.Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
+                var duracion2 = duracion
+    .Select(t => (t.fecha_cierre_ticket - t.fecha_registra_tecnico) ?? TimeSpan.Zero)
+    .Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
+
+                float promedioAtencion = finalizados > 0 ? (float)(duracion2.TotalHours / finalizados) : 0;
+
+                ticket.casosAsignados = asignados;
+                ticket.casosFinalizados = finalizados;
+                ticket.casosPendientes = pendientes;
+                ticket.duracionMedia = promedioAtencion;
+                ticket.activa = true;
+                return ticket;
+
+            }
+        }
+
+        public Entidades.Ticket reporteTecnicos(Entidades.Ticket ticket)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int asignados = (from x in context.Ticket
+                                 join e in context.Ticket_Estado on x.estado equals e.estado_ticket
+                                 where (x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
+                                 (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)
+                                 select x).Count();
+
+                int finalizados = (from x in context.Ticket
+                                   where (x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte) ||
+                                 (x.fecha_cierre_ticket == null && x.fecha_registra_tecnico <= ticket.finCorte)
+                                   && x.estado == 4
+                                   select x).Count();
+
+                int pendientes = asignados - finalizados;
+
+
+                var duracion = (from x in context.Ticket
+                                where x.fecha_registra_tecnico >= ticket.inicioCorte && x.fecha_cierre_ticket <= ticket.finCorte
+                                           && x.estado == 4
+                                select new
+                                {
+                                    fecha_registra_tecnico = x.fecha_registra_tecnico,
+                                    fecha_cierre_ticket = x.fecha_cierre_ticket
+                                }).
+                                           ToList();//.Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
+                var duracion2 = duracion
+    .Select(t => (t.fecha_cierre_ticket - t.fecha_registra_tecnico) ?? TimeSpan.Zero)
+    .Aggregate(TimeSpan.Zero, (sum, next) => sum.Add(next));
+
+                float promedioAtencion = finalizados > 0 ? (float)(duracion2.TotalHours / finalizados) : 0;
+
+                ticket.casosAsignados = asignados;
+                ticket.casosFinalizados = finalizados;
+                ticket.casosPendientes = pendientes;
+                ticket.duracionMedia = promedioAtencion;
+                ticket.activa = true;
+                return ticket;
+
+            }
+        }
+
     }
 }

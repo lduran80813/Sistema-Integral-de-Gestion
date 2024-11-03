@@ -17,10 +17,7 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Venta_Cliente()
         {
-            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
             this.Venta_Factura = new HashSet<Venta_Factura>();
-            this.Venta_PagoCliente = new HashSet<Venta_PagoCliente>();
-            this.Venta_Pedido = new HashSet<Venta_Pedido>();
         }
     
         public int id { get; set; }
@@ -30,12 +27,6 @@ namespace SIG.BaseDatos
         public string correo_electronico { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta_Factura> Venta_Factura { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_PagoCliente> Venta_PagoCliente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_Pedido> Venta_Pedido { get; set; }
     }
 }

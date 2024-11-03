@@ -22,6 +22,7 @@ namespace SIG.BaseDatos
     
         public int tipo_incidencia { get; set; }
         public string descripcion { get; set; }
+        public bool estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket { get; set; }

@@ -1,4 +1,5 @@
-﻿using SIG.Models;
+﻿using Rotativa;
+using SIG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,12 +75,18 @@ namespace SIG.Controllers
         [HttpGet]
         public ActionResult ListaTicketsAsignados()
         {
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
+
             var respuesta = ticketM.ListaTicketsAsignados();
             if (respuesta != null) 
                 return View(respuesta);
             else
             {
-                ViewBag.msj = "No se ha podido acceder a la lista de incidencias asignadas";
+                TempData["mensaje"] = "No se ha podido acceder a la lista de incidencias asignadas";
                 return RedirectToAction("Index", "Home");
             }                
         }
@@ -90,14 +97,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.CerrarTicket(ticket);
             if (respuesta)
             {
-                ViewBag.msj = "Ticket eliminado correctaqmente";
-                return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
+                TempData["mensaje"] = "Ticket eliminado correctaqmente";
             }
             else
             {
-                ViewBag.msj = "No se ha podido eliminar el Ticket";
-                return View(ListaTicketsAsignados());
+                TempData["mensaje"] = "No se ha podido eliminar el Ticket";
             }
+            return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
         }
 
         [HttpGet]
@@ -110,7 +116,7 @@ namespace SIG.Controllers
             {
                 if (respuesta.estado == 1 || respuesta.estado == 4)
                 {
-                    TempData["advertencia"] = "Acción denegada: El ticket ya fue cerrado";
+                    TempData["mensaje"] = "Acción denegada: El ticket ya fue cerrado";
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -119,7 +125,7 @@ namespace SIG.Controllers
             }
             else
             {
-                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -130,10 +136,13 @@ namespace SIG.Controllers
         {
             var respuesta = ticketM.AtenderTicket(ticket);
             if (respuesta)
+            {
+                TempData["mensaje"] = "Ticket actualizado exitosamente";
                 return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
+            }
             else
             {
-                ViewBag.msj = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                ViewBag.msj = "No se ha podido actualizar el Ticket";
                 return View();
             }
         }
@@ -142,7 +151,50 @@ namespace SIG.Controllers
         public ActionResult ListaHistoricoAtendidos()
         {
             var respuesta = ticketM.ListaHistoricoAtendidos();
-            return View(respuesta);
+            if (respuesta != null)
+                return View(respuesta);
+            else
+            {
+                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITAnalyst()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReporteITAnalyst(Entidades.Ticket ticket)
+        {
+            ticket.id_tecnico = int.Parse(Session["IdUsuario"].ToString());
+            Entidades.Ticket respuesta = ticketM.reporteTecnico(ticket);
+
+            if (respuesta != null)
+                return View(respuesta);
+            //return View("ReporteITAnalystResult", respuesta);
+
+            else
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITAnalystPDF(Entidades.Ticket ticket)
+        {
+            ticket.id_tecnico = int.Parse(Session["IdUsuario"].ToString());
+            Entidades.Ticket reporte = ticketM.reporteTecnico(ticket);
+
+            if (reporte != null)
+            return new ViewAsPdf("ReporteITAnalystResult", reporte)
+            {
+                FileName = "ReporteITAnalyst_" + ticket.id_tecnico + "_" + DateTime.Now + ".pdf",
+                PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+            };
+            return RedirectToAction("ReporteITAnalyst", "IncidenciasITAnalyst");
         }
 
     }

@@ -18,7 +18,7 @@ namespace SIG.BaseDatos
         public Adm_Rol()
         {
             this.Adm_Permiso = new HashSet<Adm_Permiso>();
-            this.Usuario = new HashSet<Usuario>();
+            this.Empleado = new HashSet<Empleado>();
         }
     
         public int id { get; set; }
@@ -27,6 +27,6 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adm_Permiso> Adm_Permiso { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Empleado> Empleado { get; set; }
     }
 }

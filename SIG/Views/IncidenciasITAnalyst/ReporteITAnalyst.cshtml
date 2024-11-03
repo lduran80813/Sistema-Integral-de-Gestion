@@ -1,0 +1,122 @@
+﻿@model SIG.Entidades.Ticket
+@{
+    ViewBag.Title = "ReporteITAnalyst";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar Reportes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Reporte de atención de casos</h1>
+
+        @using (Html.BeginForm("ReporteITAnalyst", "IncidenciasITAnalyst"))
+        {
+            <label>Escoja las fechas para generar el reporte</label>
+
+            @Html.Label("Inicio")
+            @Html.TextBoxFor(m => m.inicioCorte, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+            @Html.Label("Fin")
+            @Html.TextBoxFor(m => m.finCorte, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+            <button type="submit">Generar reporte</button>
+
+            if (Model != null)
+            {
+                <a href="@Url.Action("ReporteITAnalystPDF", new { inicioCorte = Model.inicioCorte, finCorte = Model.finCorte })" class="btn btn-primary">Descargar reporte PDF</a>
+
+                <br />
+                <h3>Resultados del Reporte</h3>
+                @Html.Label("Casos Asignados:")
+                @Html.TextBoxFor(m => m.casosAsignados, new { @class = "form-control", @readonly = "true" })
+
+
+                @Html.Label("Casos Finalizados:")
+                @Html.TextBoxFor(m => m.casosFinalizados, new { @class = "form-control", @readonly = "true" })
+
+
+                @Html.Label("Casos Pendientes:")
+                @Html.TextBoxFor(m => m.casosPendientes, new { @class = "form-control", @readonly = "true" })
+
+
+                @Html.Label("Duración media (horas):")
+                @Html.TextBoxFor(m => m.duracionMedia, new { @class = "form-control", @readonly = "true" })
+
+
+                @Html.Label("Reporte generado:")
+                <input type="text" class="form-control" readonly value="@DateTime.Now" />
+            }
+        }
+
+
+
+    </div>
+
+</body>
+</html>
+
+

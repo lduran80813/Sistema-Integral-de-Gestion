@@ -1,4 +1,5 @@
-﻿using SIG.Models;
+﻿using Rotativa;
+using SIG.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,11 @@ namespace SIG.Controllers
         [HttpGet]
         public ActionResult ListaTicketsRegistrados()
         {
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
             var respuesta = ticketM.ListaTicketsRegistrados();
             return View(respuesta);
         }
@@ -84,13 +90,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.CerrarTicket(ticket);
             if (respuesta)
             {
-                ViewBag.msj = "Ticket eliminado correctaqmente";
+                TempData["mensaje"] = "Ticket eliminado correctaqmente";
                 return RedirectToAction("ListaTicketsRegistrados", "IncidenciasITManager");
             }
             else
             {
-                ViewBag.msj = "No se ha podido eliminar el Ticket";
-                return View(ListaTicketsRegistrados());
+                TempData["mensaje"] = "No se ha podido eliminar el Ticket";
+                return RedirectToAction("ListaTicketsRegistrados", "IncidenciasITManager");
             }
         }
 
@@ -101,7 +107,7 @@ namespace SIG.Controllers
 
             if (respuesta.estado != 1)
             {
-                TempData["advertencia"] = "Acción denegada: El ticket ya fue asignado y priorizado";
+                TempData["mensaje"] = "Acción denegada: El ticket ya fue asignado y priorizado";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -116,11 +122,11 @@ namespace SIG.Controllers
             var respuesta = ticketM.AsignarTicket(ticket);
             if (respuesta)
             {
-                TempData["advertencia"] = "Ticket asignado existosamente";                
+                TempData["mensaje"] = "Ticket asignado existosamente";                
             }                
             else
             {
-                TempData["advertencia"] = "No se ha podido actualizar el ticket";
+                TempData["mensaje"] = "No se ha podido actualizar el ticket";
             }
             return RedirectToAction("ListaTicketsRegistrados", "IncidenciasITManager");
         }
@@ -129,8 +135,170 @@ namespace SIG.Controllers
         public ActionResult ListaHistoricoTickets()
         {
             var respuesta = ticketM.ListaHistoricoTickets();
-            return View(respuesta);
+            if (respuesta != null)
+                return View(respuesta);
+            else
+            {
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
+        [HttpGet]
+        public ActionResult ListaTiposTicket()
+        {
+            var respuesta = catalogosM.ConsultarTicketTipo();
+
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
+
+            if (respuesta != null)
+                return View(respuesta);
+            else
+            {
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder a los tipos de incidencias";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DesactivarTipoIncidencia(BaseDatos.Ticket_Tipo tipo)
+        {
+            var respuesta = ticketM.DesactivarTipoIncidencia(tipo);
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Tipo de incidencia desactivada correctamente";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+            else
+            {
+                TempData["mensaje"] = "No se ha podido desactivar el tipo de incidencia";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult CrearCategoria()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CrearCategoria(Entidades.CategoriaIncidencia categoria)
+        {
+            var respuesta = ticketM.CrearCategoria(categoria);
+
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Categoría creada exitosamente";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+            else
+            {
+                ViewBag.msj = "No se ha podido crear categoría";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditarCategoria(int idCategoria)
+        {
+            var respuesta = ticketM.verCategoria(idCategoria);
+
+
+            if (respuesta != null)
+            {
+                return View(respuesta);
+            }
+            else
+            {
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder a los tipos de incidencias";
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditarCategoria(BaseDatos.Ticket_Tipo categoria)
+        {
+            var respuesta = ticketM.ActualizarCategoria(categoria);
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Categoría actualizada exitosamente";
+                return RedirectToAction("ListaTiposTicket", "IncidenciasITManager");
+            }
+            else
+            {
+                ViewBag.msj = "No se ha podido actualizar la categoría";
+                return View();
+            }
+        }
+
+        public void ListaTecnicos()
+        {
+            // Lista de técnicos
+            var tecnicos = catalogosM.ConsultarTecnicos();
+
+            List<SelectListItem> lstTecnicos = new List<SelectListItem>();
+            lstTecnicos.Add(new SelectListItem { Value = "0", Text = "Todos (grupal)" });
+            foreach (var item in tecnicos)
+            {
+                lstTecnicos.Add(new SelectListItem { Value = item.id_usuario.ToString(), Text = item.nombre_completo.ToString() });
+            }
+
+            ViewBag.Tecnicos = lstTecnicos;
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITManager()
+        {
+            ListaTecnicos();
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ReporteITManager(Entidades.Ticket ticket)
+        {
+            Entidades.Ticket respuesta = new Entidades.Ticket();
+            if (ticket.id_tecnico != 0)
+                respuesta = ticketM.reporteTecnico(ticket);
+            else respuesta = ticketM.reporteTecnicos(ticket);
+
+
+            if (respuesta != null)
+            {
+                ListaTecnicos();
+                return View(respuesta);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                ListaTecnicos();
+                return View();
+            }
+                
+        }
+
+        [HttpGet]
+        public ActionResult ReporteITManagerPDF(Entidades.Ticket ticket)
+        {
+            Entidades.Ticket reporte= new Entidades.Ticket();
+            if (ticket.id_tecnico != 0)
+                reporte = ticketM.reporteTecnico(ticket);
+            else reporte = ticketM.reporteTecnicos(ticket);
+
+            if (reporte != null)
+                return new ViewAsPdf("ReporteITManagerResult", reporte)
+                {
+                    FileName = "ReporteITManager_" + ticket.id_tecnico + "_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("ReporteITManager", "IncidenciasITManager");
+        }
     }
 }

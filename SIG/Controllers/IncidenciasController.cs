@@ -97,8 +97,8 @@ namespace SIG.Controllers
 
             if (respuesta)
             {
-                ViewBag.msj = "Incidencia creada exitosamente";
-                return RedirectToAction("About", "Home");
+                TempData["mensaje"] = "Incidencia creada exitosamente";
+                return RedirectToAction("ListaIncidenciasUsuario", "Incidencias");
             }                
             else
             {
@@ -124,6 +124,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.ListaIncidenciasUsuario();
             if (respuesta == null) 
                 ViewBag.msj = "No se ha podido conectar con la base de datos";
+
+            if (TempData["mensaje"] != null)
+            {
+                var mensaje = TempData["mensaje"].ToString();
+                ViewBag.msj = mensaje;
+            }
+
             return View(respuesta);
         }
 
@@ -142,7 +149,7 @@ namespace SIG.Controllers
             }
             else
             {
-                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -154,7 +161,7 @@ namespace SIG.Controllers
             var respuesta = ticketM.ActualizarTicket(ticket);
             if (respuesta)
             {
-                ViewBag.msj = "Ticket actualizado exitosamente";
+                TempData["mensaje"] = "Ticket actualizado exitosamente";
                 return RedirectToAction("ListaIncidenciasUsuario", "Incidencias");
             }
             else
@@ -171,13 +178,13 @@ namespace SIG.Controllers
             var respuesta = ticketM.CerrarTicket(ticket);
             if (respuesta)
             {
-                ViewBag.msj = "Ticket eliminado correctaqmente";
+                TempData["mensaje"] = "Ticket eliminado correctaqmente";
                 return RedirectToAction("ListaIncidenciasUsuario", "Incidencias");
             }                
             else
             {
-                ViewBag.msj = "No se ha podido eliminar el Ticket";
-                return View(ListaIncidenciasUsuario());
+                TempData["mensaje"] = "No se ha podido eliminar el Ticket";
+                return RedirectToAction("ListaIncidenciasUsuario", "Incidencias");
             }
         }
 
@@ -205,7 +212,7 @@ namespace SIG.Controllers
             }
             else
             {
-                TempData["advertencia"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
+                TempData["mensaje"] = "Acción denegada: No cuenta con permiso para acceder al ticket";
                 return RedirectToAction("Index", "Home");
             }
         }
