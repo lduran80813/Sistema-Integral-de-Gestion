@@ -1,0 +1,142 @@
+﻿@model SIG.Entidades.RangoFecha
+@{
+    ViewBag.Title = "ReporteITManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar cierre contable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cierre contable</h1>
+
+        @using (Html.BeginForm("ContaCierreCorte", "Contabilidad"))
+        {
+            <label>Escoja las fechas para generar el reporte</label>
+
+            @Html.Label("Inicio")
+            @Html.TextBoxFor(m => m.inicioCorte, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+            @Html.Label("Fin")
+            @Html.TextBoxFor(m => m.finCorte, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+            <br />
+
+            <button type="submit">Generar cierre</button>
+
+            if (Model != null)
+            {
+                <a href="@Url.Action("ReporteCierreContable", new { inicioCorte = Model.inicioCorte, finCorte = Model.finCorte })" class="btn btn-primary">Descargar reporte PDF</a>
+
+                <br />
+                <h3>Resultados del Cierre</h3>
+                <table id="tablaCierreContable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th>Descripción</th>
+                            <th>Ingresos</th>
+                            <th>Egresos</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.cierreContable)
+                        {
+                            <tr>
+                                <td>@item.codigo_cuenta</td>
+                                <td>@item.descripcion_cuenta</td>
+                                <td>@item.ingresos</td>
+                                <td>@item.egresos</td>
+                                <td>@item.balance</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+                @Html.Label("Reporte generado:")
+                <input type="text" class="form-control" readonly value="@DateTime.Now" />
+            }
+        }
+
+
+
+    </div>
+
+</body>
+</html>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaCierreContable").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4] }]
+        });
+    });
+</script>

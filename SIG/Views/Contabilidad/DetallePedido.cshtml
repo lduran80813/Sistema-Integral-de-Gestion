@@ -1,0 +1,190 @@
+﻿@model List<SIG.BaseDatos.ConsultarDetallePedido_Result>
+@{
+    ViewBag.Title = "DetallePedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input, select, textarea {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+</style>
+
+<body>
+
+    <div class="container">
+        <h2>Detalle de pedido: @Model.FirstOrDefault().factura_id</h2>
+        <div class="row">
+            <div class="col-12">
+
+
+
+                @if (ViewBag.msj != null)
+                {
+                    <div class="alert alert-info" role="alert" style="text-align:center">
+                        @ViewBag.msj
+                    </div>
+                }
+
+                <table id="tablaDetalle" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id línea</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Monto</th>
+                            <th>Impuesto</th>
+                            <th>Monto final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@item.nombre</td>
+                                <td>@item.cantidad</td>
+                                <td>@item.precio_unidad.ToString("N2")</td>
+                                <td>@item.monto.ToString("N2")</td>
+                                <td>@item.impuesto.ToString("N2")</td>
+                                <td>@item.monto_final.ToString("N2")</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<div class="modal fade" id="ModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("EliminarProductoPedido", "Contabilidad"))
+                {
+                    <div class="modal-body">
+                        @Html.Hidden("IdProducto", "")
+                        ¿Desea remover de su pedido el producto <label id="Nombre"></label>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Remover</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaDetalle").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4, 5] }]
+        });
+    })
+    //$(document).on("click", ".AbrirModal", function () {
+    //    $("#IdProducto").val($(this).attr('data-id'));
+    //    $("#Nombre").text($(this).attr('data-name'));
+    //});
+
+
+    //$(document).ready(function () {
+    //    $('#procesarPedido').on("submit", function (e) {
+    //        let idCliente = $("#idCliente").val();
+
+    //        if (idCliente == "") {
+    //            e.preventDefault();
+    //            MostrarMensaje("Información", "Debe seleccionar un cliente para poder continuar", "error");
+    //            return;
+    //            }
+    //    });
+    //});
+
+
+    //function SeleccionarCliente(id) {
+    //    let nombre = $("#nombre-" + id).text();
+    //    $("#idCliente").val(id);
+    //    $("#nombreCliente").val(nombre);
+    //}
+
+    //function MostrarMensaje(titulo, mensaje, icono) {
+    //    Swal.fire({
+    //        title: titulo,
+    //        showDenyButton: false,
+    //        showCancelButton: false,
+    //        confirmButtonText: "Aceptar",
+    //        text: mensaje,
+    //        icon: icono
+    //    }).then((result) => {
+    //        if (result.isConfirmed) {
+    //            window.location.href = '/Contabilidad/ConsultarPedido'
+    //        }
+    //    });
+    //}
+
+</script>

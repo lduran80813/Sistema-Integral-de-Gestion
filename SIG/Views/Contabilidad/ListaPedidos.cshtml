@@ -1,0 +1,307 @@
+﻿@model SIG.Entidades.PedidoFactura
+@{
+    ViewBag.Title = "ListaPedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input, select, textarea {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+</style>
+
+<body>
+
+    <div class="container">
+        <h2>Lista de pedidos</h2>
+        <div class="row">
+            <div class="col-12">
+
+
+
+                @if (ViewBag.msj != null)
+                {
+                    <div class="alert alert-info" role="alert" style="text-align:center">
+                        @ViewBag.msj
+                    </div>
+                }
+
+                <table id="tablaPedidos" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id pedido</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Impuestos</th>
+                            <th>Estado</th>
+                            <th>Total transacción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Pedidos)
+                        {
+                            <tr>
+                                <td>@item.id</td>
+                                <td>@(item.fecha.HasValue ? item.fecha.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@item.monto.ToString("N2")</td>
+                                <td>@item.impuesto.ToString("N2")</td>
+                                <td>@item.estadoD</td>
+                                <td>@item.total_transaccion.Value.ToString("N2")</td>
+
+                                <td style="text-align:center">
+                                    @if (item.estadoD == "Registrado")
+                                    {
+                                        <button type="button" class="btn btn-primary AbrirModalFacturar" data-bs-toggle="modal" data-bs-target="#ModalFacturar"
+                                                data-id="@item.id">
+                                            Facturar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        if (item.estadoD == "Facturado")
+                                        {
+                                            <button type="button" class="btn btn-primary AbrirModalPagar" data-bs-toggle="modal" data-bs-target="#ModalPagoRecibo"
+                                                    data-id="@item.id" data-tipo="@item.tipo_venta" data-total="@item.total_transaccion.Value">
+                                                Pago y recibo
+                                            </button>
+                                        }
+                                        <a class="btn btn-primary text-white"  href="@Url.Action("GenFacturaPdf", "Contabilidad", new { idFactura = item.id})">Exportar PDF</a>
+                                    }
+                                    <a class="btn btn-primary text-white" href="@Url.Action("DetallePedido", "Contabilidad", new { idPedido = item.id})">Ver Productos</a>
+                                    @*Si no está facturado, mostrar una opción para facturar y otra para cancelar*@
+                                    @*Si está facturado, mostrar una opción ver los productos de la factura y otra para exportar factura en pdf*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<div class="modal fade" id="ModalFacturar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Detalles de facturación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("FacturarPedido", "Contabilidad"))
+                {
+                    <div class="modal-body">
+                        @Html.Hidden("idFacturar", "")
+                        @Html.Label("Tipo de venta", new { @for = "tipoVenta" })
+                        @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>, new { @class = "form-select", @id = "tipoVenta", @name = "tipoVenta", @required = "true" })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Facturar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalPagoRecibo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Pago y recibo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("ContaPagoFactura", "Contabilidad"))
+                {
+                    <div class="modal-body">
+                        @Html.Hidden("idPagar", "")
+                        @Html.Hidden("tipo_venta", "", new { id = "tipo_venta" })
+                        @Html.Label("Tipo de venta", new { @for = "tipoVenta" })
+                        @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>, new { @class = "form-select", @id = "tipoVenta", @name = "tipoVenta", @disabled = "true" })
+                        <div id="metodo-container" style="display:none;">
+                            @Html.Label("Método de pago", new { @for = "metodo" })
+                            @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>, new { @class = "form-select", @id = "metodo", metodo = "metodo", @required = "true" })
+                        </div>
+
+                        <div id="financiera-container" style="display:none;">
+                            @Html.Label("Entidad Financiera", new { @for = "financieras" })
+                            @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>, new { @class = "form-select", @id = "financieras", @name = "financieras" })
+
+                            @Html.Label("Número de trasacción de referencia", new { @for = "referencia" })
+                            @Html.TextBoxFor(m => m.transaccionRef, new { @type = "number", @class = "form-control", @id = "referencia", @name = "referencia", @required = "true" })
+                        </div>
+                        <div id="Abono-container" style="display:none;">
+                            @Html.Label("Ingrese el monto a pagar", new { @for = "abono" })
+                            @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @required = "true" })
+                        </div>
+
+                        @Html.Label("Descripción de la transacción", new { @for = "referencia" })
+                        @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Pagar y generar recibo</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaPedidos").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4, 5] }]
+        });
+    });
+    $(document).ready(function () {
+        function verificaTipoVentaYMetodoPago() {
+            var tipoVenta = $('#tipoVenta').val();
+            var metodoPago = $('#metodo').val();
+        
+            $('#metodo-container').show();
+        
+            // Visibilidad condicional
+            if (tipoVenta == '1' && metodoPago == '1') { // Venta al contado y efectivo
+                $('#Abono-container').hide(); 
+                $('#financiera-container').hide(); 
+            } else if (tipoVenta == '1' && metodoPago != '1') { // Venta a crédito con método diferente a efectivo
+                $('#Abono-container').hide(); 
+                $('#financiera-container').show(); 
+            }
+            else if (tipoVenta == '2' && metodoPago != '1') { // Venta a crédito con método diferente a efectivo
+                $('#Abono-container').show(); 
+                $('#financiera-container').show();
+            } else { // Venta a crédito y efectivo
+                $('#Abono-container').show(); 
+                $('#financiera-container').hide(); 
+            }
+        }
+
+        verificaTipoVentaYMetodoPago();
+
+        $('#tipoVenta').change(verificaTipoVentaYMetodoPago);
+        $('#metodo').change(verificaTipoVentaYMetodoPago);
+    
+        $(document).on("click", ".AbrirModalPagar", function () {
+            var pedidoId = $(this).attr('data-id');
+            var tipoVenta = $(this).attr('data-tipo');
+            var totalTransaccion = parseFloat($(this).attr('data-total'));
+            $("#idPagar").val(pedidoId);
+            $("#tipoVenta").val(tipoVenta);
+            //$("#total_transaccion").val(totalTransaccion);
+            $("#ModalPagoRecibo").data("total", totalTransaccion);
+            verificaTipoVentaYMetodoPago();
+        });
+    }); 
+    
+
+    $(document).on("click", ".AbrirModalFacturar", function () {
+        $("#idFacturar").val($(this).attr('data-id'));
+    });
+    $(document).on("click", ".AbrirModalPagar", function () {
+        $("#idPagar").val($(this).attr('data-id'));
+        $("#ModalPagoRecibo #tipoVenta").val($(this).attr('data-tipo'));
+        $("#ModalPagoRecibo #tipo_venta").val($(this).attr('data-tipo'));
+    });
+
+    $("#abono").on("input", function () {
+        var abono = parseFloat($(this).val());
+        var totalTransaccion = $("#ModalPagoRecibo").data("total");
+
+        if (abono > totalTransaccion) {
+            alert("El monto del abono no puede ser superior al total de la transacción: " + totalTransaccion.toFixed(2));
+            $(this).val(totalTransaccion.toFixed(2)); 
+        }
+    });
+    $(document).ready(function () {
+        $("#ModalPagoRecibo form").on("submit", function (e) {
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        $('#ModalPagoRecibo').modal('hide');
+
+                        window.location.href = response.pdfUrl;
+
+                        
+                        setTimeout(function () {
+                            window.location.href = '/Contabilidad/ListaPedidos';
+                        }, 1000); 
+                    } else {
+                        alert(response.message || "Hubo un error al procesar el pago.");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
+                }
+            });
+        });
+    });
+    
+
+</script>

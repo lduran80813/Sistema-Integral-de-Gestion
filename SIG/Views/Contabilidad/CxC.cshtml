@@ -1,6 +1,6 @@
 ﻿@model SIG.Entidades.CuentasCredito
 @{
-    ViewBag.Title = "CxP";
+    ViewBag.Title = "CxC";
 }
 
 <style>
@@ -65,7 +65,7 @@
 <body>
 
     <div class="container">
-        <h2>Cuentas por pagar</h2>
+        <h2>Cuentas por cobrar</h2>
         <div class="row">
             <div class="col-12">
 
@@ -88,15 +88,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.ListaCxP)
+                        @foreach (var item in Model.ListaCxC)
                         {
                             <tr>
-                                <td>@item.IdCompra</td>
+                                <td>@item.IdFactura</td>
                                 <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
                                 <td>@item.Saldo.ToString("N2")</td>
                                 <td>
                                     <button type="button" class="btn btn-primary AbrirModalPagar" data-bs-toggle="modal" data-bs-target="#ModalPagoRecibo"
-                                            data-id="@item.IdCompra" data-saldo="@item.Saldo">
+                                            data-id="@item.IdFactura" data-saldo="@item.Saldo">
                                         Pagar
                                     </button>
                                 </td>
@@ -120,7 +120,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("ContaPagoCxP", "Contabilidad"))
+                @using (Html.BeginForm("ContaCobroCxC", "Contabilidad"))
                 {
                     @Html.Hidden("Id_Cuenta", "", new { id = "IdCuenta" })
                     <div class="mb-3">
@@ -187,7 +187,6 @@
             var idCuenta = $(this).data('id');
             var saldo = $(this).data('saldo');
 
-
             $("#IdCuenta").val(idCuenta);
             $("#saldo").val(saldo);
 
@@ -198,7 +197,7 @@
 
     $("#abono").on("input", function () {
         var abono = parseFloat($(this).val());
-        var totalTransaccion = $("#ModalPagoRecibo").data("saldo");
+        var totalTransaccion = $("#ModalPagoRecibo").data("total");
 
         if (abono > totalTransaccion) {
             alert("El monto del abono no puede ser superior al total de la transacción: " + totalTransaccion.toFixed(2));
@@ -215,7 +214,35 @@
             return false;
         }
     }
+    $(document).ready(function () {
+        $("#ModalPagoRecibo form").on("submit", function (e) {
+            e.preventDefault();
 
+            var formData = $(this).serialize();
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        $('#ModalPagoRecibo').modal('hide');
+
+                        window.location.href = response.pdfUrl;
+
+
+                        setTimeout(function () {
+                            window.location.href = '/Contabilidad/CxC';
+                        }, 1000);
+                    } else {
+                        alert(response.message || "Hubo un error al procesar el pago.");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
+                }
+            });
+        });
+    });
 
 </script>
 

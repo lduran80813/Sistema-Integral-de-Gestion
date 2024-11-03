@@ -1,0 +1,144 @@
+﻿@model List<SIG.Entidades.Producto>
+@{
+    ViewBag.Title = "Productos_Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.Count == 0)
+{
+    <h3>No existen productos</h3>
+}
+else
+{
+    <body>
+
+        <div class="container">
+            <h2>Productos</h2>
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="form-inline ml-3">
+                        <h5>Productos: @Session["Cantidad"].ToString() &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                        <h5>Total carrito: ₡@decimal.Parse(Session["SubTotal"].ToString()).ToString("N2") + i.v.a.</h5>
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+
+
+                    @if (ViewBag.msj != null)
+                    {
+                        <div class="alert alert-info" role="alert" style="text-align:center">
+                            @ViewBag.msj
+                        </div>
+                    }
+                    <table id="tablaProductos" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Producto ID</th>
+                                <th>Nombre</th>
+                                <th>Precio Unitario</th>
+                                <th>Estado</th>
+                                <th>Inventario</th>
+                                <th>Añadir a pedido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.id</td>
+                                    <td>@item.nombre</td>
+                                    <td>@item.precio</td>
+                                    <td>@item.estadoDescripcion</td>
+                                    <td>@item.inventario</td>
+                                    @if (@item.estadoDescripcion != "Agotado")
+                                    {
+                                        <td>
+                                            <input id=prd-@item.id placeholder="Cantidad" type="number" value="0" min="1" max="@item.inventario"
+                                                   onkeypress="return ValidarNumeros(this.id)">
+                                            <a onclick="AgregarProducto(@item.id, @item.inventario)" class="card-link btn btn-primary text-white">Añadir al Carrito</a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>No disponible</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a href="@Url.Action("ConsultarPedido", "Contabilidad")" class="card-link btn btn-primary text-white">Revisar pedido</a>
+        </div>
+    </body>
+}
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaProductos").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    });
+
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    function AgregarProducto(IdProducto, Inventario) {
+        let cantidadIngresada = $("#prd-" + IdProducto).val();
+
+        if (cantidadIngresada > Inventario) {
+            MostrarMensaje("Información", "Debe ingresar una cantidad inferior al inventario", "error");
+            return;
+        }
+        if (cantidadIngresada <= 0) {
+            MostrarMensaje("Información", "Debe ingresar una cantidad válida", "error");
+            return;
+        }
+
+        //Ajax para llamar al contraldor y que se registre el producto en el carrito
+        $.ajax({
+            type: 'POST', // Del mismo tipo que se tenga en el controlador
+            url: '/Contabilidad/RegistrarCarrito',
+            dataType: 'json',
+            data: {
+                IdProducto: IdProducto,
+                Cantidad: cantidadIngresada
+            },
+            success: function (data) {
+                MostrarMensaje("Información", "Producto añadido correctamente", "success");
+            }
+
+        });
+    }
+    function MostrarMensaje(titulo, mensaje, icono) {
+        //Swal.fire({
+        //    title: titulo,
+        //    text: mensaje,
+        //    icon: icono
+        //});
+        Swal.fire({
+            title: titulo,
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: "Aceptar",
+            text: mensaje,
+            icon: icono
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Contabilidad/Productos_Ventas'
+            }
+        });
+    }
+</script>
