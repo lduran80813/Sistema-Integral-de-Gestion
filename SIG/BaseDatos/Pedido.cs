@@ -12,21 +12,26 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Adm_Rol
+    public partial class Pedido
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Adm_Rol()
+        public Pedido()
         {
-            this.Adm_Permiso = new HashSet<Adm_Permiso>();
-            this.Empleado = new HashSet<Empleado>();
+            this.HistorialModificacion = new HashSet<HistorialModificacion>();
+            this.HistorialPedido = new HashSet<HistorialPedido>();
         }
     
         public int id { get; set; }
-        public string nombre_rol { get; set; }
+        public System.DateTime fecha_pedido { get; set; }
+        public int proveedor_id { get; set; }
+        public decimal total_pedido { get; set; }
+        public int EstadoCompraId { get; set; }
     
+        public virtual EstadoCompra EstadoCompra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Adm_Permiso> Adm_Permiso { get; set; }
+        public virtual ICollection<HistorialModificacion> HistorialModificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleado { get; set; }
+        public virtual ICollection<HistorialPedido> HistorialPedido { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace SIG.BaseDatos
             this.Conta_CxP = new HashSet<Conta_CxP>();
             this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
             this.Prov_CompraDetalle = new HashSet<Prov_CompraDetalle>();
+            this.Prov_Pago = new HashSet<Prov_Pago>();
         }
     
         public int id { get; set; }
@@ -28,7 +29,9 @@ namespace SIG.BaseDatos
         public Nullable<decimal> total_compra { get; set; }
         public string no_factura { get; set; }
         public string notas_adicionales { get; set; }
+        public Nullable<int> tipo_compra_id { get; set; }
     
+        public virtual Catalogo_Compra Catalogo_Compra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conta_CxP> Conta_CxP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -36,5 +39,7 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prov_CompraDetalle> Prov_CompraDetalle { get; set; }
         public virtual Proveedor Proveedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Prov_Pago> Prov_Pago { get; set; }
     }
 }

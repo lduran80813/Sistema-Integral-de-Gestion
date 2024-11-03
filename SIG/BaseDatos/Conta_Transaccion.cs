@@ -28,7 +28,7 @@ namespace SIG.BaseDatos
         public virtual Conta_CuentasContables Conta_CuentasContables { get; set; }
         public virtual Prov_Compra Prov_Compra { get; set; }
         public virtual EntidadesFinancieras EntidadesFinancieras { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual Empleado Empleado { get; set; }
         public virtual Venta_Factura Venta_Factura { get; set; }
     }
 }
