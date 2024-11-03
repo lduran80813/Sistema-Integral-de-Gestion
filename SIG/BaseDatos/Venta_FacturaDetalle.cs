@@ -18,7 +18,11 @@ namespace SIG.BaseDatos
         public Nullable<int> factura_id { get; set; }
         public Nullable<int> producto_id { get; set; }
         public Nullable<int> cantidad { get; set; }
-        public Nullable<decimal> precio_unidad { get; set; }
+        public decimal precio_unidad { get; set; }
+        public decimal monto { get; set; }
+        public Nullable<decimal> descuento { get; set; }
+        public decimal impuesto { get; set; }
+        public decimal monto_final { get; set; }
     
         public virtual Venta_Factura Venta_Factura { get; set; }
         public virtual Venta_Producto Venta_Producto { get; set; }

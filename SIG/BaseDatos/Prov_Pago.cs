@@ -20,8 +20,10 @@ namespace SIG.BaseDatos
         public Nullable<decimal> monto_pago { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> autorizador_id { get; set; }
+        public Nullable<int> compra_id { get; set; }
     
-        public virtual Usuario Usuario { get; set; }
+        public virtual Empleado Empleado { get; set; }
+        public virtual Prov_Compra Prov_Compra { get; set; }
         public virtual Proveedor Proveedor { get; set; }
     }
 }

@@ -21,6 +21,6 @@ namespace SIG.BaseDatos
         public string articulos_entregados { get; set; }
         public string observaciones_adicionales { get; set; }
     
-        public virtual Venta_Pedido Venta_Pedido { get; set; }
+        public virtual Venta_Factura Venta_Factura { get; set; }
     }
 }

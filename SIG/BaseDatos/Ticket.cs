@@ -28,9 +28,9 @@ namespace SIG.BaseDatos
         public Nullable<System.DateTime> fecha_cierre_ticket { get; set; }
         public string comentarios_usuario { get; set; }
     
+        public virtual Empleado Empleado { get; set; }
+        public virtual Empleado Empleado1 { get; set; }
         public virtual Ticket_Estado Ticket_Estado { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
         public virtual Ticket_Prioridad Ticket_Prioridad { get; set; }
         public virtual Ticket_Tipo Ticket_Tipo { get; set; }
     }

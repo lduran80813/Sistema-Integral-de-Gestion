@@ -16,18 +16,176 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Compra' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Compra">
+          <Property Name="id" Type="int" />
+          <Property Name="proveedor_id" Type="int" />
+          <Property Name="fecha_compra" Type="date" />
+          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Empleado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Empleado">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellidos" Type="varchar" MaxLength="255" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+          <Property Name="departamento_id" Type="int" />
+          <Property Name="puesto_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Entrega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Entrega">
+          <Property Name="id" Type="int" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
+          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
+          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Factura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Factura">
+          <Property Name="id" Type="int" />
+          <Property Name="cliente_id" Type="int" />
+          <Property Name="fecha_venta" Type="date" />
+          <Property Name="metodo_pago_id" Type="int" />
+          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_PlanDeAccion">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_finalizacion" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Proveedor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Proveedor">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Ticket' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Ticket">
+          <Property Name="id_ticket" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="tipo_incidencia" Type="int" />
+          <Property Name="prioridad" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_registro_usuario" Type="datetime" />
+          <Property Name="fecha_registra_tecnico" Type="datetime" />
+          <Property Name="id_tecnico" Type="int" />
+          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_cierre_ticket" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Usuario">
+          <Property Name="id" Type="int" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varchar" MaxLength="255" />
+          <Property Name="rol_id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Vacaciones">
+          <Property Name="id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+  <EntityType Name="Catalogo_Compra">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Conta_CuentasContables">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TipoCuenta" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_CxC">
+    <Key>
+      <PropertyRef Name="id_CxC" />
+    </Key>
+    <Property Name="id_CxC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdFactura" Type="int" Nullable="false" />
+    <Property Name="SaldoAnterior" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Abono" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_CxP">
+    <Key>
+      <PropertyRef Name="id_CxP" />
+    </Key>
+    <Property Name="id_CxP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCompra" Type="int" Nullable="false" />
+    <Property Name="SaldoAnterior" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Abono" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conta_TipoTransaccion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="Conta_Transaccion">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tipo_transaccion" Type="varchar" MaxLength="50" />
-    <Property Name="referencia_id" Type="int" />
+    <Property Name="compra_id" Type="int" />
+    <Property Name="venta_id" Type="int" />
     <Property Name="fecha" Type="date" />
     <Property Name="monto" Type="decimal" Precision="18" Scale="2" />
     <Property Name="descripcion" Type="varchar" MaxLength="100" />
-    <Property Name="cliente_id" Type="int" />
-    <Property Name="proveedor_id" Type="int" />
+    <Property Name="cuenta_contable" Type="int" Nullable="false" />
+    <Property Name="entidad_financiera" Type="varchar" MaxLength="10" />
+    <Property Name="transaccion_referencia" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="usuario_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Emp_BitacoraIngreso">
     <Key>
@@ -95,6 +253,17 @@
     <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
     <Property Name="departamento_id" Type="int" />
     <Property Name="puesto_id" Type="int" />
+    <Property Name="rol_id" Type="int" />
+    <Property Name="estado_empleado" Type="bit" />
+    <Property Name="usuario" Type="varchar" MaxLength="100" />
+    <Property Name="contrasena" Type="varbinary" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="EntidadesFinancieras">
+    <Key>
+      <PropertyRef Name="IdEntidad" />
+    </Key>
+    <Property Name="IdEntidad" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="NombreEntidad" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Entregas">
     <Key>
@@ -107,6 +276,42 @@
     <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
     <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="EstadoCompra">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EstadosFinancieros">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProveedorId" Type="int" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="50" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HistorialModificacion">
+    <Key>
+      <PropertyRef Name="PedidoId" />
+      <PropertyRef Name="FechaModificacion" />
+    </Key>
+    <Property Name="PedidoId" Type="int" Nullable="false" />
+    <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+    <Property Name="DetallesModificacion" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HistorialPedido">
+    <Key>
+      <PropertyRef Name="PedidoId" />
+      <PropertyRef Name="FechaModificacion" />
+    </Key>
+    <Property Name="PedidoId" Type="int" Nullable="false" />
+    <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
+    <Property Name="DetalleCambio" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EstadoCompraId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="PDA_Tarea">
     <Key>
       <PropertyRef Name="id" />
@@ -118,6 +323,16 @@
     <Property Name="estado_tarea" Type="varchar" MaxLength="100" />
     <Property Name="fecha_inicio" Type="date" />
     <Property Name="fecha_finalizacion" Type="date" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_pedido" Type="datetime" Nullable="false" />
+    <Property Name="proveedor_id" Type="int" Nullable="false" />
+    <Property Name="total_pedido" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="EstadoCompraId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PlanDeAccion">
     <Key>
@@ -139,6 +354,7 @@
     <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
     <Property Name="no_factura" Type="varchar" MaxLength="100" />
     <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+    <Property Name="tipo_compra_id" Type="int" />
   </EntityType>
   <EntityType Name="Prov_CompraDetalle">
     <Key>
@@ -171,6 +387,7 @@
     <Property Name="monto_pago" Type="decimal" Precision="10" Scale="2" />
     <Property Name="descripcion" Type="varchar" MaxLength="100" />
     <Property Name="autorizador_id" Type="int" />
+    <Property Name="compra_id" Type="int" />
   </EntityType>
   <EntityType Name="Prov_Producto">
     <Key>
@@ -232,15 +449,15 @@
     <Property Name="descripcion" Type="varchar" MaxLength="30" />
     <Property Name="estado" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Usuario">
+  <EntityType Name="Venta_Carrito">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="IdCarrito" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="usuario" Type="varchar" MaxLength="100" />
-    <Property Name="contrasena" Type="varchar" MaxLength="255" />
-    <Property Name="rol_id" Type="int" />
-    <Property Name="empleado_id" Type="int" />
+    <Property Name="IdCarrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdProducto" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Venta_Cliente">
     <Key>
@@ -252,19 +469,29 @@
     <Property Name="telefono" Type="varchar" MaxLength="50" />
     <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="Venta_Estado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="Venta_Factura">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cliente_id" Type="int" />
-    <Property Name="fecha_venta" Type="date" />
-    <Property Name="metodo_pago_id" Type="int" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="descuento" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="impuesto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="no_factura" Type="varchar" MaxLength="100" />
-    <Property Name="direccion" Type="varchar" MaxLength="255" />
-    <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+    <Property Name="metodo_pago_id" Type="int" />
+    <Property Name="estado" Type="int" Nullable="false" />
     <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+    <Property Name="tipo_venta" Type="int" />
+    <Property Name="fecha_factura" Type="datetime" />
   </EntityType>
   <EntityType Name="Venta_FacturaDetalle">
     <Key>
@@ -274,7 +501,11 @@
     <Property Name="factura_id" Type="int" />
     <Property Name="producto_id" Type="int" />
     <Property Name="cantidad" Type="int" />
-    <Property Name="precio_unidad" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="precio_unidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="descuento" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="impuesto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="monto_final" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="Venta_MetodoPago">
     <Key>
@@ -283,25 +514,6 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="metodo" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="Venta_PagoCliente">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cliente_id" Type="int" />
-    <Property Name="fecha_pago" Type="date" />
-    <Property Name="monto_pago" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="descripcion" Type="varchar" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="Venta_Pedido">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cliente_id" Type="int" />
-    <Property Name="fecha_pedido" Type="date" />
-    <Property Name="numero_pedido" Type="varchar" MaxLength="100" />
-  </EntityType>
   <EntityType Name="Venta_Producto">
     <Key>
       <PropertyRef Name="id" />
@@ -309,9 +521,25 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre" Type="varchar" MaxLength="255" />
     <Property Name="descripcion" Type="varchar" MaxLength="100" />
-    <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="inventario" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Adm_Permi__rol_i__5535A963">
+  <EntityType Name="Venta_ProductoEstado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venta_Tipo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Adm_Permi__rol_i__114A936A">
     <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
     <End Role="Adm_Permiso" Type="Self.Adm_Permiso" Multiplicity="*" />
     <ReferentialConstraint>
@@ -323,31 +551,91 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Conta_Tra__clien__656C112C">
-    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
-    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+  <Association Name="FK__Conta_CxC__IdFac__123EB7A3">
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="1" />
+    <End Role="Conta_CxC" Type="Self.Conta_CxC" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Venta_Cliente">
+      <Principal Role="Venta_Factura">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Conta_Transaccion">
-        <PropertyRef Name="cliente_id" />
+      <Dependent Role="Conta_CxC">
+        <PropertyRef Name="IdFactura" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Conta_Tra__prove__66603565">
-    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
-    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+  <Association Name="FK__Conta_CxP__IdCom__1332DBDC">
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="1" />
+    <End Role="Conta_CxP" Type="Self.Conta_CxP" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Proveedor">
+      <Principal Role="Prov_Compra">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Conta_Transaccion">
-        <PropertyRef Name="proveedor_id" />
+      <Dependent Role="Conta_CxP">
+        <PropertyRef Name="IdCompra" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Emp_Conta__emple__44FF419A">
+  <Association Name="FK__Conta_Tra__compr__14270015">
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__cuent__151B244E">
+    <End Role="Conta_CuentasContables" Type="Self.Conta_CuentasContables" Multiplicity="1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conta_CuentasContables">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="cuenta_contable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__entid__160F4887">
+    <End Role="EntidadesFinancieras" Type="Self.EntidadesFinancieras" Multiplicity="0..1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EntidadesFinancieras">
+        <PropertyRef Name="IdEntidad" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="entidad_financiera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__usuar__17036CC0">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Conta_Tra__venta__17F790F9">
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
+    <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Factura">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Conta_Transaccion">
+        <PropertyRef Name="venta_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Emp_Conta__emple__18EBB532">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Emp_ContactoEmergencia" Type="Self.Emp_ContactoEmergencia" Multiplicity="*" />
     <ReferentialConstraint>
@@ -359,7 +647,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Emp_Puest__depar__3E52440B">
+  <Association Name="FK__Emp_Puest__depar__19DFD96B">
     <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
     <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="*" />
     <ReferentialConstraint>
@@ -371,7 +659,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Emp_Remun__emple__4AB81AF0">
+  <Association Name="FK__Emp_Remun__emple__1AD3FDA4">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Emp_RemuneracionDeduccion" Type="Self.Emp_RemuneracionDeduccion" Multiplicity="*" />
     <ReferentialConstraint>
@@ -383,7 +671,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Emp_Vacac__emple__47DBAE45">
+  <Association Name="FK__Emp_Vacac__emple__1BC821DD">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -395,7 +683,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Empleado__depart__412EB0B6">
+  <Association Name="FK__Empleado__depart__1CBC4616">
     <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
     <ReferentialConstraint>
@@ -407,7 +695,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Empleado__puesto__4222D4EF">
+  <Association Name="FK__Empleado__puesto__1DB06A4F">
     <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="0..1" />
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
     <ReferentialConstraint>
@@ -419,11 +707,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Entregas__pedido__05D8E0BE">
-    <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="0..1" />
+  <Association Name="FK__Empleado__rol_id__1EA48E88">
+    <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adm_Rol">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="rol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Entregas__pedido__1F98B2C1">
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
     <End Role="Entregas" Type="Self.Entregas" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Venta_Pedido">
+      <Principal Role="Venta_Factura">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Entregas">
@@ -431,7 +731,55 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__plan___0A9D95DB">
+  <Association Name="FK__EstadosFi__Prove__208CD6FA">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="EstadosFinancieros" Type="Self.EstadosFinancieros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EstadosFinancieros">
+        <PropertyRef Name="ProveedorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Historial__Estad__22751F6C">
+    <End Role="EstadoCompra" Type="Self.EstadoCompra" Multiplicity="1" />
+    <End Role="HistorialPedido" Type="Self.HistorialPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoCompra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HistorialPedido">
+        <PropertyRef Name="EstadoCompraId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Historial__Pedid__2180FB33">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="HistorialModificacion" Type="Self.HistorialModificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HistorialModificacion">
+        <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Historial__Pedid__236943A5">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="HistorialPedido" Type="Self.HistorialPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HistorialPedido">
+        <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PDA_Tarea__plan___245D67DE">
     <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -443,7 +791,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__0B91BA14">
+  <Association Name="FK__PDA_Tarea__respo__25518C17">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -455,7 +803,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Comp__compr__6EF57B66">
+  <Association Name="FK__Pedido__EstadoCo__2645B050">
+    <End Role="EstadoCompra" Type="Self.EstadoCompra" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoCompra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="EstadoCompraId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedido__proveedo__2739D489">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="proveedor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prov_Comp__compr__2A164134">
     <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
     <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
     <ReferentialConstraint>
@@ -467,7 +839,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Comp__produ__6FE99F9F">
+  <Association Name="FK__Prov_Comp__produ__2B0A656D">
     <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="0..1" />
     <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
     <ReferentialConstraint>
@@ -479,7 +851,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Comp__prove__693CA210">
+  <Association Name="FK__Prov_Comp__prove__282DF8C2">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
     <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
     <ReferentialConstraint>
@@ -491,7 +863,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Cont__prove__398D8EEE">
+  <Association Name="FK__Prov_Cont__prove__2BFE89A6">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
     <End Role="Prov_Contacto" Type="Self.Prov_Contacto" Multiplicity="*" />
     <ReferentialConstraint>
@@ -503,11 +875,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Pago__autor__73BA3083">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+  <Association Name="FK__Prov_Pago__autor__2CF2ADDF">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Usuario">
+      <Principal Role="Empleado">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Prov_Pago">
@@ -515,7 +887,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Pago__prove__72C60C4A">
+  <Association Name="FK__Prov_Pago__prove__2DE6D218">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
     <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
     <ReferentialConstraint>
@@ -527,7 +899,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prov_Prod__prove__6C190EBB">
+  <Association Name="FK__Prov_Prod__prove__2FCF1A8A">
     <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
     <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="*" />
     <ReferentialConstraint>
@@ -539,7 +911,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Ticket__estado__7E37BEF6">
+  <Association Name="FK__Ticket__estado__30C33EC3">
     <End Role="Ticket_Estado" Type="Self.Ticket_Estado" Multiplicity="1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -551,11 +923,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Ticket__id_tecni__00200768">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+  <Association Name="FK__Ticket__id_tecni__31B762FC">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Usuario">
+      <Principal Role="Empleado">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Ticket">
@@ -563,11 +935,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Ticket__id_usuar__7F2BE32F">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+  <Association Name="FK__Ticket__id_usuar__32AB8735">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Usuario">
+      <Principal Role="Empleado">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Ticket">
@@ -575,7 +947,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Ticket__priorida__7D439ABD">
+  <Association Name="FK__Ticket__priorida__339FAB6E">
     <End Role="Ticket_Prioridad" Type="Self.Ticket_Prioridad" Multiplicity="0..1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -587,7 +959,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Ticket__tipo_inc__7C4F7684">
+  <Association Name="FK__Ticket__tipo_inc__3493CFA7">
     <End Role="Ticket_Tipo" Type="Self.Ticket_Tipo" Multiplicity="1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
     <ReferentialConstraint>
@@ -599,31 +971,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuario__emplead__52593CB8">
-    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+  <Association Name="FK__Venta_Car__IdPro__3587F3E0">
+    <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="1" />
+    <End Role="Venta_Carrito" Type="Self.Venta_Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Carrito">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Car__IdUsu__367C1819">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Venta_Carrito" Type="Self.Venta_Carrito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="empleado_id" />
+      <Dependent Role="Venta_Carrito">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Usuario__rol_id__5165187F">
-    <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Adm_Rol">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="rol_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Venta_Fac__clien__5DCAEF64">
+  <Association Name="FK__Venta_Fac__clien__37703C52">
     <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
     <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -635,7 +1007,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Venta_Fac__factu__619B8048">
+  <Association Name="FK__Venta_Fac__estad__3864608B">
+    <End Role="Venta_Estado" Type="Self.Venta_Estado" Multiplicity="1" />
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta_Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Venta_Factura">
+        <PropertyRef Name="estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta_Fac__factu__3B40CD36">
     <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
     <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
     <ReferentialConstraint>
@@ -647,7 +1031,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Venta_Fac__metod__5EBF139D">
+  <Association Name="FK__Venta_Fac__metod__395884C4">
     <End Role="Venta_MetodoPago" Type="Self.Venta_MetodoPago" Multiplicity="0..1" />
     <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
     <ReferentialConstraint>
@@ -659,7 +1043,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Venta_Fac__produ__628FA481">
+  <Association Name="FK__Venta_Fac__produ__3C34F16F">
     <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="0..1" />
     <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
     <ReferentialConstraint>
@@ -671,33 +1055,200 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Venta_Pag__clien__0E6E26BF">
-    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
-    <End Role="Venta_PagoCliente" Type="Self.Venta_PagoCliente" Multiplicity="*" />
+  <Association Name="FK__Venta_Fac__tipo___3A4CA8FD">
+    <End Role="Venta_Tipo" Type="Self.Venta_Tipo" Multiplicity="0..1" />
+    <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Venta_Cliente">
+      <Principal Role="Venta_Tipo">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Venta_PagoCliente">
-        <PropertyRef Name="cliente_id" />
+      <Dependent Role="Venta_Factura">
+        <PropertyRef Name="tipo_venta" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Venta_Ped__clien__02FC7413">
-    <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
-    <End Role="Venta_Pedido" Type="Self.Venta_Pedido" Multiplicity="*" />
+  <Association Name="FK__Venta_Pro__estad__3D2915A8">
+    <End Role="Venta_ProductoEstado" Type="Self.Venta_ProductoEstado" Multiplicity="1" />
+    <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Venta_Cliente">
+      <Principal Role="Venta_ProductoEstado">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Venta_Pedido">
-        <PropertyRef Name="cliente_id" />
+      <Dependent Role="Venta_Producto">
+        <PropertyRef Name="estado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Prov_Compra_TipoCompra">
+    <End Role="Catalogo_Compra" Type="Self.Catalogo_Compra" Multiplicity="0..1" />
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogo_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Compra">
+        <PropertyRef Name="tipo_compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prov_Pago_Compra">
+    <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
+    <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prov_Compra">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Prov_Pago">
+        <PropertyRef Name="compra_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="InOut" />
+    <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="cierre_contable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Fecha_Inicio" Type="date" Mode="In" />
+    <Parameter Name="Fecha_Fin" Type="date" Mode="In" />
+  </Function>
+  <Function Name="ConsultarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ConsultarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ConsultarDetallePedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ConsultarPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="datosRecibo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFactura" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EditarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="NumeroIdentificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartamentoId" Type="int" Mode="In" />
+    <Parameter Name="PuestoId" Type="int" Mode="In" />
+    <Parameter Name="RolId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="EliminarProductoCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FacturarPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Pedido" Type="int" Mode="In" />
+    <Parameter Name="Tipo_venta" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GeneraFacturaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFactura" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdFactura" Type="int" Mode="In" />
+  </Function>
+  <Function Name="iniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="correo_electronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contrasena" Type="nvarchar" Mode="In" />
+    <Parameter Name="Id" Type="int" Mode="InOut" />
+    <Parameter Name="LoginSuccess" Type="int" Mode="InOut" />
+    <Parameter Name="Rol" Type="int" Mode="InOut" />
+    <Parameter Name="Usuario" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="ListaCuentasContables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListaEntidadesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="listaMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="listaTipoVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ObtenerEmpleadoPorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
+    <Parameter Name="NumeroCedula" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PagarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Pedido" Type="int" Mode="In" />
+    <Parameter Name="monto" Type="decimal" Mode="In" />
+    <Parameter Name="Metodo_Pago" Type="int" Mode="In" />
+    <Parameter Name="EntidadFinanciera" Type="varchar" Mode="In" />
+    <Parameter Name="TransaccionReferencia" Type="numeric" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PagarCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Compra" Type="int" Mode="In" />
+    <Parameter Name="monto" Type="decimal" Mode="In" />
+    <Parameter Name="Metodo_Pago" Type="int" Mode="In" />
+    <Parameter Name="EntidadFinanciera" Type="varchar" Mode="In" />
+    <Parameter Name="TransaccionReferencia" Type="numeric" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PagoPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id_Pedido" Type="int" Mode="In" />
+    <Parameter Name="Tipo_venta" Type="int" Mode="In" />
+    <Parameter Name="Metodo_Pago" Type="int" Mode="In" />
+    <Parameter Name="EntidadFinanciera" Type="varchar" Mode="In" />
+    <Parameter Name="TransaccionReferencia" Type="numeric" Mode="In" />
+    <Parameter Name="Monto" Type="numeric" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ProcesarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCliente" Type="int" Mode="In" />
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="Estado" Type="int" Mode="In" />
+    <Parameter Name="NotasAdicionales" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="RegistrarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="registrarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+    <Parameter Name="NumeroIdentificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="Telefono" Type="nvarchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="DepartamentoID" Type="int" Mode="In" />
+    <Parameter Name="PuestoID" Type="int" Mode="In" />
+    <Parameter Name="RolID" Type="int" Mode="In" />
+    <Parameter Name="EstadoEmpleado" Type="bit" Mode="In" />
+    <Parameter Name="Usuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contrasena" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="RegistrarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PedidoId" Type="int" Mode="InOut" />
+    <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+    <Parameter Name="DireccionEntrega" Type="nvarchar" Mode="In" />
+    <Parameter Name="ArticulosEntregados" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ObservacionesAdicionales" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="RegistrarTransaccionesFinancieras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cuenta" Type="int" Mode="In" />
+    <Parameter Name="Monto" Type="decimal" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ValidarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ValidarExistencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="SistemaIntegralGestionModelStoreContainer">
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catalogo_Compra" EntityType="Self.Catalogo_Compra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_CuentasContables" EntityType="Self.Conta_CuentasContables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_CxC" EntityType="Self.Conta_CxC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" Schema="dbo" store:Type="Tables" />
@@ -706,8 +1257,14 @@
     <EntitySet Name="Emp_RemuneracionDeduccion" EntityType="Self.Emp_RemuneracionDeduccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntidadesFinancieras" EntityType="Self.EntidadesFinancieras" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Entregas" EntityType="Self.Entregas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EstadoCompra" EntityType="Self.EstadoCompra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prov_Compra" EntityType="Self.Prov_Compra" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prov_CompraDetalle" EntityType="Self.Prov_CompraDetalle" Schema="dbo" store:Type="Tables" />
@@ -719,141 +1276,202 @@
     <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket_Tipo" EntityType="Self.Ticket_Tipo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Carrito" EntityType="Self.Venta_Carrito" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_Cliente" EntityType="Self.Venta_Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Estado" EntityType="Self.Venta_Estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_Factura" EntityType="Self.Venta_Factura" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_FacturaDetalle" EntityType="Self.Venta_FacturaDetalle" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_MetodoPago" EntityType="Self.Venta_MetodoPago" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Venta_PagoCliente" EntityType="Self.Venta_PagoCliente" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Venta_Pedido" EntityType="Self.Venta_Pedido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Adm_Permi__rol_i__5535A963" Association="Self.FK__Adm_Permi__rol_i__5535A963">
+    <EntitySet Name="Venta_ProductoEstado" EntityType="Self.Venta_ProductoEstado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta_Tipo" EntityType="Self.Venta_Tipo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Adm_Permi__rol_i__114A936A" Association="Self.FK__Adm_Permi__rol_i__114A936A">
       <End Role="Adm_Rol" EntitySet="Adm_Rol" />
       <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
     </AssociationSet>
-    <AssociationSet Name="FK__Conta_Tra__clien__656C112C" Association="Self.FK__Conta_Tra__clien__656C112C">
-      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
+    <AssociationSet Name="FK__Conta_CxC__IdFac__123EB7A3" Association="Self.FK__Conta_CxC__IdFac__123EB7A3">
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+      <End Role="Conta_CxC" EntitySet="Conta_CxC" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_CxP__IdCom__1332DBDC" Association="Self.FK__Conta_CxP__IdCom__1332DBDC">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Conta_CxP" EntitySet="Conta_CxP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__compr__14270015" Association="Self.FK__Conta_Tra__compr__14270015">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
       <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
     </AssociationSet>
-    <AssociationSet Name="FK__Conta_Tra__prove__66603565" Association="Self.FK__Conta_Tra__prove__66603565">
-      <End Role="Proveedor" EntitySet="Proveedor" />
+    <AssociationSet Name="FK__Conta_Tra__cuent__151B244E" Association="Self.FK__Conta_Tra__cuent__151B244E">
+      <End Role="Conta_CuentasContables" EntitySet="Conta_CuentasContables" />
       <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
     </AssociationSet>
-    <AssociationSet Name="FK__Emp_Conta__emple__44FF419A" Association="Self.FK__Emp_Conta__emple__44FF419A">
+    <AssociationSet Name="FK__Conta_Tra__entid__160F4887" Association="Self.FK__Conta_Tra__entid__160F4887">
+      <End Role="EntidadesFinancieras" EntitySet="EntidadesFinancieras" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__usuar__17036CC0" Association="Self.FK__Conta_Tra__usuar__17036CC0">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Conta_Tra__venta__17F790F9" Association="Self.FK__Conta_Tra__venta__17F790F9">
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+      <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Emp_Conta__emple__18EBB532" Association="Self.FK__Emp_Conta__emple__18EBB532">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Emp_ContactoEmergencia" EntitySet="Emp_ContactoEmergencia" />
     </AssociationSet>
-    <AssociationSet Name="FK__Emp_Puest__depar__3E52440B" Association="Self.FK__Emp_Puest__depar__3E52440B">
+    <AssociationSet Name="FK__Emp_Puest__depar__19DFD96B" Association="Self.FK__Emp_Puest__depar__19DFD96B">
       <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
       <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
     </AssociationSet>
-    <AssociationSet Name="FK__Emp_Remun__emple__4AB81AF0" Association="Self.FK__Emp_Remun__emple__4AB81AF0">
+    <AssociationSet Name="FK__Emp_Remun__emple__1AD3FDA4" Association="Self.FK__Emp_Remun__emple__1AD3FDA4">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Emp_RemuneracionDeduccion" EntitySet="Emp_RemuneracionDeduccion" />
     </AssociationSet>
-    <AssociationSet Name="FK__Emp_Vacac__emple__47DBAE45" Association="Self.FK__Emp_Vacac__emple__47DBAE45">
+    <AssociationSet Name="FK__Emp_Vacac__emple__1BC821DD" Association="Self.FK__Emp_Vacac__emple__1BC821DD">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Empleado__depart__412EB0B6" Association="Self.FK__Empleado__depart__412EB0B6">
+    <AssociationSet Name="FK__Empleado__depart__1CBC4616" Association="Self.FK__Empleado__depart__1CBC4616">
       <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
       <End Role="Empleado" EntitySet="Empleado" />
     </AssociationSet>
-    <AssociationSet Name="FK__Empleado__puesto__4222D4EF" Association="Self.FK__Empleado__puesto__4222D4EF">
+    <AssociationSet Name="FK__Empleado__puesto__1DB06A4F" Association="Self.FK__Empleado__puesto__1DB06A4F">
       <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
       <End Role="Empleado" EntitySet="Empleado" />
     </AssociationSet>
-    <AssociationSet Name="FK__Entregas__pedido__05D8E0BE" Association="Self.FK__Entregas__pedido__05D8E0BE">
-      <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
+    <AssociationSet Name="FK__Empleado__rol_id__1EA48E88" Association="Self.FK__Empleado__rol_id__1EA48E88">
+      <End Role="Adm_Rol" EntitySet="Adm_Rol" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Entregas__pedido__1F98B2C1" Association="Self.FK__Entregas__pedido__1F98B2C1">
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
       <End Role="Entregas" EntitySet="Entregas" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__plan___0A9D95DB" Association="Self.FK__PDA_Tarea__plan___0A9D95DB">
+    <AssociationSet Name="FK__EstadosFi__Prove__208CD6FA" Association="Self.FK__EstadosFi__Prove__208CD6FA">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Historial__Estad__22751F6C" Association="Self.FK__Historial__Estad__22751F6C">
+      <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+      <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Historial__Pedid__2180FB33" Association="Self.FK__Historial__Pedid__2180FB33">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="HistorialModificacion" EntitySet="HistorialModificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Historial__Pedid__236943A5" Association="Self.FK__Historial__Pedid__236943A5">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__plan___245D67DE" Association="Self.FK__PDA_Tarea__plan___245D67DE">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__0B91BA14" Association="Self.FK__PDA_Tarea__respo__0B91BA14">
+    <AssociationSet Name="FK__PDA_Tarea__respo__25518C17" Association="Self.FK__PDA_Tarea__respo__25518C17">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Comp__compr__6EF57B66" Association="Self.FK__Prov_Comp__compr__6EF57B66">
+    <AssociationSet Name="FK__Pedido__EstadoCo__2645B050" Association="Self.FK__Pedido__EstadoCo__2645B050">
+      <End Role="EstadoCompra" EntitySet="EstadoCompra" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedido__proveedo__2739D489" Association="Self.FK__Pedido__proveedo__2739D489">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prov_Comp__compr__2A164134" Association="Self.FK__Prov_Comp__compr__2A164134">
       <End Role="Prov_Compra" EntitySet="Prov_Compra" />
       <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Comp__produ__6FE99F9F" Association="Self.FK__Prov_Comp__produ__6FE99F9F">
+    <AssociationSet Name="FK__Prov_Comp__produ__2B0A656D" Association="Self.FK__Prov_Comp__produ__2B0A656D">
       <End Role="Prov_Producto" EntitySet="Prov_Producto" />
       <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Comp__prove__693CA210" Association="Self.FK__Prov_Comp__prove__693CA210">
+    <AssociationSet Name="FK__Prov_Comp__prove__282DF8C2" Association="Self.FK__Prov_Comp__prove__282DF8C2">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Prov_Compra" EntitySet="Prov_Compra" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Cont__prove__398D8EEE" Association="Self.FK__Prov_Cont__prove__398D8EEE">
+    <AssociationSet Name="FK__Prov_Cont__prove__2BFE89A6" Association="Self.FK__Prov_Cont__prove__2BFE89A6">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Prov_Contacto" EntitySet="Prov_Contacto" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Pago__autor__73BA3083" Association="Self.FK__Prov_Pago__autor__73BA3083">
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="FK__Prov_Pago__autor__2CF2ADDF" Association="Self.FK__Prov_Pago__autor__2CF2ADDF">
+      <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Prov_Pago" EntitySet="Prov_Pago" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Pago__prove__72C60C4A" Association="Self.FK__Prov_Pago__prove__72C60C4A">
+    <AssociationSet Name="FK__Prov_Pago__prove__2DE6D218" Association="Self.FK__Prov_Pago__prove__2DE6D218">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Prov_Pago" EntitySet="Prov_Pago" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prov_Prod__prove__6C190EBB" Association="Self.FK__Prov_Prod__prove__6C190EBB">
+    <AssociationSet Name="FK__Prov_Prod__prove__2FCF1A8A" Association="Self.FK__Prov_Prod__prove__2FCF1A8A">
       <End Role="Proveedor" EntitySet="Proveedor" />
       <End Role="Prov_Producto" EntitySet="Prov_Producto" />
     </AssociationSet>
-    <AssociationSet Name="FK__Ticket__estado__7E37BEF6" Association="Self.FK__Ticket__estado__7E37BEF6">
+    <AssociationSet Name="FK__Ticket__estado__30C33EC3" Association="Self.FK__Ticket__estado__30C33EC3">
       <End Role="Ticket_Estado" EntitySet="Ticket_Estado" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
-    <AssociationSet Name="FK__Ticket__id_tecni__00200768" Association="Self.FK__Ticket__id_tecni__00200768">
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="FK__Ticket__id_tecni__31B762FC" Association="Self.FK__Ticket__id_tecni__31B762FC">
+      <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
-    <AssociationSet Name="FK__Ticket__id_usuar__7F2BE32F" Association="Self.FK__Ticket__id_usuar__7F2BE32F">
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="FK__Ticket__id_usuar__32AB8735" Association="Self.FK__Ticket__id_usuar__32AB8735">
+      <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
-    <AssociationSet Name="FK__Ticket__priorida__7D439ABD" Association="Self.FK__Ticket__priorida__7D439ABD">
+    <AssociationSet Name="FK__Ticket__priorida__339FAB6E" Association="Self.FK__Ticket__priorida__339FAB6E">
       <End Role="Ticket_Prioridad" EntitySet="Ticket_Prioridad" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
-    <AssociationSet Name="FK__Ticket__tipo_inc__7C4F7684" Association="Self.FK__Ticket__tipo_inc__7C4F7684">
+    <AssociationSet Name="FK__Ticket__tipo_inc__3493CFA7" Association="Self.FK__Ticket__tipo_inc__3493CFA7">
       <End Role="Ticket_Tipo" EntitySet="Ticket_Tipo" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuario__emplead__52593CB8" Association="Self.FK__Usuario__emplead__52593CB8">
+    <AssociationSet Name="FK__Venta_Car__IdPro__3587F3E0" Association="Self.FK__Venta_Car__IdPro__3587F3E0">
+      <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+      <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Car__IdUsu__367C1819" Association="Self.FK__Venta_Car__IdUsu__367C1819">
       <End Role="Empleado" EntitySet="Empleado" />
-      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
     </AssociationSet>
-    <AssociationSet Name="FK__Usuario__rol_id__5165187F" Association="Self.FK__Usuario__rol_id__5165187F">
-      <End Role="Adm_Rol" EntitySet="Adm_Rol" />
-      <End Role="Usuario" EntitySet="Usuario" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Venta_Fac__clien__5DCAEF64" Association="Self.FK__Venta_Fac__clien__5DCAEF64">
+    <AssociationSet Name="FK__Venta_Fac__clien__37703C52" Association="Self.FK__Venta_Fac__clien__37703C52">
       <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
       <End Role="Venta_Factura" EntitySet="Venta_Factura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Venta_Fac__factu__619B8048" Association="Self.FK__Venta_Fac__factu__619B8048">
+    <AssociationSet Name="FK__Venta_Fac__estad__3864608B" Association="Self.FK__Venta_Fac__estad__3864608B">
+      <End Role="Venta_Estado" EntitySet="Venta_Estado" />
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta_Fac__factu__3B40CD36" Association="Self.FK__Venta_Fac__factu__3B40CD36">
       <End Role="Venta_Factura" EntitySet="Venta_Factura" />
       <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK__Venta_Fac__metod__5EBF139D" Association="Self.FK__Venta_Fac__metod__5EBF139D">
+    <AssociationSet Name="FK__Venta_Fac__metod__395884C4" Association="Self.FK__Venta_Fac__metod__395884C4">
       <End Role="Venta_MetodoPago" EntitySet="Venta_MetodoPago" />
       <End Role="Venta_Factura" EntitySet="Venta_Factura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Venta_Fac__produ__628FA481" Association="Self.FK__Venta_Fac__produ__628FA481">
+    <AssociationSet Name="FK__Venta_Fac__produ__3C34F16F" Association="Self.FK__Venta_Fac__produ__3C34F16F">
       <End Role="Venta_Producto" EntitySet="Venta_Producto" />
       <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK__Venta_Pag__clien__0E6E26BF" Association="Self.FK__Venta_Pag__clien__0E6E26BF">
-      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
-      <End Role="Venta_PagoCliente" EntitySet="Venta_PagoCliente" />
+    <AssociationSet Name="FK__Venta_Fac__tipo___3A4CA8FD" Association="Self.FK__Venta_Fac__tipo___3A4CA8FD">
+      <End Role="Venta_Tipo" EntitySet="Venta_Tipo" />
+      <End Role="Venta_Factura" EntitySet="Venta_Factura" />
     </AssociationSet>
-    <AssociationSet Name="FK__Venta_Ped__clien__02FC7413" Association="Self.FK__Venta_Ped__clien__02FC7413">
-      <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
-      <End Role="Venta_Pedido" EntitySet="Venta_Pedido" />
+    <AssociationSet Name="FK__Venta_Pro__estad__3D2915A8" Association="Self.FK__Venta_Pro__estad__3D2915A8">
+      <End Role="Venta_ProductoEstado" EntitySet="Venta_ProductoEstado" />
+      <End Role="Venta_Producto" EntitySet="Venta_Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prov_Compra_TipoCompra" Association="Self.FK_Prov_Compra_TipoCompra">
+      <End Role="Catalogo_Compra" EntitySet="Catalogo_Compra" />
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prov_Pago_Compra" Association="Self.FK_Prov_Pago_Compra">
+      <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+      <End Role="Prov_Pago" EntitySet="Prov_Pago" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

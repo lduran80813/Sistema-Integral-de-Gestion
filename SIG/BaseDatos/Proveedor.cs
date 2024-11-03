@@ -17,7 +17,8 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Proveedor()
         {
-            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
+            this.EstadosFinancieros = new HashSet<EstadosFinancieros>();
+            this.Pedido = new HashSet<Pedido>();
             this.Prov_Compra = new HashSet<Prov_Compra>();
             this.Prov_Contacto = new HashSet<Prov_Contacto>();
             this.Prov_Pago = new HashSet<Prov_Pago>();
@@ -30,7 +31,9 @@ namespace SIG.BaseDatos
         public int estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
+        public virtual ICollection<EstadosFinancieros> EstadosFinancieros { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pedido> Pedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prov_Compra> Prov_Compra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -38,13 +38,12 @@ namespace SIG.Models
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                return (from x in context.Usuario
-                        join y in context.Empleado on x.empleado_id equals y.id
+                return (from x in context.Empleado
                         where x.rol_id == 2 //&& x.estado_usuario == 1 //añadir estado a usuario
                         select new UsuarioEmpleado 
                         {
                             id_usuario = x.id,
-                            nombre_completo = y.nombre + " " + y.apellidos
+                            nombre_completo = x.nombre + " " + x.apellidos
                          }).ToList();
             }
         }
@@ -54,13 +53,12 @@ namespace SIG.Models
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                return (from x in context.Usuario
-                        join y in context.Empleado on x.empleado_id equals y.id
-                        //where x.estado_usuario == 1 //añadir estado a usuario
+                return (from x in context.Empleado
+                            //where x.estado_usuario == 1 //añadir estado a usuario
                         select new UsuarioEmpleado
                         {
                             id_usuario = x.id,
-                            nombre_completo = y.nombre + " " + y.apellidos
+                            nombre_completo = x.nombre + " " + x.apellidos
                         }).ToList();
             }
         }

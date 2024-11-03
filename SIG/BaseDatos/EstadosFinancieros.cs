@@ -12,14 +12,14 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Venta_PagoCliente
+    public partial class EstadosFinancieros
     {
-        public int id { get; set; }
-        public Nullable<int> cliente_id { get; set; }
-        public Nullable<System.DateTime> fecha_pago { get; set; }
-        public Nullable<decimal> monto_pago { get; set; }
-        public string descripcion { get; set; }
+        public int Id { get; set; }
+        public int ProveedorId { get; set; }
+        public decimal Saldo { get; set; }
+        public string Estado { get; set; }
+        public System.DateTime Fecha { get; set; }
     
-        public virtual Venta_Cliente Venta_Cliente { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
     }
 }

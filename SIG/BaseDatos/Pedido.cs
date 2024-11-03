@@ -12,29 +12,26 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Pedido
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public Pedido()
         {
-            this.Prov_Pago = new HashSet<Prov_Pago>();
-            this.Ticket = new HashSet<Ticket>();
-            this.Ticket1 = new HashSet<Ticket>();
+            this.HistorialModificacion = new HashSet<HistorialModificacion>();
+            this.HistorialPedido = new HashSet<HistorialPedido>();
         }
     
         public int id { get; set; }
-        public string usuario1 { get; set; }
-        public string contrasena { get; set; }
-        public Nullable<int> rol_id { get; set; }
-        public Nullable<int> empleado_id { get; set; }
+        public System.DateTime fecha_pedido { get; set; }
+        public int proveedor_id { get; set; }
+        public decimal total_pedido { get; set; }
+        public int EstadoCompraId { get; set; }
     
-        public virtual Adm_Rol Adm_Rol { get; set; }
-        public virtual Empleado Empleado { get; set; }
+        public virtual EstadoCompra EstadoCompra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prov_Pago> Prov_Pago { get; set; }
+        public virtual ICollection<HistorialModificacion> HistorialModificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Ticket { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Ticket1 { get; set; }
+        public virtual ICollection<HistorialPedido> HistorialPedido { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
     }
 }
