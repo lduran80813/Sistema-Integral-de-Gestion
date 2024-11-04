@@ -20,7 +20,6 @@ namespace SIG.BaseDatos
         public string direccion_entrega { get; set; }
         public string articulos_entregados { get; set; }
         public string observaciones_adicionales { get; set; }
-        public string estado_entrega { get; set; }
     
         public virtual Venta_Factura Venta_Factura { get; set; }
     }

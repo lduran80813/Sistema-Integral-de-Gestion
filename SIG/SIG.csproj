@@ -387,6 +387,7 @@
     <Compile Include="BaseDatos\HistorialPedido.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\IniciarSesion_Result.cs" />
     <Compile Include="BaseDatos\ListaCuentasContables_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -423,6 +424,8 @@
     <Compile Include="BaseDatos\ObtenerEmpleadoPorFiltro_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\ObtenerTodasLasEntregas_Result.cs" />
+    <Compile Include="BaseDatos\ObtenerVentaPedido_Result.cs" />
     <Compile Include="BaseDatos\PDA_Tarea.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -448,12 +451,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Prov_Producto.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDatos\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseDatos\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
@@ -543,7 +540,6 @@
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
     <Compile Include="Models\FiltroSeguridad.cs" />
-    <Compile Include="Models\IncidenciasModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\EntregasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -688,16 +684,16 @@
     <Content Include="root\plugins\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="root\plugins\jquery\jquery.min.map" />
     <Content Include="root\plugins\jquery\jquery.slim.min.map" />
+    <Content Include=".vs\SIG.csproj.dtbcache.json" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <EntityDeploy Include="BaseDatos\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="BaseDatos\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include=".vs\SIG.csproj.dtbcache.json" />
-    <Content Include="..\.editorconfig">
-      <Link>.editorconfig</Link>
     </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
