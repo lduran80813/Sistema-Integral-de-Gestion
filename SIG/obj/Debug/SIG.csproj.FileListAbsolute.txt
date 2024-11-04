@@ -1,240 +1,3 @@
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\SIG.dll.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\SIG.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\SIG.pdb
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\csc.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\csc.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\csc.rsp
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\csi.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\csi.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\csi.rsp
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.AppContext.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Collections.Immutable.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Console.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Globalization.Calendars.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.IO.Compression.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.IO.FileSystem.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Net.Http.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Net.Sockets.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Reflection.Metadata.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.ValueTuple.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Xml.XPath.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\vbc.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\vbc.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\vbc.rsp
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\VBCSCompiler.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\roslyn\VBCSCompiler.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Antlr3.Runtime.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Microsoft.Web.Infrastructure.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Newtonsoft.Json.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Helpers.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Mvc.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Optimization.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Razor.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.WebPages.Deployment.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.WebPages.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.WebPages.Razor.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\WebGrease.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Helpers.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Mvc.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Optimization.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.Razor.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.WebPages.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.WebPages.Deployment.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\System.Web.WebPages.Razor.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Newtonsoft.Json.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Antlr3.Runtime.pdb
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\obj\Debug\SIG.csproj.AssemblyReference.cache
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\obj\Debug\SIG.csproj.CoreCompileInputs.cache
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\obj\Debug\SIG.csproj.Up2Date
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\obj\Debug\SIG.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG\SIG\obj\Debug\SIG.pdb
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\SIG.dll.config
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\SIG.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\SIG.pdb
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\csc.exe
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\csc.exe.config
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\csc.rsp
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\csi.exe
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\csi.exe.config
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\csi.rsp
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.AppContext.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Console.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Globalization.Calendars.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.IO.Compression.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Net.Http.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Net.Sockets.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.ValueTuple.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Xml.XPath.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\vbc.exe
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\vbc.exe.config
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\vbc.rsp
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\VBCSCompiler.exe
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Antlr3.Runtime.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Newtonsoft.Json.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Helpers.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Mvc.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Optimization.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Razor.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.WebPages.Deployment.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.WebPages.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.WebPages.Razor.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\WebGrease.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Helpers.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Mvc.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Optimization.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.Razor.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.WebPages.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.WebPages.Deployment.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\System.Web.WebPages.Razor.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Newtonsoft.Json.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Antlr3.Runtime.pdb
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\obj\Debug\SIG.csproj.AssemblyReference.cache
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\obj\Debug\SIG.csproj.CoreCompileInputs.cache
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\obj\Debug\SIG.csproj.CopyComplete
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\obj\Debug\SIG.dll
-C:\Users\Ying\Documents\GitHub\SIG_Final\SIG\obj\Debug\SIG.pdb
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\SIG.dll.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\SIG.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\SIG.pdb
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\csc.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\csc.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\csc.rsp
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\csi.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\csi.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\csi.rsp
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.AppContext.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Collections.Immutable.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Console.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Globalization.Calendars.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.IO.Compression.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.IO.FileSystem.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Net.Http.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Net.Sockets.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Reflection.Metadata.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.ValueTuple.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Xml.XPath.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\vbc.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\vbc.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\vbc.rsp
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\VBCSCompiler.exe
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\roslyn\VBCSCompiler.exe.config
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Antlr3.Runtime.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Microsoft.Web.Infrastructure.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Newtonsoft.Json.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Helpers.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Mvc.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Optimization.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Razor.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.WebPages.Deployment.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.WebPages.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.WebPages.Razor.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\WebGrease.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Helpers.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Mvc.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Optimization.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.Razor.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.WebPages.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.WebPages.Deployment.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\System.Web.WebPages.Razor.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Newtonsoft.Json.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Antlr3.Runtime.pdb
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\obj\Debug\SIG.csproj.AssemblyReference.cache
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\obj\Debug\SIG.csproj.CoreCompileInputs.cache
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\obj\Debug\SIG.csproj.Up2Date
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\obj\Debug\SIG.dll
-C:\Proyecto final SIG\Sistema_Gestion\SIG_Final\SIG\obj\Debug\SIG.pdb
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SIG.dll.config
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SIG.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SIG.pdb
@@ -288,11 +51,26 @@ C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ros
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\roslyn\VBCSCompiler.exe
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Antlr3.Runtime.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.Parser.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.Framework.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\EntityFramework.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\EntityFramework.SqlServer.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ExcelNumberFormat.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.Bcl.HashCode.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Newtonsoft.Json.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\RBush.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Rotativa.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SixLabors.Fonts.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Buffers.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.IO.Packaging.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Memory.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Numerics.Vectors.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.Helpers.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.Mvc.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.Optimization.dll
@@ -301,8 +79,23 @@ C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Sys
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.WebPages.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.WebPages.Razor.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\WebGrease.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.pdb
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.Parser.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.Framework.xml
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\EntityFramework.xml
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\EntityFramework.SqlServer.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ExcelNumberFormat.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.Bcl.HashCode.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\RBush.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SixLabors.Fonts.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Buffers.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.IO.Packaging.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Memory.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Numerics.Vectors.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.Helpers.xml
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.Mvc.xml
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Web.Optimization.xml
@@ -318,133 +111,3 @@ C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Deb
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.csproj.Up2Date
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.dll
 C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.pdb
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Antiforgery.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authentication.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authentication.Core.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authorization.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authorization.Policy.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Cors.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.DataProtection.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.DataProtection.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Diagnostics.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Hosting.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Html.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.Extensions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.Features.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Localization.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Core.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Cors.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.DataAnnotations.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Formatters.Json.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Localization.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Razor.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.RazorPages.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.TagHelpers.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Razor.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Razor.Language.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Razor.Runtime.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Routing.Abstractions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Routing.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.WebUtilities.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.Razor.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Rotativa.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Buffers.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Collections.Immutable.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Diagnostics.DiagnosticSource.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Memory.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Numerics.Vectors.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Reflection.Metadata.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Security.AccessControl.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Security.Cryptography.Xml.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Security.Permissions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Security.Principal.Windows.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Text.Encoding.CodePages.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Text.Encodings.Web.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Threading.Tasks.Extensions.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Antiforgery.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authentication.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authentication.Core.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authorization.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Authorization.Policy.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Cors.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.DataProtection.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.DataProtection.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Diagnostics.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Hosting.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Hosting.Server.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Html.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.Extensions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Http.Features.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.JsonPatch.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Localization.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.ApiExplorer.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Core.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Cors.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.DataAnnotations.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Formatters.Json.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Localization.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Razor.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.Razor.Extensions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.RazorPages.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.TagHelpers.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Mvc.ViewFeatures.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Razor.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Razor.Language.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Razor.Runtime.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.ResponseCaching.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Routing.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.Routing.Abstractions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.AspNetCore.WebUtilities.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.pdb
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.CSharp.pdb
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.CSharp.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.CodeAnalysis.Razor.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Collections.Immutable.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Diagnostics.DiagnosticSource.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Memory.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Numerics.Vectors.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Reflection.Metadata.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Text.Encodings.Web.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.Threading.Tasks.Extensions.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.Parser.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.Framework.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ExcelNumberFormat.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.Bcl.HashCode.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\RBush.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SixLabors.Fonts.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.IO.Packaging.dll
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.pdb
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ClosedXML.Parser.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\DocumentFormat.OpenXml.Framework.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\ExcelNumberFormat.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\Microsoft.Bcl.HashCode.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\RBush.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\SixLabors.Fonts.xml
-C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\System.IO.Packaging.xml
