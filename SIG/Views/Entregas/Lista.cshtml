@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@model IEnumerable<SIG.Entidades.Entrega>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Entregas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Listado de Entregas</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pedido ID</th>
+                <th>Fecha de Entrega</th>
+                <th>Dirección de Entrega</th>
+                <th>Artículos Entregados</th>
+                <th>Observaciones Adicionales</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entrega in Model)
+            {
+                <tr>
+                    <td>@entrega.PedidoId</td>
+                    <td>@entrega.FechaEntrega.ToString("yyyy-MM-dd")</td>
+                    <td>@entrega.DireccionEntrega</td>
+                    <td>@entrega.ArticulosEntregados</td>
+                    <td>@entrega.ObservacionesAdicionales</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+

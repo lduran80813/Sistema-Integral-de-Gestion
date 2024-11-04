@@ -9,14 +9,14 @@ namespace SIG.Models
 {
     public class CatalogosModel
     {
-        public List<Ticket_Tipo> ConsultarTicketTipo()
-        {
-            using (var context = new SistemaIntegralGestionEntities())
-            {
-                return (from x in context.Ticket_Tipo
-                        select x).ToList();
-            }
-        }
+        //    public List<Ticket_Tipo> ConsultarTicketTipo()
+        //    {
+        //        using (var context = new SistemaIntegralGestionEntities())
+        //        {
+        //            return (from x in context.Ticket_Tipo
+        //                    select x).ToList();
+        //        }
+        //    }
 
         public List<Ticket_Estado> ConsultarEstados()
         {

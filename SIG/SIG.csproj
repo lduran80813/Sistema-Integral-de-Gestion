@@ -450,6 +450,12 @@
     <Compile Include="BaseDatos\Prov_Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -520,10 +526,13 @@
     <Compile Include="Entidades\ProveedorFinanciero.cs" />
     <Compile Include="Entidades\RangoFecha.cs" />
     <Compile Include="Entidades\ReportePedidos.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Entidades\Entrega.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\TransaccionFinanciera.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
+    <Compile Include="Entidades\VentaPedido.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -533,6 +542,10 @@
     <Compile Include="Models\PedidosModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
+    <Compile Include="Models\FiltroSeguridad.cs" />
+    <Compile Include="Models\IncidenciasModel.cs" />
+    <Compile Include="Models\UsuarioModel.cs" />
+    <Compile Include="Models\EntregasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +578,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Password.html" />
     <Content Include="root\dist\css\adminlte.css" />
     <Content Include="root\dist\css\adminlte.min.css" />
     <Content Include="root\dist\css\alt\adminlte.components.css" />
@@ -599,6 +613,7 @@
     <Content Include="root\dist\js\adminlte.js" />
     <Content Include="root\dist\js\adminlte.min.js" />
     <Content Include="root\dist\js\demo.js" />
+    <Content Include="root\dist\js\Listar.js" />
     <Content Include="root\dist\js\pages\dashboard.js" />
     <Content Include="root\dist\js\pages\dashboard2.js" />
     <Content Include="root\dist\js\pages\dashboard3.js" />
@@ -681,6 +696,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include=".vs\SIG.csproj.dtbcache.json" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -713,10 +731,8 @@
     <Content Include="Views\Proveedores\Registro_Proveedores.cshtml" />
     <Content Include="Views\Incidencias\NuevoTicket.cshtml" />
     <Content Include="Views\Empleados\Registro.cshtml" />
-    <Content Include="Views\Entregas\Registro.cshtml" />
     <Content Include="Views\Plan_Accion\Registro.cshtml" />
     <Content Include="Views\Home\Registrousuario.cshtml" />
-    <Content Include="Views\Home\Recuconn.cshtml" />
     <Content Include="Views\Incidencias\ListaIncidenciasUsuario.cshtml" />
     <Content Include="Views\Incidencias\ActualizarTicket.cshtml" />
     <Content Include="Views\IncidenciasITManager\ListaTicketsRegistrados.cshtml" />
@@ -756,6 +772,15 @@
     <Content Include="Views\Proveedores\ConsultarEstadoFinanciero.cshtml" />
     <Content Include="Views\Proveedores\ConsultarEstadoFinancieroConjunto.cshtml" />
     <Content Include="Views\Proveedores\ListaProveedores.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Login\CambiarContrasenna.cshtml" />
+    <Content Include="Views\Login\registro.cshtml" />
+    <Content Include="Views\Login\RecuperarAcceso.cshtml" />
+    <Content Include="Views\Login\ListarUsuarios.cshtml" />
+    <Content Include="Views\Login\ListarEmpleadosEliminados.cshtml" />
+    <Content Include="Views\Login\Editar.cshtml" />
+    <Content Include="Views\Entregas\Registrar.cshtml" />
+    <Content Include="Views\Entregas\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

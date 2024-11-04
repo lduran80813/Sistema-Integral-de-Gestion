@@ -1,0 +1,58 @@
+﻿@model SIG.Entidades.UsuarioEmpleado
+@{
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+<div class="card">
+    <div class="card-body login-card-body">
+        <p class="login-box-msg">Iniciar Sesión</p>
+
+        <!-- Mostrar el mensaje de error si existe -->
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert alert-info" role="alert" style="text-align:center">
+                @ViewBag.msj
+            </div>
+        }
+
+        <!-- Formulario de inicio de sesión -->
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            <div class="input-group mb-3">
+                @Html.TextBoxFor(m => m.correo_electronico, new { @type = "email", @class = "form-control form-control-lg", @placeholder = "Usuario" })
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña" })
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8"></div>
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                </div>
+            </div>
+        }
+
+        <!-- Enlaces para recuperar contraseña o registrar un nuevo usuario -->
+        <p class="mb-1">
+            <a href="@Url.Action("recuperarAcceso", "Login")">Recuperar Contraseña</a>
+        </p>
+        <p class="mb-0">
+            <a href="@Url.Action("registro", "Login")" class="text-center">Registrar usuario nuevo</a>
+        </p>
+    </div>
+
+
+</div>
