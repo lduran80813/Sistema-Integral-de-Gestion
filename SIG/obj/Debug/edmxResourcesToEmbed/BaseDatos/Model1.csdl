@@ -171,6 +171,8 @@
     <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__1DB06A4F" FromRole="Empleado" ToRole="Emp_Puesto" />
     <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__1AD3FDA4" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
     <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__1BC821DD" FromRole="Empleado" ToRole="Emp_Vacaciones" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_us__625A9A57" FromRole="Empleado" ToRole="Notificaciones" />
+    <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_us__662B2B3B" FromRole="Empleado" ToRole="Notificaciones_usuario" />
     <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__25518C17" FromRole="Empleado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__2CF2ADDF" FromRole="Empleado" ToRole="Prov_Pago" />
     <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__id_tecni__31B762FC" FromRole="Empleado" ToRole="Ticket" />
@@ -238,6 +240,51 @@
     <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="EstadoCompra" Relationship="Self.FK__Historial__Estad__22751F6C" FromRole="HistorialPedido" ToRole="EstadoCompra" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK__Historial__Pedid__236943A5" FromRole="HistorialPedido" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Modulos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_mo__6166761E" FromRole="Modulos" ToRole="Notificaciones" />
+  </EntityType>
+  <EntityType Name="Notificaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_mensaje_basico" Type="Int32" />
+    <Property Name="mensaje_final" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_modulo" Type="Int32" Nullable="false" />
+    <Property Name="prioridad" Type="Int32" />
+    <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_registro" Type="Int32" />
+    <Property Name="id_objeto_referencia" Type="Int32" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__625A9A57" FromRole="Notificaciones" ToRole="Empleado" />
+    <NavigationProperty Name="Modulos" Relationship="Self.FK__Notificac__id_mo__6166761E" FromRole="Notificaciones" ToRole="Modulos" />
+    <NavigationProperty Name="Notificaciones_basicas" Relationship="Self.FK__Notificac__id_me__607251E5" FromRole="Notificaciones" ToRole="Notificaciones_basicas" />
+    <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_no__65370702" FromRole="Notificaciones" ToRole="Notificaciones_usuario" />
+  </EntityType>
+  <EntityType Name="Notificaciones_basicas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_me__607251E5" FromRole="Notificaciones_basicas" ToRole="Notificaciones" />
+  </EntityType>
+  <EntityType Name="Notificaciones_usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_notificacion" Type="Int32" Nullable="false" />
+    <Property Name="id_usuario_recibe" Type="Int32" Nullable="false" />
+    <Property Name="lectura" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_lectura" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__662B2B3B" FromRole="Notificaciones_usuario" ToRole="Empleado" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_no__65370702" FromRole="Notificaciones_usuario" ToRole="Notificaciones" />
   </EntityType>
   <EntityType Name="PDA_Tarea">
     <Key>
@@ -713,6 +760,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Notificac__id_us__625A9A57">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notificaciones">
+        <PropertyRef Name="id_usuario_registro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificac__id_us__662B2B3B">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+    <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notificaciones_usuario">
+        <PropertyRef Name="id_usuario_recibe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PDA_Tarea__respo__25518C17">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
@@ -842,6 +913,42 @@
       </Principal>
       <Dependent Role="HistorialPedido">
         <PropertyRef Name="PedidoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificac__id_mo__6166761E">
+    <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
+    <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notificaciones">
+        <PropertyRef Name="id_modulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificac__id_me__607251E5">
+    <End Role="Notificaciones_basicas" Type="Self.Notificaciones_basicas" Multiplicity="0..1" />
+    <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notificaciones_basicas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notificaciones">
+        <PropertyRef Name="id_mensaje_basico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificac__id_no__65370702">
+    <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="1" />
+    <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notificaciones">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notificaciones_usuario">
+        <PropertyRef Name="id_notificacion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1107,6 +1214,10 @@
     <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" />
     <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" />
     <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" />
+    <EntitySet Name="Modulos" EntityType="Self.Modulos" />
+    <EntitySet Name="Notificaciones" EntityType="Self.Notificaciones" />
+    <EntitySet Name="Notificaciones_basicas" EntityType="Self.Notificaciones_basicas" />
+    <EntitySet Name="Notificaciones_usuario" EntityType="Self.Notificaciones_usuario" />
     <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" />
     <EntitySet Name="Pedido" EntityType="Self.Pedido" />
     <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" />
@@ -1193,6 +1304,14 @@
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
     </AssociationSet>
+    <AssociationSet Name="FK__Notificac__id_us__625A9A57" Association="Self.FK__Notificac__id_us__625A9A57">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Notificaciones" EntitySet="Notificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificac__id_us__662B2B3B" Association="Self.FK__Notificac__id_us__662B2B3B">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
+    </AssociationSet>
     <AssociationSet Name="FK__PDA_Tarea__respo__25518C17" Association="Self.FK__PDA_Tarea__respo__25518C17">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
@@ -1236,6 +1355,18 @@
     <AssociationSet Name="FK__Historial__Pedid__236943A5" Association="Self.FK__Historial__Pedid__236943A5">
       <End Role="Pedido" EntitySet="Pedido" />
       <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificac__id_mo__6166761E" Association="Self.FK__Notificac__id_mo__6166761E">
+      <End Role="Modulos" EntitySet="Modulos" />
+      <End Role="Notificaciones" EntitySet="Notificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificac__id_me__607251E5" Association="Self.FK__Notificac__id_me__607251E5">
+      <End Role="Notificaciones_basicas" EntitySet="Notificaciones_basicas" />
+      <End Role="Notificaciones" EntitySet="Notificaciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificac__id_no__65370702" Association="Self.FK__Notificac__id_no__65370702">
+      <End Role="Notificaciones" EntitySet="Notificaciones" />
+      <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
     </AssociationSet>
     <AssociationSet Name="FK__PDA_Tarea__plan___245D67DE" Association="Self.FK__PDA_Tarea__plan___245D67DE">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
@@ -1321,6 +1452,9 @@
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
       <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="cierre_contable" ReturnType="Collection(SistemaIntegralGestionModel.cierre_contable_Result)">
       <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
       <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
@@ -1382,6 +1516,9 @@
       <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
       <Parameter Name="NumeroCedula" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerNotificaciones" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerNotificaciones_Result)">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="PagarCxC">
       <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
       <Parameter Name="monto" Mode="In" Type="Decimal" />
@@ -1437,7 +1574,7 @@
       <Parameter Name="Contrasena" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="RegistrarEntrega">
-      <Parameter Name="PedidoId" Mode="InOut" Type="Int32" />
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
       <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
       <Parameter Name="DireccionEntrega" Mode="In" Type="String" />
       <Parameter Name="ArticulosEntregados" Mode="In" Type="String" />
@@ -1595,6 +1732,16 @@
     <Property Type="Int32" Name="rol_id" Nullable="true" />
     <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="ObtenerNotificaciones_Result">
+    <Property Type="Int32" Name="IdNotificacion" Nullable="false" />
+    <Property Type="String" Name="Modulo" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="IdReferenciaBD" Nullable="true" />
+    <Property Type="String" Name="MensajeB" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MensajeF" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="Prioridad" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="lectura" Nullable="false" />
   </ComplexType>
   <ComplexType Name="ValidarCorreo_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\catalogosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\catalogosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\incidenciasitanalystcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\incidenciasitanalystcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\notificacionesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\notificacionesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\incidenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\notificacionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\root\\dist\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\root\\dist\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\controllers\\incidenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\incidenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\usuariomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\usuariomodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\catalogosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\catalogosmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,88 +38,109 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IncidenciasITAnalystController.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasITAnalystController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\IncidenciasITAnalystController.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasITAnalystController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\IncidenciasITAnalystController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T03:05:53.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CatalogosModel.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\CatalogosModel.cs",
-              "RelativeDocumentMoniker": "SIG\\Models\\CatalogosModel.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\CatalogosModel.cs",
-              "RelativeToolTip": "SIG\\Models\\CatalogosModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T03:05:35.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IncidenciasController.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\IncidenciasController.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\IncidenciasController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAIAwwBMAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T03:05:15.51Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCMAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T02:49:22.102Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsuarioModel.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\UsuarioModel.cs",
-              "RelativeDocumentMoniker": "SIG\\Models\\UsuarioModel.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\UsuarioModel.cs",
-              "RelativeToolTip": "SIG\\Models\\UsuarioModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T02:34:17.57Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Model1.edmx [Diagram1]",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx",
               "RelativeDocumentMoniker": "SIG\\BaseDatos\\Model1.edmx",
               "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx [Diagram1]",
               "RelativeToolTip": "SIG\\BaseDatos\\Model1.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2024-11-04T02:35:15.379Z",
+              "WhenOpened": "2024-11-12T05:01:53.227Z",
               "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Style.css",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\root\\dist\\css\\Style.css",
+              "RelativeDocumentMoniker": "SIG\\root\\dist\\css\\Style.css",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\root\\dist\\css\\Style.css",
+              "RelativeToolTip": "SIG\\root\\dist\\css\\Style.css",
+              "ViewState": "AgIAADgAAAAAAAAAAAAiwFMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-12T01:46:06.89Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAFkCAAAAAAAAAAAAAGoCAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-11T23:01:29.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificacionesController.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\NotificacionesController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\NotificacionesController.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\NotificacionesController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\NotificacionesController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBMAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T22:27:41.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NotificacionesModel.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\NotificacionesModel.cs",
+              "RelativeDocumentMoniker": "SIG\\Models\\NotificacionesModel.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\NotificacionesModel.cs",
+              "RelativeToolTip": "SIG\\Models\\NotificacionesModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T22:28:20.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CatalogosModel.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\CatalogosModel.cs",
+              "RelativeDocumentMoniker": "SIG\\Models\\CatalogosModel.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\CatalogosModel.cs",
+              "RelativeToolTip": "SIG\\Models\\CatalogosModel.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAcwBIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T03:05:35.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IncidenciasController.cs",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\IncidenciasController.cs",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\IncidenciasController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\IncidenciasController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAiwFAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T03:05:15.51Z",
+              "EditorCaption": ""
             }
           ]
         }

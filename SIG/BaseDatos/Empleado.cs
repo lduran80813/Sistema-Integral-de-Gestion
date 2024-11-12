@@ -21,6 +21,8 @@ namespace SIG.BaseDatos
             this.Emp_ContactoEmergencia = new HashSet<Emp_ContactoEmergencia>();
             this.Emp_RemuneracionDeduccion = new HashSet<Emp_RemuneracionDeduccion>();
             this.Emp_Vacaciones = new HashSet<Emp_Vacaciones>();
+            this.Notificaciones = new HashSet<Notificaciones>();
+            this.Notificaciones_usuario = new HashSet<Notificaciones_usuario>();
             this.PDA_Tarea = new HashSet<PDA_Tarea>();
             this.Prov_Pago = new HashSet<Prov_Pago>();
             this.Ticket = new HashSet<Ticket>();
@@ -54,6 +56,10 @@ namespace SIG.BaseDatos
         public virtual ICollection<Emp_RemuneracionDeduccion> Emp_RemuneracionDeduccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emp_Vacaciones> Emp_Vacaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notificaciones> Notificaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notificaciones_usuario> Notificaciones_usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PDA_Tarea> PDA_Tarea { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

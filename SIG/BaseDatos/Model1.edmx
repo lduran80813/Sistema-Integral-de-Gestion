@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adm_Permiso">
           <Key>
             <PropertyRef Name="id" />
@@ -21,6 +21,118 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Compra' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Compra">
+          <Property Name="id" Type="int" />
+          <Property Name="proveedor_id" Type="int" />
+          <Property Name="fecha_compra" Type="date" />
+          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Empleado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Empleado">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellidos" Type="varchar" MaxLength="255" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+          <Property Name="departamento_id" Type="int" />
+          <Property Name="puesto_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Entrega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Entrega">
+          <Property Name="id" Type="int" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
+          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
+          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Factura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Factura">
+          <Property Name="id" Type="int" />
+          <Property Name="cliente_id" Type="int" />
+          <Property Name="fecha_venta" Type="date" />
+          <Property Name="metodo_pago_id" Type="int" />
+          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_PlanDeAccion">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_finalizacion" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Proveedor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Proveedor">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Ticket' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Ticket">
+          <Property Name="id_ticket" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="tipo_incidencia" Type="int" />
+          <Property Name="prioridad" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_registro_usuario" Type="datetime" />
+          <Property Name="fecha_registra_tecnico" Type="datetime" />
+          <Property Name="id_tecnico" Type="int" />
+          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_cierre_ticket" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Usuario">
+          <Property Name="id" Type="int" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varchar" MaxLength="255" />
+          <Property Name="rol_id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Audit_Vacaciones">
+          <Property Name="id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
         <EntityType Name="Catalogo_Compra">
           <Key>
             <PropertyRef Name="id" />
@@ -204,6 +316,43 @@
           <Property Name="FechaModificacion" Type="datetime" Nullable="false" />
           <Property Name="DetalleCambio" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="EstadoCompraId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modulos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Notificaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_mensaje_basico" Type="int" />
+          <Property Name="mensaje_final" Type="varchar" MaxLength="100" />
+          <Property Name="id_modulo" Type="int" Nullable="false" />
+          <Property Name="prioridad" Type="int" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_registro" Type="int" />
+          <Property Name="id_objeto_referencia" Type="int" />
+        </EntityType>
+        <EntityType Name="Notificaciones_basicas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notificaciones_usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_notificacion" Type="int" Nullable="false" />
+          <Property Name="id_usuario_recibe" Type="int" Nullable="false" />
+          <Property Name="lectura" Type="bit" Nullable="false" />
+          <Property Name="fecha_lectura" Type="datetime" />
         </EntityType>
         <EntityType Name="PDA_Tarea">
           <Key>
@@ -672,6 +821,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Notificac__id_me__607251E5">
+          <End Role="Notificaciones_basicas" Type="Self.Notificaciones_basicas" Multiplicity="0..1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notificaciones_basicas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="id_mensaje_basico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_mo__6166761E">
+          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="id_modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_no__65370702">
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="1" />
+          <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notificaciones">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones_usuario">
+              <PropertyRef Name="id_notificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_us__625A9A57">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="id_usuario_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_us__662B2B3B">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones_usuario">
+              <PropertyRef Name="id_usuario_recibe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PDA_Tarea__plan___245D67DE">
           <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
@@ -1000,6 +1209,9 @@
           <Parameter Name="Id" Type="int" Mode="InOut" />
           <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="CantidadNotificacionesNuevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="cierre_contable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Fecha_Inicio" Type="date" Mode="In" />
           <Parameter Name="Fecha_Fin" Type="date" Mode="In" />
@@ -1061,6 +1273,9 @@
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="NumeroCedula" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ObtenerNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="PagarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Pedido" Type="int" Mode="In" />
           <Parameter Name="monto" Type="decimal" Mode="In" />
@@ -1116,7 +1331,7 @@
           <Parameter Name="Contrasena" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="RegistrarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="PedidoId" Type="int" Mode="InOut" />
+          <Parameter Name="PedidoId" Type="int" Mode="In" />
           <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
           <Parameter Name="DireccionEntrega" Type="nvarchar" Mode="In" />
           <Parameter Name="ArticulosEntregados" Type="nvarchar(max)" Mode="In" />
@@ -1156,6 +1371,10 @@
           <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notificaciones" EntityType="Self.Notificaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notificaciones_basicas" EntityType="Self.Notificaciones_basicas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notificaciones_usuario" EntityType="Self.Notificaciones_usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" Schema="dbo" store:Type="Tables" />
@@ -1257,6 +1476,26 @@
           <AssociationSet Name="FK__Historial__Pedid__236943A5" Association="Self.FK__Historial__Pedid__236943A5">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_me__607251E5" Association="Self.FK__Notificac__id_me__607251E5">
+            <End Role="Notificaciones_basicas" EntitySet="Notificaciones_basicas" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_mo__6166761E" Association="Self.FK__Notificac__id_mo__6166761E">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_no__65370702" Association="Self.FK__Notificac__id_no__65370702">
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+            <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_us__625A9A57" Association="Self.FK__Notificac__id_us__625A9A57">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_us__662B2B3B" Association="Self.FK__Notificac__id_us__662B2B3B">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
           </AssociationSet>
           <AssociationSet Name="FK__PDA_Tarea__plan___245D67DE" Association="Self.FK__PDA_Tarea__plan___245D67DE">
             <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
@@ -1367,7 +1606,8 @@
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaIntegralGestionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1542,6 +1782,8 @@
           <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__1DB06A4F" FromRole="Empleado" ToRole="Emp_Puesto" />
           <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__1AD3FDA4" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
           <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__1BC821DD" FromRole="Empleado" ToRole="Emp_Vacaciones" />
+          <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_us__625A9A57" FromRole="Empleado" ToRole="Notificaciones" />
+          <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_us__662B2B3B" FromRole="Empleado" ToRole="Notificaciones_usuario" />
           <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__25518C17" FromRole="Empleado" ToRole="PDA_Tarea" />
           <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__2CF2ADDF" FromRole="Empleado" ToRole="Prov_Pago" />
           <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__id_tecni__31B762FC" FromRole="Empleado" ToRole="Ticket" />
@@ -1609,6 +1851,51 @@
           <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EstadoCompra" Relationship="Self.FK__Historial__Estad__22751F6C" FromRole="HistorialPedido" ToRole="EstadoCompra" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK__Historial__Pedid__236943A5" FromRole="HistorialPedido" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Modulos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_mo__6166761E" FromRole="Modulos" ToRole="Notificaciones" />
+        </EntityType>
+        <EntityType Name="Notificaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_mensaje_basico" Type="Int32" />
+          <Property Name="mensaje_final" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_modulo" Type="Int32" Nullable="false" />
+          <Property Name="prioridad" Type="Int32" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_registro" Type="Int32" />
+          <Property Name="id_objeto_referencia" Type="Int32" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__625A9A57" FromRole="Notificaciones" ToRole="Empleado" />
+          <NavigationProperty Name="Modulos" Relationship="Self.FK__Notificac__id_mo__6166761E" FromRole="Notificaciones" ToRole="Modulos" />
+          <NavigationProperty Name="Notificaciones_basicas" Relationship="Self.FK__Notificac__id_me__607251E5" FromRole="Notificaciones" ToRole="Notificaciones_basicas" />
+          <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_no__65370702" FromRole="Notificaciones" ToRole="Notificaciones_usuario" />
+        </EntityType>
+        <EntityType Name="Notificaciones_basicas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_me__607251E5" FromRole="Notificaciones_basicas" ToRole="Notificaciones" />
+        </EntityType>
+        <EntityType Name="Notificaciones_usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_notificacion" Type="Int32" Nullable="false" />
+          <Property Name="id_usuario_recibe" Type="Int32" Nullable="false" />
+          <Property Name="lectura" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_lectura" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__662B2B3B" FromRole="Notificaciones_usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_no__65370702" FromRole="Notificaciones_usuario" ToRole="Notificaciones" />
         </EntityType>
         <EntityType Name="PDA_Tarea">
           <Key>
@@ -2084,6 +2371,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Notificac__id_us__625A9A57">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="id_usuario_registro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_us__662B2B3B">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones_usuario">
+              <PropertyRef Name="id_usuario_recibe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PDA_Tarea__respo__25518C17">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
@@ -2213,6 +2524,42 @@
             </Principal>
             <Dependent Role="HistorialPedido">
               <PropertyRef Name="PedidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_mo__6166761E">
+          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="id_modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_me__607251E5">
+          <End Role="Notificaciones_basicas" Type="Self.Notificaciones_basicas" Multiplicity="0..1" />
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notificaciones_basicas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones">
+              <PropertyRef Name="id_mensaje_basico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Notificac__id_no__65370702">
+          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="1" />
+          <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notificaciones">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notificaciones_usuario">
+              <PropertyRef Name="id_notificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2478,6 +2825,10 @@
           <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" />
           <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" />
           <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" />
+          <EntitySet Name="Modulos" EntityType="Self.Modulos" />
+          <EntitySet Name="Notificaciones" EntityType="Self.Notificaciones" />
+          <EntitySet Name="Notificaciones_basicas" EntityType="Self.Notificaciones_basicas" />
+          <EntitySet Name="Notificaciones_usuario" EntityType="Self.Notificaciones_usuario" />
           <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" />
           <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" />
@@ -2564,6 +2915,14 @@
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
           </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_us__625A9A57" Association="Self.FK__Notificac__id_us__625A9A57">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_us__662B2B3B" Association="Self.FK__Notificac__id_us__662B2B3B">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
+          </AssociationSet>
           <AssociationSet Name="FK__PDA_Tarea__respo__25518C17" Association="Self.FK__PDA_Tarea__respo__25518C17">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
@@ -2607,6 +2966,18 @@
           <AssociationSet Name="FK__Historial__Pedid__236943A5" Association="Self.FK__Historial__Pedid__236943A5">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="HistorialPedido" EntitySet="HistorialPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_mo__6166761E" Association="Self.FK__Notificac__id_mo__6166761E">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_me__607251E5" Association="Self.FK__Notificac__id_me__607251E5">
+            <End Role="Notificaciones_basicas" EntitySet="Notificaciones_basicas" />
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Notificac__id_no__65370702" Association="Self.FK__Notificac__id_no__65370702">
+            <End Role="Notificaciones" EntitySet="Notificaciones" />
+            <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
           </AssociationSet>
           <AssociationSet Name="FK__PDA_Tarea__plan___245D67DE" Association="Self.FK__PDA_Tarea__plan___245D67DE">
             <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
@@ -2692,20 +3063,23 @@
             <Parameter Name="Id" Mode="InOut" Type="Int32" />
             <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="cierre_contable" ReturnType="Collection(SistemaIntegralGestionModel.cierre_contable_Result)">
             <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCarrito" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarCarrito_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarClientes" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarClientes_Result)" />
           <FunctionImport Name="ConsultarDetallePedido" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarDetallePedido_Result)">
-          <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarPedidos_Result)" />
           <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
-          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EditarEmpleado">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -2729,10 +3103,10 @@
             <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
-          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
-          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="iniciarSesion">
             <Parameter Name="correo_electronico" Mode="In" Type="String" />
@@ -2752,6 +3126,9 @@
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
             <Parameter Name="NumeroCedula" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerNotificaciones" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerNotificaciones_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PagarCxC">
             <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
@@ -2808,7 +3185,7 @@
             <Parameter Name="Contrasena" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="RegistrarEntrega">
-            <Parameter Name="PedidoId" Mode="InOut" Type="Int32" />
+            <Parameter Name="PedidoId" Mode="In" Type="Int32" />
             <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
             <Parameter Name="DireccionEntrega" Mode="In" Type="String" />
             <Parameter Name="ArticulosEntregados" Mode="In" Type="String" />
@@ -2821,10 +3198,10 @@
             <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
-          <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cierre_contable_Result">
@@ -2966,6 +3343,16 @@
           <Property Type="Int32" Name="rol_id" Nullable="true" />
           <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
           <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="ObtenerNotificaciones_Result">
+          <Property Type="Int32" Name="IdNotificacion" Nullable="false" />
+          <Property Type="String" Name="Modulo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="IdReferenciaBD" Nullable="true" />
+          <Property Type="String" Name="MensajeB" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MensajeF" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Prioridad" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="lectura" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ValidarCorreo_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -3199,6 +3586,47 @@
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
                 <ScalarProperty Name="DetalleCambio" ColumnName="DetalleCambio" />
                 <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modulos">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Modulos">
+              <MappingFragment StoreEntitySet="Modulos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notificaciones">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones">
+              <MappingFragment StoreEntitySet="Notificaciones">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_mensaje_basico" ColumnName="id_mensaje_basico" />
+                <ScalarProperty Name="mensaje_final" ColumnName="mensaje_final" />
+                <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="id_usuario_registro" ColumnName="id_usuario_registro" />
+                <ScalarProperty Name="id_objeto_referencia" ColumnName="id_objeto_referencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notificaciones_basicas">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones_basicas">
+              <MappingFragment StoreEntitySet="Notificaciones_basicas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notificaciones_usuario">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones_usuario">
+              <MappingFragment StoreEntitySet="Notificaciones_usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_notificacion" ColumnName="id_notificacion" />
+                <ScalarProperty Name="id_usuario_recibe" ColumnName="id_usuario_recibe" />
+                <ScalarProperty Name="lectura" ColumnName="lectura" />
+                <ScalarProperty Name="fecha_lectura" ColumnName="fecha_lectura" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3452,6 +3880,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
+          <FunctionImportMapping FunctionImportName="CantidadNotificacionesNuevas" FunctionName="SistemaIntegralGestionModel.Store.CantidadNotificacionesNuevas" />
           <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.cierre_contable_Result">
@@ -3653,6 +4082,20 @@
                 <ScalarProperty Name="rol_id" ColumnName="rol_id" />
                 <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.ObtenerNotificaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerNotificaciones_Result">
+                <ScalarProperty Name="IdNotificacion" ColumnName="IdNotificacion" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="IdReferenciaBD" ColumnName="IdReferenciaBD" />
+                <ScalarProperty Name="MensajeB" ColumnName="MensajeB" />
+                <ScalarProperty Name="MensajeF" ColumnName="MensajeF" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="lectura" ColumnName="lectura" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

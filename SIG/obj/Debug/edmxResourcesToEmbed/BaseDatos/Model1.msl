@@ -220,6 +220,47 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Modulos">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Modulos">
+        <MappingFragment StoreEntitySet="Modulos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notificaciones">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones">
+        <MappingFragment StoreEntitySet="Notificaciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_mensaje_basico" ColumnName="id_mensaje_basico" />
+          <ScalarProperty Name="mensaje_final" ColumnName="mensaje_final" />
+          <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+          <ScalarProperty Name="id_usuario_registro" ColumnName="id_usuario_registro" />
+          <ScalarProperty Name="id_objeto_referencia" ColumnName="id_objeto_referencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notificaciones_basicas">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones_basicas">
+        <MappingFragment StoreEntitySet="Notificaciones_basicas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notificaciones_usuario">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones_usuario">
+        <MappingFragment StoreEntitySet="Notificaciones_usuario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_notificacion" ColumnName="id_notificacion" />
+          <ScalarProperty Name="id_usuario_recibe" ColumnName="id_usuario_recibe" />
+          <ScalarProperty Name="lectura" ColumnName="lectura" />
+          <ScalarProperty Name="fecha_lectura" ColumnName="fecha_lectura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PDA_Tarea">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_Tarea">
         <MappingFragment StoreEntitySet="PDA_Tarea">
@@ -470,6 +511,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
+    <FunctionImportMapping FunctionImportName="CantidadNotificacionesNuevas" FunctionName="SistemaIntegralGestionModel.Store.CantidadNotificacionesNuevas" />
     <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.cierre_contable_Result">
@@ -671,6 +713,20 @@
           <ScalarProperty Name="rol_id" ColumnName="rol_id" />
           <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
           <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.ObtenerNotificaciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerNotificaciones_Result">
+          <ScalarProperty Name="IdNotificacion" ColumnName="IdNotificacion" />
+          <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+          <ScalarProperty Name="IdReferenciaBD" ColumnName="IdReferenciaBD" />
+          <ScalarProperty Name="MensajeB" ColumnName="MensajeB" />
+          <ScalarProperty Name="MensajeF" ColumnName="MensajeF" />
+          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="lectura" ColumnName="lectura" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
