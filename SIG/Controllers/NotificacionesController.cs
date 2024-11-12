@@ -24,19 +24,28 @@ namespace SIG.Controllers
             var notificaciones = notificacionesM.ConsultarNotificaciones();
 
             //List<string> notificaciones
-            List<string> lstNotificaciones = new List<string>();
+            //List<string> lstNotificaciones = new List<string>();
             foreach (var item in notificaciones)
             {
-                lstNotificaciones.Add(item.Fecha.ToString() + " " + item.Modulo + "\n" 
-                    + item.MensajeB + "\n Id Ticket: " + item.IdReferenciaBD);
+                //lstNotificaciones.Add(item.Fecha.ToString() + " " + item.Modulo + "\n" 
+                //    + item.MensajeB + "\n Id de elemento: " + item.IdReferenciaBD);
+                item.MensajeF = item.Fecha.ToString() + " " + item.Modulo + "\n"
+                    + item.MensajeB + "\n Id de elemento: " + item.IdReferenciaBD;
             }
 
             var resultado = new
             {
                 cantidad = notificacionesNuevas,
-                notificaciones = lstNotificaciones
+                notificaciones = notificaciones
             };
             return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CambiarEstadoLectura(int idNotificacion)
+        {
+            bool resultado = notificacionesM.CambiarEstadoLectura(idNotificacion);
+            return Json(new { success = resultado });
         }
     }
 }

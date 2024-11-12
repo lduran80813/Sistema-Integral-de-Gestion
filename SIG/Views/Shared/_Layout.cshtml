@@ -65,8 +65,8 @@
                                     <div id="notificationList">
                                         <!-- Aquí se agregarán las notificaciones con JavaScript -->
                                     </div>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item text-center">Ver todas las notificaciones</a>
+                                    @*<div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item text-center">Ver todas las notificaciones</a>*@
                                 </div>
                             </li>
 
@@ -616,15 +616,36 @@
                     // Agrega cada notificación a la lista
                     data.notificaciones.forEach(function (notificacion) {
                         const item = $('<div>').addClass('dropdown-item')
-                            .html(notificacion.replace(/\n/g, '<br>'));
+                            .attr('id', notificacion.IdNotificacion)
+                            .attr('data-lectura', notificacion.lectura)
+                            .html(notificacion.MensajeF.replace(/\n/g, '<br>'));
+
+                        if (notificacion.lectura == 0) {
+                            item.css({
+                                'font-weight': 'bold',
+                                'background-color': '#f0f0f0'
+                            });
+                        }
+
                         notificationList.append(item);
                     });
                 }
             });
         }
 
+        function MostrarMensajeC(titulo, mensaje, icono) {
+            return Swal.fire({
+                title: titulo,
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: "Confirmar",
+                text: mensaje,
+                icon: icono
+            });
+        }
+
         // Ejecuta la función cuando la página carga
-        $(document).ready(function() {
+        $(document).ready(function () {
             actualizarNotificaciones();
 
             // Configura el intervalo para que se ejecute cada 10 segundos
@@ -633,7 +654,44 @@
             $('#notificationIcon').on('click', function () {
                 $('#notificationDropdown').toggle();
             });
+
+            // Evento para manejar el clic en una notificación
+            $('#notificationList').on('click', '.dropdown-item', function () {
+                const idNotificacion = $(this).attr('id');
+                const lectura = $(this).data('lectura');
+
+                const titulo = lectura == 0 ? 'Confirmar Lectura' : 'Marcar como No Leída';
+                const mensaje = lectura == 0 ? '¿Desea marcar esta notificación como leída?' : '¿Desea marcar esta notificación como no leída?';
+
+                MostrarMensajeC(titulo, mensaje, "question").then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("CambiarEstadoLectura", "Notificaciones")',
+                            type: 'POST',
+                            data: { idNotificacion: idNotificacion },
+                            success: function (response) {
+                                if (response.success) {
+                                    // Actualiza el estado visual de la notificación
+                                    const item = $('#' + idNotificacion);
+                                    if (lectura === 0) {
+                                        item.css('font-weight', 'normal').data('lectura', 1);
+                                    } else {
+                                        item.css('font-weight', 'bold').data('lectura', 0);
+                                    }
+                                    Swal.fire("¡Actualizado!", "El estado de la notificación ha sido cambiado.", "success");
+                                } else {
+                                    Swal.fire("Error", "No se pudo actualizar el estado de la notificación.", "error");
+                                }
+                            },
+                            error: function () {
+                                Swal.fire("Error", "Ocurrió un problema al intentar cambiar el estado.", "error");
+                            }
+                        });
+                    }
+                });
+            });
         });
+
     </script>
 
 </body>

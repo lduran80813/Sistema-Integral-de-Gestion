@@ -25,5 +25,15 @@ namespace SIG.Models
                 return context.ObtenerNotificaciones(idUsuario).ToList();
             }
         }
+
+        public bool CambiarEstadoLectura(int idNotificacion)
+        {
+            var rowsAffected = 0;
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                rowsAffected = context.CambiarEstadoLectura(idNotificacion);
+                return (rowsAffected > 0 ? true : false);
+            }
+        }
     }
 }

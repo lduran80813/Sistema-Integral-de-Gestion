@@ -566,5 +566,14 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
+    
+        public virtual int CambiarEstadoLectura(Nullable<int> idNotificacion)
+        {
+            var idNotificacionParameter = idNotificacion.HasValue ?
+                new ObjectParameter("IdNotificacion", idNotificacion) :
+                new ObjectParameter("IdNotificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoLectura", idNotificacionParameter);
+        }
     }
 }

@@ -1592,6 +1592,9 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="CambiarEstadoLectura">
+      <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">
     <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
