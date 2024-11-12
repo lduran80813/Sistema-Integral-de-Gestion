@@ -1452,6 +1452,9 @@
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
       <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="CambiarEstadoLectura">
+      <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1511,6 +1514,14 @@
     <FunctionImport Name="ListarCxC" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxC_Result)" />
     <FunctionImport Name="ListarCxP" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxP_Result)" />
     <FunctionImport Name="listaTipoVenta" ReturnType="Collection(SistemaIntegralGestionModel.listaTipoVenta_Result)" />
+    <FunctionImport Name="NuevaNotificacion" ReturnType="Collection(Int32)">
+      <Parameter Name="IdUsuarioRegistra" Mode="In" Type="Int32" />
+      <Parameter Name="IdModulo" Mode="In" Type="Int32" />
+      <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+      <Parameter Name="prioridad" Mode="In" Type="Int32" />
+      <Parameter Name="IdReferencia" Mode="In" Type="Int32" />
+      <Parameter Name="IdUsuarioReceptor" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="ObtenerEmpleadoPorFiltro" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result)">
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
@@ -1586,14 +1597,14 @@
       <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UltimoTicketUsuario" ReturnType="Collection(Int32)">
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="CambiarEstadoLectura">
-      <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">

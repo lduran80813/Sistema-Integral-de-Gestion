@@ -84,6 +84,15 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarContrasenna", id, nuevaContrasenaParameter);
         }
     
+        public virtual int CambiarEstadoLectura(Nullable<int> idNotificacion)
+        {
+            var idNotificacionParameter = idNotificacion.HasValue ?
+                new ObjectParameter("IdNotificacion", idNotificacion) :
+                new ObjectParameter("IdNotificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoLectura", idNotificacionParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> CantidadNotificacionesNuevas(Nullable<int> idUsuario)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -277,6 +286,35 @@ namespace SIG.BaseDatos
         public virtual ObjectResult<listaTipoVenta_Result> listaTipoVenta()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTipoVenta_Result>("listaTipoVenta");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> NuevaNotificacion(Nullable<int> idUsuarioRegistra, Nullable<int> idModulo, Nullable<int> idNotificacionBasica, Nullable<int> prioridad, Nullable<int> idReferencia, Nullable<int> idUsuarioReceptor)
+        {
+            var idUsuarioRegistraParameter = idUsuarioRegistra.HasValue ?
+                new ObjectParameter("IdUsuarioRegistra", idUsuarioRegistra) :
+                new ObjectParameter("IdUsuarioRegistra", typeof(int));
+    
+            var idModuloParameter = idModulo.HasValue ?
+                new ObjectParameter("IdModulo", idModulo) :
+                new ObjectParameter("IdModulo", typeof(int));
+    
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var prioridadParameter = prioridad.HasValue ?
+                new ObjectParameter("prioridad", prioridad) :
+                new ObjectParameter("prioridad", typeof(int));
+    
+            var idReferenciaParameter = idReferencia.HasValue ?
+                new ObjectParameter("IdReferencia", idReferencia) :
+                new ObjectParameter("IdReferencia", typeof(int));
+    
+            var idUsuarioReceptorParameter = idUsuarioReceptor.HasValue ?
+                new ObjectParameter("IdUsuarioReceptor", idUsuarioReceptor) :
+                new ObjectParameter("IdUsuarioReceptor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("NuevaNotificacion", idUsuarioRegistraParameter, idModuloParameter, idNotificacionBasicaParameter, prioridadParameter, idReferenciaParameter, idUsuarioReceptorParameter);
         }
     
         public virtual ObjectResult<ObtenerEmpleadoPorFiltro_Result> ObtenerEmpleadoPorFiltro(string nombre, string correoElectronico, string numeroCedula)
@@ -549,6 +587,15 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarTransaccionesFinancieras", cuentaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> UltimoTicketUsuario(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UltimoTicketUsuario", idUsuarioParameter);
+        }
+    
         public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string email)
         {
             var emailParameter = email != null ?
@@ -565,15 +612,6 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
-        }
-    
-        public virtual int CambiarEstadoLectura(Nullable<int> idNotificacion)
-        {
-            var idNotificacionParameter = idNotificacion.HasValue ?
-                new ObjectParameter("IdNotificacion", idNotificacion) :
-                new ObjectParameter("IdNotificacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoLectura", idNotificacionParameter);
         }
     }
 }

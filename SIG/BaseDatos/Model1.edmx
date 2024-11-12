@@ -1159,6 +1159,14 @@
         <Function Name="ListarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ListarCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="listaTipoVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="NuevaNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuarioRegistra" Type="int" Mode="In" />
+          <Parameter Name="IdModulo" Type="int" Mode="In" />
+          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
+          <Parameter Name="prioridad" Type="int" Mode="In" />
+          <Parameter Name="IdReferencia" Type="int" Mode="In" />
+          <Parameter Name="IdUsuarioReceptor" Type="int" Mode="In" />
+        </Function>
         <Function Name="ObtenerEmpleadoPorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
@@ -1233,6 +1241,9 @@
           <Parameter Name="Monto" Type="decimal" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UltimoTicketUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="ValidarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="varchar" Mode="In" />
@@ -2953,6 +2964,9 @@
             <Parameter Name="Id" Mode="InOut" Type="Int32" />
             <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="CambiarEstadoLectura">
+          <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -3012,6 +3026,14 @@
           <FunctionImport Name="ListarCxC" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxC_Result)" />
           <FunctionImport Name="ListarCxP" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxP_Result)" />
           <FunctionImport Name="listaTipoVenta" ReturnType="Collection(SistemaIntegralGestionModel.listaTipoVenta_Result)" />
+          <FunctionImport Name="NuevaNotificacion" ReturnType="Collection(Int32)">
+            <Parameter Name="IdUsuarioRegistra" Mode="In" Type="Int32" />
+            <Parameter Name="IdModulo" Mode="In" Type="Int32" />
+            <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+            <Parameter Name="prioridad" Mode="In" Type="Int32" />
+            <Parameter Name="IdReferencia" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuarioReceptor" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ObtenerEmpleadoPorFiltro" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result)">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
@@ -3087,14 +3109,14 @@
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="UltimoTicketUsuario" ReturnType="Collection(Int32)">
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
           <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CambiarEstadoLectura">
-            <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cierre_contable_Result">
@@ -3773,6 +3795,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
+          <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
           <FunctionImportMapping FunctionImportName="CantidadNotificacionesNuevas" FunctionName="SistemaIntegralGestionModel.Store.CantidadNotificacionesNuevas" />
           <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
             <ResultMapping>
@@ -3959,6 +3982,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NuevaNotificacion" FunctionName="SistemaIntegralGestionModel.Store.NuevaNotificacion" />
           <FunctionImportMapping FunctionImportName="ObtenerEmpleadoPorFiltro" FunctionName="SistemaIntegralGestionModel.Store.ObtenerEmpleadoPorFiltro">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result">
@@ -4000,6 +4024,7 @@
           <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
           <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
           <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
+          <FunctionImportMapping FunctionImportName="UltimoTicketUsuario" FunctionName="SistemaIntegralGestionModel.Store.UltimoTicketUsuario" />
           <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
@@ -4018,7 +4043,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

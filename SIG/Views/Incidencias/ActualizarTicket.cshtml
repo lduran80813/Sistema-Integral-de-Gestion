@@ -84,6 +84,8 @@
         @using (Html.BeginForm("ActualizarTicket", "Incidencias"))
         {
             @Html.HiddenFor(m => m.id_ticket)
+            @Html.HiddenFor(m => m.id_tecnico)
+            @Html.HiddenFor(m => m.prioridad)
 
 
             @Html.Label("Id de Ticket")

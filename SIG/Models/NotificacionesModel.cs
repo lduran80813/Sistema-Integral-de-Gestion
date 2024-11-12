@@ -35,5 +35,16 @@ namespace SIG.Models
                 return (rowsAffected > 0 ? true : false);
             }
         }
+
+        public bool NuevaNotificacion(int idModulo, int idNotificacionBasica, int? prioridad, int idReferencia,
+            int idUsuarioReceptor)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int idUsuario = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
+                var rowsAffected = context.NuevaNotificacion(idUsuario, idModulo, idNotificacionBasica, prioridad, idReferencia, idUsuarioReceptor).Count();
+                return (rowsAffected > 0 ? true : false);
+            }
+        }
     }
 }

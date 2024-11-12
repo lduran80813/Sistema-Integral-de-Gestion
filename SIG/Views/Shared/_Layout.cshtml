@@ -682,6 +682,7 @@
                                 } else {
                                     Swal.fire("Error", "No se pudo actualizar el estado de la notificación.", "error");
                                 }
+                                actualizarNotificaciones();
                             },
                             error: function () {
                                 Swal.fire("Error", "Ocurrió un problema al intentar cambiar el estado.", "error");

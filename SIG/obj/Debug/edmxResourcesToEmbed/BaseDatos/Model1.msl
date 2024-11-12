@@ -511,6 +511,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
+    <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
     <FunctionImportMapping FunctionImportName="CantidadNotificacionesNuevas" FunctionName="SistemaIntegralGestionModel.Store.CantidadNotificacionesNuevas" />
     <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
       <ResultMapping>
@@ -697,6 +698,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NuevaNotificacion" FunctionName="SistemaIntegralGestionModel.Store.NuevaNotificacion" />
     <FunctionImportMapping FunctionImportName="ObtenerEmpleadoPorFiltro" FunctionName="SistemaIntegralGestionModel.Store.ObtenerEmpleadoPorFiltro">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result">
@@ -738,6 +740,7 @@
     <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
     <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
     <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
+    <FunctionImportMapping FunctionImportName="UltimoTicketUsuario" FunctionName="SistemaIntegralGestionModel.Store.UltimoTicketUsuario" />
     <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
@@ -756,6 +759,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
   </EntityContainerMapping>
 </Mapping>

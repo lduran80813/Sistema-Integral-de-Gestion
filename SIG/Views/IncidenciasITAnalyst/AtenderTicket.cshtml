@@ -84,6 +84,7 @@
         @using (Html.BeginForm("AtenderTicket", "IncidenciasITAnalyst"))
         {
             @Html.HiddenFor(m => m.id_ticket)
+            @Html.HiddenFor(m => m.id_usuario)
 
 
             @Html.Label("Id de Ticket")

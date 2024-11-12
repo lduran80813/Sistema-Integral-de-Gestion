@@ -1,4 +1,5 @@
 ﻿using Rotativa;
+using SIG.BaseDatos;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace SIG.Controllers
     {
         CatalogosModel catalogosM = new CatalogosModel();
         IncidenciasModel ticketM = new IncidenciasModel();
+        NotificacionesModel notificacionesM = new NotificacionesModel();
 
         public void CatalogosTicket()
         {
@@ -95,6 +97,11 @@ namespace SIG.Controllers
         public ActionResult CerrarTicket(Entidades.Ticket ticket)
         {
             var respuesta = ticketM.CerrarTicket(ticket);
+
+            // Notificaciones
+            notificacionesM.NuevaNotificacion(2, 4, 1, ticket.id_ticket, (int)ticket.id_usuario); //Módulo 2, Notif básica 4, prioridad 1, idEnviar id_tecnico del Ticket
+            notificacionesM.NuevaNotificacion(2, 4, 1, ticket.id_ticket, 3); //Módulo 2, Notif básica 4, prioridad 1, ITManager (id = 3)
+
             if (respuesta)
             {
                 TempData["mensaje"] = "Ticket eliminado correctaqmente";
@@ -135,6 +142,13 @@ namespace SIG.Controllers
         public ActionResult AtenderTicket(BaseDatos.Ticket ticket)
         {
             var respuesta = ticketM.AtenderTicket(ticket);
+
+            if (ticket.estado == 4) // notificación
+            {
+                notificacionesM.NuevaNotificacion(2, 4, 1, ticket.id_ticket, (int)ticket.id_usuario); //Módulo 2, Notif básica 4, prioridad 1, idEnviar id_tecnico del Ticket
+                notificacionesM.NuevaNotificacion(2, 4, 1, ticket.id_ticket, 3); //Módulo 2, Notif básica 4, prioridad 1, ITManager (id = 3)
+            }
+
             if (respuesta)
             {
                 TempData["mensaje"] = "Ticket actualizado exitosamente";

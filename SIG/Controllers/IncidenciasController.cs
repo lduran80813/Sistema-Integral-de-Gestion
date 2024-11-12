@@ -13,6 +13,7 @@ namespace SIG.Controllers
     {
         CatalogosModel catalogosM = new CatalogosModel();
         IncidenciasModel ticketM = new IncidenciasModel();
+        NotificacionesModel notificacionesM = new NotificacionesModel();
 
         public void CatalogosTicket()
         {
@@ -95,6 +96,11 @@ namespace SIG.Controllers
         {
             var respuesta = ticketM.InsertarTicket(ticket);
 
+            // Notificacion
+            int idTicket = ticketM.UltimoTicketUsuario();
+            notificacionesM.NuevaNotificacion(2, 1, 1, idTicket, 3); //Módulo 2, Notif básica 1, prioridad 1, idEnviar 3 (IT Manager)
+
+
             if (respuesta)
             {
                 TempData["mensaje"] = "Incidencia creada exitosamente";
@@ -159,6 +165,11 @@ namespace SIG.Controllers
         public ActionResult ActualizarTicket(BaseDatos.Ticket ticket)
         {
             var respuesta = ticketM.ActualizarTicket(ticket);
+
+            // Notificacion
+            notificacionesM.NuevaNotificacion(2, 3, 1, ticket.id_ticket, (int)ticket.id_tecnico); //Módulo 2, Notif básica 3, prioridad 1, idEnviar id_tecnico del Ticket
+
+
             if (respuesta)
             {
                 TempData["mensaje"] = "Ticket actualizado exitosamente";
