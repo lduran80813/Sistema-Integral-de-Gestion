@@ -10,12 +10,16 @@
 namespace SIG.BaseDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class ObtenerVentaPedido_Result
+    public partial class EstadosFinancieros
     {
-        public int id { get; set; }
-        public Nullable<int> cliente_id { get; set; }
-        public Nullable<System.DateTime> fecha_pedido { get; set; }
-        public string numero_pedido { get; set; }
+        public int Id { get; set; }
+        public int ProveedorId { get; set; }
+        public decimal Saldo { get; set; }
+        public string Estado { get; set; }
+        public System.DateTime Fecha { get; set; }
+    
+        public virtual Proveedor Proveedor { get; set; }
     }
 }

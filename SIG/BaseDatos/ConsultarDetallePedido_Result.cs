@@ -10,9 +10,8 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Venta_FacturaDetalle
+    public partial class ConsultarDetallePedido_Result
     {
         public int id { get; set; }
         public Nullable<int> factura_id { get; set; }
@@ -23,8 +22,6 @@ namespace SIG.BaseDatos
         public Nullable<decimal> descuento { get; set; }
         public decimal impuesto { get; set; }
         public decimal monto_final { get; set; }
-    
-        public virtual Venta_Factura Venta_Factura { get; set; }
-        public virtual Venta_Producto Venta_Producto { get; set; }
+        public string nombre { get; set; }
     }
 }

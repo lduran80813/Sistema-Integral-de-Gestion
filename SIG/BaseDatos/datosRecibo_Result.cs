@@ -10,23 +10,16 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Venta_Cliente
+    public partial class datosRecibo_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venta_Cliente()
-        {
-            this.Venta_Factura = new HashSet<Venta_Factura>();
-        }
-    
-        public int id { get; set; }
+        public Nullable<int> venta_id { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<decimal> monto { get; set; }
+        public string descripcion { get; set; }
+        public string MetodoPago { get; set; }
         public string nombre { get; set; }
         public string direccion { get; set; }
-        public string telefono { get; set; }
         public string correo_electronico { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_Factura> Venta_Factura { get; set; }
     }
 }

@@ -10,10 +10,11 @@
 namespace SIG.BaseDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Conta_TipoTransaccion
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id { get; set; }
+        public string descripcion { get; set; }
     }
 }

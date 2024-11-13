@@ -10,14 +10,17 @@
 namespace SIG.BaseDatos
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class ObtenerTodasLasEntregas_Result
+    public partial class Conta_CxC
     {
-        public Nullable<int> pedido_id { get; set; }
-        public Nullable<System.DateTime> fecha_entrega { get; set; }
-        public string direccion_entrega { get; set; }
-        public string articulos_entregados { get; set; }
-        public string observaciones_adicionales { get; set; }
-        public string estado_entrega { get; set; }
+        public int id_CxC { get; set; }
+        public int IdFactura { get; set; }
+        public decimal SaldoAnterior { get; set; }
+        public decimal Abono { get; set; }
+        public decimal Saldo { get; set; }
+        public System.DateTime Fecha { get; set; }
+    
+        public virtual Venta_Factura Venta_Factura { get; set; }
     }
 }

@@ -12,21 +12,19 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Venta_Cliente
+    public partial class Conta_CuentasContables
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venta_Cliente()
+        public Conta_CuentasContables()
         {
-            this.Venta_Factura = new HashSet<Venta_Factura>();
+            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
         }
     
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public string direccion { get; set; }
-        public string telefono { get; set; }
-        public string correo_electronico { get; set; }
+        public int Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public string TipoCuenta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_Factura> Venta_Factura { get; set; }
+        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
     }
 }

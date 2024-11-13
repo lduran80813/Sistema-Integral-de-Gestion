@@ -17,6 +17,7 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empleado()
         {
+            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
             this.Emp_ContactoEmergencia = new HashSet<Emp_ContactoEmergencia>();
             this.Emp_RemuneracionDeduccion = new HashSet<Emp_RemuneracionDeduccion>();
             this.Emp_Vacaciones = new HashSet<Emp_Vacaciones>();
@@ -24,6 +25,7 @@ namespace SIG.BaseDatos
             this.Prov_Pago = new HashSet<Prov_Pago>();
             this.Ticket = new HashSet<Ticket>();
             this.Ticket1 = new HashSet<Ticket>();
+            this.Venta_Carrito = new HashSet<Venta_Carrito>();
         }
     
         public int id { get; set; }
@@ -43,6 +45,8 @@ namespace SIG.BaseDatos
     
         public virtual Adm_Rol Adm_Rol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emp_ContactoEmergencia> Emp_ContactoEmergencia { get; set; }
         public virtual Emp_Departamento Emp_Departamento { get; set; }
         public virtual Emp_Puesto Emp_Puesto { get; set; }
@@ -58,5 +62,7 @@ namespace SIG.BaseDatos
         public virtual ICollection<Ticket> Ticket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Venta_Carrito> Venta_Carrito { get; set; }
     }
 }

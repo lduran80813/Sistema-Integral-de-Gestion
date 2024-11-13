@@ -32,16 +32,22 @@ namespace SIG.Models
             }
         }
 
-
-        public List<Entrega> ObtenerTodasLasEntregas()
+        public List<Entrega> ListarEntregas()
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                var entregas = context.Database.SqlQuery<Entrega>(
-                    "EXEC ObtenerTodasLasEntregas"
-                ).ToList();
-
-                return entregas;
+                return (from e in context.Entregas
+                        join vp in context.Venta_Factura on e.pedido_id equals vp.id // Realizamos el join en el campo de clave
+                        select new Entrega
+                        {
+                            PedidoId = vp.id,
+                            FechaEntrega = e.fecha_entrega,
+                            DireccionEntrega = e.direccion_entrega,
+                            ArticulosEntregados = e.articulos_entregados,
+                            ObservacionesAdicionales = e.observaciones_adicionales,
+                            EstadoEntrega = e.EstadoEntrega,
+                            NombreDestinatario = e.NombreDestinatario // Asumimos que este campo está en Venta_Pedido
+                        }).ToList();
             }
         }
 

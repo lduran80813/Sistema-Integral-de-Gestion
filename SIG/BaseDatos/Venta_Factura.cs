@@ -17,22 +17,36 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Venta_Factura()
         {
+            this.Conta_CxC = new HashSet<Conta_CxC>();
+            this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
+            this.Entregas = new HashSet<Entregas>();
             this.Venta_FacturaDetalle = new HashSet<Venta_FacturaDetalle>();
         }
     
         public int id { get; set; }
         public Nullable<int> cliente_id { get; set; }
-        public Nullable<System.DateTime> fecha_venta { get; set; }
-        public Nullable<int> metodo_pago_id { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public decimal monto { get; set; }
+        public Nullable<decimal> descuento { get; set; }
+        public decimal impuesto { get; set; }
         public Nullable<decimal> total_transaccion { get; set; }
-        public string no_factura { get; set; }
-        public string direccion { get; set; }
-        public string estado_factura { get; set; }
+        public Nullable<int> metodo_pago_id { get; set; }
+        public int estado { get; set; }
         public string notas_adicionales { get; set; }
+        public Nullable<int> tipo_venta { get; set; }
+        public Nullable<System.DateTime> fecha_factura { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conta_CxC> Conta_CxC { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Entregas> Entregas { get; set; }
         public virtual Venta_Cliente Venta_Cliente { get; set; }
+        public virtual Venta_Estado Venta_Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta_FacturaDetalle> Venta_FacturaDetalle { get; set; }
         public virtual Venta_MetodoPago Venta_MetodoPago { get; set; }
+        public virtual Venta_Tipo Venta_Tipo { get; set; }
     }
 }

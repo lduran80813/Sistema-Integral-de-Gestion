@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model IEnumerable<SIG.Entidades.Entrega>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h2 class="text-center">Lista de Entregas</h2>
+
+    <table id="tablaEntregas" class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Pedido ID</th>
+                <th>Fecha de Entrega</th>
+                <th>Dirección de Entrega</th>
+                <th>Artículos Entregados</th>
+                <th>Observaciones Adicionales</th>
+                <th>Estado de la Entrega</th> <!-- Nueva columna -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entrega in Model)
+            {
+                <tr>
+                    <td>@entrega.PedidoId</td>
+                    <td>@entrega.PedidoId</td>
+                    <td>@(entrega.FechaEntrega?.ToString("dd/MM/yyyy") ?? "N/A")</td>
+                    <td>@entrega.DireccionEntrega</td>
+                    <td>@entrega.ArticulosEntregados</td>
+                    <td>@entrega.ObservacionesAdicionales</td>
+                    <td>
+                        @switch (entrega.EstadoEntrega)
+                        {
+                            case "Pendiente":
+                                <span class="badge bg-warning">Pendiente</span>
+                                break;
+                            case "En tránsito":
+                                <span class="badge bg-info">En tránsito</span>
+                                break;
+                            case "Entregado":
+                                <span class="badge bg-success">Entregado</span>
+                                break;
+                            case "Cancelado":
+                                <span class="badge bg-danger">Cancelado</span>
+                                break;
+                            default:
+                                <span class="badge bg-secondary">Desconocido</span>
+                                break;
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Añadir los scripts necesarios para que DataTable funcione -->
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tablaEntregas').DataTable();
+        });
+    </script>
+}
+

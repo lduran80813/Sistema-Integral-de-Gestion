@@ -12,21 +12,26 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Venta_Cliente
+    public partial class Pedido
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venta_Cliente()
+        public Pedido()
         {
-            this.Venta_Factura = new HashSet<Venta_Factura>();
+            this.HistorialModificacion = new HashSet<HistorialModificacion>();
+            this.HistorialPedido = new HashSet<HistorialPedido>();
         }
     
         public int id { get; set; }
-        public string nombre { get; set; }
-        public string direccion { get; set; }
-        public string telefono { get; set; }
-        public string correo_electronico { get; set; }
+        public System.DateTime fecha_pedido { get; set; }
+        public int proveedor_id { get; set; }
+        public decimal total_pedido { get; set; }
+        public int EstadoCompraId { get; set; }
     
+        public virtual EstadoCompra EstadoCompra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_Factura> Venta_Factura { get; set; }
+        public virtual ICollection<HistorialModificacion> HistorialModificacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistorialPedido> HistorialPedido { get; set; }
+        public virtual Proveedor Proveedor { get; set; }
     }
 }

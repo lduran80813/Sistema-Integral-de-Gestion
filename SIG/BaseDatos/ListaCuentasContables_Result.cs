@@ -11,12 +11,10 @@ namespace SIG.BaseDatos
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class ListaCuentasContables_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public string TipoCuenta { get; set; }
     }
 }

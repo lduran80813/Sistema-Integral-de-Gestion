@@ -19,17 +19,68 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Catalogo_Compra">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Catalogo_Compra">
+        <MappingFragment StoreEntitySet="Catalogo_Compra">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conta_CuentasContables">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_CuentasContables">
+        <MappingFragment StoreEntitySet="Conta_CuentasContables">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conta_CxC">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_CxC">
+        <MappingFragment StoreEntitySet="Conta_CxC">
+          <ScalarProperty Name="id_CxC" ColumnName="id_CxC" />
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="SaldoAnterior" ColumnName="SaldoAnterior" />
+          <ScalarProperty Name="Abono" ColumnName="Abono" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conta_CxP">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_CxP">
+        <MappingFragment StoreEntitySet="Conta_CxP">
+          <ScalarProperty Name="id_CxP" ColumnName="id_CxP" />
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="SaldoAnterior" ColumnName="SaldoAnterior" />
+          <ScalarProperty Name="Abono" ColumnName="Abono" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conta_TipoTransaccion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_TipoTransaccion">
+        <MappingFragment StoreEntitySet="Conta_TipoTransaccion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Conta_Transaccion">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_Transaccion">
         <MappingFragment StoreEntitySet="Conta_Transaccion">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tipo_transaccion" ColumnName="tipo_transaccion" />
-          <ScalarProperty Name="referencia_id" ColumnName="referencia_id" />
+          <ScalarProperty Name="compra_id" ColumnName="compra_id" />
+          <ScalarProperty Name="venta_id" ColumnName="venta_id" />
           <ScalarProperty Name="fecha" ColumnName="fecha" />
           <ScalarProperty Name="monto" ColumnName="monto" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
-          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+          <ScalarProperty Name="cuenta_contable" ColumnName="cuenta_contable" />
+          <ScalarProperty Name="entidad_financiera" ColumnName="entidad_financiera" />
+          <ScalarProperty Name="transaccion_referencia" ColumnName="transaccion_referencia" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -111,16 +162,63 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EntidadesFinancieras">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.EntidadesFinancieras">
+        <MappingFragment StoreEntitySet="EntidadesFinancieras">
+          <ScalarProperty Name="IdEntidad" ColumnName="IdEntidad" />
+          <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Entregas">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Entregas">
         <MappingFragment StoreEntitySet="Entregas">
-          <ScalarProperty Name="estado_entrega" ColumnName="estado_entrega" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
           <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
           <ScalarProperty Name="direccion_entrega" ColumnName="direccion_entrega" />
           <ScalarProperty Name="articulos_entregados" ColumnName="articulos_entregados" />
           <ScalarProperty Name="observaciones_adicionales" ColumnName="observaciones_adicionales" />
+          <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
+          <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoCompra">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.EstadoCompra">
+        <MappingFragment StoreEntitySet="EstadoCompra">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadosFinancieros">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.EstadosFinancieros">
+        <MappingFragment StoreEntitySet="EstadosFinancieros">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistorialModificacion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.HistorialModificacion">
+        <MappingFragment StoreEntitySet="HistorialModificacion">
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="DetallesModificacion" ColumnName="DetallesModificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistorialPedido">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.HistorialPedido">
+        <MappingFragment StoreEntitySet="HistorialPedido">
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+          <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+          <ScalarProperty Name="DetalleCambio" ColumnName="DetalleCambio" />
+          <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -134,6 +232,17 @@
           <ScalarProperty Name="estado_tarea" ColumnName="estado_tarea" />
           <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
           <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pedido">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Pedido">
+        <MappingFragment StoreEntitySet="Pedido">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+          <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
+          <ScalarProperty Name="total_pedido" ColumnName="total_pedido" />
+          <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -157,6 +266,7 @@
           <ScalarProperty Name="total_compra" ColumnName="total_compra" />
           <ScalarProperty Name="no_factura" ColumnName="no_factura" />
           <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+          <ScalarProperty Name="tipo_compra_id" ColumnName="tipo_compra_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -192,6 +302,7 @@
           <ScalarProperty Name="monto_pago" ColumnName="monto_pago" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="autorizador_id" ColumnName="autorizador_id" />
+          <ScalarProperty Name="compra_id" ColumnName="compra_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -213,6 +324,7 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -256,6 +368,18 @@
         <MappingFragment StoreEntitySet="Ticket_Tipo">
           <ScalarProperty Name="tipo_incidencia" ColumnName="tipo_incidencia" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Carrito">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Carrito">
+        <MappingFragment StoreEntitySet="Venta_Carrito">
+          <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -270,18 +394,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Estado">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Estado">
+        <MappingFragment StoreEntitySet="Venta_Estado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Venta_Factura">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Factura">
         <MappingFragment StoreEntitySet="Venta_Factura">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
-          <ScalarProperty Name="fecha_venta" ColumnName="fecha_venta" />
-          <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
           <ScalarProperty Name="total_transaccion" ColumnName="total_transaccion" />
-          <ScalarProperty Name="no_factura" ColumnName="no_factura" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="estado_factura" ColumnName="estado_factura" />
+          <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+          <ScalarProperty Name="tipo_venta" ColumnName="tipo_venta" />
+          <ScalarProperty Name="fecha_factura" ColumnName="fecha_factura" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -293,6 +428,10 @@
           <ScalarProperty Name="producto_id" ColumnName="producto_id" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
           <ScalarProperty Name="precio_unidad" ColumnName="precio_unidad" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="monto_final" ColumnName="monto_final" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -304,27 +443,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Venta_PagoCliente">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_PagoCliente">
-        <MappingFragment StoreEntitySet="Venta_PagoCliente">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
-          <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
-          <ScalarProperty Name="monto_pago" ColumnName="monto_pago" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Venta_Pedido">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Pedido">
-        <MappingFragment StoreEntitySet="Venta_Pedido">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
-          <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
-          <ScalarProperty Name="numero_pedido" ColumnName="numero_pedido" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Venta_Producto">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Producto">
         <MappingFragment StoreEntitySet="Venta_Producto">
@@ -332,37 +450,210 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="inventario" ColumnName="inventario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_ProductoEstado">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_ProductoEstado">
+        <MappingFragment StoreEntitySet="Venta_ProductoEstado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta_Tipo">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Tipo">
+        <MappingFragment StoreEntitySet="Venta_Tipo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
-    <FunctionImportMapping FunctionImportName="iniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.iniciarSesion">
+    <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.iniciarSesion_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-          <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
-          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-          <ScalarProperty Name="direccion" ColumnName="direccion" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
-          <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
-          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-          <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.cierre_contable_Result">
+          <ScalarProperty Name="codigo_cuenta" ColumnName="codigo_cuenta" />
+          <ScalarProperty Name="descripcion_cuenta" ColumnName="descripcion_cuenta" />
+          <ScalarProperty Name="tipo_cuenta" ColumnName="tipo_cuenta" />
+          <ScalarProperty Name="ingresos" ColumnName="ingresos" />
+          <ScalarProperty Name="egresos" ColumnName="egresos" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
-    <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
+    <FunctionImportMapping FunctionImportName="ConsultarCarrito" FunctionName="SistemaIntegralGestionModel.Store.ConsultarCarrito">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ConsultarCarrito_Result">
+          <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ConsultarClientes" FunctionName="SistemaIntegralGestionModel.Store.ConsultarClientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ConsultarClientes_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ConsultarDetallePedido" FunctionName="SistemaIntegralGestionModel.Store.ConsultarDetallePedido">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ConsultarDetallePedido_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="factura_id" ColumnName="factura_id" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio_unidad" ColumnName="precio_unidad" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="monto_final" ColumnName="monto_final" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ConsultarPedidos" FunctionName="SistemaIntegralGestionModel.Store.ConsultarPedidos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ConsultarPedidos_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descuento" ColumnName="descuento" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="total_transaccion" ColumnName="total_transaccion" />
+          <ScalarProperty Name="metodo_pago_id" ColumnName="metodo_pago_id" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+          <ScalarProperty Name="tipo_venta" ColumnName="tipo_venta" />
+          <ScalarProperty Name="fecha_factura" ColumnName="fecha_factura" />
+          <ScalarProperty Name="estadoD" ColumnName="estadoD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="datosRecibo" FunctionName="SistemaIntegralGestionModel.Store.datosRecibo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.datosRecibo_Result">
+          <ScalarProperty Name="venta_id" ColumnName="venta_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="EditarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.EditarEmpleado" />
+    <FunctionImportMapping FunctionImportName="EliminarProductoCarrito" FunctionName="SistemaIntegralGestionModel.Store.EliminarProductoCarrito" />
+    <FunctionImportMapping FunctionImportName="FacturarPedido" FunctionName="SistemaIntegralGestionModel.Store.FacturarPedido" />
+    <FunctionImportMapping FunctionImportName="GeneraFacturaDetalle" FunctionName="SistemaIntegralGestionModel.Store.GeneraFacturaDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GeneraFacturaDetalle_Result">
+          <ScalarProperty Name="Linea_id" ColumnName="Linea_id" />
+          <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="monto_final" ColumnName="monto_final" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GeneraFacturaEncabezado" FunctionName="SistemaIntegralGestionModel.Store.GeneraFacturaEncabezado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result">
+          <ScalarProperty Name="Factura_id" ColumnName="Factura_id" />
+          <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+          <ScalarProperty Name="nombreCliente" ColumnName="nombreCliente" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="impuesto" ColumnName="impuesto" />
+          <ScalarProperty Name="total_transaccion" ColumnName="total_transaccion" />
+          <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+          <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
+          <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
+          <ScalarProperty Name="TipoVenta" ColumnName="TipoVenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="iniciarSesion" FunctionName="SistemaIntegralGestionModel.Store.iniciarSesion" />
+    <FunctionImportMapping FunctionImportName="ListaCuentasContables" FunctionName="SistemaIntegralGestionModel.Store.ListaCuentasContables">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListaCuentasContables_Result">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListaEntidadesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.ListaEntidadesFinancieras">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListaEntidadesFinancieras_Result">
+          <ScalarProperty Name="IdEntidad" ColumnName="IdEntidad" />
+          <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listaMetodoPago" FunctionName="SistemaIntegralGestionModel.Store.listaMetodoPago">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.listaMetodoPago_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="metodo" ColumnName="metodo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarCxC" FunctionName="SistemaIntegralGestionModel.Store.ListarCxC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarCxC_Result">
+          <ScalarProperty Name="id_CxC" ColumnName="id_CxC" />
+          <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
+          <ScalarProperty Name="SaldoAnterior" ColumnName="SaldoAnterior" />
+          <ScalarProperty Name="Abono" ColumnName="Abono" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="linea" ColumnName="linea" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarCxP" FunctionName="SistemaIntegralGestionModel.Store.ListarCxP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarCxP_Result">
+          <ScalarProperty Name="id_CxP" ColumnName="id_CxP" />
+          <ScalarProperty Name="IdCompra" ColumnName="IdCompra" />
+          <ScalarProperty Name="SaldoAnterior" ColumnName="SaldoAnterior" />
+          <ScalarProperty Name="Abono" ColumnName="Abono" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="linea" ColumnName="linea" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="listaTipoVenta" FunctionName="SistemaIntegralGestionModel.Store.listaTipoVenta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.listaTipoVenta_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -385,41 +676,29 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="EditarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.EditarEmpleado" />
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SistemaIntegralGestionModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SistemaIntegralGestionModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SistemaIntegralGestionModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="SistemaIntegralGestionModel.Store.sp_helpdiagramdefinition">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.sp_helpdiagramdefinition_Result">
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="SistemaIntegralGestionModel.Store.sp_helpdiagrams">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.sp_helpdiagrams_Result">
-          <ScalarProperty Name="Database" ColumnName="Database" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Owner" ColumnName="Owner" />
-          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SistemaIntegralGestionModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SistemaIntegralGestionModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="PagarCxC" FunctionName="SistemaIntegralGestionModel.Store.PagarCxC" />
+    <FunctionImportMapping FunctionImportName="PagarCxP" FunctionName="SistemaIntegralGestionModel.Store.PagarCxP" />
+    <FunctionImportMapping FunctionImportName="PagoPedido" FunctionName="SistemaIntegralGestionModel.Store.PagoPedido" />
+    <FunctionImportMapping FunctionImportName="ProcesarCarrito" FunctionName="SistemaIntegralGestionModel.Store.ProcesarCarrito" />
+    <FunctionImportMapping FunctionImportName="RegistrarCarrito" FunctionName="SistemaIntegralGestionModel.Store.RegistrarCarrito" />
+    <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
     <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
-    <FunctionImportMapping FunctionImportName="ObtenerTodasLasEntregas" FunctionName="SistemaIntegralGestionModel.Store.ObtenerTodasLasEntregas">
+    <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
+    <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerTodasLasEntregas_Result">
-          <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
-          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
-          <ScalarProperty Name="direccion_entrega" ColumnName="direccion_entrega" />
-          <ScalarProperty Name="articulos_entregados" ColumnName="articulos_entregados" />
-          <ScalarProperty Name="observaciones_adicionales" ColumnName="observaciones_adicionales" />
-          <ScalarProperty Name="estado_entrega" ColumnName="estado_entrega" />
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ValidarExistencias" FunctionName="SistemaIntegralGestionModel.Store.ValidarExistencias">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarExistencias_Result">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="Inventario" ColumnName="Inventario" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

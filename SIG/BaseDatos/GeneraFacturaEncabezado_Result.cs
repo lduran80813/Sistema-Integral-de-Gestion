@@ -10,23 +10,22 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Venta_Cliente
+    public partial class GeneraFacturaEncabezado_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venta_Cliente()
-        {
-            this.Venta_Factura = new HashSet<Venta_Factura>();
-        }
-    
-        public int id { get; set; }
-        public string nombre { get; set; }
+        public int Factura_id { get; set; }
+        public Nullable<int> cliente_id { get; set; }
+        public string nombreCliente { get; set; }
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string correo_electronico { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_Factura> Venta_Factura { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public decimal monto { get; set; }
+        public decimal impuesto { get; set; }
+        public Nullable<decimal> total_transaccion { get; set; }
+        public string MetodoPago { get; set; }
+        public string EstadoFactura { get; set; }
+        public string notas_adicionales { get; set; }
+        public string TipoVenta { get; set; }
     }
 }

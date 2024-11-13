@@ -10,21 +10,16 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Venta_FacturaDetalle
+    public partial class GeneraFacturaDetalle_Result
     {
-        public int id { get; set; }
-        public Nullable<int> factura_id { get; set; }
+        public int Linea_id { get; set; }
         public Nullable<int> producto_id { get; set; }
+        public string nombre { get; set; }
         public Nullable<int> cantidad { get; set; }
-        public decimal precio_unidad { get; set; }
+        public Nullable<decimal> precio { get; set; }
         public decimal monto { get; set; }
-        public Nullable<decimal> descuento { get; set; }
         public decimal impuesto { get; set; }
         public decimal monto_final { get; set; }
-    
-        public virtual Venta_Factura Venta_Factura { get; set; }
-        public virtual Venta_Producto Venta_Producto { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace SIG.Controllers
 
         public ActionResult ListarEntregas()
         {
-            var entrega = entregas.ObtenerTodasLasEntregas();
+            var entrega = entregas.ListarEntregas();
             return View(entrega);
         }
     }

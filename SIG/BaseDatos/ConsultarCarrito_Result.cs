@@ -10,20 +10,18 @@
 namespace SIG.BaseDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Prov_Pago
+    public partial class ConsultarCarrito_Result
     {
+        public int IdCarrito { get; set; }
+        public int IdUsuario { get; set; }
         public int id { get; set; }
-        public Nullable<int> proveedor_id { get; set; }
-        public Nullable<System.DateTime> fecha_pago { get; set; }
-        public Nullable<decimal> monto_pago { get; set; }
         public string descripcion { get; set; }
-        public Nullable<int> autorizador_id { get; set; }
-        public Nullable<int> compra_id { get; set; }
-    
-        public virtual Empleado Empleado { get; set; }
-        public virtual Prov_Compra Prov_Compra { get; set; }
-        public virtual Proveedor Proveedor { get; set; }
+        public decimal Precio { get; set; }
+        public Nullable<decimal> SubTotal { get; set; }
+        public Nullable<decimal> Impuesto { get; set; }
+        public Nullable<decimal> Total { get; set; }
+        public int Cantidad { get; set; }
+        public System.DateTime Fecha { get; set; }
     }
 }

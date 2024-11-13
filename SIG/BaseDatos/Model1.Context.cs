@@ -29,6 +29,11 @@ namespace SIG.BaseDatos
     
         public virtual DbSet<Adm_Permiso> Adm_Permiso { get; set; }
         public virtual DbSet<Adm_Rol> Adm_Rol { get; set; }
+        public virtual DbSet<Catalogo_Compra> Catalogo_Compra { get; set; }
+        public virtual DbSet<Conta_CuentasContables> Conta_CuentasContables { get; set; }
+        public virtual DbSet<Conta_CxC> Conta_CxC { get; set; }
+        public virtual DbSet<Conta_CxP> Conta_CxP { get; set; }
+        public virtual DbSet<Conta_TipoTransaccion> Conta_TipoTransaccion { get; set; }
         public virtual DbSet<Conta_Transaccion> Conta_Transaccion { get; set; }
         public virtual DbSet<Emp_BitacoraIngreso> Emp_BitacoraIngreso { get; set; }
         public virtual DbSet<Emp_ContactoEmergencia> Emp_ContactoEmergencia { get; set; }
@@ -37,8 +42,14 @@ namespace SIG.BaseDatos
         public virtual DbSet<Emp_RemuneracionDeduccion> Emp_RemuneracionDeduccion { get; set; }
         public virtual DbSet<Emp_Vacaciones> Emp_Vacaciones { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
+        public virtual DbSet<EntidadesFinancieras> EntidadesFinancieras { get; set; }
         public virtual DbSet<Entregas> Entregas { get; set; }
+        public virtual DbSet<EstadoCompra> EstadoCompra { get; set; }
+        public virtual DbSet<EstadosFinancieros> EstadosFinancieros { get; set; }
+        public virtual DbSet<HistorialModificacion> HistorialModificacion { get; set; }
+        public virtual DbSet<HistorialPedido> HistorialPedido { get; set; }
         public virtual DbSet<PDA_Tarea> PDA_Tarea { get; set; }
+        public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<PlanDeAccion> PlanDeAccion { get; set; }
         public virtual DbSet<Prov_Compra> Prov_Compra { get; set; }
         public virtual DbSet<Prov_CompraDetalle> Prov_CompraDetalle { get; set; }
@@ -50,13 +61,15 @@ namespace SIG.BaseDatos
         public virtual DbSet<Ticket_Estado> Ticket_Estado { get; set; }
         public virtual DbSet<Ticket_Prioridad> Ticket_Prioridad { get; set; }
         public virtual DbSet<Ticket_Tipo> Ticket_Tipo { get; set; }
+        public virtual DbSet<Venta_Carrito> Venta_Carrito { get; set; }
         public virtual DbSet<Venta_Cliente> Venta_Cliente { get; set; }
+        public virtual DbSet<Venta_Estado> Venta_Estado { get; set; }
         public virtual DbSet<Venta_Factura> Venta_Factura { get; set; }
         public virtual DbSet<Venta_FacturaDetalle> Venta_FacturaDetalle { get; set; }
         public virtual DbSet<Venta_MetodoPago> Venta_MetodoPago { get; set; }
-        public virtual DbSet<Venta_PagoCliente> Venta_PagoCliente { get; set; }
-        public virtual DbSet<Venta_Pedido> Venta_Pedido { get; set; }
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
+        public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
+        public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
     
         public virtual int CambiarContrasenna(ObjectParameter id, string nuevaContrasena)
         {
@@ -67,7 +80,150 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarContrasenna", id, nuevaContrasenaParameter);
         }
     
-        public virtual ObjectResult<iniciarSesion_Result> iniciarSesion(string correo_electronico, string contrasena, ObjectParameter id, ObjectParameter loginSuccess, ObjectParameter rol, ObjectParameter usuario)
+        public virtual ObjectResult<cierre_contable_Result> cierre_contable(Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin)
+        {
+            var fecha_InicioParameter = fecha_Inicio.HasValue ?
+                new ObjectParameter("Fecha_Inicio", fecha_Inicio) :
+                new ObjectParameter("Fecha_Inicio", typeof(System.DateTime));
+    
+            var fecha_FinParameter = fecha_Fin.HasValue ?
+                new ObjectParameter("Fecha_Fin", fecha_Fin) :
+                new ObjectParameter("Fecha_Fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cierre_contable_Result>("cierre_contable", fecha_InicioParameter, fecha_FinParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarCarrito_Result> ConsultarCarrito(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCarrito_Result>("ConsultarCarrito", idUsuarioParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarClientes_Result> ConsultarClientes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarClientes_Result>("ConsultarClientes");
+        }
+    
+        public virtual ObjectResult<ConsultarDetallePedido_Result> ConsultarDetallePedido(Nullable<int> idPedido)
+        {
+            var idPedidoParameter = idPedido.HasValue ?
+                new ObjectParameter("IdPedido", idPedido) :
+                new ObjectParameter("IdPedido", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarDetallePedido_Result>("ConsultarDetallePedido", idPedidoParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarPedidos_Result> ConsultarPedidos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarPedidos_Result>("ConsultarPedidos");
+        }
+    
+        public virtual ObjectResult<datosRecibo_Result> datosRecibo(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<datosRecibo_Result>("datosRecibo", idFacturaParameter);
+        }
+    
+        public virtual int EditarEmpleado(Nullable<int> id, string nombre, string apellidos, string correoElectronico, string telefono, string direccion, Nullable<System.DateTime> fechaNacimiento, string numeroIdentificacion, Nullable<int> departamentoId, Nullable<int> puestoId, Nullable<int> rolId)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("Apellidos", apellidos) :
+                new ObjectParameter("Apellidos", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
+    
+            var numeroIdentificacionParameter = numeroIdentificacion != null ?
+                new ObjectParameter("NumeroIdentificacion", numeroIdentificacion) :
+                new ObjectParameter("NumeroIdentificacion", typeof(string));
+    
+            var departamentoIdParameter = departamentoId.HasValue ?
+                new ObjectParameter("DepartamentoId", departamentoId) :
+                new ObjectParameter("DepartamentoId", typeof(int));
+    
+            var puestoIdParameter = puestoId.HasValue ?
+                new ObjectParameter("PuestoId", puestoId) :
+                new ObjectParameter("PuestoId", typeof(int));
+    
+            var rolIdParameter = rolId.HasValue ?
+                new ObjectParameter("RolId", rolId) :
+                new ObjectParameter("RolId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditarEmpleado", idParameter, nombreParameter, apellidosParameter, correoElectronicoParameter, telefonoParameter, direccionParameter, fechaNacimientoParameter, numeroIdentificacionParameter, departamentoIdParameter, puestoIdParameter, rolIdParameter);
+        }
+    
+        public virtual int EliminarProductoCarrito(Nullable<int> idUsuario, Nullable<int> idProducto)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarProductoCarrito", idUsuarioParameter, idProductoParameter);
+        }
+    
+        public virtual int FacturarPedido(Nullable<int> id_Pedido, Nullable<int> tipo_venta)
+        {
+            var id_PedidoParameter = id_Pedido.HasValue ?
+                new ObjectParameter("Id_Pedido", id_Pedido) :
+                new ObjectParameter("Id_Pedido", typeof(int));
+    
+            var tipo_ventaParameter = tipo_venta.HasValue ?
+                new ObjectParameter("Tipo_venta", tipo_venta) :
+                new ObjectParameter("Tipo_venta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FacturarPedido", id_PedidoParameter, tipo_ventaParameter);
+        }
+    
+        public virtual ObjectResult<GeneraFacturaDetalle_Result> GeneraFacturaDetalle(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaDetalle_Result>("GeneraFacturaDetalle", idFacturaParameter);
+        }
+    
+        public virtual ObjectResult<GeneraFacturaEncabezado_Result> GeneraFacturaEncabezado(Nullable<int> idFactura)
+        {
+            var idFacturaParameter = idFactura.HasValue ?
+                new ObjectParameter("IdFactura", idFactura) :
+                new ObjectParameter("IdFactura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaEncabezado_Result>("GeneraFacturaEncabezado", idFacturaParameter);
+        }
+    
+        public virtual int iniciarSesion(string correo_electronico, string contrasena, ObjectParameter id, ObjectParameter loginSuccess, ObjectParameter rol, ObjectParameter usuario)
         {
             var correo_electronicoParameter = correo_electronico != null ?
                 new ObjectParameter("correo_electronico", correo_electronico) :
@@ -77,7 +233,195 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Contrasena", contrasena) :
                 new ObjectParameter("Contrasena", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<iniciarSesion_Result>("iniciarSesion", correo_electronicoParameter, contrasenaParameter, id, loginSuccess, rol, usuario);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("iniciarSesion", correo_electronicoParameter, contrasenaParameter, id, loginSuccess, rol, usuario);
+        }
+    
+        public virtual ObjectResult<ListaCuentasContables_Result> ListaCuentasContables()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaCuentasContables_Result>("ListaCuentasContables");
+        }
+    
+        public virtual ObjectResult<ListaEntidadesFinancieras_Result> ListaEntidadesFinancieras()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaEntidadesFinancieras_Result>("ListaEntidadesFinancieras");
+        }
+    
+        public virtual ObjectResult<listaMetodoPago_Result> listaMetodoPago()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaMetodoPago_Result>("listaMetodoPago");
+        }
+    
+        public virtual ObjectResult<ListarCxC_Result> ListarCxC()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListarCxC_Result>("ListarCxC");
+        }
+    
+        public virtual ObjectResult<ListarCxP_Result> ListarCxP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListarCxP_Result>("ListarCxP");
+        }
+    
+        public virtual ObjectResult<listaTipoVenta_Result> listaTipoVenta()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTipoVenta_Result>("listaTipoVenta");
+        }
+    
+        public virtual ObjectResult<ObtenerEmpleadoPorFiltro_Result> ObtenerEmpleadoPorFiltro(string nombre, string correoElectronico, string numeroCedula)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var numeroCedulaParameter = numeroCedula != null ?
+                new ObjectParameter("NumeroCedula", numeroCedula) :
+                new ObjectParameter("NumeroCedula", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpleadoPorFiltro_Result>("ObtenerEmpleadoPorFiltro", nombreParameter, correoElectronicoParameter, numeroCedulaParameter);
+        }
+    
+        public virtual int PagarCxC(Nullable<int> id_Pedido, Nullable<decimal> monto, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, string descripcion, Nullable<int> id_Usuario)
+        {
+            var id_PedidoParameter = id_Pedido.HasValue ?
+                new ObjectParameter("Id_Pedido", id_Pedido) :
+                new ObjectParameter("Id_Pedido", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("monto", monto) :
+                new ObjectParameter("monto", typeof(decimal));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            var entidadFinancieraParameter = entidadFinanciera != null ?
+                new ObjectParameter("EntidadFinanciera", entidadFinanciera) :
+                new ObjectParameter("EntidadFinanciera", typeof(string));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagarCxC", id_PedidoParameter, montoParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual int PagarCxP(Nullable<int> id_Compra, Nullable<decimal> monto, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, string descripcion, Nullable<int> id_Usuario)
+        {
+            var id_CompraParameter = id_Compra.HasValue ?
+                new ObjectParameter("Id_Compra", id_Compra) :
+                new ObjectParameter("Id_Compra", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("monto", monto) :
+                new ObjectParameter("monto", typeof(decimal));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            var entidadFinancieraParameter = entidadFinanciera != null ?
+                new ObjectParameter("EntidadFinanciera", entidadFinanciera) :
+                new ObjectParameter("EntidadFinanciera", typeof(string));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagarCxP", id_CompraParameter, montoParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual int PagoPedido(Nullable<int> id_Pedido, Nullable<int> tipo_venta, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario)
+        {
+            var id_PedidoParameter = id_Pedido.HasValue ?
+                new ObjectParameter("Id_Pedido", id_Pedido) :
+                new ObjectParameter("Id_Pedido", typeof(int));
+    
+            var tipo_ventaParameter = tipo_venta.HasValue ?
+                new ObjectParameter("Tipo_venta", tipo_venta) :
+                new ObjectParameter("Tipo_venta", typeof(int));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            var entidadFinancieraParameter = entidadFinanciera != null ?
+                new ObjectParameter("EntidadFinanciera", entidadFinanciera) :
+                new ObjectParameter("EntidadFinanciera", typeof(string));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("Monto", monto) :
+                new ObjectParameter("Monto", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagoPedido", id_PedidoParameter, tipo_ventaParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual int ProcesarCarrito(Nullable<int> idCliente, Nullable<int> idUsuario, Nullable<int> estado, string notasAdicionales)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("IdCliente", idCliente) :
+                new ObjectParameter("IdCliente", typeof(int));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(int));
+    
+            var notasAdicionalesParameter = notasAdicionales != null ?
+                new ObjectParameter("NotasAdicionales", notasAdicionales) :
+                new ObjectParameter("NotasAdicionales", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProcesarCarrito", idClienteParameter, idUsuarioParameter, estadoParameter, notasAdicionalesParameter);
+        }
+    
+        public virtual int RegistrarCarrito(Nullable<int> idUsuario, Nullable<int> idProducto, Nullable<int> cantidad)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCarrito", idUsuarioParameter, idProductoParameter, cantidadParameter);
         }
     
         public virtual ObjectResult<Nullable<decimal>> registrarEmpleado(string nombre, string apellidos, string numeroIdentificacion, Nullable<System.DateTime> fechaNacimiento, string direccion, string telefono, string correoElectronico, Nullable<int> departamentoID, Nullable<int> puestoID, Nullable<int> rolID, Nullable<bool> estadoEmpleado, string usuario, string contrasena)
@@ -137,240 +481,6 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("registrarEmpleado", nombreParameter, apellidosParameter, numeroIdentificacionParameter, fechaNacimientoParameter, direccionParameter, telefonoParameter, correoElectronicoParameter, departamentoIDParameter, puestoIDParameter, rolIDParameter, estadoEmpleadoParameter, usuarioParameter, contrasenaParameter);
         }
     
-        public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string email)
-        {
-            var emailParameter = email != null ?
-                new ObjectParameter("Email", email) :
-                new ObjectParameter("Email", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", emailParameter);
-        }
-    
-        public virtual ObjectResult<ObtenerEmpleadoPorFiltro_Result> ObtenerEmpleadoPorFiltro(string nombre, string correoElectronico, string numeroCedula)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var numeroCedulaParameter = numeroCedula != null ?
-                new ObjectParameter("NumeroCedula", numeroCedula) :
-                new ObjectParameter("NumeroCedula", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpleadoPorFiltro_Result>("ObtenerEmpleadoPorFiltro", nombreParameter, correoElectronicoParameter, numeroCedulaParameter);
-        }
-    
-        public virtual int EditarEmpleado(Nullable<int> id, string nombre, string apellidos, string correoElectronico, string telefono, string direccion, Nullable<System.DateTime> fechaNacimiento, string numeroIdentificacion, Nullable<int> departamentoId, Nullable<int> puestoId, Nullable<int> rolId)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("Id", id) :
-                new ObjectParameter("Id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-    
-            var apellidosParameter = apellidos != null ?
-                new ObjectParameter("Apellidos", apellidos) :
-                new ObjectParameter("Apellidos", typeof(string));
-    
-            var correoElectronicoParameter = correoElectronico != null ?
-                new ObjectParameter("CorreoElectronico", correoElectronico) :
-                new ObjectParameter("CorreoElectronico", typeof(string));
-    
-            var telefonoParameter = telefono != null ?
-                new ObjectParameter("Telefono", telefono) :
-                new ObjectParameter("Telefono", typeof(string));
-    
-            var direccionParameter = direccion != null ?
-                new ObjectParameter("Direccion", direccion) :
-                new ObjectParameter("Direccion", typeof(string));
-    
-            var fechaNacimientoParameter = fechaNacimiento.HasValue ?
-                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
-                new ObjectParameter("FechaNacimiento", typeof(System.DateTime));
-    
-            var numeroIdentificacionParameter = numeroIdentificacion != null ?
-                new ObjectParameter("NumeroIdentificacion", numeroIdentificacion) :
-                new ObjectParameter("NumeroIdentificacion", typeof(string));
-    
-            var departamentoIdParameter = departamentoId.HasValue ?
-                new ObjectParameter("DepartamentoId", departamentoId) :
-                new ObjectParameter("DepartamentoId", typeof(int));
-    
-            var puestoIdParameter = puestoId.HasValue ?
-                new ObjectParameter("PuestoId", puestoId) :
-                new ObjectParameter("PuestoId", typeof(int));
-    
-            var rolIdParameter = rolId.HasValue ?
-                new ObjectParameter("RolId", rolId) :
-                new ObjectParameter("RolId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EditarEmpleado", idParameter, nombreParameter, apellidosParameter, correoElectronicoParameter, telefonoParameter, direccionParameter, fechaNacimientoParameter, numeroIdentificacionParameter, departamentoIdParameter, puestoIdParameter, rolIdParameter);
-        }
-    
-        public virtual int ActualizarVentaPedido(Nullable<int> id, Nullable<int> cliente_id, Nullable<System.DateTime> fecha_pedido, string numero_pedido)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var cliente_idParameter = cliente_id.HasValue ?
-                new ObjectParameter("cliente_id", cliente_id) :
-                new ObjectParameter("cliente_id", typeof(int));
-    
-            var fecha_pedidoParameter = fecha_pedido.HasValue ?
-                new ObjectParameter("fecha_pedido", fecha_pedido) :
-                new ObjectParameter("fecha_pedido", typeof(System.DateTime));
-    
-            var numero_pedidoParameter = numero_pedido != null ?
-                new ObjectParameter("numero_pedido", numero_pedido) :
-                new ObjectParameter("numero_pedido", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarVentaPedido", idParameter, cliente_idParameter, fecha_pedidoParameter, numero_pedidoParameter);
-        }
-    
-        public virtual int CrearVentaPedido(Nullable<int> cliente_id, Nullable<System.DateTime> fecha_pedido, string numero_pedido)
-        {
-            var cliente_idParameter = cliente_id.HasValue ?
-                new ObjectParameter("cliente_id", cliente_id) :
-                new ObjectParameter("cliente_id", typeof(int));
-    
-            var fecha_pedidoParameter = fecha_pedido.HasValue ?
-                new ObjectParameter("fecha_pedido", fecha_pedido) :
-                new ObjectParameter("fecha_pedido", typeof(System.DateTime));
-    
-            var numero_pedidoParameter = numero_pedido != null ?
-                new ObjectParameter("numero_pedido", numero_pedido) :
-                new ObjectParameter("numero_pedido", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CrearVentaPedido", cliente_idParameter, fecha_pedidoParameter, numero_pedidoParameter);
-        }
-    
-        public virtual int EliminarVentaPedido(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarVentaPedido", idParameter);
-        }
-    
-        public virtual ObjectResult<ObtenerVentaPedido_Result> ObtenerVentaPedido(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerVentaPedido_Result>("ObtenerVentaPedido", idParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
         public virtual int RegistrarEntrega(Nullable<int> pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales)
         {
             var pedidoIdParameter = pedidoId.HasValue ?
@@ -396,9 +506,43 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter);
         }
     
-        public virtual ObjectResult<ObtenerTodasLasEntregas_Result> ObtenerTodasLasEntregas()
+        public virtual int RegistrarTransaccionesFinancieras(Nullable<int> cuenta, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerTodasLasEntregas_Result>("ObtenerTodasLasEntregas");
+            var cuentaParameter = cuenta.HasValue ?
+                new ObjectParameter("Cuenta", cuenta) :
+                new ObjectParameter("Cuenta", typeof(int));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("Monto", monto) :
+                new ObjectParameter("Monto", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarTransaccionesFinancieras", cuentaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarCorreo_Result>("ValidarCorreo", emailParameter);
+        }
+    
+        public virtual ObjectResult<ValidarExistencias_Result> ValidarExistencias(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
     }
 }
