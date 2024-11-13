@@ -34,3 +34,18 @@ function restaurarEmpleado(id) {
         window.location.href = '@Url.Action("RestaurarEmpleado", "Login")/' + id; 
     }
 }
+
+
+
+    $(document).ready(function() {
+        $('#tablaEntregas').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            },
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "lengthChange": false,
+            "pageLength": 10
+        });
+    });

@@ -548,6 +548,7 @@
     <Content Include="Views\Login\ListarEmpleadosEliminados.cshtml" />
     <Content Include="Views\Login\Editar.cshtml" />
     <Content Include="Views\Entregas\Registrar.cshtml" />
+    <Content Include="Views\Entregas\ListarEntregas1.cshtml" />
     <Content Include="Views\Entregas\ListarEntregas.cshtml" />
   </ItemGroup>
   <ItemGroup>
