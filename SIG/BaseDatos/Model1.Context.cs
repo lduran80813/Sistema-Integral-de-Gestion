@@ -544,5 +544,38 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
+    
+        public virtual int ActualizarEntrega(Nullable<int> pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales, string estadoEntrega, string nombreDestinatario)
+        {
+            var pedidoIdParameter = pedidoId.HasValue ?
+                new ObjectParameter("PedidoId", pedidoId) :
+                new ObjectParameter("PedidoId", typeof(int));
+    
+            var fechaEntregaParameter = fechaEntrega.HasValue ?
+                new ObjectParameter("FechaEntrega", fechaEntrega) :
+                new ObjectParameter("FechaEntrega", typeof(System.DateTime));
+    
+            var direccionEntregaParameter = direccionEntrega != null ?
+                new ObjectParameter("DireccionEntrega", direccionEntrega) :
+                new ObjectParameter("DireccionEntrega", typeof(string));
+    
+            var articulosEntregadosParameter = articulosEntregados != null ?
+                new ObjectParameter("ArticulosEntregados", articulosEntregados) :
+                new ObjectParameter("ArticulosEntregados", typeof(string));
+    
+            var observacionesAdicionalesParameter = observacionesAdicionales != null ?
+                new ObjectParameter("ObservacionesAdicionales", observacionesAdicionales) :
+                new ObjectParameter("ObservacionesAdicionales", typeof(string));
+    
+            var estadoEntregaParameter = estadoEntrega != null ?
+                new ObjectParameter("EstadoEntrega", estadoEntrega) :
+                new ObjectParameter("EstadoEntrega", typeof(string));
+    
+            var nombreDestinatarioParameter = nombreDestinatario != null ?
+                new ObjectParameter("NombreDestinatario", nombreDestinatario) :
+                new ObjectParameter("NombreDestinatario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter, estadoEntregaParameter, nombreDestinatarioParameter);
+        }
     }
 }

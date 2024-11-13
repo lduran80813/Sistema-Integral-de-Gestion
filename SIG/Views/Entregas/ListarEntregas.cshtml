@@ -5,33 +5,31 @@
 }
 
 <div class="container">
-    <h2 class="text-center">Lista de Entregas</h2>
-
+    <h2 class="text-left">Lista de Entregas</h2>
     <table id="tablaEntregas" class="table table-striped">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Pedido ID</th>
                 <th>Fecha de Entrega</th>
                 <th>Dirección de Entrega</th>
                 <th>Artículos Entregados</th>
-                <th>Observaciones Adicionales</th>
-                <th>Estado de la Entrega</th> <!-- Nueva columna -->
-                <th>Nombre Cliente</th>
+                <th>Observaciones</th>
+                <th>Estado de la Entrega</th>
+                <th>Nombre del Destinatario</th>
+                <th>Acciones</th> <!-- Nueva columna para acciones -->
             </tr>
         </thead>
         <tbody>
-            @foreach (var entrega in Model)
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@entrega.PedidoId</td>
-                    <td>@entrega.PedidoId</td>
-                    <td>@(entrega.FechaEntrega?.ToString("dd/MM/yyyy") ?? "N/A")</td>
-                    <td>@entrega.DireccionEntrega</td>
-                    <td>@entrega.ArticulosEntregados</td>
-                    <td>@entrega.ObservacionesAdicionales</td>
+                    <td>@item.PedidoId</td>
+                    <td>@(item.FechaEntrega.HasValue ? item.FechaEntrega.Value.ToString("dd/MM/yyyy") : "N/A")</td>
+                    <td>@item.DireccionEntrega</td>
+                    <td>@item.ArticulosEntregados</td>
+                    <td>@item.ObservacionesAdicionales</td>
                     <td>
-                        @switch (entrega.EstadoEntrega)
+                        @switch (item.EstadoEntrega)
                         {
                             case "Pendiente":
                                 <span class="badge bg-warning">Pendiente</span>
@@ -50,15 +48,18 @@
                                 break;
                         }
                     </td>
-                    <td>@entrega.NombreDestinatario</td>
+                    <td>@item.NombreDestinatario</td>
+                    <td>
+                        <a href="@Url.Action("ActualizarEntrega", "Entregas", new { id = item.PedidoId })" class="btn btn-primary btn-sm">Actualizar</a> <!-- Botón de actualización -->
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
 
 
-<script src="~/root/dist/js/Listar.js"></script>
+
+    <script src="~/root/dist/js/Listar.js"></script>
 
 
 

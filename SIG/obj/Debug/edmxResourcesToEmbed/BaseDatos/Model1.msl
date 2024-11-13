@@ -702,5 +702,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ActualizarEntrega" FunctionName="SistemaIntegralGestionModel.Store.ActualizarEntrega" />
   </EntityContainerMapping>
 </Mapping>

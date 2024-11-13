@@ -993,6 +993,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ActualizarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PedidoId" Type="int" Mode="In" />
+    <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+    <Parameter Name="DireccionEntrega" Type="varchar" Mode="In" />
+    <Parameter Name="ArticulosEntregados" Type="varchar" Mode="In" />
+    <Parameter Name="ObservacionesAdicionales" Type="varchar" Mode="In" />
+    <Parameter Name="EstadoEntrega" Type="varchar" Mode="In" />
+    <Parameter Name="NombreDestinatario" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="InOut" />
     <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />

@@ -1457,6 +1457,15 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ActualizarEntrega">
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+      <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="DireccionEntrega" Mode="In" Type="String" />
+      <Parameter Name="ArticulosEntregados" Mode="In" Type="String" />
+      <Parameter Name="ObservacionesAdicionales" Mode="In" Type="String" />
+      <Parameter Name="EstadoEntrega" Mode="In" Type="String" />
+      <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">
     <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
