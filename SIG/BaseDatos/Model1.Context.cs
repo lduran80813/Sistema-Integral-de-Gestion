@@ -613,5 +613,57 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
+    
+        public virtual ObjectResult<Informe_Ventas_Result> Informe_Ventas(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Informe_Ventas_Result>("Informe_Ventas", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual int RecordatorioNotificaciones(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoHoras)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoHorasParameter = tiempoTranscurridoHoras.HasValue ?
+                new ObjectParameter("TiempoTranscurridoHoras", tiempoTranscurridoHoras) :
+                new ObjectParameter("TiempoTranscurridoHoras", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioNotificaciones", idNotificacionBasicaParameter, tiempoTranscurridoHorasParameter);
+        }
+    
+        public virtual ObjectResult<distribMetodoPago_Result> distribMetodoPago(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<distribMetodoPago_Result>("distribMetodoPago", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<top5Clientes_Result> top5Clientes(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<top5Clientes_Result>("top5Clientes", fechaInicioParameter, fechaFinParameter);
+        }
     }
 }

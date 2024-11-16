@@ -1113,6 +1113,10 @@
   <Function Name="datosRecibo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdFactura" Type="int" Mode="In" />
   </Function>
+  <Function Name="distribMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
+  </Function>
   <Function Name="EditarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
@@ -1139,6 +1143,10 @@
   </Function>
   <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdFactura" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Informe_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
   </Function>
   <Function Name="iniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="correo_electronico" Type="nvarchar" Mode="In" />
@@ -1204,6 +1212,10 @@
     <Parameter Name="Estado" Type="int" Mode="In" />
     <Parameter Name="NotasAdicionales" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="RecordatorioNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
+    <Parameter Name="TiempoTranscurridoHoras" Type="int" Mode="In" />
+  </Function>
   <Function Name="RegistrarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
     <Parameter Name="IdProducto" Type="int" Mode="In" />
@@ -1236,6 +1248,10 @@
     <Parameter Name="Monto" Type="decimal" Mode="In" />
     <Parameter Name="Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="top5Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
   </Function>
   <Function Name="UltimoTicketUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />

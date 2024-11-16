@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static System.ActivationContext;
 
 namespace SIG.Models
 {
@@ -65,6 +66,28 @@ namespace SIG.Models
                 rowsAffected = context.RegistrarTransaccionesFinancieras(ent.IdCuenta, ent.Monto, ent.Descripcion, Consecutivo);
             }
             return (rowsAffected > 0 ? true : false);
+        }
+
+        public InformeVentas Informe_Ventas(InformeVentas fecha)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                fecha.datosInforme = context.Informe_Ventas(fecha.inicioCorte, fecha.finCorte).ToList();
+
+                fecha.cantidadVentas = (from x in context.Venta_Factura
+                                     where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2
+                                     select x).Count();
+
+                fecha.ingresosTotales = (decimal)(from x in context.Venta_Factura
+                                      where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2
+                                      select x.total_transaccion).Sum();
+
+                fecha.principalesClientes = context.top5Clientes(fecha.inicioCorte, fecha.finCorte).ToList();
+
+                fecha.distribucionMediosPago = context.distribMetodoPago(fecha.inicioCorte, fecha.finCorte).ToList();
+
+                return (fecha);
+            }
         }
     }
 }

@@ -1,0 +1,177 @@
+﻿@model SIG.Entidades.InformeVentas
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar cierre contable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Informe de Ventas</h1>
+
+
+        <div class="dates-container">
+            @Html.Label("Fechas del reporte:", new { @class = "dates-label" })
+            <span>Inicio: @Model.inicioCorte.ToString("yyyy-MM-dd")</span>
+            <br />
+            <span>Fin: @Model.finCorte.ToString("yyyy-MM-dd")</span>
+        </div>
+
+        <h4>Resumen de productos</h4>
+        <table id="tablaInforme" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Unidades Vendidas</th>
+                    <th>Precio Unitario</th>
+                    <th>Descuento</th>
+                    <th>Impuesto</th>
+                    <th>Monto Final</th>
+                    <th>Clientes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.datosInforme)
+                {
+                    <tr>
+                        <td>@item.Producto</td>
+                        <td>@item.Cantidad</td>
+                        <td>₡@item.PrecioUnitario</td>
+                        <td>₡@item.Descuento</td>
+                        <td>₡@item.Impuesto</td>
+                        <td>₡@item.MontoFinal</td>
+                        <td>@item.Clientes</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+        <h4>Datos para análisis</h4>
+        <div>
+            <div>
+                <h5>Cantidad de ventas: @Model.cantidadVentas</h5>
+            </div>
+            <div>
+                <h5>Total de ventas: ₡@Model.ingresosTotales</h5>
+            </div>
+        </div>
+        <br />
+        <div>
+            <h5>Principales clientes</h5>
+            <table id="tablaClientes" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Cantidad de ventas</th>
+                        <th>Total venta</th>
+                        <th>Porcentaje de Ventas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.principalesClientes)
+                    {
+                        <tr>
+                            <td>@item.Cliente</td>
+                            <td>@item.CantidadVentas</td>
+                            <td>₡@item.TotalVentas</td>
+                            <td>@item.PorcentajeVentas%</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <div>
+            <h5>Preferencia en métodos de pago</h5>
+            <table id="tablaMetodoPago" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Método de pago</th>
+                        <th>Cantidad de ventas</th>
+                        <th>Total venta</th>
+                        <th>Porcentaje de Ventas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.distribucionMediosPago)
+                    {
+                        <tr>
+                            <td>@item.MetodoPago</td>
+                            <td>@item.CantidadVentas</td>
+                            <td>₡@item.TotalVentas</td>
+                            <td>@item.PorcentajeVentas%</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @Html.Label("Reporte generado:")
+        <input type="text" class="form-control" readonly value="@DateTime.Now" />
+    </div>
+
+</body>
+</html>

@@ -759,5 +759,39 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Informe_Ventas" FunctionName="SistemaIntegralGestionModel.Store.Informe_Ventas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.Informe_Ventas_Result">
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+          <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
+          <ScalarProperty Name="Clientes" ColumnName="Clientes" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RecordatorioNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioNotificaciones" />
+    <FunctionImportMapping FunctionImportName="distribMetodoPago" FunctionName="SistemaIntegralGestionModel.Store.distribMetodoPago">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.distribMetodoPago_Result">
+          <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+          <ScalarProperty Name="CantidadVentas" ColumnName="CantidadVentas" />
+          <ScalarProperty Name="TotalVentas" ColumnName="TotalVentas" />
+          <ScalarProperty Name="PorcentajeVentas" ColumnName="PorcentajeVentas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="top5Clientes" FunctionName="SistemaIntegralGestionModel.Store.top5Clientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.top5Clientes_Result">
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="CantidadVentas" ColumnName="CantidadVentas" />
+          <ScalarProperty Name="TotalVentas" ColumnName="TotalVentas" />
+          <ScalarProperty Name="PorcentajeVentas" ColumnName="PorcentajeVentas" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -1118,6 +1118,10 @@
         <Function Name="datosRecibo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdFactura" Type="int" Mode="In" />
         </Function>
+        <Function Name="distribMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
+        </Function>
         <Function Name="EditarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
@@ -1144,6 +1148,10 @@
         </Function>
         <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdFactura" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Informe_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
         </Function>
         <Function Name="iniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="correo_electronico" Type="nvarchar" Mode="In" />
@@ -1209,6 +1217,10 @@
           <Parameter Name="Estado" Type="int" Mode="In" />
           <Parameter Name="NotasAdicionales" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="RecordatorioNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
+          <Parameter Name="TiempoTranscurridoHoras" Type="int" Mode="In" />
+        </Function>
         <Function Name="RegistrarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="IdProducto" Type="int" Mode="In" />
@@ -1241,6 +1253,10 @@
           <Parameter Name="Monto" Type="decimal" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Id_Usuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="top5Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="date" Mode="In" />
+          <Parameter Name="FechaFin" Type="date" Mode="In" />
         </Function>
         <Function Name="UltimoTicketUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -3118,6 +3134,22 @@
           <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="Informe_Ventas" ReturnType="Collection(SistemaIntegralGestionModel.Informe_Ventas_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="RecordatorioNotificaciones">
+            <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+            <Parameter Name="TiempoTranscurridoHoras" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="distribMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.distribMetodoPago_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="top5Clientes" ReturnType="Collection(SistemaIntegralGestionModel.top5Clientes_Result)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cierre_contable_Result">
           <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
@@ -3278,6 +3310,27 @@
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Inventario" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Informe_Ventas_Result">
+          <Property Type="String" Name="Producto" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Descuento" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="MontoFinal" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="Clientes" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="distribMetodoPago_Result">
+          <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
+          <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="top5Clientes_Result">
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
+          <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4040,6 +4093,40 @@
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="Inventario" ColumnName="Inventario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Informe_Ventas" FunctionName="SistemaIntegralGestionModel.Store.Informe_Ventas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.Informe_Ventas_Result">
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
+                <ScalarProperty Name="Clientes" ColumnName="Clientes" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RecordatorioNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioNotificaciones" />
+          <FunctionImportMapping FunctionImportName="distribMetodoPago" FunctionName="SistemaIntegralGestionModel.Store.distribMetodoPago">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.distribMetodoPago_Result">
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="CantidadVentas" ColumnName="CantidadVentas" />
+                <ScalarProperty Name="TotalVentas" ColumnName="TotalVentas" />
+                <ScalarProperty Name="PorcentajeVentas" ColumnName="PorcentajeVentas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="top5Clientes" FunctionName="SistemaIntegralGestionModel.Store.top5Clientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.top5Clientes_Result">
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="CantidadVentas" ColumnName="CantidadVentas" />
+                <ScalarProperty Name="TotalVentas" ColumnName="TotalVentas" />
+                <ScalarProperty Name="PorcentajeVentas" ColumnName="PorcentajeVentas" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

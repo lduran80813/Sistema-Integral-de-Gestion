@@ -434,5 +434,44 @@ namespace SIG.Controllers
 
             return RedirectToAction("ContaCierreCorte", "Contabilidad");
         }
+
+        [HttpGet]
+        public ActionResult InformeVenta()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InformeVenta(InformeVentas fechas)
+        {
+            var datos = contabilidadM.Informe_Ventas(fechas);
+            if (datos != null)
+            {
+                return View(datos);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else
+            {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult InformeVentaPDF(InformeVentas fechas)
+        {
+            InformeVentas reporte = new InformeVentas();
+            reporte = contabilidadM.Informe_Ventas(fechas);
+
+            if (reporte != null)
+                return new ViewAsPdf("InformeVentasPDF", reporte)
+                {
+                    FileName = "InformeVentas_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("InformeVenta", "Contabilidad");
+        }
     }
 }

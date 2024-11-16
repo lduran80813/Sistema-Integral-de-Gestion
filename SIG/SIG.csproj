@@ -342,6 +342,9 @@
     <Compile Include="BaseDatos\datosRecibo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\distribMetodoPago_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Empleado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -385,6 +388,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\HistorialPedido.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Informe_Ventas_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\IniciarSesion_Result.cs" />
@@ -480,6 +486,9 @@
     <Compile Include="BaseDatos\Ticket_Tipo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\top5Clientes_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\ValidarCorreo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -532,6 +541,7 @@
     <Compile Include="Entidades\FacturaPDF.cs" />
     <Compile Include="Entidades\HistorialModificacion.cs" />
     <Compile Include="Entidades\HistorialPedido.cs" />
+    <Compile Include="Entidades\InformeVentas.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\PedidoFactura.cs" />
     <Compile Include="Entidades\Producto.cs" />
@@ -794,6 +804,8 @@
     <Content Include="Views\Login\Editar.cshtml" />
     <Content Include="Views\Entregas\Registrar.cshtml" />
     <Content Include="Views\Entregas\Lista.cshtml" />
+    <Content Include="Views\Contabilidad\InformeVenta.cshtml" />
+    <Content Include="Views\Contabilidad\InformeVentasPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
