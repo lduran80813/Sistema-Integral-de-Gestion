@@ -1,4 +1,5 @@
-﻿using Rotativa;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using Rotativa;
 using SIG.BaseDatos;
 using SIG.Entidades;
 using SIG.Models;
@@ -488,7 +489,7 @@ namespace SIG.Controllers
         {
             var resultado = productosM.ActualizarInventario(ent);
             var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
-            notificacionesM.NuevaNotificacion(7, 6, 1, ent.id, IdUsuario); //Módulo 2, Notif básica 1, prioridad 1, usuario que lo generó
+            notificacionesM.NuevaNotificacion(7, 6, 1, ent.id, IdUsuario); //Módulo 7, Notif básica 2, prioridad 1, usuario que lo generó
             if (!resultado)
             {
                 return Json(new { success = false, message = "No fue posible facturar el pedido" });
@@ -517,6 +518,96 @@ namespace SIG.Controllers
                     PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
                 };
             return RedirectToAction("HistorialModificacionesInventario", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult ListaPagosCxC(int id)
+        {
+            AjusteManualCuentasCredito ajuste = new AjusteManualCuentasCredito();
+            ajuste.cuentasCreditos = contabilidadM.ListaPagosCxC(id);
+            return View(ajuste);
+        }
+
+        [HttpPost]
+        public ActionResult AjusteManualCxC(CuentasCredito ent)
+        {
+            ent.descripcion = "Ajuste manual: " + ent.descripcion;
+            var resultado = contabilidadM.ContaPagoCxC(ent);
+            var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            notificacionesM.NuevaNotificacion(7, 8, 1, ent.Id_Cuenta, IdUsuario); //Módulo 7, Notif básica 7, prioridad 1, usuario que lo generó
+            //if (!resultado)
+            //    TempData["mensaje"] = "No fue posible ajustar la cuenta por cobrar";
+            //else
+            //    TempData["mensaje"] = "Ajuste manual exitoso";
+            return RedirectToAction("CxC", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult ListaPagosCxP(int id)
+        {
+            AjusteManualCuentasCredito ajuste = new AjusteManualCuentasCredito();
+            ajuste.cuentasCreditos = contabilidadM.ListaPagosCxP(id);
+            return View(ajuste);
+        }
+
+        [HttpPost]
+        public ActionResult AjusteManualCxP(CuentasCredito ent)
+        {
+            ent.descripcion = "Ajuste manual: " + ent.descripcion;
+            var resultado = contabilidadM.ContaPagoCxP(ent);
+            var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            notificacionesM.NuevaNotificacion(7, 7, 1, ent.Id_Cuenta, IdUsuario); //Módulo 7, Notif básica 7, prioridad 1, usuario que lo generó
+            //if (!resultado)
+            //    TempData["mensaje"] = "No fue posible ajustar la cuenta por cobrar";
+            //else
+            //    TempData["mensaje"] = "Ajuste manual exitoso";
+            return RedirectToAction("CxP", "Contabilidad");
+        }
+
+
+        [HttpGet]
+        public ActionResult HistorialAjustesCxP()
+        {
+            var historial = contabilidadM.HistorialAjustesCxP();
+            return View(historial);
+        }
+
+        [HttpGet]
+        public ActionResult AjusteCxPPDF()
+        {
+            var reporte = contabilidadM.HistorialAjustesCxP();
+
+            if (reporte != null)
+                return new ViewAsPdf("HistorialAjustesCxPPDF", reporte)
+                {
+                    FileName = "HistorialAjustesCxP_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("HistorialAjustesCxP", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult HistorialAjustesCxC()
+        {
+            var historial = contabilidadM.HistorialAjustesCxC();
+            return View(historial);
+        }
+
+
+        [HttpGet]
+        public ActionResult AjusteCxCPDF()
+        {
+            var reporte = contabilidadM.HistorialAjustesCxC();
+
+            if (reporte != null)
+                return new ViewAsPdf("HistorialAjustesCxCPDF", reporte)
+                {
+                    FileName = "HistorialAjustesCxC_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("HistorialAjustesCxC", "Contabilidad");
         }
     }
 }

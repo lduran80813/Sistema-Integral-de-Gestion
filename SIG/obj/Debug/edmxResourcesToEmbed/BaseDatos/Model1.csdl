@@ -1629,6 +1629,8 @@
       <Parameter Name="Motivo" Mode="In" Type="String" />
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="HistorialAjustesCxC" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxC_Result)" />
+    <FunctionImport Name="HistorialAjustesCxP" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxP_Result)" />
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">
     <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
@@ -1832,5 +1834,19 @@
     <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Int32" Name="estado" Nullable="false" />
     <Property Type="Int32" Name="inventario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="HistorialAjustesCxC_Result">
+    <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="HistorialAjustesCxP_Result">
+    <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
   </ComplexType>
 </Schema>

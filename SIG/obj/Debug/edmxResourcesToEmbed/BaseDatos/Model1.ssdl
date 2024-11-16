@@ -1166,6 +1166,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
   <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdFactura" Type="int" Mode="In" />
   </Function>
+  <Function Name="HistorialAjustesCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="HistorialAjustesCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Informe_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FechaInicio" Type="date" Mode="In" />
     <Parameter Name="FechaFin" Type="date" Mode="In" />

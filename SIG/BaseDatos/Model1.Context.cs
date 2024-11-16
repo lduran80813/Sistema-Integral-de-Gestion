@@ -687,5 +687,15 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<actualizaInventario_Result>("actualizaInventario", idProductoParameter, nuevoInventarioParameter, motivoParameter, idUsuarioParameter);
         }
+    
+        public virtual ObjectResult<HistorialAjustesCxC_Result> HistorialAjustesCxC()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HistorialAjustesCxC_Result>("HistorialAjustesCxC");
+        }
+    
+        public virtual ObjectResult<HistorialAjustesCxP_Result> HistorialAjustesCxP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HistorialAjustesCxP_Result>("HistorialAjustesCxP");
+        }
     }
 }

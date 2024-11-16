@@ -1171,6 +1171,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdFactura" Type="int" Mode="In" />
         </Function>
+        <Function Name="HistorialAjustesCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="HistorialAjustesCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Informe_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaInicio" Type="date" Mode="In" />
           <Parameter Name="FechaFin" Type="date" Mode="In" />
@@ -3189,6 +3191,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="Motivo" Mode="In" Type="String" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="HistorialAjustesCxC" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxC_Result)" />
+          <FunctionImport Name="HistorialAjustesCxP" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxP_Result)" />
         </EntityContainer>
         <ComplexType Name="cierre_contable_Result">
           <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
@@ -3392,6 +3396,20 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Int32" Name="estado" Nullable="false" />
           <Property Type="Int32" Name="inventario" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="HistorialAjustesCxC_Result">
+          <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
+          <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="HistorialAjustesCxP_Result">
+          <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
+          <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4212,6 +4230,28 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="inventario" ColumnName="inventario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HistorialAjustesCxC" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxC_Result">
+                <ScalarProperty Name="fechaAjuste" ColumnName="fechaAjuste" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="HistorialAjustesCxP" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxP_Result">
+                <ScalarProperty Name="fechaAjuste" ColumnName="fechaAjuste" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

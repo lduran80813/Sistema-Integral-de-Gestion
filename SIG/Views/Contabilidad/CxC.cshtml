@@ -66,6 +66,8 @@
 
     <div class="container">
         <h2>Cuentas por cobrar</h2>
+        <br />
+        <a class="btn btn-primary" href="@Url.Action("HistorialAjustesCxC", "Contabilidad")">Historial de ajustes manuales</a>
         <div class="row">
             <div class="col-12">
 
@@ -85,6 +87,7 @@
                             <th>Último pago</th>
                             <th>Saldo</th>
                             <th>Pagar</th>
+                            <th>Ajuste manual</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,7 +103,9 @@
                                         Pagar
                                     </button>
                                 </td>
-
+                                <td>
+                                    <a class="btn btn-primary" href="@Url.Action("ListaPagosCxC", "Contabilidad", new {id = item.IdFactura})">Ver Pagos</a>
+                                </td>
 
                             </tr>
                         }
@@ -161,7 +166,7 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
             },
-            columnDefs: [{ type: 'string', target: [0, 1, 2, 3] }]
+            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4] }]
         });
 
         function verificaTipoVentaYMetodoPago() {

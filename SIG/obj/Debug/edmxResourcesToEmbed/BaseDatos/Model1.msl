@@ -817,5 +817,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="HistorialAjustesCxC" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxC_Result">
+          <ScalarProperty Name="fechaAjuste" ColumnName="fechaAjuste" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+          <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="HistorialAjustesCxP" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxP_Result">
+          <ScalarProperty Name="fechaAjuste" ColumnName="fechaAjuste" />
+          <ScalarProperty Name="monto" ColumnName="monto" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+          <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+          <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
