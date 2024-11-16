@@ -16,6 +16,7 @@ namespace SIG.Controllers
         ProductoModel productosM = new ProductoModel();
         CatalogosModel catalogosM = new CatalogosModel();
         ContabilidadModel contabilidadM = new ContabilidadModel();
+        NotificacionesModel notificacionesM = new NotificacionesModel();
 
         private void CargarVariablesCarrito()
         {
@@ -472,6 +473,50 @@ namespace SIG.Controllers
                     PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
                 };
             return RedirectToAction("InformeVenta", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult Inventario()
+        {
+            InventarioActualizacion ent = new InventarioActualizacion();
+            ent.Productos = productosM.ConsultarProductos();
+            return View(ent);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarInventario(InventarioActualizacion ent)
+        {
+            var resultado = productosM.ActualizarInventario(ent);
+            var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            notificacionesM.NuevaNotificacion(7, 6, 1, ent.id, IdUsuario); //Módulo 2, Notif básica 1, prioridad 1, usuario que lo generó
+            if (!resultado)
+            {
+                return Json(new { success = false, message = "No fue posible facturar el pedido" });
+            }
+            
+            return Json(new { success = true});
+        }
+
+        [HttpGet]
+        public ActionResult HistorialModificacionesInventario()
+        {
+            List<InventarioActualizacion> historial = productosM.DatosHistoricos();
+            return View(historial);
+        }
+
+        [HttpGet]
+        public ActionResult AjusteInventarioPDF()
+        {
+            List<InventarioActualizacion> reporte = productosM.DatosHistoricos();
+
+            if (reporte != null)
+                return new ViewAsPdf("HistorialAjusteInventarioPDF", reporte)
+                {
+                    FileName = "HistorialAjusteInventario_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("HistorialModificacionesInventario", "Contabilidad");
         }
     }
 }

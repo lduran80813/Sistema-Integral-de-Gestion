@@ -16,6 +16,22 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Audit_Venta_Producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+      <PropertyRef Name="motivo" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="responsable" />
+    </Key>
+    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="inventario" Type="int" />
+    <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="responsable" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Catalogo_Compra">
     <Key>
       <PropertyRef Name="id" />
@@ -1088,6 +1104,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="actualizaInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdProducto" Type="int" Mode="In" />
+    <Parameter Name="NuevoInventario" Type="int" Mode="In" />
+    <Parameter Name="Motivo" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="InOut" />
     <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
@@ -1310,6 +1332,16 @@
     <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_ProductoEstado" EntityType="Self.Venta_ProductoEstado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Venta_Tipo" EntityType="Self.Venta_Tipo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Audit_Venta_Producto" EntityType="Self.Audit_Venta_Producto" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Audit_Venta_Producto].[id_producto] AS [id_producto], 
+    [Audit_Venta_Producto].[precio] AS [precio], 
+    [Audit_Venta_Producto].[inventario] AS [inventario], 
+    [Audit_Venta_Producto].[motivo] AS [motivo], 
+    [Audit_Venta_Producto].[fecha] AS [fecha], 
+    [Audit_Venta_Producto].[responsable] AS [responsable]
+    FROM [dbo].[Audit_Venta_Producto] AS [Audit_Venta_Producto]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK__Adm_Permi__rol_i__114A936A" Association="Self.FK__Adm_Permi__rol_i__114A936A">
       <End Role="Adm_Rol" EntitySet="Adm_Rol" />
       <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />

@@ -74,6 +74,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
         public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
         public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
+        public virtual DbSet<Audit_Venta_Producto> Audit_Venta_Producto { get; set; }
     
         public virtual int CambiarContrasenna(ObjectParameter id, string nuevaContrasena)
         {
@@ -664,6 +665,27 @@ namespace SIG.BaseDatos
                 new ObjectParameter("FechaFin", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<top5Clientes_Result>("top5Clientes", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<actualizaInventario_Result> actualizaInventario(Nullable<int> idProducto, Nullable<int> nuevoInventario, string motivo, Nullable<int> idUsuario)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var nuevoInventarioParameter = nuevoInventario.HasValue ?
+                new ObjectParameter("NuevoInventario", nuevoInventario) :
+                new ObjectParameter("NuevoInventario", typeof(int));
+    
+            var motivoParameter = motivo != null ?
+                new ObjectParameter("Motivo", motivo) :
+                new ObjectParameter("Motivo", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<actualizaInventario_Result>("actualizaInventario", idProductoParameter, nuevoInventarioParameter, motivoParameter, idUsuarioParameter);
         }
     }
 }

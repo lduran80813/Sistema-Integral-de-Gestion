@@ -300,10 +300,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BaseDatos\actualizaInventario_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Adm_Permiso.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Adm_Rol.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Audit_Venta_Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Catalogo_Compra.cs">
@@ -542,6 +548,7 @@
     <Compile Include="Entidades\HistorialModificacion.cs" />
     <Compile Include="Entidades\HistorialPedido.cs" />
     <Compile Include="Entidades\InformeVentas.cs" />
+    <Compile Include="Entidades\InventarioActualizacion.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\PedidoFactura.cs" />
     <Compile Include="Entidades\Producto.cs" />
@@ -806,6 +813,9 @@
     <Content Include="Views\Entregas\Lista.cshtml" />
     <Content Include="Views\Contabilidad\InformeVenta.cshtml" />
     <Content Include="Views\Contabilidad\InformeVentasPDF.cshtml" />
+    <Content Include="Views\Contabilidad\Inventario.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialModificacionesInventario.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialAjusteInventarioPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

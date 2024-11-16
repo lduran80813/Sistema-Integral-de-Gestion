@@ -1622,6 +1622,13 @@
       <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
       <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="Audit_Venta_Producto" EntityType="SistemaIntegralGestionModel.Audit_Venta_Producto" />
+    <FunctionImport Name="actualizaInventario" ReturnType="Collection(SistemaIntegralGestionModel.actualizaInventario_Result)">
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="NuevoInventario" Mode="In" Type="Int32" />
+      <Parameter Name="Motivo" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">
     <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
@@ -1803,5 +1810,27 @@
     <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
     <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
     <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <EntityType Name="Audit_Venta_Producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+      <PropertyRef Name="motivo" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="responsable" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="inventario" Type="Int32" />
+    <Property Name="motivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="responsable" Type="Int32" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="actualizaInventario_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+    <Property Type="Int32" Name="inventario" Nullable="false" />
   </ComplexType>
 </Schema>
