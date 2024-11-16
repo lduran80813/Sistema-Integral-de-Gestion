@@ -50,16 +50,16 @@ namespace SIG.Controllers
         }
 
 
-        // Método GET para actualizar la entrega
+
         public ActionResult ActualizarEntrega(int id)
         {
-            var entrega = entregas.ObtenerEntregaPorId(id); // Llama a un método para obtener los detalles de la entrega por ID
+            var entrega = entregas.ObtenerEntregaPorId(id); 
             if (entrega == null)
             {
-                return HttpNotFound(); // Si no se encuentra la entrega, retorna un error 404
+                return HttpNotFound(); 
             }
 
-            return View(entrega); // Pasa el modelo a la vista
+            return View(entrega);
         }
 
         [HttpPost]
@@ -67,10 +67,10 @@ namespace SIG.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool resultado = entregas.ActualizarEntrega(entrega); // Actualiza la entrega
+                bool resultado = entregas.ActualizarEntrega(entrega);
                 if (resultado)
                 {
-                    return RedirectToAction("ListarEntregas"); // Redirige a la lista de entregas si la actualización fue exitosa
+                    return RedirectToAction("ListarEntregas");
                 }
                 else
                 {
@@ -78,32 +78,10 @@ namespace SIG.Controllers
                 }
             }
 
-            return View(entrega); // Vuelve a mostrar el formulario si la validación falla
+            return View(entrega); 
         }
 
-        public void EnviarNotificacionCorreo(string destinatario, string asunto, string mensajeHtml)
-        {
-            // Configuración del cliente SMTP
-            var smtpClient = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential("lthx05@gmail.com", "TU_CONTRASEÑA"), // Reemplaza TU_CONTRASEÑA con tu contraseña real
-                EnableSsl = true,
-            };
 
-            // Configuración del correo electrónico
-            var correo = new MailMessage
-            {
-                From = new MailAddress("lthx05@gmail.com", "Sistema de Entregas"),
-                Subject = asunto,
-                Body = mensajeHtml,
-                IsBodyHtml = true
-            };
-            correo.To.Add(destinatario);
-
-            // Enviar el correo
-            smtpClient.Send(correo);
-        }
 
         [HttpGet]
         public ActionResult EnviarNotificacion(int id)
@@ -131,7 +109,7 @@ namespace SIG.Controllers
             <p>Gracias por utilizar nuestros servicios.</p>
         ";
 
-                EnviarNotificacionCorreo(entrega.CorreoElectronico, "Detalles de su Entrega", cuerpoCorreo);
+                entregas.EnviarNotificacionCorreo(entrega.CorreoElectronico, "Detalles de su Entrega", cuerpoCorreo);
                 TempData["Mensaje"] = "Notificación enviada exitosamente al cliente.";
             }
             catch (Exception ex)

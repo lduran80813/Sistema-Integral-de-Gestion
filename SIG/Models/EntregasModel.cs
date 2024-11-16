@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 
 namespace SIG.Models
@@ -18,22 +20,23 @@ namespace SIG.Models
                 var parameters = new List<SqlParameter>
         {
             new SqlParameter("@PedidoId", SqlDbType.Int) { Value = entrega.PedidoId },
-            new SqlParameter("@FechaEntrega", SqlDbType.DateTime) { Value = entrega.FechaEntrega },
+            new SqlParameter("@FechaEntrega", SqlDbType.DateTime) { Value = entrega.FechaEntrega ?? (object)DBNull.Value },
             new SqlParameter("@DireccionEntrega", SqlDbType.NVarChar, 255) { Value = entrega.DireccionEntrega },
             new SqlParameter("@ArticulosEntregados", SqlDbType.NVarChar, -1) { Value = entrega.ArticulosEntregados },
-            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales },
+            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales ?? (object)DBNull.Value },
             new SqlParameter("@EstadoEntrega", SqlDbType.NVarChar, 50) { Value = entrega.EstadoEntrega },
             new SqlParameter("@NombreDestinatario", SqlDbType.NVarChar, 100) { Value = entrega.NombreDestinatario },
             new SqlParameter("@CorreoElectronico", SqlDbType.NVarChar, 100) { Value = entrega.CorreoElectronico },
         };
 
                 var rowsAffected = context.Database.ExecuteSqlCommand(
-                    "EXEC RegistrarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales", "@EstadoEntrega", "@NombreDestinatario", "@CorreoElectronico",
+                    "EXEC RegistrarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales, @EstadoEntrega, @NombreDestinatario, @CorreoElectronico",
                     parameters.ToArray());
 
-                return rowsAffected > 0; 
+                return rowsAffected > 0;
             }
         }
+
 
         public List<Entrega> ListarEntregas()
         {
@@ -86,18 +89,42 @@ namespace SIG.Models
             new SqlParameter("@FechaEntrega", SqlDbType.DateTime) { Value = entrega.FechaEntrega ?? (object)DBNull.Value },
             new SqlParameter("@DireccionEntrega", SqlDbType.NVarChar, 255) { Value = entrega.DireccionEntrega },
             new SqlParameter("@ArticulosEntregados", SqlDbType.NVarChar, -1) { Value = entrega.ArticulosEntregados },
-            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales },
+            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales ?? (object)DBNull.Value },
             new SqlParameter("@EstadoEntrega", SqlDbType.NVarChar, 50) { Value = entrega.EstadoEntrega },
             new SqlParameter("@NombreDestinatario", SqlDbType.NVarChar, 100) { Value = entrega.NombreDestinatario },
             new SqlParameter("@CorreoElectronico", SqlDbType.NVarChar, 100) { Value = entrega.CorreoElectronico }
         };
 
                 var rowsAffected = context.Database.ExecuteSqlCommand(
-                    "EXEC ActualizarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales, @EstadoEntrega, @NombreDestinatario", "@CorreoElectronico",
+                    "EXEC ActualizarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales, @EstadoEntrega, @NombreDestinatario, @CorreoElectronico",
                     parameters.ToArray());
 
                 return rowsAffected > 0;
             }
+        }
+
+        public void EnviarNotificacionCorreo(string destinatario, string asunto, string mensajeHtml)
+        {
+            string cuenta = "lthx05@gmail.com";
+            string contrasenna = "ebni gxco iflo mdkc";
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(cuenta, contrasenna),
+                EnableSsl = true,
+            };
+
+
+            var correo = new MailMessage
+            {
+                From = new MailAddress("lthx05@gmail.com", "Sistema de Entregas"),
+                Subject = asunto,
+                Body = mensajeHtml,
+                IsBodyHtml = true
+            };
+            correo.To.Add(destinatario);
+
+            smtpClient.Send(correo);
         }
 
         public Entregas ObtenerPorId(int pedidoId)

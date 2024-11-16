@@ -103,6 +103,19 @@
             <label for="observaciones">Observaciones Adicionales:</label>
             @Html.TextAreaFor(model => model.ObservacionesAdicionales, new { @id = "observaciones", @rows = "4" })
 
+            <label for="Correo">Correo:</label>
+            @Html.TextAreaFor(model => model.CorreoElectronico, new { @id = "Correo", @rows = "1" })
+
+            <label for="Nombre-Cliente">Nombre cliente:</label>
+            @Html.TextAreaFor(model => model.NombreDestinatario, new { @id = "observaciones", @rows = "1" })
+
+            <label for="EstadoEntrega">Estado de Entrega:</label>
+            @Html.DropDownListFor(model => model.EstadoEntrega,
+                new SelectList(new List<string> { "Pendiente", "En tránsito", "Entregado", "Cancelado" }),
+                "Seleccione un estado",
+                new { @id = "estadoEntrega", @class = "form-control" })
+
+
             <button type="submit">Registrar Entrega</button>
         }
     </div>
