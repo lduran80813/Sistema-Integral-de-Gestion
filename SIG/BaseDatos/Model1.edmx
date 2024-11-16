@@ -170,6 +170,7 @@
           <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
           <Property Name="EstadoEntrega" Type="nvarchar" MaxLength="50" />
           <Property Name="NombreDestinatario" Type="nvarchar" MaxLength="255" />
+          <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="EstadoCompra">
           <Key>
@@ -1006,6 +1007,7 @@
           <Parameter Name="ObservacionesAdicionales" Type="varchar" Mode="In" />
           <Parameter Name="EstadoEntrega" Type="varchar" Mode="In" />
           <Parameter Name="NombreDestinatario" Type="varchar" Mode="In" />
+          <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="InOut" />
@@ -1580,6 +1582,7 @@
           <Property Name="EstadoEntrega" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NombreDestinatario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Entregas__pedido__1EA48E88" FromRole="Entregas" ToRole="Venta_Factura" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EstadoCompra">
           <Key>
@@ -2847,6 +2850,7 @@
             <Parameter Name="ObservacionesAdicionales" Mode="In" Type="String" />
             <Parameter Name="EstadoEntrega" Mode="In" Type="String" />
             <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
+            <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="cierre_contable_Result">
@@ -3177,6 +3181,7 @@
           <EntitySetMapping Name="Entregas">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Entregas">
               <MappingFragment StoreEntitySet="Entregas">
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
                 <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />

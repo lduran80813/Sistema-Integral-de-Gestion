@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -79,6 +81,66 @@ namespace SIG.Controllers
             return View(entrega); // Vuelve a mostrar el formulario si la validación falla
         }
 
+        public void EnviarNotificacionCorreo(string destinatario, string asunto, string mensajeHtml)
+        {
+            // Configuración del cliente SMTP
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("lthx05@gmail.com", "TU_CONTRASEÑA"), // Reemplaza TU_CONTRASEÑA con tu contraseña real
+                EnableSsl = true,
+            };
+
+            // Configuración del correo electrónico
+            var correo = new MailMessage
+            {
+                From = new MailAddress("lthx05@gmail.com", "Sistema de Entregas"),
+                Subject = asunto,
+                Body = mensajeHtml,
+                IsBodyHtml = true
+            };
+            correo.To.Add(destinatario);
+
+            // Enviar el correo
+            smtpClient.Send(correo);
+        }
+
+        [HttpGet]
+        public ActionResult EnviarNotificacion(int id)
+        {
+            var entrega = entregas.ObtenerPorId(id);
+            if (entrega == null)
+            {
+                TempData["Error"] = "No se encontró la entrega especificada.";
+                return RedirectToAction("ListarEntregas");
+            }
+
+            try
+            {
+                string cuerpoCorreo = $@"
+            <h3>Actualización de Entrega</h3>
+            <p>Estimado Cliente,</p>
+            <p>Le informamos sobre los detalles de su entrega:</p>
+            <table>
+                <tr><td><strong>Número de Pedido:</strong></td><td>{entrega.pedido_id}</td></tr>
+                <tr><td><strong>Fecha de Entrega:</strong></td><td>{entrega.fecha_entrega?.ToString("dd/MM/yyyy") ?? "N/A"}</td></tr>
+                <tr><td><strong>Dirección de Entrega:</strong></td><td>{entrega.direccion_entrega}</td></tr>
+                <tr><td><strong>Estado de la Entrega:</strong></td><td>{entrega.EstadoEntrega}</td></tr>
+                <tr><td><strong>Nombre del Destinatario:</strong></td><td>{entrega.NombreDestinatario}</td></tr>
+            </table>
+            <p>Gracias por utilizar nuestros servicios.</p>
+        ";
+
+                EnviarNotificacionCorreo(entrega.CorreoElectronico, "Detalles de su Entrega", cuerpoCorreo);
+                TempData["Mensaje"] = "Notificación enviada exitosamente al cliente.";
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Hubo un error al enviar la notificación: {ex.Message}";
+            }
+
+            return RedirectToAction("ListarEntregas");
+        }
 
 
     }

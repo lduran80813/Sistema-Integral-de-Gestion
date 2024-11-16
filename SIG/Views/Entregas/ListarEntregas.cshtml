@@ -4,6 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
 <div class="container">
     <h2 class="text-left">Lista de Entregas</h2>
     <table id="tablaEntregas" class="table table-striped">
@@ -16,6 +30,7 @@
                 <th>Observaciones</th>
                 <th>Estado de la Entrega</th>
                 <th>Nombre del Destinatario</th>
+                <th>Correo</th>
                 <th>Acciones</th> <!-- Nueva columna para acciones -->
             </tr>
         </thead>
@@ -49,8 +64,10 @@
                         }
                     </td>
                     <td>@item.NombreDestinatario</td>
+                    <td>@item.CorreoElectronico</td>
                     <td>
-                        <a href="@Url.Action("ActualizarEntrega", "Entregas", new { id = item.PedidoId })" class="btn btn-primary btn-sm">Actualizar</a> <!-- Botón de actualización -->
+                        <a href="@Url.Action("ActualizarEntrega", "Entregas", new { id = item.PedidoId })" class="btn btn-primary btn-sm">Actualizar</a>
+                        <a href="@Url.Action("EnviarNotificacion", "Entregas", new { id = item.PedidoId })" class="btn btn-success btn-sm">Enviar Notificación</a>
                     </td>
                 </tr>
             }

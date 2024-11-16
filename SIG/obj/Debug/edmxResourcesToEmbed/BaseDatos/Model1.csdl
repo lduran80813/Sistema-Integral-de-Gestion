@@ -198,6 +198,7 @@
     <Property Name="EstadoEntrega" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="NombreDestinatario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Entregas__pedido__1EA48E88" FromRole="Entregas" ToRole="Venta_Factura" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="EstadoCompra">
     <Key>
@@ -1465,6 +1466,7 @@
       <Parameter Name="ObservacionesAdicionales" Mode="In" Type="String" />
       <Parameter Name="EstadoEntrega" Mode="In" Type="String" />
       <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">

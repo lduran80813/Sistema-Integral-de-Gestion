@@ -22,6 +22,7 @@ namespace SIG.BaseDatos
         public string observaciones_adicionales { get; set; }
         public string EstadoEntrega { get; set; }
         public string NombreDestinatario { get; set; }
+        public string CorreoElectronico { get; set; }
     
         public virtual Venta_Factura Venta_Factura { get; set; }
     }

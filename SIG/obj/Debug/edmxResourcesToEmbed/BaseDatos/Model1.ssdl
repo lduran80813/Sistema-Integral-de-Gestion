@@ -165,6 +165,7 @@
     <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
     <Property Name="EstadoEntrega" Type="nvarchar" MaxLength="50" />
     <Property Name="NombreDestinatario" Type="nvarchar" MaxLength="255" />
+    <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="EstadoCompra">
     <Key>
@@ -1001,6 +1002,7 @@
     <Parameter Name="ObservacionesAdicionales" Type="varchar" Mode="In" />
     <Parameter Name="EstadoEntrega" Type="varchar" Mode="In" />
     <Parameter Name="NombreDestinatario" Type="varchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="InOut" />

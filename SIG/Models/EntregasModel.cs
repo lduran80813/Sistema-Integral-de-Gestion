@@ -21,11 +21,14 @@ namespace SIG.Models
             new SqlParameter("@FechaEntrega", SqlDbType.DateTime) { Value = entrega.FechaEntrega },
             new SqlParameter("@DireccionEntrega", SqlDbType.NVarChar, 255) { Value = entrega.DireccionEntrega },
             new SqlParameter("@ArticulosEntregados", SqlDbType.NVarChar, -1) { Value = entrega.ArticulosEntregados },
-            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales }
+            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales },
+            new SqlParameter("@EstadoEntrega", SqlDbType.NVarChar, 50) { Value = entrega.EstadoEntrega },
+            new SqlParameter("@NombreDestinatario", SqlDbType.NVarChar, 100) { Value = entrega.NombreDestinatario },
+            new SqlParameter("@CorreoElectronico", SqlDbType.NVarChar, 100) { Value = entrega.CorreoElectronico },
         };
 
                 var rowsAffected = context.Database.ExecuteSqlCommand(
-                    "EXEC RegistrarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales",
+                    "EXEC RegistrarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales", "@EstadoEntrega", "@NombreDestinatario", "@CorreoElectronico",
                     parameters.ToArray());
 
                 return rowsAffected > 0; 
@@ -46,7 +49,8 @@ namespace SIG.Models
                             ArticulosEntregados = e.articulos_entregados,
                             ObservacionesAdicionales = e.observaciones_adicionales,
                             EstadoEntrega = e.EstadoEntrega,
-                            NombreDestinatario = e.NombreDestinatario 
+                            NombreDestinatario = e.NombreDestinatario,
+                            CorreoElectronico = e.CorreoElectronico
                         }).ToList();
             }
         }
@@ -66,7 +70,8 @@ namespace SIG.Models
                     ArticulosEntregados = entrega.articulos_entregados,
                     ObservacionesAdicionales = entrega.observaciones_adicionales,
                     EstadoEntrega = entrega.EstadoEntrega,
-                    NombreDestinatario = entrega.NombreDestinatario
+                    NombreDestinatario = entrega.NombreDestinatario,
+                    CorreoElectronico= entrega.CorreoElectronico
                 } : null;
             }
         }
@@ -83,18 +88,25 @@ namespace SIG.Models
             new SqlParameter("@ArticulosEntregados", SqlDbType.NVarChar, -1) { Value = entrega.ArticulosEntregados },
             new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales },
             new SqlParameter("@EstadoEntrega", SqlDbType.NVarChar, 50) { Value = entrega.EstadoEntrega },
-            new SqlParameter("@NombreDestinatario", SqlDbType.NVarChar, 100) { Value = entrega.NombreDestinatario }
+            new SqlParameter("@NombreDestinatario", SqlDbType.NVarChar, 100) { Value = entrega.NombreDestinatario },
+            new SqlParameter("@CorreoElectronico", SqlDbType.NVarChar, 100) { Value = entrega.CorreoElectronico }
         };
 
                 var rowsAffected = context.Database.ExecuteSqlCommand(
-                    "EXEC ActualizarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales, @EstadoEntrega, @NombreDestinatario",
+                    "EXEC ActualizarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales, @EstadoEntrega, @NombreDestinatario", "@CorreoElectronico",
                     parameters.ToArray());
 
                 return rowsAffected > 0;
             }
         }
 
-
+        public Entregas ObtenerPorId(int pedidoId)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Entregas.FirstOrDefault(e => e.pedido_id == pedidoId);
+            }
+        }
 
 
     }

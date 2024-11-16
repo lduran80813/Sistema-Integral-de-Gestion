@@ -545,7 +545,7 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
     
-        public virtual int ActualizarEntrega(Nullable<int> pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales, string estadoEntrega, string nombreDestinatario)
+        public virtual int ActualizarEntrega(Nullable<int> pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales, string estadoEntrega, string nombreDestinatario, string correoElectronico)
         {
             var pedidoIdParameter = pedidoId.HasValue ?
                 new ObjectParameter("PedidoId", pedidoId) :
@@ -575,7 +575,11 @@ namespace SIG.BaseDatos
                 new ObjectParameter("NombreDestinatario", nombreDestinatario) :
                 new ObjectParameter("NombreDestinatario", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter, estadoEntregaParameter, nombreDestinatarioParameter);
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter, estadoEntregaParameter, nombreDestinatarioParameter, correoElectronicoParameter);
         }
     }
 }

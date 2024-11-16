@@ -173,6 +173,7 @@
     <EntitySetMapping Name="Entregas">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Entregas">
         <MappingFragment StoreEntitySet="Entregas">
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="pedido_id" ColumnName="pedido_id" />
           <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
