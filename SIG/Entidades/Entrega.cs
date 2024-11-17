@@ -18,6 +18,8 @@ namespace SIG.Entidades
         public string NombreDestinatario { get; set; }
 
         public string CorreoElectronico { get; set; }
+
+        public int ClienteId { get; set; }
     }
 
 

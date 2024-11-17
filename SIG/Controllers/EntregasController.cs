@@ -16,10 +16,34 @@ namespace SIG.Controllers
     {
         EntregasModel entregas = new EntregasModel();
 
+        //[HttpGet]
+        //public ActionResult Registrar()
+        //{
+        //    var entrega = new Entrega();
+
+        //    if (!entrega.FechaEntrega.HasValue)
+        //    {
+        //        entrega.FechaEntrega = DateTime.Today;
+        //    }
+
+        //    return View(entrega);
+        //}
+
         [HttpGet]
         public ActionResult Registrar()
         {
             var entrega = new Entrega();
+
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var clientes = context.Venta_Cliente
+                                      .Select(c => new { c.id, c.nombre })
+                                      .ToList();
+
+
+                ViewBag.Clientes = new SelectList(clientes, "id", "nombre");
+            }
 
             if (!entrega.FechaEntrega.HasValue)
             {
