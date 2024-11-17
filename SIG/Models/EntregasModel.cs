@@ -37,6 +37,16 @@ namespace SIG.Models
             }
         }
 
+        public bool ExisteNumeroPedido(int? pedidoId)
+        {
+            if (!pedidoId.HasValue)
+                return false; 
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Venta_Factura.Any(p => p.id == pedidoId.Value);
+            }
+        }
 
         public List<Entrega> ListarEntregas()
         {
@@ -134,6 +144,53 @@ namespace SIG.Models
                 return context.Entregas.FirstOrDefault(e => e.pedido_id == pedidoId);
             }
         }
+
+
+        public bool CancelarEntrega(int pedidoId, string correoUsuario, string correoAdmin)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var parameters = new List<SqlParameter>
+        {
+            new SqlParameter("@PedidoId", SqlDbType.Int) { Value = pedidoId }
+        };
+
+
+                var rowsAffected = context.Database.ExecuteSqlCommand(
+                    "EXEC CancelarEntrega @PedidoId",
+                    parameters.ToArray());
+
+                if (rowsAffected > 0)
+                {
+
+                    var entrega = ObtenerPorId(pedidoId);
+                    if (entrega != null)
+                    {
+
+                        string cuerpoCorreo = $@"
+                    <p>La entrega con los siguientes detalles ha sido cancelada:</p>
+                    <ul>
+                        <li><strong>Número de Pedido:</strong> {entrega.pedido_id}</li>
+                        <li><strong>Fecha de Entrega:</strong> {entrega.fecha_entrega?.ToString("dd/MM/yyyy") ?? "N/A"}</li>
+                        <li><strong>Dirección de Entrega:</strong> {entrega.direccion_entrega}</li>
+                        <li><strong>Nombre del Destinatario:</strong> {entrega.NombreDestinatario}</li>
+                        <li><strong>Estado de la Entrega:</strong> Cancelado</li>
+                    </ul>";
+
+
+                        EnviarNotificacionCorreo(correoUsuario, "Cancelación de Entrega", cuerpoCorreo);
+
+
+                        EnviarNotificacionCorreo(correoAdmin, "Notificación de Cancelación", cuerpoCorreo);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
 
 
     }

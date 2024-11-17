@@ -1468,6 +1468,9 @@
       <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
       <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="CancelarEntrega">
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="cierre_contable_Result">
     <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />

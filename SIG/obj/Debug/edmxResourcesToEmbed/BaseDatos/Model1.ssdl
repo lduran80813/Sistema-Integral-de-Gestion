@@ -1008,6 +1008,9 @@
     <Parameter Name="Id" Type="int" Mode="InOut" />
     <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="CancelarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PedidoId" Type="int" Mode="In" />
+  </Function>
   <Function Name="cierre_contable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Fecha_Inicio" Type="date" Mode="In" />
     <Parameter Name="Fecha_Fin" Type="date" Mode="In" />

@@ -10,6 +10,8 @@
 });
 
 
+
+
 function eliminarEmpleado(id) {
     if (confirm('¿Está seguro de que desea eliminar este usuario?')) {
         $.ajax({
@@ -46,6 +48,6 @@ function restaurarEmpleado(id) {
             "searching": true,
             "ordering": true,
             "lengthChange": false,
-            "pageLength": 10
+            "pageLength": 10,
         });
     });

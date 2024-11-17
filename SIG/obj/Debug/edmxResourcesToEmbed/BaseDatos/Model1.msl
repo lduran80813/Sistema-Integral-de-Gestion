@@ -704,5 +704,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ActualizarEntrega" FunctionName="SistemaIntegralGestionModel.Store.ActualizarEntrega" />
+    <FunctionImportMapping FunctionImportName="CancelarEntrega" FunctionName="SistemaIntegralGestionModel.Store.CancelarEntrega" />
   </EntityContainerMapping>
 </Mapping>

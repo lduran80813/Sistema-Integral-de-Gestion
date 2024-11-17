@@ -19,29 +19,41 @@ namespace SIG.Controllers
         [HttpGet]
         public ActionResult Registrar()
         {
-            return View();
+            var entrega = new Entrega();
+
+            if (!entrega.FechaEntrega.HasValue)
+            {
+                entrega.FechaEntrega = DateTime.Today;
+            }
+
+            return View(entrega);
         }
+
 
 
         [HttpPost]
         public ActionResult Registrar(Entrega entrega)
         {
-            if (ModelState.IsValid)
+            if (!entrega.PedidoId.HasValue || !entregas.ExisteNumeroPedido(entrega.PedidoId))
             {
-                bool result = entregas.RegistrarEntrega(entrega);
-
-                if (!result)
-                {
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "No se pudo registrar la entrega. Intente nuevamente.");
-                }
+                TempData["Error"] = $"El número de pedido {entrega.PedidoId} no existe. Verifique e intente nuevamente.";
+                return View(entrega);
             }
-            return View(entrega);
+
+            var resultado = entregas.RegistrarEntrega(entrega);
+
+            if (resultado)
+            {
+                TempData["Mensaje"] = "La entrega se registró correctamente.";
+                return RedirectToAction("ListarEntregas");
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo registrar la entrega. Intente nuevamente.";
+                return View(entrega);
+            }
         }
+
 
         public ActionResult ListarEntregas()
         {
@@ -51,36 +63,48 @@ namespace SIG.Controllers
 
 
 
+        [HttpGet]
         public ActionResult ActualizarEntrega(int id)
         {
-            var entrega = entregas.ObtenerEntregaPorId(id); 
+            var entrega = entregas.ObtenerEntregaPorId(id);
+
             if (entrega == null)
             {
-                return HttpNotFound(); 
+                TempData["Error"] = "No se encontró la entrega.";
+                return RedirectToAction("ListarEntregas");
+            }
+
+            if (!entrega.FechaEntrega.HasValue)
+            {
+                entrega.FechaEntrega = DateTime.Today;
             }
 
             return View(entrega);
         }
 
+
         [HttpPost]
         public ActionResult ActualizarEntrega(Entrega entrega)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrWhiteSpace(entrega.CorreoElectronico))
             {
-                bool resultado = entregas.ActualizarEntrega(entrega);
-                if (resultado)
-                {
-                    return RedirectToAction("ListarEntregas");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "No se pudo actualizar la entrega.");
-                }
+                TempData["Error"] = "El campo de correo electrónico es obligatorio.";
+                return View(entrega); 
             }
 
-            return View(entrega); 
-        }
+            var resultado = entregas.ActualizarEntrega(entrega);
 
+            if (resultado)
+            {
+                TempData["Mensaje"] = "La entrega se actualizó correctamente.";
+                return RedirectToAction("ListarEntregas");
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo actualizar la entrega. Intente nuevamente.";
+                return View(entrega);
+            }
+        }
 
 
         [HttpGet]
@@ -119,6 +143,37 @@ namespace SIG.Controllers
 
             return RedirectToAction("ListarEntregas");
         }
+
+
+        [HttpGet]
+        public ActionResult CancelarEntrega(int id)
+        {
+
+            var entrega = entregas.ObtenerPorId(id);
+
+            if (entrega == null)
+            {
+                TempData["Error"] = "No se encontró la entrega especificada.";
+                return RedirectToAction("ListarEntregas");
+            }
+
+            var correoUsuario = entrega.CorreoElectronico; // correo del cliente 
+            var correoAdmin = "lthx06@yopmail.com"; //correo del administrador
+
+            var resultado = entregas.CancelarEntrega(id, correoUsuario, correoAdmin);
+
+            if (resultado)
+            {
+                TempData["Mensaje"] = "La entrega ha sido cancelada y las notificaciones han sido enviadas.";
+            }
+            else
+            {
+                TempData["Error"] = "No se pudo cancelar la entrega.";
+            }
+
+            return RedirectToAction("ListarEntregas");
+        }
+
 
 
     }

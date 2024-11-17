@@ -581,5 +581,14 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter, estadoEntregaParameter, nombreDestinatarioParameter, correoElectronicoParameter);
         }
+    
+        public virtual int CancelarEntrega(Nullable<int> pedidoId)
+        {
+            var pedidoIdParameter = pedidoId.HasValue ?
+                new ObjectParameter("PedidoId", pedidoId) :
+                new ObjectParameter("PedidoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CancelarEntrega", pedidoIdParameter);
+        }
     }
 }
