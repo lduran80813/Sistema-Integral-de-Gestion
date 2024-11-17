@@ -859,5 +859,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NotificacionesVencimientoCuentas" FunctionName="SistemaIntegralGestionModel.Store.NotificacionesVencimientoCuentas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.NotificacionesVencimientoCuentas_Result">
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="id_objeto_referencia" ColumnName="id_objeto_referencia" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RecordatorioVencimientoCxC" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioVencimientoCxC" />
+    <FunctionImportMapping FunctionImportName="RecordatorioVencimientoCxP" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioVencimientoCxP" />
   </EntityContainerMapping>
 </Mapping>

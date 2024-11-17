@@ -187,6 +187,14 @@ namespace SIG.Models
             }
         }
 
+        public List<NotificacionesVencimientoCuentas_Result> ListaVencimientos()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.NotificacionesVencimientoCuentas().ToList();
+            }
+        }
+
     }
 
 }

@@ -1651,6 +1651,15 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="NotificacionesVencimientoCuentas" ReturnType="Collection(SistemaIntegralGestionModel.NotificacionesVencimientoCuentas_Result)" />
+    <FunctionImport Name="RecordatorioVencimientoCxC">
+      <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+      <Parameter Name="TiempoTranscurridoDias" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="RecordatorioVencimientoCxP">
+      <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+      <Parameter Name="TiempoTranscurridoDias" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -1866,5 +1875,11 @@
     <Property Type="Int32" Name="IdProducto" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="NotificacionesVencimientoCuentas_Result">
+    <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="id_objeto_referencia" Nullable="true" />
+    <Property Type="String" Name="Tipo" Nullable="false" MaxLength="6" />
+    <Property Type="Int32" Name="Vencimiento" Nullable="true" />
   </ComplexType>
 </Schema>

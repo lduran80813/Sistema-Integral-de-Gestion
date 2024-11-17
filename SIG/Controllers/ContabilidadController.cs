@@ -656,5 +656,27 @@ namespace SIG.Controllers
                 };
             return RedirectToAction("ContaEstadosFinancieros", "Contabilidad");
         }
+
+        [HttpGet]
+        public ActionResult VencimientoCuentas()
+        {
+            var notificaciones = contabilidadM.ListaVencimientos();
+            return View(notificaciones);
+        }
+
+        [HttpGet]
+        public ActionResult VencimientoCuentasPDF()
+        {
+            var reporte = contabilidadM.ListaVencimientos();
+
+            if (reporte != null)
+                return new ViewAsPdf("VencimientoCuentasPDF", reporte)
+                {
+                    FileName = "VencimientoCuentasPDF_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("VencimientoCuentas", "Contabilidad");
+        }
     }
 }

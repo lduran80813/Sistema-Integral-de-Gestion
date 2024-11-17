@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\vencimientocuentas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\vencimientocuentas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\contabilidadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\contabilidadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\vencimientocuentaspdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\vencimientocuentaspdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\historialajustescxcpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\historialajustescxcpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\historialajustescxc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\historialajustescxc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\contaestadosfinancieros.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\contaestadosfinancieros.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\contacierrecorte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\contacierrecorte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\entidades\\estadosfinancieros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\entidades\\estadosfinancieros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -29,6 +37,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\contacierrecorte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\contacierrecorte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\entidades\\estadosfinancieros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\entidades\\estadosfinancieros.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\basedatos\\iniciarsesion_result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +74,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VencimientoCuentasPDF.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\VencimientoCuentasPDF.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\VencimientoCuentasPDF.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\VencimientoCuentasPDF.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\VencimientoCuentasPDF.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-17T06:13:30.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "HistorialAjustesCxCPDF.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\HistorialAjustesCxCPDF.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\HistorialAjustesCxCPDF.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\HistorialAjustesCxCPDF.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\HistorialAjustesCxCPDF.cshtml",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAswGsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-17T06:13:08.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VencimientoCuentas.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\VencimientoCuentas.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\VencimientoCuentas.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\VencimientoCuentas.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\VencimientoCuentas.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-17T06:11:32.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HistorialAjustesCxC.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\HistorialAjustesCxC.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\HistorialAjustesCxC.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\HistorialAjustesCxC.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\HistorialAjustesCxC.cshtml",
+              "ViewState": "AgIAACIAAAAAAAAAAAAswEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-17T06:10:06.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "ContaCierreCorte.cshtml",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaCierreCorte.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\ContaCierreCorte.cshtml",
@@ -71,46 +139,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ContaEstadosFinancieros.cshtml",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaEstadosFinancieros.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\ContaEstadosFinancieros.cshtml",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaEstadosFinancieros.cshtml*",
-              "RelativeToolTip": "SIG\\Views\\Contabilidad\\ContaEstadosFinancieros.cshtml*",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAE8AAACRAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaEstadosFinancieros.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\ContaEstadosFinancieros.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAFMAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-17T00:37:20.368Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ContabilidadController.cs",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs",
               "RelativeDocumentMoniker": "SIG\\Controllers\\ContabilidadController.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs*",
-              "RelativeToolTip": "SIG\\Controllers\\ContabilidadController.cs*",
-              "ViewState": "AgIAAHECAAAAAAAAAAAqwIMCAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\ContabilidadController.cs",
+              "ViewState": "AgIAAIkCAAAAAAAAAAAAAKYCAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-16T23:37:54.723Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "ContabilidadModel.cs",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ContabilidadModel.cs",
               "RelativeDocumentMoniker": "SIG\\Models\\ContabilidadModel.cs",
               "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ContabilidadModel.cs",
               "RelativeToolTip": "SIG\\Models\\ContabilidadModel.cs",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAqwLkAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAAAMEAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-16T23:26:20.032Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Model1.edmx [Diagram1]",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx",
               "RelativeDocumentMoniker": "SIG\\BaseDatos\\Model1.edmx",
@@ -122,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "IniciarSesion_Result.cs",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\IniciarSesion_Result.cs",
               "RelativeDocumentMoniker": "SIG\\BaseDatos\\IniciarSesion_Result.cs",
@@ -135,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "EstadosFinancieros.cs",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\EstadosFinancieros.cs",
               "RelativeDocumentMoniker": "SIG\\Entidades\\EstadosFinancieros.cs",
@@ -148,13 +216,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAmwMkAAABRAAAAAAAAAA==",
+              "ViewState": "AgIAALUAAAAAAAAAAAAmwM8AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-11-16T23:14:18.483Z",
               "EditorCaption": ""

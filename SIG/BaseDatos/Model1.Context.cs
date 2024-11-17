@@ -715,5 +715,36 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
+    
+        public virtual ObjectResult<NotificacionesVencimientoCuentas_Result> NotificacionesVencimientoCuentas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NotificacionesVencimientoCuentas_Result>("NotificacionesVencimientoCuentas");
+        }
+    
+        public virtual int RecordatorioVencimientoCxC(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
+                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
+                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxC", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
+        }
+    
+        public virtual int RecordatorioVencimientoCxP(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
+                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
+                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxP", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
+        }
     }
 }
