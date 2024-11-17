@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ef8394e3ecd420dbb9d6328e1e8a259" Name="Diagram1">
+      <Diagram DiagramId="47b9dabbb218411d8cdddf26b03d4522" Name="Diagram1">
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Catalogo_Compra" Width="1.5" PointX="3.75" PointY="25.75" IsExpanded="true" />
@@ -52,6 +52,7 @@
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Producto" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_ProductoEstado" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Tipo" Width="1.5" PointX="3.75" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Audit_Venta_Producto" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Adm_Permi__rol_i__114A936A" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__rol_id__1EA48E88" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK_Prov_Compra_TipoCompra" ManuallyRouted="false" />
@@ -104,7 +105,6 @@
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__tipo___3A4CA8FD" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__3C34F16F" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Pro__estad__3D2915A8" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Audit_Venta_Producto" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

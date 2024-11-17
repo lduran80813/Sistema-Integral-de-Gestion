@@ -5,6 +5,7 @@ using SIG.Entidades;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Sockets;
 using System.Web;
@@ -608,6 +609,52 @@ namespace SIG.Controllers
                     PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
                 };
             return RedirectToAction("HistorialAjustesCxC", "Contabilidad");
+        }
+
+
+        [HttpGet]
+        public ActionResult ContaEstadosFinancieros()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ContaEstadosFinancieros(Entidades.EstadosFinancieros ef)
+        {
+            ef.BalanceGeneral = contabilidadM.BalanceGeneral(ef.mesCorte);
+            ef.EstadoResultados = contabilidadM.EstadoResultados(ef.mesCorte);
+            if (ef.BalanceGeneral != null && ef.EstadoResultados != null)
+            {
+                return View(ef);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else
+            {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                return View();
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult ContaEstadosFinancierosPDF(string fecha)
+        {
+            DateTime corte;
+            DateTime.TryParseExact(fecha + "-01", "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out corte);
+
+            Entidades.EstadosFinancieros ef = new Entidades.EstadosFinancieros();
+            ef.BalanceGeneral = contabilidadM.BalanceGeneral(corte);
+            ef.EstadoResultados = contabilidadM.EstadoResultados(corte);
+
+            if (ef.BalanceGeneral != null && ef.EstadoResultados != null)
+                return new ViewAsPdf("ContaEstadosFinancierosPDF", ef)
+                {
+                    FileName = "ReporteEstadosFinancieros_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("ContaEstadosFinancieros", "Contabilidad");
         }
     }
 }

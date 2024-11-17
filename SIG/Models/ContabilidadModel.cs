@@ -171,6 +171,22 @@ namespace SIG.Models
                 return context.HistorialAjustesCxC().ToList();
             }
         }
+
+        public List<GenerarBalanceGeneral_Result> BalanceGeneral(DateTime fecha)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.GenerarBalanceGeneral(fecha).ToList();
+            }
+        }
+        public List<GenerarEstadoResultados_Result> EstadoResultados(DateTime fecha)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.GenerarEstadoResultados(fecha).ToList();
+            }
+        }
+
     }
 
 }

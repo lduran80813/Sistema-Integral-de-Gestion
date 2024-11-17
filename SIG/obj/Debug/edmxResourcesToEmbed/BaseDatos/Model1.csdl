@@ -568,6 +568,20 @@
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__tipo___3A4CA8FD" FromRole="Venta_Tipo" ToRole="Venta_Factura" />
   </EntityType>
+  <EntityType Name="Audit_Venta_Producto">
+    <Key>
+      <PropertyRef Name="id_producto" />
+      <PropertyRef Name="motivo" />
+      <PropertyRef Name="fecha" />
+      <PropertyRef Name="responsable" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="inventario" Type="Int32" />
+    <Property Name="motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="responsable" Type="Int32" Nullable="false" />
+  </EntityType>
   <Association Name="FK__Adm_Permi__rol_i__114A936A">
     <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
     <End Role="Adm_Permiso" Type="Self.Adm_Permiso" Multiplicity="*" />
@@ -1240,6 +1254,7 @@
     <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" />
     <EntitySet Name="Venta_ProductoEstado" EntityType="Self.Venta_ProductoEstado" />
     <EntitySet Name="Venta_Tipo" EntityType="Self.Venta_Tipo" />
+    <EntitySet Name="Audit_Venta_Producto" EntityType="Self.Audit_Venta_Producto" />
     <AssociationSet Name="FK__Adm_Permi__rol_i__114A936A" Association="Self.FK__Adm_Permi__rol_i__114A936A">
       <End Role="Adm_Rol" EntitySet="Adm_Rol" />
       <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
@@ -1448,6 +1463,12 @@
       <End Role="Venta_ProductoEstado" EntitySet="Venta_ProductoEstado" />
       <End Role="Venta_Producto" EntitySet="Venta_Producto" />
     </AssociationSet>
+    <FunctionImport Name="actualizaInventario" ReturnType="Collection(SistemaIntegralGestionModel.actualizaInventario_Result)">
+      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
+      <Parameter Name="NuevoInventario" Mode="In" Type="Int32" />
+      <Parameter Name="Motivo" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="CambiarContrasenna">
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
       <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
@@ -1472,6 +1493,10 @@
     <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarPedidos_Result)" />
     <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
       <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="distribMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.distribMetodoPago_Result)">
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="EditarEmpleado">
       <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -1499,6 +1524,18 @@
     </FunctionImport>
     <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
       <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GenerarBalanceGeneral" ReturnType="Collection(SistemaIntegralGestionModel.GenerarBalanceGeneral_Result)">
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GenerarEstadoResultados" ReturnType="Collection(SistemaIntegralGestionModel.GenerarEstadoResultados_Result)">
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="HistorialAjustesCxC" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxC_Result)" />
+    <FunctionImport Name="HistorialAjustesCxP" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxP_Result)" />
+    <FunctionImport Name="Informe_Ventas" ReturnType="Collection(SistemaIntegralGestionModel.Informe_Ventas_Result)">
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="iniciarSesion">
       <Parameter Name="correo_electronico" Mode="In" Type="String" />
@@ -1564,6 +1601,10 @@
       <Parameter Name="Estado" Mode="In" Type="Int32" />
       <Parameter Name="NotasAdicionales" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="RecordatorioNotificaciones">
+      <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+      <Parameter Name="TiempoTranscurridoHoras" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="RegistrarCarrito">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
       <Parameter Name="IdProducto" Mode="In" Type="Int32" />
@@ -1597,6 +1638,10 @@
       <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="top5Clientes" ReturnType="Collection(SistemaIntegralGestionModel.top5Clientes_Result)">
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+    </FunctionImport>
     <FunctionImport Name="UltimoTicketUsuario" ReturnType="Collection(Int32)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1606,32 +1651,15 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="Informe_Ventas" ReturnType="Collection(SistemaIntegralGestionModel.Informe_Ventas_Result)">
-      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="RecordatorioNotificaciones">
-      <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
-      <Parameter Name="TiempoTranscurridoHoras" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="distribMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.distribMetodoPago_Result)">
-      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="top5Clientes" ReturnType="Collection(SistemaIntegralGestionModel.top5Clientes_Result)">
-      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <EntitySet Name="Audit_Venta_Producto" EntityType="SistemaIntegralGestionModel.Audit_Venta_Producto" />
-    <FunctionImport Name="actualizaInventario" ReturnType="Collection(SistemaIntegralGestionModel.actualizaInventario_Result)">
-      <Parameter Name="IdProducto" Mode="In" Type="Int32" />
-      <Parameter Name="NuevoInventario" Mode="In" Type="Int32" />
-      <Parameter Name="Motivo" Mode="In" Type="String" />
-      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="HistorialAjustesCxC" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxC_Result)" />
-    <FunctionImport Name="HistorialAjustesCxP" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxP_Result)" />
   </EntityContainer>
+  <ComplexType Name="actualizaInventario_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
+    <Property Type="Int32" Name="inventario" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="cierre_contable_Result">
     <Property Type="Int32" Name="codigo_cuenta" Nullable="true" />
     <Property Type="String" Name="descripcion_cuenta" Nullable="true" MaxLength="100" />
@@ -1696,6 +1724,12 @@
     <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
   </ComplexType>
+  <ComplexType Name="distribMetodoPago_Result">
+    <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
+    <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
   <ComplexType Name="GeneraFacturaDetalle_Result">
     <Property Type="Int32" Name="Linea_id" Nullable="false" />
     <Property Type="Int32" Name="producto_id" Nullable="true" />
@@ -1721,6 +1755,41 @@
     <Property Type="String" Name="EstadoFactura" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="notas_adicionales" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="TipoVenta" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="GenerarBalanceGeneral_Result">
+    <Property Type="String" Name="TipoCuenta" Nullable="false" MaxLength="7" />
+    <Property Type="Int32" Name="CuentaContable" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="GenerarEstadoResultados_Result">
+    <Property Type="String" Name="TipoCuenta" Nullable="false" MaxLength="9" />
+    <Property Type="Int32" Name="CuentaContable" Nullable="true" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Total" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="HistorialAjustesCxC_Result">
+    <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="HistorialAjustesCxP_Result">
+    <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
+    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="Informe_Ventas_Result">
+    <Property Type="String" Name="Producto" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="Cantidad" Nullable="true" />
+    <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Decimal" Name="Descuento" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="MontoFinal" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Int32" Name="Clientes" Nullable="true" />
   </ComplexType>
   <ComplexType Name="ListaCuentasContables_Result">
     <Property Type="Int32" Name="Codigo" Nullable="false" />
@@ -1782,6 +1851,12 @@
     <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
     <Property Type="Boolean" Name="lectura" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="top5Clientes_Result">
+    <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
+    <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
   <ComplexType Name="ValidarCorreo_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
@@ -1791,62 +1866,5 @@
     <Property Type="Int32" Name="IdProducto" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="Informe_Ventas_Result">
-    <Property Type="String" Name="Producto" Nullable="true" MaxLength="255" />
-    <Property Type="Int32" Name="Cantidad" Nullable="true" />
-    <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="38" Scale="6" />
-    <Property Type="Decimal" Name="Descuento" Nullable="true" Precision="38" Scale="2" />
-    <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="38" Scale="2" />
-    <Property Type="Decimal" Name="MontoFinal" Nullable="true" Precision="38" Scale="2" />
-    <Property Type="Int32" Name="Clientes" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="distribMetodoPago_Result">
-    <Property Type="String" Name="MetodoPago" Nullable="true" MaxLength="100" />
-    <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
-    <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
-    <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
-  </ComplexType>
-  <ComplexType Name="top5Clientes_Result">
-    <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
-    <Property Type="Int32" Name="CantidadVentas" Nullable="true" />
-    <Property Type="Decimal" Name="TotalVentas" Nullable="true" Precision="38" Scale="2" />
-    <Property Type="Decimal" Name="PorcentajeVentas" Nullable="true" Precision="38" Scale="6" />
-  </ComplexType>
-  <EntityType Name="Audit_Venta_Producto">
-    <Key>
-      <PropertyRef Name="id_producto" />
-      <PropertyRef Name="motivo" />
-      <PropertyRef Name="fecha" />
-      <PropertyRef Name="responsable" />
-    </Key>
-    <Property Name="id_producto" Type="Int32" Nullable="false" />
-    <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="inventario" Type="Int32" />
-    <Property Name="motivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="responsable" Type="Int32" Nullable="false" />
-  </EntityType>
-  <ComplexType Name="actualizaInventario_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="nombre" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
-    <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Int32" Name="estado" Nullable="false" />
-    <Property Type="Int32" Name="inventario" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="HistorialAjustesCxC_Result">
-    <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
-    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Cliente" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
-  </ComplexType>
-  <ComplexType Name="HistorialAjustesCxP_Result">
-    <Property Type="DateTime" Name="fechaAjuste" Nullable="true" />
-    <Property Type="Decimal" Name="monto" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="String" Name="motivo" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Proveedor" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="estadoCuenta" Nullable="false" MaxLength="10" />
   </ComplexType>
 </Schema>
