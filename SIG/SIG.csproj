@@ -309,6 +309,9 @@
     <Compile Include="BaseDatos\Catalogo_Compra.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\CategoriaPlan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\cierre_contable_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -426,7 +429,13 @@
     </Compile>
     <Compile Include="BaseDatos\ObtenerTodasLasEntregas_Result.cs" />
     <Compile Include="BaseDatos\ObtenerVentaPedido_Result.cs" />
+    <Compile Include="BaseDatos\PDA_Estado.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\PDA_Tarea.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\PDA_TipoAccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Pedido.cs">
@@ -506,18 +515,24 @@
     <Compile Include="Controllers\IncidenciasITAnalystController.cs" />
     <Compile Include="Controllers\IncidenciasITManagerController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
-    <Compile Include="Controllers\Plan_AccionController.cs" />
+    <Compile Include="Controllers\PlanAccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\CategoriaIncidencia.cs" />
+    <Compile Include="Entidades\CategoriaPlan.cs" />
     <Compile Include="Entidades\ConsultaEstadoFinanciero.cs" />
     <Compile Include="Entidades\CuentasCredito.cs" />
+    <Compile Include="Entidades\PDAEmpleado.cs" />
     <Compile Include="Entidades\EstadoCompra.cs" />
     <Compile Include="Entidades\FacturaPDF.cs" />
     <Compile Include="Entidades\HistorialModificacion.cs" />
     <Compile Include="Entidades\HistorialPedido.cs" />
+    <Compile Include="Entidades\PDAEstado.cs" />
+    <Compile Include="Entidades\PDATipoAccion.cs" />
+    <Compile Include="Entidades\PDAUsuarioEmpleado.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\PedidoFactura.cs" />
+    <Compile Include="Entidades\PlanDeAccion.cs" />
     <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Entidades\Proveedor.cs" />
     <Compile Include="Entidades\ProveedorFinanciero.cs" />
@@ -525,7 +540,9 @@
     <Compile Include="Entidades\ReportePedidos.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\Entrega.cs" />
+    <Compile Include="Entidades\ReportePlan.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
+    <Compile Include="Entidades\Tarea.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\TransaccionFinanciera.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
@@ -536,7 +553,9 @@
     <Compile Include="Models\CatalogosModel.cs" />
     <Compile Include="Models\ContabilidadModel.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
+    <Compile Include="Models\PDACatalogosModel.cs" />
     <Compile Include="Models\PedidosModel.cs" />
+    <Compile Include="Models\PlanDeAccionModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
     <Compile Include="Models\FiltroSeguridad.cs" />
@@ -727,7 +746,7 @@
     <Content Include="Views\Proveedores\Registro_Proveedores.cshtml" />
     <Content Include="Views\Incidencias\NuevoTicket.cshtml" />
     <Content Include="Views\Empleados\Registro.cshtml" />
-    <Content Include="Views\Plan_Accion\Registro.cshtml" />
+    <Content Include="Views\PlanDeAccion\Registro.cshtml" />
     <Content Include="Views\Home\Registrousuario.cshtml" />
     <Content Include="Views\Incidencias\ListaIncidenciasUsuario.cshtml" />
     <Content Include="Views\Incidencias\ActualizarTicket.cshtml" />
@@ -777,6 +796,9 @@
     <Content Include="Views\Login\Editar.cshtml" />
     <Content Include="Views\Entregas\Registrar.cshtml" />
     <Content Include="Views\Entregas\Lista.cshtml" />
+    <Content Include="Views\PlanDeAccion\ListarPlanesUsuario.cshtml" />
+    <Content Include="Views\PlanDeAccion\VerTareas.cshtml" />
+    <Content Include="Views\PlanDeAccion\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

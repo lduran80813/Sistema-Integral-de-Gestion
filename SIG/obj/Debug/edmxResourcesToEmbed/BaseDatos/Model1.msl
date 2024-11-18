@@ -27,6 +27,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaPlan">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.CategoriaPlan">
+        <MappingFragment StoreEntitySet="CategoriaPlan">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Conta_CuentasContables">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Conta_CuentasContables">
         <MappingFragment StoreEntitySet="Conta_CuentasContables">
@@ -220,6 +230,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PDA_Estado">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_Estado">
+        <MappingFragment StoreEntitySet="PDA_Estado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion_estado" ColumnName="descripcion_estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PDA_Tarea">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_Tarea">
         <MappingFragment StoreEntitySet="PDA_Tarea">
@@ -228,8 +246,14 @@
           <ScalarProperty Name="descripcion_tarea" ColumnName="descripcion_tarea" />
           <ScalarProperty Name="responsable_id" ColumnName="responsable_id" />
           <ScalarProperty Name="estado_tarea" ColumnName="estado_tarea" />
-          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-          <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PDA_TipoAccion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_TipoAccion">
+        <MappingFragment StoreEntitySet="PDA_TipoAccion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -252,6 +276,11 @@
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
           <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+          <ScalarProperty Name="descripcion_plan" ColumnName="descripcion_plan" />
+          <ScalarProperty Name="CategoriaPlanId" ColumnName="CategoriaPlanId" />
+          <ScalarProperty Name="EstadoAccionId" ColumnName="EstadoAccionId" />
+          <ScalarProperty Name="TipoAccionId" ColumnName="TipoAccionId" />
+          <ScalarProperty Name="ResponsableId" ColumnName="ResponsableId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

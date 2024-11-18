@@ -27,6 +27,16 @@
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Prov_Compra" Relationship="Self.FK_Prov_Compra_TipoCompra" FromRole="Catalogo_Compra" ToRole="Prov_Compra" />
   </EntityType>
+  <EntityType Name="CategoriaPlan">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreCategoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK_PlanDeAccion_CategoriaPlan" FromRole="CategoriaPlan" ToRole="PlanDeAccion" />
+  </EntityType>
   <EntityType Name="Conta_CuentasContables">
     <Key>
       <PropertyRef Name="Codigo" />
@@ -172,10 +182,15 @@
     <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__1AD3FDA4" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
     <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__1BC821DD" FromRole="Empleado" ToRole="Emp_Vacaciones" />
     <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__25518C17" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK__PDA_Tarea__respo__625A9A57" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea2" Relationship="Self.FK__PDA_Tarea__respo__65370702" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea3" Relationship="Self.FK__PDA_Tarea__respo__681373AD" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PlanDeAcc__Respo__76619304" FromRole="Empleado" ToRole="PlanDeAccion" />
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__2CF2ADDF" FromRole="Empleado" ToRole="Prov_Pago" />
     <NavigationProperty Name="Ticket" Relationship="Self.FK__Ticket__id_tecni__31B762FC" FromRole="Empleado" ToRole="Ticket" />
     <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__32AB8735" FromRole="Empleado" ToRole="Ticket" />
     <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdUsu__367C1819" FromRole="Empleado" ToRole="Venta_Carrito" />
+    <NavigationProperty Name="PDA_Tarea4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="Empleado" ToRole="PDA_Tarea" />
   </EntityType>
   <EntityType Name="EntidadesFinancieras">
     <Key>
@@ -239,6 +254,16 @@
     <NavigationProperty Name="EstadoCompra" Relationship="Self.FK__Historial__Estad__22751F6C" FromRole="HistorialPedido" ToRole="EstadoCompra" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK__Historial__Pedid__236943A5" FromRole="HistorialPedido" ToRole="Pedido" />
   </EntityType>
+  <EntityType Name="PDA_Estado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__estad__6BE40491" FromRole="PDA_Estado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK_PDA_Tarea_PDA_Estado" FromRole="PDA_Estado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK_PlanDeAccion_PDA_Estado" FromRole="PDA_Estado" ToRole="PlanDeAccion" />
+  </EntityType>
   <EntityType Name="PDA_Tarea">
     <Key>
       <PropertyRef Name="id" />
@@ -247,11 +272,23 @@
     <Property Name="plan_id" Type="Int32" />
     <Property Name="descripcion_tarea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="responsable_id" Type="Int32" />
-    <Property Name="estado_tarea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
-    <Property Name="fecha_finalizacion" Type="DateTime" Precision="0" />
+    <Property Name="estado_tarea" Type="Int32" />
     <NavigationProperty Name="Empleado" Relationship="Self.FK__PDA_Tarea__respo__25518C17" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado1" Relationship="Self.FK__PDA_Tarea__respo__625A9A57" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado2" Relationship="Self.FK__PDA_Tarea__respo__65370702" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado3" Relationship="Self.FK__PDA_Tarea__respo__681373AD" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="PDA_Estado" Relationship="Self.FK__PDA_Tarea__estad__6BE40491" FromRole="PDA_Tarea" ToRole="PDA_Estado" />
+    <NavigationProperty Name="PDA_Estado1" Relationship="Self.FK_PDA_Tarea_PDA_Estado" FromRole="PDA_Tarea" ToRole="PDA_Estado" />
     <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PDA_Tarea__plan___245D67DE" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
+  </EntityType>
+  <EntityType Name="PDA_TipoAccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK_PlanDeAccion_PDA_TipoAccion" FromRole="PDA_TipoAccion" ToRole="PlanDeAccion" />
   </EntityType>
   <EntityType Name="Pedido">
     <Key>
@@ -276,7 +313,16 @@
     <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
     <Property Name="fecha_finalizacion" Type="DateTime" Precision="0" />
+    <Property Name="descripcion_plan" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CategoriaPlanId" Type="Int32" />
+    <Property Name="EstadoAccionId" Type="Int32" />
+    <Property Name="TipoAccionId" Type="Int32" />
+    <Property Name="ResponsableId" Type="Int32" />
+    <NavigationProperty Name="CategoriaPlan" Relationship="Self.FK_PlanDeAccion_CategoriaPlan" FromRole="PlanDeAccion" ToRole="CategoriaPlan" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__PlanDeAcc__Respo__76619304" FromRole="PlanDeAccion" ToRole="Empleado" />
+    <NavigationProperty Name="PDA_Estado" Relationship="Self.FK_PlanDeAccion_PDA_Estado" FromRole="PlanDeAccion" ToRole="PDA_Estado" />
     <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__plan___245D67DE" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_TipoAccion" Relationship="Self.FK_PlanDeAccion_PDA_TipoAccion" FromRole="PlanDeAccion" ToRole="PDA_TipoAccion" />
   </EntityType>
   <EntityType Name="Prov_Compra">
     <Key>
@@ -557,6 +603,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PlanDeAccion_CategoriaPlan">
+    <End Role="CategoriaPlan" Type="Self.CategoriaPlan" Multiplicity="0..1" />
+    <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaPlan">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlanDeAccion">
+        <PropertyRef Name="CategoriaPlanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Conta_Tra__cuent__151B244E">
     <End Role="Conta_CuentasContables" Type="Self.Conta_CuentasContables" Multiplicity="1" />
     <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
@@ -725,6 +783,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PDA_Tarea__respo__625A9A57">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="responsable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PDA_Tarea__respo__65370702">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="responsable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PDA_Tarea__respo__681373AD">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="responsable_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PlanDeAcc__Respo__76619304">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PlanDeAccion">
+        <PropertyRef Name="ResponsableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Prov_Pago__autor__2CF2ADDF">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
@@ -770,6 +876,18 @@
       </Principal>
       <Dependent Role="Venta_Carrito">
         <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PDA_Tarea_Empleado">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="responsable_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -845,6 +963,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PDA_Tarea__estad__6BE40491">
+    <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PDA_Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="estado_tarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PDA_Tarea_PDA_Estado">
+    <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
+    <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PDA_Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PDA_Tarea">
+        <PropertyRef Name="estado_tarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanDeAccion_PDA_Estado">
+    <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
+    <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PDA_Estado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PlanDeAccion">
+        <PropertyRef Name="EstadoAccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PDA_Tarea__plan___245D67DE">
     <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
@@ -854,6 +1008,18 @@
       </Principal>
       <Dependent Role="PDA_Tarea">
         <PropertyRef Name="plan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanDeAccion_PDA_TipoAccion">
+    <End Role="PDA_TipoAccion" Type="Self.PDA_TipoAccion" Multiplicity="0..1" />
+    <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PDA_TipoAccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlanDeAccion">
+        <PropertyRef Name="TipoAccionId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1089,6 +1255,7 @@
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" />
     <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" />
     <EntitySet Name="Catalogo_Compra" EntityType="Self.Catalogo_Compra" />
+    <EntitySet Name="CategoriaPlan" EntityType="Self.CategoriaPlan" />
     <EntitySet Name="Conta_CuentasContables" EntityType="Self.Conta_CuentasContables" />
     <EntitySet Name="Conta_CxC" EntityType="Self.Conta_CxC" />
     <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" />
@@ -1107,7 +1274,9 @@
     <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" />
     <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" />
     <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" />
+    <EntitySet Name="PDA_Estado" EntityType="Self.PDA_Estado" />
     <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" />
+    <EntitySet Name="PDA_TipoAccion" EntityType="Self.PDA_TipoAccion" />
     <EntitySet Name="Pedido" EntityType="Self.Pedido" />
     <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" />
     <EntitySet Name="Prov_Compra" EntityType="Self.Prov_Compra" />
@@ -1140,6 +1309,10 @@
     <AssociationSet Name="FK_Prov_Compra_TipoCompra" Association="Self.FK_Prov_Compra_TipoCompra">
       <End Role="Catalogo_Compra" EntitySet="Catalogo_Compra" />
       <End Role="Prov_Compra" EntitySet="Prov_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanDeAccion_CategoriaPlan" Association="Self.FK_PlanDeAccion_CategoriaPlan">
+      <End Role="CategoriaPlan" EntitySet="CategoriaPlan" />
+      <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
     </AssociationSet>
     <AssociationSet Name="FK__Conta_Tra__cuent__151B244E" Association="Self.FK__Conta_Tra__cuent__151B244E">
       <End Role="Conta_CuentasContables" EntitySet="Conta_CuentasContables" />
@@ -1197,6 +1370,22 @@
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__respo__625A9A57" Association="Self.FK__PDA_Tarea__respo__625A9A57">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__respo__65370702" Association="Self.FK__PDA_Tarea__respo__65370702">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__respo__681373AD" Association="Self.FK__PDA_Tarea__respo__681373AD">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PlanDeAcc__Respo__76619304" Association="Self.FK__PlanDeAcc__Respo__76619304">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
+    </AssociationSet>
     <AssociationSet Name="FK__Prov_Pago__autor__2CF2ADDF" Association="Self.FK__Prov_Pago__autor__2CF2ADDF">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Prov_Pago" EntitySet="Prov_Pago" />
@@ -1212,6 +1401,10 @@
     <AssociationSet Name="FK__Venta_Car__IdUsu__367C1819" Association="Self.FK__Venta_Car__IdUsu__367C1819">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PDA_Tarea_Empleado" Association="Self.FK_PDA_Tarea_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
     <AssociationSet Name="FK__Entregas__pedido__1F98B2C1" Association="Self.FK__Entregas__pedido__1F98B2C1">
       <End Role="Venta_Factura" EntitySet="Venta_Factura" />
@@ -1237,9 +1430,25 @@
       <End Role="Pedido" EntitySet="Pedido" />
       <End Role="HistorialPedido" EntitySet="HistorialPedido" />
     </AssociationSet>
+    <AssociationSet Name="FK__PDA_Tarea__estad__6BE40491" Association="Self.FK__PDA_Tarea__estad__6BE40491">
+      <End Role="PDA_Estado" EntitySet="PDA_Estado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PDA_Tarea_PDA_Estado" Association="Self.FK_PDA_Tarea_PDA_Estado">
+      <End Role="PDA_Estado" EntitySet="PDA_Estado" />
+      <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanDeAccion_PDA_Estado" Association="Self.FK_PlanDeAccion_PDA_Estado">
+      <End Role="PDA_Estado" EntitySet="PDA_Estado" />
+      <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
+    </AssociationSet>
     <AssociationSet Name="FK__PDA_Tarea__plan___245D67DE" Association="Self.FK__PDA_Tarea__plan___245D67DE">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanDeAccion_PDA_TipoAccion" Association="Self.FK_PlanDeAccion_PDA_TipoAccion">
+      <End Role="PDA_TipoAccion" EntitySet="PDA_TipoAccion" />
+      <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
     </AssociationSet>
     <AssociationSet Name="FK__Pedido__proveedo__2739D489" Association="Self.FK__Pedido__proveedo__2739D489">
       <End Role="Proveedor" EntitySet="Proveedor" />
@@ -1437,7 +1646,7 @@
       <Parameter Name="Contrasena" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="RegistrarEntrega">
-      <Parameter Name="PedidoId" Mode="InOut" Type="Int32" />
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
       <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
       <Parameter Name="DireccionEntrega" Mode="In" Type="String" />
       <Parameter Name="ArticulosEntregados" Mode="In" Type="String" />

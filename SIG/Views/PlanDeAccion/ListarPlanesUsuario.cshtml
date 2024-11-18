@@ -1,0 +1,92 @@
+﻿@model IEnumerable<SIG.Entidades.PlanDeAccion>
+
+@{
+    ViewBag.Title = "Listado de Planes de Acción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewBag.Title</h1>
+
+        @if (Model != null && Model.Any())
+        {
+            <table id="plansTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre del Plan</th>
+                        <th>Descripción</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Finalización</th>
+                        <th>Estado</th>
+                        <th>Responsable (ID)</th>
+                        <th>Tareas</th> 
+                        <th>Editar</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var plan in Model)
+                    {
+                        <tr>
+                            <td>@plan.NombrePlan</td>
+                            <td>@plan.DescripcionPlan</td>
+                            <td>@plan.FechaInicio.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                @(plan.FechaFinalizacion.HasValue ? plan.FechaFinalizacion.Value.ToString("dd/MM/yyyy") : "No disponible")
+                            </td>
+                            <td>@plan.Estado</td>
+                            <td>@plan.ResponsableId</td> 
+                            <td>
+
+                                <a href="@Url.Action("VerTareas", "PlanDeAccion", new { idPlan = plan.Id })" class="btn btn-info">Ver Tareas</a>
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Editar", "PlanDeAccion", new { idPlan = plan.Id })" class="btn btn-warning">Editar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No se encontraron planes de acción.</p>
+        }
+    </div>
+
+    <!-- Cargar jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Cargar DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- Inicializar DataTable -->
+    <script>
+        $(document).ready(function () {
+            // Inicializa el DataTable en la tabla con el id "plansTable"
+            $('#plansTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json"
+                },
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "lengthChange": true
+            });
+        });
+    </script>
+</body>
+</html>
