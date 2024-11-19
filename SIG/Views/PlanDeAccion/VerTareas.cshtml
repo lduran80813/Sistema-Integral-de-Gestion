@@ -1,0 +1,83 @@
+﻿@model IEnumerable<SIG.Entidades.Tarea>
+
+@{
+    ViewBag.Title = "Tareas del Plan de Acción";
+    var plan = ViewBag.Plan as SIG.Entidades.PlanDeAccion;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <!-- Cargar Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Cargar DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewBag.Title</h1>
+
+        <!-- Información del plan -->
+        <h3>Plan de Acción: @plan.NombrePlan</h3>
+        <p><strong>Descripción:</strong> @plan.DescripcionPlan</p>
+        <p><strong>Fecha de Inicio:</strong> @plan.FechaInicio.ToString("dd/MM/yyyy")</p>
+        <p><strong>Fecha de Finalización:</strong> @(plan.FechaFinalizacion.HasValue ? plan.FechaFinalizacion.Value.ToString("dd/MM/yyyy") : "No disponible")</p>
+        <p><strong>Estado:</strong> @plan.Estado</p>
+
+        <!-- Mostrar lista de tareas asociadas al plan -->
+        @if (Model != null && Model.Any())
+        {
+            <table id="tasksTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Descripción de la tarea</th>
+                        <th>Responsable</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tarea in Model)
+                    {
+                        <tr>
+                            <td>@tarea.DescripcionTarea</td>
+                            <td>@(tarea.Responsable != null ? tarea.Responsable.Nombre : "No asignado")</td>
+                            <td>@tarea.EstadoTarea.Descripcion</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No hay tareas asociadas a este plan.</p>
+        }
+    </div>
+
+    <!-- Cargar jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Cargar DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- Inicializar DataTable -->
+    <script>
+        $(document).ready(function () {
+            $('#tasksTable').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json"
+                },
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "lengthChange": true
+            });
+        });
+    </script>
+</body>
+</html>
