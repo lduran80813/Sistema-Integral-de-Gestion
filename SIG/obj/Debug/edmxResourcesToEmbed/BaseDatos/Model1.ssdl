@@ -300,6 +300,9 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
     <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
     <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+    <Property Name="EstadoEntrega" Type="nvarchar" MaxLength="50" />
+    <Property Name="NombreDestinatario" Type="nvarchar" MaxLength="255" />
+    <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="EstadoCompra">
     <Key>
@@ -858,7 +861,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_me__37703C52">
+  <Association Name="FK__Notificac__id_me__32AB8735">
     <End Role="Notificaciones_basicas" Type="Self.Notificaciones_basicas" Multiplicity="0..1" />
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -870,7 +873,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_mo__3864608B">
+  <Association Name="FK__Notificac__id_mo__339FAB6E">
     <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -882,7 +885,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_no__3A4CA8FD">
+  <Association Name="FK__Notificac__id_no__3587F3E0">
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="1" />
     <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -894,7 +897,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_us__395884C4">
+  <Association Name="FK__Notificac__id_us__3493CFA7">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -906,7 +909,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_us__3B40CD36">
+  <Association Name="FK__Notificac__id_us__367C1819">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
     <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -918,7 +921,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__estad__32AB8735">
+  <Association Name="FK__PDA_Tarea__estad__37703C52">
     <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -930,7 +933,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__plan___339FAB6E">
+  <Association Name="FK__PDA_Tarea__plan___3864608B">
     <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -942,7 +945,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__plan___3C34F16F">
+  <Association Name="FK__PDA_Tarea__plan___395884C4">
     <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -954,7 +957,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__3493CFA7">
+  <Association Name="FK__PDA_Tarea__respo__3A4CA8FD">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -966,7 +969,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__3587F3E0">
+  <Association Name="FK__PDA_Tarea__respo__3B40CD36">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -978,7 +981,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__367C1819">
+  <Association Name="FK__PDA_Tarea__respo__3C34F16F">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1380,12 +1383,25 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Parameter Name="Motivo" Type="varchar" Mode="In" />
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
   </Function>
+  <Function Name="ActualizarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PedidoId" Type="int" Mode="In" />
+    <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
+    <Parameter Name="DireccionEntrega" Type="varchar" Mode="In" />
+    <Parameter Name="ArticulosEntregados" Type="varchar" Mode="In" />
+    <Parameter Name="ObservacionesAdicionales" Type="varchar" Mode="In" />
+    <Parameter Name="EstadoEntrega" Type="varchar" Mode="In" />
+    <Parameter Name="NombreDestinatario" Type="varchar" Mode="In" />
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="InOut" />
     <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="CambiarEstadoLectura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdNotificacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CancelarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PedidoId" Type="int" Mode="In" />
   </Function>
   <Function Name="CantidadNotificacionesNuevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
@@ -1512,6 +1528,10 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
     <Parameter Name="Estado" Type="int" Mode="In" />
     <Parameter Name="NotasAdicionales" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="RecordatorioCompraInsumos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
+    <Parameter Name="TiempoTranscurridoHoras" Type="int" Mode="In" />
   </Function>
   <Function Name="RecordatorioNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
@@ -1712,47 +1732,47 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
       <End Role="Pedido" EntitySet="Pedido" />
       <End Role="HistorialPedido" EntitySet="HistorialPedido" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_me__37703C52" Association="Self.FK__Notificac__id_me__37703C52">
+    <AssociationSet Name="FK__Notificac__id_me__32AB8735" Association="Self.FK__Notificac__id_me__32AB8735">
       <End Role="Notificaciones_basicas" EntitySet="Notificaciones_basicas" />
       <End Role="Notificaciones" EntitySet="Notificaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_mo__3864608B" Association="Self.FK__Notificac__id_mo__3864608B">
+    <AssociationSet Name="FK__Notificac__id_mo__339FAB6E" Association="Self.FK__Notificac__id_mo__339FAB6E">
       <End Role="Modulos" EntitySet="Modulos" />
       <End Role="Notificaciones" EntitySet="Notificaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_no__3A4CA8FD" Association="Self.FK__Notificac__id_no__3A4CA8FD">
+    <AssociationSet Name="FK__Notificac__id_no__3587F3E0" Association="Self.FK__Notificac__id_no__3587F3E0">
       <End Role="Notificaciones" EntitySet="Notificaciones" />
       <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_us__395884C4" Association="Self.FK__Notificac__id_us__395884C4">
+    <AssociationSet Name="FK__Notificac__id_us__3493CFA7" Association="Self.FK__Notificac__id_us__3493CFA7">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Notificaciones" EntitySet="Notificaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_us__3B40CD36" Association="Self.FK__Notificac__id_us__3B40CD36">
+    <AssociationSet Name="FK__Notificac__id_us__367C1819" Association="Self.FK__Notificac__id_us__367C1819">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__estad__32AB8735" Association="Self.FK__PDA_Tarea__estad__32AB8735">
+    <AssociationSet Name="FK__PDA_Tarea__estad__37703C52" Association="Self.FK__PDA_Tarea__estad__37703C52">
       <End Role="PDA_Estado" EntitySet="PDA_Estado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__plan___339FAB6E" Association="Self.FK__PDA_Tarea__plan___339FAB6E">
+    <AssociationSet Name="FK__PDA_Tarea__plan___3864608B" Association="Self.FK__PDA_Tarea__plan___3864608B">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__plan___3C34F16F" Association="Self.FK__PDA_Tarea__plan___3C34F16F">
+    <AssociationSet Name="FK__PDA_Tarea__plan___395884C4" Association="Self.FK__PDA_Tarea__plan___395884C4">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__3493CFA7" Association="Self.FK__PDA_Tarea__respo__3493CFA7">
+    <AssociationSet Name="FK__PDA_Tarea__respo__3A4CA8FD" Association="Self.FK__PDA_Tarea__respo__3A4CA8FD">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__3587F3E0" Association="Self.FK__PDA_Tarea__respo__3587F3E0">
+    <AssociationSet Name="FK__PDA_Tarea__respo__3B40CD36" Association="Self.FK__PDA_Tarea__respo__3B40CD36">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__367C1819" Association="Self.FK__PDA_Tarea__respo__367C1819">
+    <AssociationSet Name="FK__PDA_Tarea__respo__3C34F16F" Association="Self.FK__PDA_Tarea__respo__3C34F16F">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>

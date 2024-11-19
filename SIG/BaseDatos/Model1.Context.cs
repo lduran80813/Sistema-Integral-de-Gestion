@@ -100,6 +100,43 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<actualizaInventario_Result>("actualizaInventario", idProductoParameter, nuevoInventarioParameter, motivoParameter, idUsuarioParameter);
         }
     
+        public virtual int ActualizarEntrega(Nullable<int> pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales, string estadoEntrega, string nombreDestinatario, string correoElectronico)
+        {
+            var pedidoIdParameter = pedidoId.HasValue ?
+                new ObjectParameter("PedidoId", pedidoId) :
+                new ObjectParameter("PedidoId", typeof(int));
+    
+            var fechaEntregaParameter = fechaEntrega.HasValue ?
+                new ObjectParameter("FechaEntrega", fechaEntrega) :
+                new ObjectParameter("FechaEntrega", typeof(System.DateTime));
+    
+            var direccionEntregaParameter = direccionEntrega != null ?
+                new ObjectParameter("DireccionEntrega", direccionEntrega) :
+                new ObjectParameter("DireccionEntrega", typeof(string));
+    
+            var articulosEntregadosParameter = articulosEntregados != null ?
+                new ObjectParameter("ArticulosEntregados", articulosEntregados) :
+                new ObjectParameter("ArticulosEntregados", typeof(string));
+    
+            var observacionesAdicionalesParameter = observacionesAdicionales != null ?
+                new ObjectParameter("ObservacionesAdicionales", observacionesAdicionales) :
+                new ObjectParameter("ObservacionesAdicionales", typeof(string));
+    
+            var estadoEntregaParameter = estadoEntrega != null ?
+                new ObjectParameter("EstadoEntrega", estadoEntrega) :
+                new ObjectParameter("EstadoEntrega", typeof(string));
+    
+            var nombreDestinatarioParameter = nombreDestinatario != null ?
+                new ObjectParameter("NombreDestinatario", nombreDestinatario) :
+                new ObjectParameter("NombreDestinatario", typeof(string));
+    
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter, estadoEntregaParameter, nombreDestinatarioParameter, correoElectronicoParameter);
+        }
+    
         public virtual int CambiarContrasenna(ObjectParameter id, string nuevaContrasena)
         {
             var nuevaContrasenaParameter = nuevaContrasena != null ?
@@ -116,6 +153,15 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdNotificacion", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoLectura", idNotificacionParameter);
+        }
+    
+        public virtual int CancelarEntrega(Nullable<int> pedidoId)
+        {
+            var pedidoIdParameter = pedidoId.HasValue ?
+                new ObjectParameter("PedidoId", pedidoId) :
+                new ObjectParameter("PedidoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CancelarEntrega", pedidoIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> CantidadNotificacionesNuevas(Nullable<int> idUsuario)
@@ -549,6 +595,19 @@ namespace SIG.BaseDatos
                 new ObjectParameter("NotasAdicionales", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProcesarCarrito", idClienteParameter, idUsuarioParameter, estadoParameter, notasAdicionalesParameter);
+        }
+    
+        public virtual int RecordatorioCompraInsumos(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoHoras)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoHorasParameter = tiempoTranscurridoHoras.HasValue ?
+                new ObjectParameter("TiempoTranscurridoHoras", tiempoTranscurridoHoras) :
+                new ObjectParameter("TiempoTranscurridoHoras", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioCompraInsumos", idNotificacionBasicaParameter, tiempoTranscurridoHorasParameter);
         }
     
         public virtual int RecordatorioNotificaciones(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoHoras)

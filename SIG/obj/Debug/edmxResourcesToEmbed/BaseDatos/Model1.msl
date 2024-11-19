@@ -189,6 +189,9 @@
           <ScalarProperty Name="direccion_entrega" ColumnName="direccion_entrega" />
           <ScalarProperty Name="articulos_entregados" ColumnName="articulos_entregados" />
           <ScalarProperty Name="observaciones_adicionales" ColumnName="observaciones_adicionales" />
+          <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
+          <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -563,8 +566,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ActualizarEntrega" FunctionName="SistemaIntegralGestionModel.Store.ActualizarEntrega" />
     <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
+    <FunctionImportMapping FunctionImportName="CancelarEntrega" FunctionName="SistemaIntegralGestionModel.Store.CancelarEntrega" />
     <FunctionImportMapping FunctionImportName="CantidadNotificacionesNuevas" FunctionName="SistemaIntegralGestionModel.Store.CantidadNotificacionesNuevas" />
     <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
       <ResultMapping>
@@ -864,6 +869,7 @@
     <FunctionImportMapping FunctionImportName="PagarCxP" FunctionName="SistemaIntegralGestionModel.Store.PagarCxP" />
     <FunctionImportMapping FunctionImportName="PagoPedido" FunctionName="SistemaIntegralGestionModel.Store.PagoPedido" />
     <FunctionImportMapping FunctionImportName="ProcesarCarrito" FunctionName="SistemaIntegralGestionModel.Store.ProcesarCarrito" />
+    <FunctionImportMapping FunctionImportName="RecordatorioCompraInsumos" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioCompraInsumos" />
     <FunctionImportMapping FunctionImportName="RecordatorioNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioNotificaciones" />
     <FunctionImportMapping FunctionImportName="RecordatorioVencimientoCxC" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioVencimientoCxC" />
     <FunctionImportMapping FunctionImportName="RecordatorioVencimientoCxP" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioVencimientoCxP" />

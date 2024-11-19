@@ -181,11 +181,11 @@
     <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__2BFE89A6" FromRole="Empleado" ToRole="Emp_Puesto" />
     <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__29221CFB" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
     <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__2A164134" FromRole="Empleado" ToRole="Emp_Vacaciones" />
-    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_us__395884C4" FromRole="Empleado" ToRole="Notificaciones" />
-    <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_us__3B40CD36" FromRole="Empleado" ToRole="Notificaciones_usuario" />
-    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__3493CFA7" FromRole="Empleado" ToRole="PDA_Tarea" />
-    <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK__PDA_Tarea__respo__3587F3E0" FromRole="Empleado" ToRole="PDA_Tarea" />
-    <NavigationProperty Name="PDA_Tarea2" Relationship="Self.FK__PDA_Tarea__respo__367C1819" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_us__3493CFA7" FromRole="Empleado" ToRole="Notificaciones" />
+    <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_us__367C1819" FromRole="Empleado" ToRole="Notificaciones_usuario" />
+    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__3A4CA8FD" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK__PDA_Tarea__respo__3B40CD36" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea2" Relationship="Self.FK__PDA_Tarea__respo__3C34F16F" FromRole="Empleado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="PDA_Tarea3" Relationship="Self.FK__PDA_Tarea__respo__3D2915A8" FromRole="Empleado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PlanDeAcc__Respo__41EDCAC5" FromRole="Empleado" ToRole="PlanDeAccion" />
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__autor__4A8310C6" FromRole="Empleado" ToRole="Prov_Pago" />
@@ -212,6 +212,9 @@
     <Property Name="direccion_entrega" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="articulos_entregados" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="observaciones_adicionales" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="EstadoEntrega" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NombreDestinatario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Entregas__pedido__2DE6D218" FromRole="Entregas" ToRole="Venta_Factura" />
   </EntityType>
   <EntityType Name="EstadoCompra">
@@ -262,7 +265,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_mo__3864608B" FromRole="Modulos" ToRole="Notificaciones" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_mo__339FAB6E" FromRole="Modulos" ToRole="Notificaciones" />
   </EntityType>
   <EntityType Name="Notificaciones">
     <Key>
@@ -276,10 +279,10 @@
     <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="id_usuario_registro" Type="Int32" />
     <Property Name="id_objeto_referencia" Type="Int32" />
-    <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__395884C4" FromRole="Notificaciones" ToRole="Empleado" />
-    <NavigationProperty Name="Modulos" Relationship="Self.FK__Notificac__id_mo__3864608B" FromRole="Notificaciones" ToRole="Modulos" />
-    <NavigationProperty Name="Notificaciones_basicas" Relationship="Self.FK__Notificac__id_me__37703C52" FromRole="Notificaciones" ToRole="Notificaciones_basicas" />
-    <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_no__3A4CA8FD" FromRole="Notificaciones" ToRole="Notificaciones_usuario" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__3493CFA7" FromRole="Notificaciones" ToRole="Empleado" />
+    <NavigationProperty Name="Modulos" Relationship="Self.FK__Notificac__id_mo__339FAB6E" FromRole="Notificaciones" ToRole="Modulos" />
+    <NavigationProperty Name="Notificaciones_basicas" Relationship="Self.FK__Notificac__id_me__32AB8735" FromRole="Notificaciones" ToRole="Notificaciones_basicas" />
+    <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_no__3587F3E0" FromRole="Notificaciones" ToRole="Notificaciones_usuario" />
   </EntityType>
   <EntityType Name="Notificaciones_basicas">
     <Key>
@@ -287,7 +290,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_me__37703C52" FromRole="Notificaciones_basicas" ToRole="Notificaciones" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_me__32AB8735" FromRole="Notificaciones_basicas" ToRole="Notificaciones" />
   </EntityType>
   <EntityType Name="Notificaciones_usuario">
     <Key>
@@ -298,8 +301,8 @@
     <Property Name="id_usuario_recibe" Type="Int32" Nullable="false" />
     <Property Name="lectura" Type="Boolean" Nullable="false" />
     <Property Name="fecha_lectura" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__3B40CD36" FromRole="Notificaciones_usuario" ToRole="Empleado" />
-    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_no__3A4CA8FD" FromRole="Notificaciones_usuario" ToRole="Notificaciones" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Notificac__id_us__367C1819" FromRole="Notificaciones_usuario" ToRole="Empleado" />
+    <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_no__3587F3E0" FromRole="Notificaciones_usuario" ToRole="Notificaciones" />
   </EntityType>
   <EntityType Name="PDA_Estado">
     <Key>
@@ -307,7 +310,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="descripcion_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__estad__32AB8735" FromRole="PDA_Estado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__estad__37703C52" FromRole="PDA_Estado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK_PDA_Tarea_PDA_Estado" FromRole="PDA_Estado" ToRole="PDA_Tarea" />
     <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK_PlanDeAccion_PDA_Estado" FromRole="PDA_Estado" ToRole="PlanDeAccion" />
   </EntityType>
@@ -320,15 +323,15 @@
     <Property Name="descripcion_tarea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="responsable_id" Type="Int32" />
     <Property Name="estado_tarea" Type="Int32" />
-    <NavigationProperty Name="Empleado" Relationship="Self.FK__PDA_Tarea__respo__3493CFA7" FromRole="PDA_Tarea" ToRole="Empleado" />
-    <NavigationProperty Name="Empleado1" Relationship="Self.FK__PDA_Tarea__respo__3587F3E0" FromRole="PDA_Tarea" ToRole="Empleado" />
-    <NavigationProperty Name="Empleado2" Relationship="Self.FK__PDA_Tarea__respo__367C1819" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__PDA_Tarea__respo__3A4CA8FD" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado1" Relationship="Self.FK__PDA_Tarea__respo__3B40CD36" FromRole="PDA_Tarea" ToRole="Empleado" />
+    <NavigationProperty Name="Empleado2" Relationship="Self.FK__PDA_Tarea__respo__3C34F16F" FromRole="PDA_Tarea" ToRole="Empleado" />
     <NavigationProperty Name="Empleado3" Relationship="Self.FK__PDA_Tarea__respo__3D2915A8" FromRole="PDA_Tarea" ToRole="Empleado" />
     <NavigationProperty Name="Empleado4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="PDA_Tarea" ToRole="Empleado" />
-    <NavigationProperty Name="PDA_Estado" Relationship="Self.FK__PDA_Tarea__estad__32AB8735" FromRole="PDA_Tarea" ToRole="PDA_Estado" />
+    <NavigationProperty Name="PDA_Estado" Relationship="Self.FK__PDA_Tarea__estad__37703C52" FromRole="PDA_Tarea" ToRole="PDA_Estado" />
     <NavigationProperty Name="PDA_Estado1" Relationship="Self.FK_PDA_Tarea_PDA_Estado" FromRole="PDA_Tarea" ToRole="PDA_Estado" />
-    <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PDA_Tarea__plan___339FAB6E" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
-    <NavigationProperty Name="PlanDeAccion1" Relationship="Self.FK__PDA_Tarea__plan___3C34F16F" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
+    <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PDA_Tarea__plan___3864608B" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
+    <NavigationProperty Name="PlanDeAccion1" Relationship="Self.FK__PDA_Tarea__plan___395884C4" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
   </EntityType>
   <EntityType Name="PDA_TipoAccion">
     <Key>
@@ -369,8 +372,8 @@
     <NavigationProperty Name="CategoriaPlan" Relationship="Self.FK_PlanDeAccion_CategoriaPlan" FromRole="PlanDeAccion" ToRole="CategoriaPlan" />
     <NavigationProperty Name="Empleado" Relationship="Self.FK__PlanDeAcc__Respo__41EDCAC5" FromRole="PlanDeAccion" ToRole="Empleado" />
     <NavigationProperty Name="PDA_Estado" Relationship="Self.FK_PlanDeAccion_PDA_Estado" FromRole="PlanDeAccion" ToRole="PDA_Estado" />
-    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__plan___339FAB6E" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
-    <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK__PDA_Tarea__plan___3C34F16F" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__plan___3864608B" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="PDA_Tarea1" Relationship="Self.FK__PDA_Tarea__plan___395884C4" FromRole="PlanDeAccion" ToRole="PDA_Tarea" />
     <NavigationProperty Name="PDA_TipoAccion" Relationship="Self.FK_PlanDeAccion_PDA_TipoAccion" FromRole="PlanDeAccion" ToRole="PDA_TipoAccion" />
   </EntityType>
   <EntityType Name="Prov_Compra">
@@ -834,7 +837,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_us__395884C4">
+  <Association Name="FK__Notificac__id_us__3493CFA7">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -846,7 +849,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_us__3B40CD36">
+  <Association Name="FK__Notificac__id_us__367C1819">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
     <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -858,7 +861,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__3493CFA7">
+  <Association Name="FK__PDA_Tarea__respo__3A4CA8FD">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -870,7 +873,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__3587F3E0">
+  <Association Name="FK__PDA_Tarea__respo__3B40CD36">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -882,7 +885,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__respo__367C1819">
+  <Association Name="FK__PDA_Tarea__respo__3C34F16F">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1050,7 +1053,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_mo__3864608B">
+  <Association Name="FK__Notificac__id_mo__339FAB6E">
     <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1062,7 +1065,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_me__37703C52">
+  <Association Name="FK__Notificac__id_me__32AB8735">
     <End Role="Notificaciones_basicas" Type="Self.Notificaciones_basicas" Multiplicity="0..1" />
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1074,7 +1077,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Notificac__id_no__3A4CA8FD">
+  <Association Name="FK__Notificac__id_no__3587F3E0">
     <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="1" />
     <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1086,7 +1089,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__estad__32AB8735">
+  <Association Name="FK__PDA_Tarea__estad__37703C52">
     <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1122,7 +1125,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__plan___339FAB6E">
+  <Association Name="FK__PDA_Tarea__plan___3864608B">
     <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1134,7 +1137,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PDA_Tarea__plan___3C34F16F">
+  <Association Name="FK__PDA_Tarea__plan___395884C4">
     <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
     <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1506,23 +1509,23 @@
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_us__395884C4" Association="Self.FK__Notificac__id_us__395884C4">
+    <AssociationSet Name="FK__Notificac__id_us__3493CFA7" Association="Self.FK__Notificac__id_us__3493CFA7">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Notificaciones" EntitySet="Notificaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_us__3B40CD36" Association="Self.FK__Notificac__id_us__3B40CD36">
+    <AssociationSet Name="FK__Notificac__id_us__367C1819" Association="Self.FK__Notificac__id_us__367C1819">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__3493CFA7" Association="Self.FK__PDA_Tarea__respo__3493CFA7">
+    <AssociationSet Name="FK__PDA_Tarea__respo__3A4CA8FD" Association="Self.FK__PDA_Tarea__respo__3A4CA8FD">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__3587F3E0" Association="Self.FK__PDA_Tarea__respo__3587F3E0">
+    <AssociationSet Name="FK__PDA_Tarea__respo__3B40CD36" Association="Self.FK__PDA_Tarea__respo__3B40CD36">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__respo__367C1819" Association="Self.FK__PDA_Tarea__respo__367C1819">
+    <AssociationSet Name="FK__PDA_Tarea__respo__3C34F16F" Association="Self.FK__PDA_Tarea__respo__3C34F16F">
       <End Role="Empleado" EntitySet="Empleado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
@@ -1578,19 +1581,19 @@
       <End Role="Pedido" EntitySet="Pedido" />
       <End Role="HistorialPedido" EntitySet="HistorialPedido" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_mo__3864608B" Association="Self.FK__Notificac__id_mo__3864608B">
+    <AssociationSet Name="FK__Notificac__id_mo__339FAB6E" Association="Self.FK__Notificac__id_mo__339FAB6E">
       <End Role="Modulos" EntitySet="Modulos" />
       <End Role="Notificaciones" EntitySet="Notificaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_me__37703C52" Association="Self.FK__Notificac__id_me__37703C52">
+    <AssociationSet Name="FK__Notificac__id_me__32AB8735" Association="Self.FK__Notificac__id_me__32AB8735">
       <End Role="Notificaciones_basicas" EntitySet="Notificaciones_basicas" />
       <End Role="Notificaciones" EntitySet="Notificaciones" />
     </AssociationSet>
-    <AssociationSet Name="FK__Notificac__id_no__3A4CA8FD" Association="Self.FK__Notificac__id_no__3A4CA8FD">
+    <AssociationSet Name="FK__Notificac__id_no__3587F3E0" Association="Self.FK__Notificac__id_no__3587F3E0">
       <End Role="Notificaciones" EntitySet="Notificaciones" />
       <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__estad__32AB8735" Association="Self.FK__PDA_Tarea__estad__32AB8735">
+    <AssociationSet Name="FK__PDA_Tarea__estad__37703C52" Association="Self.FK__PDA_Tarea__estad__37703C52">
       <End Role="PDA_Estado" EntitySet="PDA_Estado" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
@@ -1602,11 +1605,11 @@
       <End Role="PDA_Estado" EntitySet="PDA_Estado" />
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__plan___339FAB6E" Association="Self.FK__PDA_Tarea__plan___339FAB6E">
+    <AssociationSet Name="FK__PDA_Tarea__plan___3864608B" Association="Self.FK__PDA_Tarea__plan___3864608B">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
-    <AssociationSet Name="FK__PDA_Tarea__plan___3C34F16F" Association="Self.FK__PDA_Tarea__plan___3C34F16F">
+    <AssociationSet Name="FK__PDA_Tarea__plan___395884C4" Association="Self.FK__PDA_Tarea__plan___395884C4">
       <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
       <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
     </AssociationSet>
@@ -1696,12 +1699,25 @@
       <Parameter Name="Motivo" Mode="In" Type="String" />
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ActualizarEntrega">
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+      <Parameter Name="FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="DireccionEntrega" Mode="In" Type="String" />
+      <Parameter Name="ArticulosEntregados" Mode="In" Type="String" />
+      <Parameter Name="ObservacionesAdicionales" Mode="In" Type="String" />
+      <Parameter Name="EstadoEntrega" Mode="In" Type="String" />
+      <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="CambiarContrasenna">
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
       <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="CambiarEstadoLectura">
       <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CancelarEntrega">
+      <Parameter Name="PedidoId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -1828,6 +1844,10 @@
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
       <Parameter Name="Estado" Mode="In" Type="Int32" />
       <Parameter Name="NotasAdicionales" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RecordatorioCompraInsumos">
+      <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />
+      <Parameter Name="TiempoTranscurridoHoras" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="RecordatorioNotificaciones">
       <Parameter Name="IdNotificacionBasica" Mode="In" Type="Int32" />

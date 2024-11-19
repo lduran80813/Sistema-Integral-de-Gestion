@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,18 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Model1.edmx [Diagram1]",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx",
-              "RelativeDocumentMoniker": "SIG\\BaseDatos\\Model1.edmx",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx [Diagram1]",
-              "RelativeToolTip": "SIG\\BaseDatos\\Model1.edmx [Diagram1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2024-11-18T23:57:33.087Z",
-              "EditorCaption": " [Diagram1]"
             }
           ]
         }
