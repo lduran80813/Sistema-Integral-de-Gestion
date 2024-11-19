@@ -19,5 +19,6 @@ namespace SIG.Entidades
         public decimal transaccionRef { get; set; }
         public decimal montoPago { get; set; }
         public string descripcion { get; set; }
+        public DateTime fecha { get; set; }
     }
 }

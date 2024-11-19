@@ -43,16 +43,51 @@ body, html {
     padding-left: 20px; /* Indentation for the first level of children */
 }
 
-    .nav-treeview .nav-link {
-        padding-left: 20px; /* Padding inside the link for first-level children */
-    }
+.nav-treeview .nav-link {
+    padding-left: 20px; /* Padding inside the link for first-level children */
+}
 
-    /* Indentation for level 2 children (hijos de hijos) */
-    .nav-treeview .nav-treeview {
-        padding-left: 40px; /* Indentation for the second level of children */
-    }
+/* Indentation for level 2 children (hijos de hijos) */
+.nav-treeview .nav-treeview {
+    padding-left: 40px; /* Indentation for the second level of children */
+}
 
-        .nav-treeview .nav-treeview .nav-link {
-            padding-left: 20px; /* Additional padding for second-level links */
-        }
+.nav-treeview .nav-treeview .nav-link {
+    padding-left: 20px; /* Additional padding for second-level links */
+}
 
+#notificationIcon {
+    position: relative;
+    display: inline-block;
+}
+
+#notificationCircle {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    display: none; /* Oculto por defecto */
+}
+
+#notificationDropdown {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#notificationList .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#notificationList .dropdown-item:hover {
+    background-color: #d0d0d0 !important; 
+}

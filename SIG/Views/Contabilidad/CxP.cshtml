@@ -66,6 +66,8 @@
 
     <div class="container">
         <h2>Cuentas por pagar</h2>
+        <br />
+        <a class="btn btn-primary" href="@Url.Action("HistorialAjustesCxP", "Contabilidad")">Historial de ajustes manuales</a>
         <div class="row">
             <div class="col-12">
 
@@ -85,6 +87,7 @@
                             <th>Último pago</th>
                             <th>Saldo</th>
                             <th>Pagar</th>
+                            <th>Ajuste manual</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,7 +103,9 @@
                                         Pagar
                                     </button>
                                 </td>
-
+                                <td>
+                                    <a class="btn btn-primary" href="@Url.Action("ListaPagosCxP", "Contabilidad", new {id = item.IdCompra})">Ver Pagos</a>
+                                </td>
 
                             </tr>
                         }

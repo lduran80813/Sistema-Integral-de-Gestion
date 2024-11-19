@@ -1,0 +1,124 @@
+﻿@model SIG.Entidades.AjusteManualCuentasCredito
+@{
+    ViewBag.Title = "HistorialInventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.cuentasCreditos.Count == 0)
+{
+    <h3>No existen pagos asociados</h3>
+}
+else
+{
+    <body>
+
+        <div class="container">
+            <h2>Lista de pagos de la cuenta por pagar</h2>
+            <br />
+            <button type="button" class="btn btn-primary AbrirModalAjuste" data-bs-toggle="modal" data-bs-target="#ModalAjusteManualCxP"
+                    data-id="@Model.cuentasCreditos.FirstOrDefault().IdReferencia" data-saldo="@Model.cuentasCreditos.FirstOrDefault().SaldoActual">
+                Incluir ajuste manual
+            </button>
+            <br />
+            <div class="row">
+                <div class="col-12">
+
+                    @if (ViewBag.msj != null)
+                    {
+                        <div class="alert alert-info" role="alert" style="text-align:center">
+                            @ViewBag.msj
+                        </div>
+                    }
+                    <table id="historicoPagoCuenta" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha de pago</th>
+                                <th>Saldo anterior</th>
+                                <th>Abono</th>
+                                <th>Saldo Actual</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.cuentasCreditos)
+                            {
+                                <tr>
+                                    <td>@item.fecha</td>
+                                    <td>@item.SaldoAnterior</td>
+                                    <td>@item.montoPago</td>
+                                    <td>@item.SaldoActual</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+
+
+
+<div class="modal fade" id="ModalAjusteManualCxP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Pagar cuenta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("AjusteManualCxP", "Contabilidad"))
+                {
+                    @Html.Hidden("Id_Cuenta", "", new { id = "IdCuenta" })
+                    <div class="mb-3">
+                        @Html.Label("Saldo actual:", new { @for = "saldo" })
+                        <input type="text" id="saldo" class="form-control" readonly /> 
+                    </div>
+                    <div class="mb-3">
+                        @Html.Label("Ingrese el monto del ajuste", new { @for = "abono" })
+                        @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @type = "number", @required = "true", @onkeypress = "return ValidarNumeros(event)" })
+                    </div>
+
+                    @Html.Label("Motivo del ajuste", new { @for = "descripcion" })
+                    @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Ajustar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#historicoPagoCuenta").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    });
+    $(document).on("click", ".AbrirModalAjuste", function () {
+        // Captura y asigna el data-id y data-saldo al modal
+        var idCuenta = $(this).data('id');
+        var saldo = $(this).data('saldo');
+
+        $("#IdCuenta").val(idCuenta);
+        $("#saldo").val(saldo);
+    });
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        var inputValue = evt.target.value;
+
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+
+        if (charCode === 45 && inputValue.indexOf('-') === -1 && inputValue === "") {
+            return true;
+        }
+
+        return false;
+    }
+
+</script>

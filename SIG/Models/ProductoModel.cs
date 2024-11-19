@@ -150,5 +150,37 @@ namespace SIG.Models
             }
         }
 
+        public bool ActualizarInventario(InventarioActualizacion ent)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int Consecutivo = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
+                rowsAffected = context.actualizaInventario(ent.id, ent.nuevaCantidad, ent.motivo, Consecutivo).Count();
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
+        // Aquí voy Hacer el método para extraer los datos de audit productos
+        public List<InventarioActualizacion> DatosHistoricos()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return (from h in context.Audit_Venta_Producto
+                        join p in context.Venta_Producto on h.id_producto equals p.id
+                        join e in context.Empleado on h.responsable equals e.id
+                        orderby h.fecha descending
+                        select new InventarioActualizacion
+                        {
+                            fechaAjuste = h.fecha,
+                            producto = p.nombre,
+                            nuevaCantidad = (int)h.inventario,
+                            motivo = h.motivo,
+                            nombreResponsable = e.nombre + " " + e.apellidos
+                        }).ToList();
+            }
+        }
+
     }
 }

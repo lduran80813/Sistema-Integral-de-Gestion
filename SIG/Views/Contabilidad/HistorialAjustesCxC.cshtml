@@ -1,0 +1,70 @@
+﻿@model List<SIG.BaseDatos.HistorialAjustesCxC_Result>
+@{
+    ViewBag.Title = "HistorialInventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.Count == 0)
+{
+    <h3>No existen ajustes</h3>
+}
+else
+{
+    <body>
+
+        <div class="container">
+            <h2>Reporte historial de ajustes en cuentas por cobrar</h2>
+            <br />
+            @if (Model != null)
+            {
+                <a class="btn btn-primary" href="@Url.Action("AjusteCxCPDF", "Contabilidad")">Exportar reporte PDF</a>
+            }
+            <div class="row">
+                <div class="col-12">
+
+                    @if (ViewBag.msj != null)
+                    {
+                        <div class="alert alert-info" role="alert" style="text-align:center">
+                            @ViewBag.msj
+                        </div>
+                    }
+                    <table id="historicoInventario" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Fecha ajuste</th>
+                                <th>Monto</th>
+                                <th>Motivo</th>
+                                <th>Proveedor</th>
+                                <th>Estado de cuenta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.fechaAjuste</td>
+                                    <td>@item.monto</td>
+                                    <td>@item.motivo</td>
+                                    <td>@item.Cliente</td>
+                                    <td>@item.estadoCuenta</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#historicoInventario").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    });
+
+</script>

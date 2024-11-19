@@ -33,6 +33,15 @@ namespace SIG.Models
             return (rowsAffected > 0 ? true : false);
         }
 
+        public int UltimoTicketUsuario()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                int idSesion = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
+                return (int)context.UltimoTicketUsuario(idSesion).FirstOrDefault();
+            }
+        }
+
         public List<TablaTicket> ListaIncidenciasUsuario()
         {
             using (var context = new SistemaIntegralGestionEntities())

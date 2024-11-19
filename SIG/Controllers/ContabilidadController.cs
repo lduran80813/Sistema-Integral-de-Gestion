@@ -1,9 +1,11 @@
-﻿using Rotativa;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using Rotativa;
 using SIG.BaseDatos;
 using SIG.Entidades;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Sockets;
 using System.Web;
@@ -16,6 +18,7 @@ namespace SIG.Controllers
         ProductoModel productosM = new ProductoModel();
         CatalogosModel catalogosM = new CatalogosModel();
         ContabilidadModel contabilidadM = new ContabilidadModel();
+        NotificacionesModel notificacionesM = new NotificacionesModel();
 
         private void CargarVariablesCarrito()
         {
@@ -433,6 +436,247 @@ namespace SIG.Controllers
             }
 
             return RedirectToAction("ContaCierreCorte", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult InformeVenta()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InformeVenta(InformeVentas fechas)
+        {
+            var datos = contabilidadM.Informe_Ventas(fechas);
+            if (datos != null)
+            {
+                return View(datos);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else
+            {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult InformeVentaPDF(InformeVentas fechas)
+        {
+            InformeVentas reporte = new InformeVentas();
+            reporte = contabilidadM.Informe_Ventas(fechas);
+
+            if (reporte != null)
+                return new ViewAsPdf("InformeVentasPDF", reporte)
+                {
+                    FileName = "InformeVentas_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("InformeVenta", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult Inventario()
+        {
+            InventarioActualizacion ent = new InventarioActualizacion();
+            ent.Productos = productosM.ConsultarProductos();
+            return View(ent);
+        }
+
+        [HttpPost]
+        public ActionResult ActualizarInventario(InventarioActualizacion ent)
+        {
+            var resultado = productosM.ActualizarInventario(ent);
+            var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            notificacionesM.NuevaNotificacion(7, 6, 1, ent.id, IdUsuario); //Módulo 7, Notif básica 2, prioridad 1, usuario que lo generó
+            if (!resultado)
+            {
+                return Json(new { success = false, message = "No fue posible facturar el pedido" });
+            }
+            
+            return Json(new { success = true});
+        }
+
+        [HttpGet]
+        public ActionResult HistorialModificacionesInventario()
+        {
+            List<InventarioActualizacion> historial = productosM.DatosHistoricos();
+            return View(historial);
+        }
+
+        [HttpGet]
+        public ActionResult AjusteInventarioPDF()
+        {
+            List<InventarioActualizacion> reporte = productosM.DatosHistoricos();
+
+            if (reporte != null)
+                return new ViewAsPdf("HistorialAjusteInventarioPDF", reporte)
+                {
+                    FileName = "HistorialAjusteInventario_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("HistorialModificacionesInventario", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult ListaPagosCxC(int id)
+        {
+            AjusteManualCuentasCredito ajuste = new AjusteManualCuentasCredito();
+            ajuste.cuentasCreditos = contabilidadM.ListaPagosCxC(id);
+            return View(ajuste);
+        }
+
+        [HttpPost]
+        public ActionResult AjusteManualCxC(CuentasCredito ent)
+        {
+            ent.descripcion = "Ajuste manual: " + ent.descripcion;
+            var resultado = contabilidadM.ContaPagoCxC(ent);
+            var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            notificacionesM.NuevaNotificacion(7, 8, 1, ent.Id_Cuenta, IdUsuario); //Módulo 7, Notif básica 7, prioridad 1, usuario que lo generó
+            //if (!resultado)
+            //    TempData["mensaje"] = "No fue posible ajustar la cuenta por cobrar";
+            //else
+            //    TempData["mensaje"] = "Ajuste manual exitoso";
+            return RedirectToAction("CxC", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult ListaPagosCxP(int id)
+        {
+            AjusteManualCuentasCredito ajuste = new AjusteManualCuentasCredito();
+            ajuste.cuentasCreditos = contabilidadM.ListaPagosCxP(id);
+            return View(ajuste);
+        }
+
+        [HttpPost]
+        public ActionResult AjusteManualCxP(CuentasCredito ent)
+        {
+            ent.descripcion = "Ajuste manual: " + ent.descripcion;
+            var resultado = contabilidadM.ContaPagoCxP(ent);
+            var IdUsuario = int.Parse(Session["IdUsuario"].ToString());
+            notificacionesM.NuevaNotificacion(7, 7, 1, ent.Id_Cuenta, IdUsuario); //Módulo 7, Notif básica 7, prioridad 1, usuario que lo generó
+            //if (!resultado)
+            //    TempData["mensaje"] = "No fue posible ajustar la cuenta por cobrar";
+            //else
+            //    TempData["mensaje"] = "Ajuste manual exitoso";
+            return RedirectToAction("CxP", "Contabilidad");
+        }
+
+
+        [HttpGet]
+        public ActionResult HistorialAjustesCxP()
+        {
+            var historial = contabilidadM.HistorialAjustesCxP();
+            return View(historial);
+        }
+
+        [HttpGet]
+        public ActionResult AjusteCxPPDF()
+        {
+            var reporte = contabilidadM.HistorialAjustesCxP();
+
+            if (reporte != null)
+                return new ViewAsPdf("HistorialAjustesCxPPDF", reporte)
+                {
+                    FileName = "HistorialAjustesCxP_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("HistorialAjustesCxP", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult HistorialAjustesCxC()
+        {
+            var historial = contabilidadM.HistorialAjustesCxC();
+            return View(historial);
+        }
+
+
+        [HttpGet]
+        public ActionResult AjusteCxCPDF()
+        {
+            var reporte = contabilidadM.HistorialAjustesCxC();
+
+            if (reporte != null)
+                return new ViewAsPdf("HistorialAjustesCxCPDF", reporte)
+                {
+                    FileName = "HistorialAjustesCxC_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("HistorialAjustesCxC", "Contabilidad");
+        }
+
+
+        [HttpGet]
+        public ActionResult ContaEstadosFinancieros()
+        {
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ContaEstadosFinancieros(Entidades.EstadosFinancieros ef)
+        {
+            ef.BalanceGeneral = contabilidadM.BalanceGeneral(ef.mesCorte);
+            ef.EstadoResultados = contabilidadM.EstadoResultados(ef.mesCorte);
+            if (ef.BalanceGeneral != null && ef.EstadoResultados != null)
+            {
+                return View(ef);
+            }
+            //return View("ReporteITManagerResult", respuesta);
+
+            else
+            {
+                ViewBag.msj = "No hay datos disponibles para el rango indicado";
+                return View();
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult ContaEstadosFinancierosPDF(string fecha)
+        {
+            DateTime corte;
+            DateTime.TryParseExact(fecha + "-01", "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out corte);
+
+            Entidades.EstadosFinancieros ef = new Entidades.EstadosFinancieros();
+            ef.BalanceGeneral = contabilidadM.BalanceGeneral(corte);
+            ef.EstadoResultados = contabilidadM.EstadoResultados(corte);
+
+            if (ef.BalanceGeneral != null && ef.EstadoResultados != null)
+                return new ViewAsPdf("ContaEstadosFinancierosPDF", ef)
+                {
+                    FileName = "ReporteEstadosFinancieros_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("ContaEstadosFinancieros", "Contabilidad");
+        }
+
+        [HttpGet]
+        public ActionResult VencimientoCuentas()
+        {
+            var notificaciones = contabilidadM.ListaVencimientos();
+            return View(notificaciones);
+        }
+
+        [HttpGet]
+        public ActionResult VencimientoCuentasPDF()
+        {
+            var reporte = contabilidadM.ListaVencimientos();
+
+            if (reporte != null)
+                return new ViewAsPdf("VencimientoCuentasPDF", reporte)
+                {
+                    FileName = "VencimientoCuentasPDF_" + DateTime.Now + ".pdf",
+                    PageSize = Rotativa.Options.Size.A4,  // Tamaño de página A4
+                    PageOrientation = Rotativa.Options.Orientation.Portrait,  // Orientación vertical
+                };
+            return RedirectToAction("VencimientoCuentas", "Contabilidad");
         }
     }
 }

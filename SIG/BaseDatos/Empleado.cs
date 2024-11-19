@@ -21,11 +21,18 @@ namespace SIG.BaseDatos
             this.Emp_ContactoEmergencia = new HashSet<Emp_ContactoEmergencia>();
             this.Emp_RemuneracionDeduccion = new HashSet<Emp_RemuneracionDeduccion>();
             this.Emp_Vacaciones = new HashSet<Emp_Vacaciones>();
+            this.Notificaciones = new HashSet<Notificaciones>();
+            this.Notificaciones_usuario = new HashSet<Notificaciones_usuario>();
             this.PDA_Tarea = new HashSet<PDA_Tarea>();
+            this.PDA_Tarea1 = new HashSet<PDA_Tarea>();
+            this.PDA_Tarea2 = new HashSet<PDA_Tarea>();
+            this.PDA_Tarea3 = new HashSet<PDA_Tarea>();
+            this.PlanDeAccion = new HashSet<PlanDeAccion>();
             this.Prov_Pago = new HashSet<Prov_Pago>();
             this.Ticket = new HashSet<Ticket>();
             this.Ticket1 = new HashSet<Ticket>();
             this.Venta_Carrito = new HashSet<Venta_Carrito>();
+            this.PDA_Tarea4 = new HashSet<PDA_Tarea>();
         }
     
         public int id { get; set; }
@@ -55,7 +62,19 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emp_Vacaciones> Emp_Vacaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notificaciones> Notificaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notificaciones_usuario> Notificaciones_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PDA_Tarea> PDA_Tarea { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PDA_Tarea> PDA_Tarea1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PDA_Tarea> PDA_Tarea2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PDA_Tarea> PDA_Tarea3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanDeAccion> PlanDeAccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prov_Pago> Prov_Pago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -64,5 +83,7 @@ namespace SIG.BaseDatos
         public virtual ICollection<Ticket> Ticket1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta_Carrito> Venta_Carrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PDA_Tarea> PDA_Tarea4 { get; set; }
     }
 }

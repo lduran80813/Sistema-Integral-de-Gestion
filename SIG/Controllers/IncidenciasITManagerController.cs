@@ -1,4 +1,5 @@
 ﻿using Rotativa;
+using SIG.BaseDatos;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace SIG.Controllers
     {
         CatalogosModel catalogosM = new CatalogosModel();
         IncidenciasModel ticketM = new IncidenciasModel();
+        NotificacionesModel notificacionesM = new NotificacionesModel();
 
         public void CatalogosTicket()
         {
@@ -120,6 +122,12 @@ namespace SIG.Controllers
         public ActionResult AsignarTicket(BaseDatos.Ticket ticket)
         {
             var respuesta = ticketM.AsignarTicket(ticket);
+
+            // Notificacion
+            notificacionesM.NuevaNotificacion(2, 2, 1, ticket.id_ticket, (int) ticket.id_tecnico); //Módulo 2, Notif básica 2, prioridad 1, idEnviar id_tecnico del Ticket
+
+
+
             if (respuesta)
             {
                 TempData["mensaje"] = "Ticket asignado existosamente";                

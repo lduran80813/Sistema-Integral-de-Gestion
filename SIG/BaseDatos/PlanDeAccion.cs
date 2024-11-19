@@ -18,6 +18,7 @@ namespace SIG.BaseDatos
         public PlanDeAccion()
         {
             this.PDA_Tarea = new HashSet<PDA_Tarea>();
+            this.PDA_Tarea1 = new HashSet<PDA_Tarea>();
         }
     
         public int id { get; set; }
@@ -25,8 +26,19 @@ namespace SIG.BaseDatos
         public string estado { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
         public Nullable<System.DateTime> fecha_finalizacion { get; set; }
+        public string descripcion_plan { get; set; }
+        public Nullable<int> CategoriaPlanId { get; set; }
+        public Nullable<int> EstadoAccionId { get; set; }
+        public Nullable<int> TipoAccionId { get; set; }
+        public Nullable<int> ResponsableId { get; set; }
     
+        public virtual CategoriaPlan CategoriaPlan { get; set; }
+        public virtual Empleado Empleado { get; set; }
+        public virtual PDA_Estado PDA_Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PDA_Tarea> PDA_Tarea { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PDA_Tarea> PDA_Tarea1 { get; set; }
+        public virtual PDA_TipoAccion PDA_TipoAccion { get; set; }
     }
 }

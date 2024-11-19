@@ -1,0 +1,107 @@
+﻿@model List<SIG.BaseDatos.HistorialAjustesCxC_Result>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generar reporte ajustes inventario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #4cae4c;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Reporte historial de ajustes en el inventario</h1>
+
+        <h4>Resumen de productos</h4>
+        <table id="historicoInventario" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Fecha ajuste</th>
+                    <th>Monto</th>
+                    <th>Motivo</th>
+                    <th>Proveedor</th>
+                    <th>Estado de cuenta</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.fechaAjuste</td>
+                        <td>@item.monto</td>
+                        <td>@item.motivo</td>
+                        <td>@item.Cliente</td>
+                        <td>@item.estadoCuenta</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+        @Html.Label("Reporte generado:")
+        <input type="text" class="form-control" readonly value="@DateTime.Now" />
+    </div>
+
+</body>
+</html>
+
+

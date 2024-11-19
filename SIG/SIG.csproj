@@ -300,13 +300,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BaseDatos\actualizaInventario_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Adm_Permiso.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Adm_Rol.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\Audit_Venta_Producto.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Catalogo_Compra.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\CategoriaPlan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\cierre_contable_Result.cs">
@@ -340,6 +349,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\datosRecibo_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\distribMetodoPago_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Empleado.cs">
@@ -381,10 +393,25 @@
     <Compile Include="BaseDatos\GeneraFacturaEncabezado_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\GenerarBalanceGeneral_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\GenerarEstadoResultados_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\HistorialAjustesCxC_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\HistorialAjustesCxP_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\HistorialModificacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\HistorialPedido.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Informe_Ventas_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\IniciarSesion_Result.cs" />
@@ -421,12 +448,36 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\Modulos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Notificaciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\NotificacionesVencimientoCuentas_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Notificaciones_basicas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\Notificaciones_usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\ObtenerEmpleadoPorFiltro_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\ObtenerNotificaciones_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\ObtenerTodasLasEntregas_Result.cs" />
     <Compile Include="BaseDatos\ObtenerVentaPedido_Result.cs" />
+    <Compile Include="BaseDatos\PDA_Estado.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\PDA_Tarea.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\PDA_TipoAccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Pedido.cs">
@@ -463,6 +514,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Ticket_Tipo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\top5Clientes_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\ValidarCorreo_Result.cs">
@@ -505,17 +559,22 @@
     <Compile Include="Controllers\IncidenciasController.cs" />
     <Compile Include="Controllers\IncidenciasITAnalystController.cs" />
     <Compile Include="Controllers\IncidenciasITManagerController.cs" />
+    <Compile Include="Controllers\NotificacionesController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\Plan_AccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Entidades\AjusteManualCuentasCredito.cs" />
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\CategoriaIncidencia.cs" />
     <Compile Include="Entidades\ConsultaEstadoFinanciero.cs" />
     <Compile Include="Entidades\CuentasCredito.cs" />
     <Compile Include="Entidades\EstadoCompra.cs" />
+    <Compile Include="Entidades\EstadosFinancieros.cs" />
     <Compile Include="Entidades\FacturaPDF.cs" />
     <Compile Include="Entidades\HistorialModificacion.cs" />
     <Compile Include="Entidades\HistorialPedido.cs" />
+    <Compile Include="Entidades\InformeVentas.cs" />
+    <Compile Include="Entidades\InventarioActualizacion.cs" />
     <Compile Include="Entidades\Pedido.cs" />
     <Compile Include="Entidades\PedidoFactura.cs" />
     <Compile Include="Entidades\Producto.cs" />
@@ -536,6 +595,7 @@
     <Compile Include="Models\CatalogosModel.cs" />
     <Compile Include="Models\ContabilidadModel.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
+    <Compile Include="Models\NotificacionesModel.cs" />
     <Compile Include="Models\PedidosModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\ProveedoresModel.cs" />
@@ -777,9 +837,25 @@
     <Content Include="Views\Login\Editar.cshtml" />
     <Content Include="Views\Entregas\Registrar.cshtml" />
     <Content Include="Views\Entregas\Lista.cshtml" />
+    <Content Include="Views\Contabilidad\InformeVenta.cshtml" />
+    <Content Include="Views\Contabilidad\InformeVentasPDF.cshtml" />
+    <Content Include="Views\Contabilidad\Inventario.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialModificacionesInventario.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialAjusteInventarioPDF.cshtml" />
+    <Content Include="Views\Contabilidad\ListaPagosCxC.cshtml" />
+    <Content Include="Views\Contabilidad\ListaPagosCxP.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialAjustesCxP.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialAjustesCxC.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialAjustesCxPPDF.cshtml" />
+    <Content Include="Views\Contabilidad\HistorialAjustesCxCPDF.cshtml" />
+    <Content Include="Views\Contabilidad\ContaEstadosFinancieros.cshtml" />
+    <Content Include="Views\Contabilidad\ContaEstadosFinancierosPDF.cshtml" />
+    <Content Include="Views\Contabilidad\VencimientoCuentas.cshtml" />
+    <Content Include="Views\Contabilidad\VencimientoCuentasPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Notificaciones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

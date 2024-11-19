@@ -1,0 +1,163 @@
+﻿@model SIG.Entidades.InventarioActualizacion
+@{
+    ViewBag.Title = "Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.Productos.Count == 0)
+{
+    <h3>No existen productos</h3>
+}
+else
+{
+    <body>
+
+        <div class="container">
+            <h2>Inventario de productos</h2>
+            <br />
+            <a class="btn btn-primary" href="@Url.Action("HistorialModificacionesInventario", "Contabilidad")">Historial de cambios en inventario</a>
+            <div class="row">
+                <div class="col-12">
+
+                    @if (ViewBag.msj != null)
+                    {
+                        <div class="alert alert-info" role="alert" style="text-align:center">
+                            @ViewBag.msj
+                        </div>
+                    }
+                    <table id="tablaProductos" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Producto ID</th>
+                                <th>Nombre</th>
+                                <th>Precio Unitario</th>
+                                <th>Estado</th>
+                                <th>Inventario</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Productos)
+                            {
+                                <tr>
+                                    <td>@item.id</td>
+                                    <td>@item.nombre</td>
+                                    <td>@item.precio</td>
+                                    <td>@item.estadoDescripcion</td>
+                                    <td>@item.inventario</td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-primary AbrirModalActualizar" data-bs-toggle="modal" data-bs-target="#ModalActualizar"
+                                                data-id="@item.id">
+                                            Actualizar Inventario
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+
+<div class="modal fade" id="ModalActualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Detalles de facturación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("ActualizarInventario", "Contabilidad"))
+                {
+                    <div class="modal-body">
+                        @Html.Hidden("id", "")
+                        @Html.Label("Nueva cantidad en inventario", new { @for = "nuevaCantidad" })
+                        @Html.TextBoxFor(m => m.nuevaCantidad, new
+                        { @placeholder = "Cantidad", @type = "number", @value = "0", @min = "1", @onkeypress = "return ValidarNumeros(this.id)", @required = "true" })
+                        <br />
+                        @Html.Label("Motivo de la actualizacion", new { @for = "motivo" })
+                        @Html.TextBoxFor(m => m.motivo, new { @placeholder = "Motivo", @type = "text", @maxlength = "100", @required = "true" })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaProductos").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    });
+
+    $(document).on("click", ".AbrirModalActualizar", function () {
+        $("#id").val($(this).attr('data-id'));
+    });
+
+    $(document).ready(function () {
+        $("#ModalActualizar form").on("submit", function (e) {
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        //setTimeout(function () {
+                        //    window.location.href = '/Contabilidad/Inventario';
+                        //}, 1000);
+                        MostrarMensaje("Información", "Actualizado correctamente", "success");
+                    } else {
+                        MostrarMensaje("Información", "Hubo un error al actualizar inventario.", "failed");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
+                }
+            });
+        });
+    });
+
+    function MostrarMensaje(titulo, mensaje, icono) {
+        //Swal.fire({
+        //    title: titulo,
+        //    text: mensaje,
+        //    icon: icono
+        //});
+        Swal.fire({
+            title: titulo,
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: "Aceptar",
+            text: mensaje,
+            icon: icono
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Contabilidad/Inventario'
+            }
+        });
+    }
+
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>

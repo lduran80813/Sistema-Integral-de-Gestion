@@ -30,6 +30,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Adm_Permiso> Adm_Permiso { get; set; }
         public virtual DbSet<Adm_Rol> Adm_Rol { get; set; }
         public virtual DbSet<Catalogo_Compra> Catalogo_Compra { get; set; }
+        public virtual DbSet<CategoriaPlan> CategoriaPlan { get; set; }
         public virtual DbSet<Conta_CuentasContables> Conta_CuentasContables { get; set; }
         public virtual DbSet<Conta_CxC> Conta_CxC { get; set; }
         public virtual DbSet<Conta_CxP> Conta_CxP { get; set; }
@@ -48,7 +49,13 @@ namespace SIG.BaseDatos
         public virtual DbSet<EstadosFinancieros> EstadosFinancieros { get; set; }
         public virtual DbSet<HistorialModificacion> HistorialModificacion { get; set; }
         public virtual DbSet<HistorialPedido> HistorialPedido { get; set; }
+        public virtual DbSet<Modulos> Modulos { get; set; }
+        public virtual DbSet<Notificaciones> Notificaciones { get; set; }
+        public virtual DbSet<Notificaciones_basicas> Notificaciones_basicas { get; set; }
+        public virtual DbSet<Notificaciones_usuario> Notificaciones_usuario { get; set; }
+        public virtual DbSet<PDA_Estado> PDA_Estado { get; set; }
         public virtual DbSet<PDA_Tarea> PDA_Tarea { get; set; }
+        public virtual DbSet<PDA_TipoAccion> PDA_TipoAccion { get; set; }
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<PlanDeAccion> PlanDeAccion { get; set; }
         public virtual DbSet<Prov_Compra> Prov_Compra { get; set; }
@@ -70,6 +77,28 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_Producto> Venta_Producto { get; set; }
         public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
         public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
+        public virtual DbSet<Audit_Venta_Producto> Audit_Venta_Producto { get; set; }
+    
+        public virtual ObjectResult<actualizaInventario_Result> actualizaInventario(Nullable<int> idProducto, Nullable<int> nuevoInventario, string motivo, Nullable<int> idUsuario)
+        {
+            var idProductoParameter = idProducto.HasValue ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(int));
+    
+            var nuevoInventarioParameter = nuevoInventario.HasValue ?
+                new ObjectParameter("NuevoInventario", nuevoInventario) :
+                new ObjectParameter("NuevoInventario", typeof(int));
+    
+            var motivoParameter = motivo != null ?
+                new ObjectParameter("Motivo", motivo) :
+                new ObjectParameter("Motivo", typeof(string));
+    
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<actualizaInventario_Result>("actualizaInventario", idProductoParameter, nuevoInventarioParameter, motivoParameter, idUsuarioParameter);
+        }
     
         public virtual int CambiarContrasenna(ObjectParameter id, string nuevaContrasena)
         {
@@ -78,6 +107,24 @@ namespace SIG.BaseDatos
                 new ObjectParameter("nuevaContrasena", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarContrasenna", id, nuevaContrasenaParameter);
+        }
+    
+        public virtual int CambiarEstadoLectura(Nullable<int> idNotificacion)
+        {
+            var idNotificacionParameter = idNotificacion.HasValue ?
+                new ObjectParameter("IdNotificacion", idNotificacion) :
+                new ObjectParameter("IdNotificacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoLectura", idNotificacionParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> CantidadNotificacionesNuevas(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CantidadNotificacionesNuevas", idUsuarioParameter);
         }
     
         public virtual ObjectResult<cierre_contable_Result> cierre_contable(Nullable<System.DateTime> fecha_Inicio, Nullable<System.DateTime> fecha_Fin)
@@ -128,6 +175,19 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdFactura", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<datosRecibo_Result>("datosRecibo", idFacturaParameter);
+        }
+    
+        public virtual ObjectResult<distribMetodoPago_Result> distribMetodoPago(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<distribMetodoPago_Result>("distribMetodoPago", fechaInicioParameter, fechaFinParameter);
         }
     
         public virtual int EditarEmpleado(Nullable<int> id, string nombre, string apellidos, string correoElectronico, string telefono, string direccion, Nullable<System.DateTime> fechaNacimiento, string numeroIdentificacion, Nullable<int> departamentoId, Nullable<int> puestoId, Nullable<int> rolId)
@@ -223,6 +283,47 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GeneraFacturaEncabezado_Result>("GeneraFacturaEncabezado", idFacturaParameter);
         }
     
+        public virtual ObjectResult<GenerarBalanceGeneral_Result> GenerarBalanceGeneral(Nullable<System.DateTime> fecha)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GenerarBalanceGeneral_Result>("GenerarBalanceGeneral", fechaParameter);
+        }
+    
+        public virtual ObjectResult<GenerarEstadoResultados_Result> GenerarEstadoResultados(Nullable<System.DateTime> fecha)
+        {
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GenerarEstadoResultados_Result>("GenerarEstadoResultados", fechaParameter);
+        }
+    
+        public virtual ObjectResult<HistorialAjustesCxC_Result> HistorialAjustesCxC()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HistorialAjustesCxC_Result>("HistorialAjustesCxC");
+        }
+    
+        public virtual ObjectResult<HistorialAjustesCxP_Result> HistorialAjustesCxP()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HistorialAjustesCxP_Result>("HistorialAjustesCxP");
+        }
+    
+        public virtual ObjectResult<Informe_Ventas_Result> Informe_Ventas(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Informe_Ventas_Result>("Informe_Ventas", fechaInicioParameter, fechaFinParameter);
+        }
+    
         public virtual int iniciarSesion(string correo_electronico, string contrasena, ObjectParameter id, ObjectParameter loginSuccess, ObjectParameter rol, ObjectParameter usuario)
         {
             var correo_electronicoParameter = correo_electronico != null ?
@@ -266,6 +367,40 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTipoVenta_Result>("listaTipoVenta");
         }
     
+        public virtual ObjectResult<NotificacionesVencimientoCuentas_Result> NotificacionesVencimientoCuentas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NotificacionesVencimientoCuentas_Result>("NotificacionesVencimientoCuentas");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> NuevaNotificacion(Nullable<int> idUsuarioRegistra, Nullable<int> idModulo, Nullable<int> idNotificacionBasica, Nullable<int> prioridad, Nullable<int> idReferencia, Nullable<int> idUsuarioReceptor)
+        {
+            var idUsuarioRegistraParameter = idUsuarioRegistra.HasValue ?
+                new ObjectParameter("IdUsuarioRegistra", idUsuarioRegistra) :
+                new ObjectParameter("IdUsuarioRegistra", typeof(int));
+    
+            var idModuloParameter = idModulo.HasValue ?
+                new ObjectParameter("IdModulo", idModulo) :
+                new ObjectParameter("IdModulo", typeof(int));
+    
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var prioridadParameter = prioridad.HasValue ?
+                new ObjectParameter("prioridad", prioridad) :
+                new ObjectParameter("prioridad", typeof(int));
+    
+            var idReferenciaParameter = idReferencia.HasValue ?
+                new ObjectParameter("IdReferencia", idReferencia) :
+                new ObjectParameter("IdReferencia", typeof(int));
+    
+            var idUsuarioReceptorParameter = idUsuarioReceptor.HasValue ?
+                new ObjectParameter("IdUsuarioReceptor", idUsuarioReceptor) :
+                new ObjectParameter("IdUsuarioReceptor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("NuevaNotificacion", idUsuarioRegistraParameter, idModuloParameter, idNotificacionBasicaParameter, prioridadParameter, idReferenciaParameter, idUsuarioReceptorParameter);
+        }
+    
         public virtual ObjectResult<ObtenerEmpleadoPorFiltro_Result> ObtenerEmpleadoPorFiltro(string nombre, string correoElectronico, string numeroCedula)
         {
             var nombreParameter = nombre != null ?
@@ -281,6 +416,15 @@ namespace SIG.BaseDatos
                 new ObjectParameter("NumeroCedula", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpleadoPorFiltro_Result>("ObtenerEmpleadoPorFiltro", nombreParameter, correoElectronicoParameter, numeroCedulaParameter);
+        }
+    
+        public virtual ObjectResult<ObtenerNotificaciones_Result> ObtenerNotificaciones(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerNotificaciones_Result>("ObtenerNotificaciones", idUsuarioParameter);
         }
     
         public virtual int PagarCxC(Nullable<int> id_Pedido, Nullable<decimal> monto, Nullable<int> metodo_Pago, string entidadFinanciera, Nullable<decimal> transaccionReferencia, string descripcion, Nullable<int> id_Usuario)
@@ -407,6 +551,45 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ProcesarCarrito", idClienteParameter, idUsuarioParameter, estadoParameter, notasAdicionalesParameter);
         }
     
+        public virtual int RecordatorioNotificaciones(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoHoras)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoHorasParameter = tiempoTranscurridoHoras.HasValue ?
+                new ObjectParameter("TiempoTranscurridoHoras", tiempoTranscurridoHoras) :
+                new ObjectParameter("TiempoTranscurridoHoras", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioNotificaciones", idNotificacionBasicaParameter, tiempoTranscurridoHorasParameter);
+        }
+    
+        public virtual int RecordatorioVencimientoCxC(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
+                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
+                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxC", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
+        }
+    
+        public virtual int RecordatorioVencimientoCxP(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
+                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
+                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxP", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
+        }
+    
         public virtual int RegistrarCarrito(Nullable<int> idUsuario, Nullable<int> idProducto, Nullable<int> cantidad)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -481,8 +664,12 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("registrarEmpleado", nombreParameter, apellidosParameter, numeroIdentificacionParameter, fechaNacimientoParameter, direccionParameter, telefonoParameter, correoElectronicoParameter, departamentoIDParameter, puestoIDParameter, rolIDParameter, estadoEmpleadoParameter, usuarioParameter, contrasenaParameter);
         }
     
-        public virtual int RegistrarEntrega(ObjectParameter pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales)
+        public virtual int RegistrarEntrega(Nullable<int> pedidoId, Nullable<System.DateTime> fechaEntrega, string direccionEntrega, string articulosEntregados, string observacionesAdicionales)
         {
+            var pedidoIdParameter = pedidoId.HasValue ?
+                new ObjectParameter("PedidoId", pedidoId) :
+                new ObjectParameter("PedidoId", typeof(int));
+    
             var fechaEntregaParameter = fechaEntrega.HasValue ?
                 new ObjectParameter("FechaEntrega", fechaEntrega) :
                 new ObjectParameter("FechaEntrega", typeof(System.DateTime));
@@ -499,7 +686,7 @@ namespace SIG.BaseDatos
                 new ObjectParameter("ObservacionesAdicionales", observacionesAdicionales) :
                 new ObjectParameter("ObservacionesAdicionales", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarEntrega", pedidoId, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter);
         }
     
         public virtual int RegistrarTransaccionesFinancieras(Nullable<int> cuenta, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario)
@@ -521,6 +708,28 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Id_Usuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarTransaccionesFinancieras", cuentaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
+        }
+    
+        public virtual ObjectResult<top5Clientes_Result> top5Clientes(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<top5Clientes_Result>("top5Clientes", fechaInicioParameter, fechaFinParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UltimoTicketUsuario(Nullable<int> idUsuario)
+        {
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UltimoTicketUsuario", idUsuarioParameter);
         }
     
         public virtual ObjectResult<ValidarCorreo_Result> ValidarCorreo(string email)

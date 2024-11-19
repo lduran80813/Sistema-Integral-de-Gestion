@@ -14,7 +14,7 @@
     <link href="~/root/dist/css/Style.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap4.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.3/sweetalert2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.3/sweetalert2.min.css" rel="stylesheet" />
 
 
 
@@ -46,48 +46,70 @@
 
 
             <ul class="navbar-nav ml-auto">
+                <li>
+                    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                            <span class="icon-menu"></span>
+                        </button>
+                        <ul class="navbar-nav navbar-nav-right">
+
+
+                            <li>
+                                <div id="notificationIcon" style="position: relative; cursor: pointer;">
+                                    <i class="fa fa-bell" style="font-size: 24px;"></i>
+                                    <span id="notificationCircle">0</span>
+                                </div>
+                                <!-- Menú desplegable de notificaciones -->
+                                <div id="notificationDropdown" class="dropdown-menu dropdown-menu-right navbar-dropdown">
+                                    <h6 class="dropdown-header">Notificaciones</h6>
+                                    <div id="notificationList">
+                                        <!-- Aquí se agregarán las notificaciones con JavaScript -->
+                                    </div>
+                                    @*<div class="dropdown-divider"></div>
+                                        <a href="#" class="dropdown-item text-center">Ver todas las notificaciones</a>*@
+                                </div>
+                            </li>
 
 
 
-                <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                        <span class="icon-menu"></span>
-                    </button>
-                    <ul class="navbar-nav navbar-nav-right">
-                        <li class="nav-item nav-profile dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                                <i class="ti-user"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="@Url.Action("EditarUsuario", "Login")">
-                                    <i class="ti-settings text-primary"></i> Perfil
-                                </a><a class="dropdown-item" href="@Url.Action("CambiarContrasenna", "Login")">
-                                    <i class="ti-settings text-primary"></i> Cambiar contraseña
+
+
+
+                            <li class="nav-item nav-profile dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                                    <i class="ti-user"></i>
                                 </a>
-                                @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "1")
-                                {
-                                    <a class="dropdown-item" href="@Url.Action("registro", "Login")">
-                                        <i class="ti-power-off text-primary"></i>Registrar un empleado
+                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("EditarUsuario", "Login")">
+                                        <i class="ti-settings text-primary"></i> Perfil
+                                    </a><a class="dropdown-item" href="@Url.Action("CambiarContrasenna", "Login")">
+                                        <i class="ti-settings text-primary"></i> Cambiar contraseña
                                     </a>
-                                }
-                                @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "1")
-                                {
-                                    <a class="nav-link" href="@Url.Action("ListarUsuarios", "Login")">
-                                        <i class="icon-list menu-icon"></i>
-                                        <span class="menu-title">Listar empleados</span>
+                                    @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "1")
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("registro", "Login")">
+                                            <i class="ti-power-off text-primary"></i>Registrar un empleado
+                                        </a>
+                                    }
+                                    @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "1")
+                                    {
+                                        <a class="nav-link" href="@Url.Action("ListarUsuarios", "Login")">
+                                            <i class="icon-list menu-icon"></i>
+                                            <span class="menu-title">Listar empleados</span>
+                                        </a>
+                                    }
+                                    <a class="dropdown-item" href="@Url.Action("Logout", "Login")">
+                                        <i class="ti-power-off text-primary"></i> Cerrar sesión
                                     </a>
-                                }
-                                <a class="dropdown-item" href="@Url.Action("Logout", "Login")">
-                                    <i class="ti-power-off text-primary"></i> Cerrar sesión
-                                </a>
 
-                            </div>
-                        </li>
-                    </ul>
-                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                        <span class="icon-menu"></span>
-                    </button>
-                </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                            <span class="icon-menu"></span>
+                        </button>
+                    </div>
+                </li>
 
             </ul>
         </nav>
@@ -129,23 +151,29 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a href="@Url.Action("Productos_Ventas","Contabilidad")" class="nav-link">
+                                        @*<i class="nav-icon fas fa-calculator"></i>*@
+                                        <p>Nuevo pedido</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="@Url.Action("ListaPedidos","Contabilidad")" class="nav-link">
                                         @*<i class="nav-icon fas fa-calculator"></i>*@
                                         <p>Lista Pedidos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("Productos_Ventas","Contabilidad")" class="nav-link">
+                                    <a href="@Url.Action("Inventario","Contabilidad")" class="nav-link">
                                         @*<i class="nav-icon fas fa-calculator"></i>*@
-                                        <p>Productos</p>
+                                        <p>Inventario</p>
                                     </a>
                                 </li>
-                                @*<li class="nav-item">
-            <a href="@Url.Action("Generar_Factura","Contabilidad")" class="nav-link">
-                <i class="nav-icon fas fa-calculator"></i>
-                <p>Generar Factura</p>
-            </a>
-        </li>*@
+                                <li class="nav-item">
+                                    <a href="@Url.Action("InformeVenta", "Contabilidad")" class="nav-link">
+                                        @*<i class="nav-icon fas fa-calculator"></i>*@
+                                        <p>Informe de ventas</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="@Url.Action("CxP", "Contabilidad")" class="nav-link">
                                         @*<i class="nav-icon fas fa-calculator"></i>*@
@@ -159,15 +187,27 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="@Url.Action("RegistroTransacciones", "Contabilidad")" class="nav-link">
+                                        @*<i class="nav-icon fas fa-calculator"></i>*@
+                                        <p>Registro Transacciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="@Url.Action("ContaCierreCorte", "Contabilidad")" class="nav-link">
                                         @*<i class="nav-icon fas fa-calculator"></i>*@
                                         <p>Cierre contable</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="@Url.Action("RegistroTransacciones", "Contabilidad")" class="nav-link">
+                                    <a href="@Url.Action("ContaEstadosFinancieros", "Contabilidad")" class="nav-link">
                                         @*<i class="nav-icon fas fa-calculator"></i>*@
-                                        <p>Registro Transacciones</p>
+                                        <p>Estados Financieros</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("VencimientoCuentas", "Contabilidad")" class="nav-link">
+                                        @*<i class="nav-icon fas fa-calculator"></i>*@
+                                        <p>Vencimiento cuentas</p>
                                     </a>
                                 </li>
                                 @*<li class="nav-item">
@@ -180,12 +220,6 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-calculator"></i>
                 <p>cierres contables</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-calculator"></i>
-                <p>informes de ventas</p>
             </a>
         </li>
         <li class="nav-item">
@@ -268,7 +302,7 @@
                                             <a href="@Url.Action("ListaPedidos", "Pedidos")" class="nav-link">
                                                 <p>Lista de Pedidos</p>
                                             </a>
-                                        </li> 
+                                        </li>
                                         <li class="nav-item">
                                             <a href="@Url.Action("GenerarReporteForm", "Pedidos")" class="nav-link">
                                                 <p>Generar Reporte</p>
@@ -439,49 +473,49 @@
                             </ul>
                         </li>
 
-                                    @* Modulo Entregas *@
-                                    <li class="nav-header"></li>
-                                    <li class="nav-item has-treeview">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-shopping-bag"></i>
-                                            <p>
-                                                Entregas
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="@Url.Action("Registrar","Entregas")" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Registrar una nueva entrega</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="@Url.Action("ListarEntregas","Entregas")" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Visualizar todas las entregas</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Actualizar el estado de una entrega</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Recibir notificaciones con actualizaciones</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    <i class="nav-icon fas fa-shopping-bag"></i>
-                                                    <p>Confirmar la recepción de mis productos para cerrar el pedidos</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                        @* Modulo Entregas *@
+                        <li class="nav-header"></li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Entregas
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Registrar","Entregas")" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Registrar una nueva entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ListarEntregas","Entregas")" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Visualizar todas las entregas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Actualizar el estado de una entrega</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Recibir notificaciones con actualizaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-shopping-bag"></i>
+                                        <p>Confirmar la recepción de mis productos para cerrar el pedidos</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         @* Modulo Planes de accion *@
                         <li class="nav-header"></li>
@@ -573,6 +607,105 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap4.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.3/sweetalert2.min.js"></script>
+
+    <script>
+        function actualizarNotificaciones() {
+            $.ajax({
+                url: '@Url.Action("ObtenerNotificaciones", "Notificaciones")',
+                type: 'GET',
+                success: function (data) {
+
+                    $('#notificationCircle').text(data.cantidad);
+                    if (data.cantidad > 0) {
+                        $('#notificationCircle').show(); // Muestra el círculo si hay notificaciones
+                    } else {
+                        $('#notificationCircle').hide(); // Oculta el círculo si no hay notificaciones
+                    }
+                    // Actualiza la lista de notificaciones en el menú desplegable
+                    const notificationList = $('#notificationList');
+                    notificationList.empty(); // Limpia la lista actual
+
+                    // Agrega cada notificación a la lista
+                    data.notificaciones.forEach(function (notificacion) {
+                        const item = $('<div>').addClass('dropdown-item')
+                            .attr('id', notificacion.IdNotificacion)
+                            .attr('data-lectura', notificacion.lectura)
+                            .html(notificacion.MensajeF.replace(/\n/g, '<br>'));
+
+                        if (notificacion.lectura == 0) {
+                            item.css({
+                                'font-weight': 'bold',
+                                'background-color': '#f0f0f0'
+                            });
+                        }
+
+                        notificationList.append(item);
+                    });
+                }
+            });
+        }
+
+        function MostrarMensajeC(titulo, mensaje, icono) {
+            return Swal.fire({
+                title: titulo,
+                showDenyButton: false,
+                showCancelButton: false,
+                confirmButtonText: "Confirmar",
+                text: mensaje,
+                icon: icono
+            });
+        }
+
+        // Ejecuta la función cuando la página carga
+        $(document).ready(function () {
+            actualizarNotificaciones();
+
+            // Configura el intervalo para que se ejecute cada 10 segundos
+            setInterval(actualizarNotificaciones, 10000);
+
+            $('#notificationIcon').on('click', function () {
+                $('#notificationDropdown').toggle();
+            });
+
+            // Evento para manejar el clic en una notificación
+            $('#notificationList').on('click', '.dropdown-item', function () {
+                const idNotificacion = $(this).attr('id');
+                const lectura = $(this).data('lectura');
+
+                const titulo = lectura == 0 ? 'Confirmar Lectura' : 'Marcar como No Leída';
+                const mensaje = lectura == 0 ? '¿Desea marcar esta notificación como leída?' : '¿Desea marcar esta notificación como no leída?';
+
+                MostrarMensajeC(titulo, mensaje, "question").then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("CambiarEstadoLectura", "Notificaciones")',
+                            type: 'POST',
+                            data: { idNotificacion: idNotificacion },
+                            success: function (response) {
+                                if (response.success) {
+                                    // Actualiza el estado visual de la notificación
+                                    const item = $('#' + idNotificacion);
+                                    if (lectura === 0) {
+                                        item.css('font-weight', 'normal').data('lectura', 1);
+                                    } else {
+                                        item.css('font-weight', 'bold').data('lectura', 0);
+                                    }
+                                    Swal.fire("¡Actualizado!", "El estado de la notificación ha sido cambiado.", "success");
+                                } else {
+                                    Swal.fire("Error", "No se pudo actualizar el estado de la notificación.", "error");
+                                }
+                                actualizarNotificaciones();
+                            },
+                            error: function () {
+                                Swal.fire("Error", "Ocurrió un problema al intentar cambiar el estado.", "error");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+    </script>
 
 </body>
 </html>

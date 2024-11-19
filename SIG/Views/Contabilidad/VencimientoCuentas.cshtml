@@ -1,0 +1,68 @@
+﻿@model List<SIG.BaseDatos.NotificacionesVencimientoCuentas_Result>
+@{
+    ViewBag.Title = "VencimientoCuentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.Count == 0)
+{
+    <h3>No existen ajustes</h3>
+}
+else
+{
+    <body>
+
+        <div class="container">
+            <h2>Reporte notificaciones históricas sobre vencimiento de cuentas</h2>
+            <br />
+            @if (Model != null)
+            {
+                <a class="btn btn-primary" href="@Url.Action("VencimientoCuentasPDF", "Contabilidad")">Exportar reporte PDF</a>
+            }
+            <div class="row">
+                <div class="col-12">
+
+                    @if (ViewBag.msj != null)
+                    {
+                        <div class="alert alert-info" role="alert" style="text-align:center">
+                            @ViewBag.msj
+                        </div>
+                    }
+                    <table id="historicoCuentas" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mensaje</th>
+                                <th>Id Referencia</th>
+                                <th>Tipo Cuenta</th>
+                                <th>Días al vencimiento (desde hoy)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Mensaje</td>
+                                    <td>@item.id_objeto_referencia</td>
+                                    <td>@item.Tipo</td>
+                                    <td>@item.Vencimiento</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#historicoCuentas").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            }
+        });
+    });
+
+</script>
