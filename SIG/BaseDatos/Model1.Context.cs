@@ -30,6 +30,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Adm_Permiso> Adm_Permiso { get; set; }
         public virtual DbSet<Adm_Rol> Adm_Rol { get; set; }
         public virtual DbSet<Catalogo_Compra> Catalogo_Compra { get; set; }
+        public virtual DbSet<CategoriaPlan> CategoriaPlan { get; set; }
         public virtual DbSet<Conta_CuentasContables> Conta_CuentasContables { get; set; }
         public virtual DbSet<Conta_CxC> Conta_CxC { get; set; }
         public virtual DbSet<Conta_CxP> Conta_CxP { get; set; }
@@ -52,7 +53,9 @@ namespace SIG.BaseDatos
         public virtual DbSet<Notificaciones> Notificaciones { get; set; }
         public virtual DbSet<Notificaciones_basicas> Notificaciones_basicas { get; set; }
         public virtual DbSet<Notificaciones_usuario> Notificaciones_usuario { get; set; }
+        public virtual DbSet<PDA_Estado> PDA_Estado { get; set; }
         public virtual DbSet<PDA_Tarea> PDA_Tarea { get; set; }
+        public virtual DbSet<PDA_TipoAccion> PDA_TipoAccion { get; set; }
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<PlanDeAccion> PlanDeAccion { get; set; }
         public virtual DbSet<Prov_Compra> Prov_Compra { get; set; }
@@ -364,6 +367,11 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<listaTipoVenta_Result>("listaTipoVenta");
         }
     
+        public virtual ObjectResult<NotificacionesVencimientoCuentas_Result> NotificacionesVencimientoCuentas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NotificacionesVencimientoCuentas_Result>("NotificacionesVencimientoCuentas");
+        }
+    
         public virtual ObjectResult<Nullable<int>> NuevaNotificacion(Nullable<int> idUsuarioRegistra, Nullable<int> idModulo, Nullable<int> idNotificacionBasica, Nullable<int> prioridad, Nullable<int> idReferencia, Nullable<int> idUsuarioReceptor)
         {
             var idUsuarioRegistraParameter = idUsuarioRegistra.HasValue ?
@@ -556,6 +564,32 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioNotificaciones", idNotificacionBasicaParameter, tiempoTranscurridoHorasParameter);
         }
     
+        public virtual int RecordatorioVencimientoCxC(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
+                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
+                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxC", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
+        }
+    
+        public virtual int RecordatorioVencimientoCxP(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
+        {
+            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
+                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
+                new ObjectParameter("IdNotificacionBasica", typeof(int));
+    
+            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
+                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
+                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxP", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
+        }
+    
         public virtual int RegistrarCarrito(Nullable<int> idUsuario, Nullable<int> idProducto, Nullable<int> cantidad)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -714,37 +748,6 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
-        }
-    
-        public virtual ObjectResult<NotificacionesVencimientoCuentas_Result> NotificacionesVencimientoCuentas()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<NotificacionesVencimientoCuentas_Result>("NotificacionesVencimientoCuentas");
-        }
-    
-        public virtual int RecordatorioVencimientoCxC(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
-        {
-            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
-                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
-                new ObjectParameter("IdNotificacionBasica", typeof(int));
-    
-            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
-                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
-                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxC", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
-        }
-    
-        public virtual int RecordatorioVencimientoCxP(Nullable<int> idNotificacionBasica, Nullable<int> tiempoTranscurridoDias)
-        {
-            var idNotificacionBasicaParameter = idNotificacionBasica.HasValue ?
-                new ObjectParameter("IdNotificacionBasica", idNotificacionBasica) :
-                new ObjectParameter("IdNotificacionBasica", typeof(int));
-    
-            var tiempoTranscurridoDiasParameter = tiempoTranscurridoDias.HasValue ?
-                new ObjectParameter("TiempoTranscurridoDias", tiempoTranscurridoDias) :
-                new ObjectParameter("TiempoTranscurridoDias", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RecordatorioVencimientoCxP", idNotificacionBasicaParameter, tiempoTranscurridoDiasParameter);
         }
     }
 }

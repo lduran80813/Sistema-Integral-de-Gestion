@@ -18,11 +18,16 @@ namespace SIG.BaseDatos
         public Nullable<int> plan_id { get; set; }
         public string descripcion_tarea { get; set; }
         public Nullable<int> responsable_id { get; set; }
-        public string estado_tarea { get; set; }
-        public Nullable<System.DateTime> fecha_inicio { get; set; }
-        public Nullable<System.DateTime> fecha_finalizacion { get; set; }
+        public Nullable<int> estado_tarea { get; set; }
     
         public virtual Empleado Empleado { get; set; }
+        public virtual Empleado Empleado1 { get; set; }
+        public virtual Empleado Empleado2 { get; set; }
+        public virtual Empleado Empleado3 { get; set; }
+        public virtual Empleado Empleado4 { get; set; }
+        public virtual PDA_Estado PDA_Estado { get; set; }
+        public virtual PDA_Estado PDA_Estado1 { get; set; }
         public virtual PlanDeAccion PlanDeAccion { get; set; }
+        public virtual PlanDeAccion PlanDeAccion1 { get; set; }
     }
 }
