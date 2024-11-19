@@ -657,6 +657,7 @@
     <Content Include="root\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="root\dist\css\alt\adminlte.plugins.css" />
     <Content Include="root\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="root\dist\css\alt\StyleSheet1.css" />
     <Content Include="root\dist\css\Style.css" />
     <Content Include="root\dist\img\AdminLTELogo.png" />
     <Content Include="root\dist\img\avatar.png" />
@@ -865,6 +866,8 @@
     <Content Include="Views\PlanDeAccion\ListarPlanesUsuario.cshtml" />
     <Content Include="Views\PlanDeAccion\VerTareas.cshtml" />
     <Content Include="Views\PlanDeAccion\Editar.cshtml" />
+    <Content Include="Views\Entregas\ListarEntregas.cshtml" />
+    <Content Include="Views\Entregas\ActualizarEntrega.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

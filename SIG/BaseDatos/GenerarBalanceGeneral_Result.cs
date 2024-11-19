@@ -11,11 +11,19 @@ namespace SIG.BaseDatos
 {
     using System;
     
+<<<<<<<< HEAD:SIG/BaseDatos/GenerarBalanceGeneral_Result.cs
     public partial class GenerarBalanceGeneral_Result
     {
         public string TipoCuenta { get; set; }
         public int CuentaContable { get; set; }
         public string Descripcion { get; set; }
         public Nullable<decimal> Total { get; set; }
+========
+    public partial class ListaCuentasContables_Result
+    {
+        public int Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public string TipoCuenta { get; set; }
+>>>>>>>> entregas2:SIG/BaseDatos/ListaCuentasContables_Result.cs
     }
 }

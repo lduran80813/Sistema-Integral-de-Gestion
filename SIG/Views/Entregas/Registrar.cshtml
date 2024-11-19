@@ -4,83 +4,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Entrega</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .message {
-            color: green;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
+    <link rel="stylesheet" href=~/root/dist/css/alt/StyleSheet1.css />
 </head>
 <body>
 
     <div class="container">
         <h1>Registrar Entrega</h1>
-
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
         @if (ViewBag.SuccessMessage != null)
         {
             <div class="message">@ViewBag.SuccessMessage</div>
@@ -89,10 +32,35 @@
         @using (Html.BeginForm("Registrar", "Entregas", FormMethod.Post))
         {
             <label for="pedido-id">Número de Pedido:</label>
-            @Html.TextBoxFor(model => model.PedidoId, new { @id = "pedido-id", @required = "required" })
+            @Html.TextBoxFor(model => model.PedidoId, new { @id = "pedido-id", @required = "required", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PedidoId, "", new { @class = "text-danger" })
 
-            <label for="fecha-entrega">Fecha de Entrega:</label>
-            @Html.TextBoxFor(model => model.FechaEntrega, new { @id = "fecha-entrega", type = "date", @required = "required" })
+            <label for="FechaEntrega">Fecha de Entrega:</label>
+            @Html.TextBoxFor(model => model.FechaEntrega, new
+            {
+                @class = "form-control",
+                @type = "date",
+                @Value = Model.FechaEntrega.HasValue
+                    ? Model.FechaEntrega.Value.ToString("yyyy-MM-dd")
+                    : DateTime.Today.ToString("yyyy-MM-dd")
+            })
+
+            <label for="Correo">Correo:</label>
+            @Html.TextAreaFor(model => model.CorreoElectronico, new { @id = "Correo", @rows = "1" })
+
+            @*<label for="Nombre-Cliente">Nombre cliente:</label>
+            @Html.TextAreaFor(model => model.NombreDestinatario, new { @id = "observaciones", @rows = "1" })*@
+
+            <div class="form-group">
+                <label for="ClienteId">Seleccionar Cliente:</label>
+                @Html.DropDownListFor(model => model.ClienteId, (SelectList)ViewBag.Clientes, "Seleccione un Cliente", new { @class = "form-control", @required = "required" })
+            </div>
+
+            <label for="EstadoEntrega">Estado de Entrega:</label>
+            @Html.DropDownListFor(model => model.EstadoEntrega,
+                new SelectList(new List<string> { "Pendiente", "En tránsito", "Entregado", "Cancelado" }),
+                "Seleccione un estado",
+                new { @id = "estadoEntrega", @class = "form-control" })
 
             <label for="direccion-entrega">Dirección de Entrega:</label>
             @Html.TextAreaFor(model => model.DireccionEntrega, new { @id = "direccion-entrega", @rows = "3", @required = "required" })
@@ -102,6 +70,9 @@
 
             <label for="observaciones">Observaciones Adicionales:</label>
             @Html.TextAreaFor(model => model.ObservacionesAdicionales, new { @id = "observaciones", @rows = "4" })
+
+
+
 
             <button type="submit">Registrar Entrega</button>
         }

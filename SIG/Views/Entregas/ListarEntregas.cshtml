@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SIG.Entidades.Entrega>
+@{
+    ViewBag.Title = "ListarEntregas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2 class="text-left">Lista de Entregas</h2>
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    <table id="tablaEntregas" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Pedido ID</th>
+                <th>Fecha de Entrega</th>
+                <th>Dirección de Entrega</th>
+                <th>Artículos Entregados</th>
+                <th>Observaciones</th>
+                <th>Estado de la Entrega</th>
+                <th>Nombre del Destinatario</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.PedidoId</td>
+                    <td>@(item.FechaEntrega.HasValue ? item.FechaEntrega.Value.ToString("dd/MM/yyyy") : "N/A")</td>
+                    <td>@item.DireccionEntrega</td>
+                    <td>@item.ArticulosEntregados</td>
+                    <td>@item.ObservacionesAdicionales</td>
+                    <td>
+                        @switch (item.EstadoEntrega)
+                        {
+                            case "Pendiente":
+                                <span class="badge bg-warning">Pendiente</span>
+                                break;
+                            case "En tránsito":
+                                <span class="badge bg-info">En tránsito</span>
+                                break;
+                            case "Entregado":
+                                <span class="badge bg-success">Entregado</span>
+                                break;
+                            case "Cancelado":
+                                <span class="badge bg-danger">Cancelado</span>
+                                break;
+                            default:
+                                <span class="badge bg-secondary">Desconocido</span>
+                                break;
+                        }
+                    </td>
+                    <td>@item.NombreDestinatario</td>
+                    <td>@item.CorreoElectronico</td>
+                    <td>
+                        <a href="@Url.Action("ActualizarEntrega", "Entregas", new { id = item.PedidoId })" class="btn btn-primary btn-sm">Actualizar</a>
+                        <a href="@Url.Action("EnviarNotificacion", "Entregas", new { id = item.PedidoId })" class="btn btn-success btn-sm">Enviar Notificación</a>
+                        <a href="@Url.Action("CancelarEntrega", "Entregas", new { id = item.PedidoId })"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Está seguro de que desea cancelar esta entrega?');">Cancelar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+    <script src="~/root/dist/js/Listar.js"></script>
+
+
+
