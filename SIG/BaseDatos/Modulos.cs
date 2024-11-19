@@ -12,7 +12,6 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-<<<<<<<< HEAD:SIG/BaseDatos/Modulos.cs
     public partial class Modulos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,20 +25,5 @@ namespace SIG.BaseDatos
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notificaciones> Notificaciones { get; set; }
-========
-    public partial class Venta_ProductoEstado
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Venta_ProductoEstado()
-        {
-            this.Venta_Producto = new HashSet<Venta_Producto>();
-        }
-    
-        public int id { get; set; }
-        public string descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta_Producto> Venta_Producto { get; set; }
->>>>>>>> entregas2:SIG/BaseDatos/Venta_ProductoEstado.cs
     }
 }
