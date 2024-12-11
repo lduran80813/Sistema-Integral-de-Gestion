@@ -1,7 +1,48 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\kou\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\plandeaccion\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\plandeaccion\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\controllers\\planaccioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\planaccioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\entidades\\tarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\entidades\\tarea.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\models\\plandeaccionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\plandeaccionmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\kou\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\plandeaccion\\vertareas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\plandeaccion\\vertareas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\kou\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\plandeaccion\\listarplanesusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\plandeaccion\\listarplanesusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\entidades\\plandeaccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\entidades\\plandeaccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\plandeaccion\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\plandeaccion\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\contabilidad\\consultarpedido.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\consultarpedido.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,12 +50,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
@@ -22,6 +59,139 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Registro.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\Registro.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\PlanDeAccion\\Registro.cshtml",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\Registro.cshtml",
+              "RelativeToolTip": "SIG\\Views\\PlanDeAccion\\Registro.cshtml",
+              "ViewState": "AQIAAM4AAAAAAAAAAAAIwPoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-11T00:40:09.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlanAccionController.cs",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\PlanAccionController.cs",
+              "RelativeDocumentMoniker": "SIG\\Controllers\\PlanAccionController.cs",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\PlanAccionController.cs",
+              "RelativeToolTip": "SIG\\Controllers\\PlanAccionController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAADwvzkAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T23:42:34.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ConsultarPedido.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Contabilidad\\ConsultarPedido.cshtml",
+              "ViewState": "AQIAAMsAAAAAAAAAAAASwNgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T02:35:04.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Editar.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\Editar.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\PlanDeAccion\\Editar.cshtml",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\Editar.cshtml",
+              "RelativeToolTip": "SIG\\Views\\PlanDeAccion\\Editar.cshtml",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAIwIUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-04T01:09:57.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Tarea.cs",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\Tarea.cs",
+              "RelativeDocumentMoniker": "SIG\\Entidades\\Tarea.cs",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\Tarea.cs",
+              "RelativeToolTip": "SIG\\Entidades\\Tarea.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-04T00:50:36.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx",
+              "RelativeDocumentMoniker": "SIG\\BaseDatos\\Model1.edmx",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "SIG\\BaseDatos\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-12-04T00:28:10.647Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlanDeAccion.cs",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\PlanDeAccion.cs",
+              "RelativeDocumentMoniker": "SIG\\Entidades\\PlanDeAccion.cs",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Entidades\\PlanDeAccion.cs",
+              "RelativeToolTip": "SIG\\Entidades\\PlanDeAccion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T23:49:57.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ListarPlanesUsuario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\ListarPlanesUsuario.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\PlanDeAccion\\ListarPlanesUsuario.cshtml",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\ListarPlanesUsuario.cshtml",
+              "RelativeToolTip": "SIG\\Views\\PlanDeAccion\\ListarPlanesUsuario.cshtml",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAQwIIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-10T20:28:31.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlanDeAccionModel.cs",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\PlanDeAccionModel.cs",
+              "RelativeDocumentMoniker": "SIG\\Models\\PlanDeAccionModel.cs",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\PlanDeAccionModel.cs",
+              "RelativeToolTip": "SIG\\Models\\PlanDeAccionModel.cs",
+              "ViewState": "AQIAAOQAAAAAAAAAAAAIwFgAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T23:49:28.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VerTareas.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\VerTareas.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\PlanDeAccion\\VerTareas.cshtml",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\PlanDeAccion\\VerTareas.cshtml",
+              "RelativeToolTip": "SIG\\Views\\PlanDeAccion\\VerTareas.cshtml",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAqwGoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-03T23:05:55.462Z",
+              "EditorCaption": ""
             }
           ]
         }

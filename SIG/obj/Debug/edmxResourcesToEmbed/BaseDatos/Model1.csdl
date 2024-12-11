@@ -323,6 +323,8 @@
     <Property Name="descripcion_tarea" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="responsable_id" Type="Int32" />
     <Property Name="estado_tarea" Type="Int32" />
+    <Property Name="calificacion" Type="Int32" />
+    <Property Name="observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Empleado" Relationship="Self.FK__PDA_Tarea__respo__3A4CA8FD" FromRole="PDA_Tarea" ToRole="Empleado" />
     <NavigationProperty Name="Empleado1" Relationship="Self.FK__PDA_Tarea__respo__3B40CD36" FromRole="PDA_Tarea" ToRole="Empleado" />
     <NavigationProperty Name="Empleado2" Relationship="Self.FK__PDA_Tarea__respo__3C34F16F" FromRole="PDA_Tarea" ToRole="Empleado" />
