@@ -4,73 +4,130 @@
     ViewBag.Title = "Editar Plan de Acción";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
+<div class="container mt-5">
+    <!-- Encabezado -->
+    <h2 class="text-center mb-4">@ViewBag.Title</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Id)
+    @using (Html.BeginForm("Editar", "PlanDeAccion", FormMethod.Post, new { @id = "editForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
 
-    <div class="row">
-        <!-- Columna de Plan de Acción -->
-        <div class="col-md-6">
-            <!-- Nombre del Plan -->
-            <div class="form-group">
-                @Html.LabelFor(m => m.NombrePlan, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.NombrePlan, new { @class = "form-control", placeholder = "Nombre del Plan" })
-                @Html.ValidationMessageFor(m => m.NombrePlan, "", new { @class = "text-danger" })
+        <div class="row">
+            <!-- Primera columna -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.NombrePlan, htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.NombrePlan, new { @class = "form-control", placeholder = "Nombre del Plan" })
+                    @Html.ValidationMessageFor(m => m.NombrePlan, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.DescripcionPlan, htmlAttributes: new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.DescripcionPlan, new { @class = "form-control", placeholder = "Descripción del Plan", rows = 4 })
+                    @Html.ValidationMessageFor(m => m.DescripcionPlan, "", new { @class = "text-danger" })
+                </div>
             </div>
 
-            <!-- Descripción del Plan -->
-            <div class="form-group">
-                @Html.LabelFor(m => m.DescripcionPlan, htmlAttributes: new { @class = "control-label" })
-                @Html.TextAreaFor(m => m.DescripcionPlan, new { @class = "form-control", placeholder = "Descripción del Plan", rows = 4 })
-                @Html.ValidationMessageFor(m => m.DescripcionPlan, "", new { @class = "text-danger" })
-            </div>
+            <!-- Segunda columna -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.FechaInicio, htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.FechaInicio, "", new { @class = "text-danger" })
+                </div>
 
-            <!-- Fecha de Inicio -->
-            <div class="form-group">
-                @Html.LabelFor(m => m.FechaInicio, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", value = ViewBag.FechaInicio?.ToString("yyyy-MM-dd") })
-                @Html.ValidationMessageFor(m => m.FechaInicio, "", new { @class = "text-danger" })
-            </div>
-
-            <!-- Fecha de Finalización -->
-            <div class="form-group">
-                @Html.LabelFor(m => m.FechaFinalizacion, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.FechaFinalizacion, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", value = ViewBag.FechaFinalizacion?.ToString("yyyy-MM-dd") })
-                @Html.ValidationMessageFor(m => m.FechaFinalizacion, "", new { @class = "text-danger" })
-            </div>
-
-            <!-- Estado del Plan -->
-            <div class="form-group">
-                @Html.LabelFor(m => m.Estado, htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.Estado, (IEnumerable<SelectListItem>)ViewBag.Estados, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
-            </div>
-
-            <!-- Responsable del Plan -->
-            <div class="form-group">
-                @Html.LabelFor(m => m.ResponsableId, htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.ResponsableId, (IEnumerable<SelectListItem>)ViewBag.Empleados, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.ResponsableId, "", new { @class = "text-danger" })
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.FechaFinalizacion, htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaFinalizacion, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.FechaFinalizacion, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <!-- Columna de Acción (Botón) -->
-        <div class="col-md-6">
-            <!-- Espacio para el botón de guardar -->
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-success btn-lg">Guardar cambios</button>
+        <div class="row">
+            <!-- Estado -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.Estado, htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.Estado, (IEnumerable<SelectListItem>)ViewBag.Estados, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- Responsable -->
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                    @Html.LabelFor(m => m.ResponsableId, htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.ResponsableId, (IEnumerable<SelectListItem>)ViewBag.Empleados, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ResponsableId, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
-    </div>
-}
 
-<!-- Mostrar mensajes de error globales si existen -->
-@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-{
-    <div class="alert alert-danger">
-        @error.ErrorMessage
-    </div>
-}
+        <!-- Sección de Tareas -->
+        <h3 class="mt-4">Tareas Asociadas</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Responsable</th>
+                        <th>Estado</th>
+                        <th>Calificación (1-10)</th>
+                        <th>Observación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Tareas != null && Model.Tareas.Any())
+                    {
+                        foreach (var tarea in Model.Tareas)
+                        {
+                            <tr>
+                                <td>@tarea.DescripcionTarea</td>
+                                <td>@(tarea.Responsable?.Nombre ?? "No asignado")</td>
+                                <td>@tarea.EstadoTarea.Descripcion</td>
+                                <td>@tarea.Calificacion</td>
+                                <td>@tarea.Observacion</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">No hay tareas asociadas a este plan.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botones -->
+        <div class="row mt-4">
+            <div class="col-md-6 text-center">
+                <button type="button" id="saveButton" class="btn btn-success btn-lg px-5">Guardar cambios</button>
+            </div>
+            <div class="col-md-6 text-center">
+                <a href="@Url.Action("ListarPlanesUsuario", "PlanDeAccion")" class="btn btn-secondary btn-lg px-5">Regresar</a>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    document.getElementById('saveButton').addEventListener('click', function (event) {
+        Swal.fire({
+            title: 'Confirmar Acción',
+            text: '¿Está seguro de que desea guardar los cambios?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('editForm').submit();
+            }
+        });
+    });
+</script>

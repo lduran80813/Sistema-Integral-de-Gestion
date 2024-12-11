@@ -12,23 +12,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
         }
 
         .container {
-            margin-top: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
 
-        .form-group-inline {
-            display: flex;
-            justify-content: space-between;
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
         }
-
-            .form-group-inline .form-group {
-                width: 48%;
-            }
 
         .btn-container {
             margin-top: 20px;
@@ -40,118 +39,159 @@
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 5px;
+            background-color: #fff;
         }
 
-            .tarea label {
-                font-weight: bold;
-            }
-
-            .tarea select, .tarea input {
-                width: 100%;
-                padding: 8px;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
-
-            .tarea button {
-                background-color: #007bff;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-                .tarea button:hover {
-                    background-color: #0056b3;
-                }
-
         #add-tarea-btn {
-            margin-top: 20px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>@ViewBag.Title</h1>
-
-        <!-- Alerta de éxito o error -->
-        <div id="alert-container"></div>
-
-        @using (Html.BeginForm("RegistroAjax", "PlanDeAccion", FormMethod.Post, new { id = "planForm" }))
-        {
-            <!-- Fila con Nombre del Plan y Descripción del Plan -->
-            <div class="form-group-inline">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.NombrePlan)
-                    @Html.TextBoxFor(model => model.NombrePlan, new { @class = "form-control", @maxlength = "100", @required = "true" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DescripcionPlan)
-                    @Html.TextAreaFor(model => model.DescripcionPlan, new { @class = "form-control", @maxlength = "200", @rows = "3", @required = "true" })
-                </div>
+        <div class="card mb-4">
+            <div class="card-header text-center">
+                Registro de Plan de Acción
             </div>
-
-            <!-- Responsable del Plan de Acción -->
-            <div class="form-group">
-                @Html.LabelFor(model => model.ResponsableId)
-                @Html.DropDownListFor(
-                    model => model.ResponsableId,
-                    (IEnumerable<SelectListItem>)ViewBag.Empleados,
-                    new { @class = "form-control", @required = "true" }
-                )
-            </div>
-
-            <!-- Fila con Fecha de Inicio y Fecha de Finalización -->
-            <div class="form-group-inline">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FechaInicio)
-                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "form-control", type = "date" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FechaFinalizacion)
-                    @Html.TextBoxFor(model => model.FechaFinalizacion, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @required = "true" })
-                </div>
-            </div>
-
-            <!-- Estado del Plan -->
-            <div class="form-group">
-                @Html.LabelFor(model => model.Estado)
-                @Html.DropDownListFor(
-                    model => model.Estado,
-                    (IEnumerable<SelectListItem>)ViewBag.Estados,
-                    "Seleccione un estado",
-                    new { @class = "form-control", @required = "true" }
-                )
-            </div>
-
-            <h3>Tareas</h3>
-
-            <!-- Contenedor de tareas que se irán agregando dinámicamente -->
-            <div id="tareas-container">
-                <!-- Tarea por defecto -->
-                <div class="tarea" id="tarea-0">
-                    <div class="form-group">
-                        <label for="DescripcionTarea">Descripción de la tarea</label>
-                        <input type="text" name="Tareas[0].DescripcionTarea" class="form-control" required />
+            <div class="card-body">
+                @using (Html.BeginForm("RegistroAjax", "PlanDeAccion", FormMethod.Post, new { id = "planForm" }))
+                {
+                    <!-- Información del Plan -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NombrePlan, "Nombre del Plan")
+                                @Html.TextBoxFor(model => model.NombrePlan, new { @class = "form-control", @placeholder = "Ingrese el nombre del plan", @maxlength = "100", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DescripcionPlan, "Descripción del Plan")
+                                @Html.TextAreaFor(model => model.DescripcionPlan, new { @class = "form-control", @rows = "3", @maxlength = "200", @placeholder = "Describa el plan", @required = "true" })
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Responsable y Fechas -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ResponsableId, "Responsable")
+                                @Html.DropDownListFor(
+                                    model => model.ResponsableId,
+                                    (IEnumerable<SelectListItem>)ViewBag.Empleados,
+                                    "Seleccione un responsable",
+                                    new { @class = "form-control", @required = "true" }
+                                )
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio")
+                                @Html.TextBoxFor(model => model.FechaInicio, new { @class = "form-control", type = "date", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FechaFinalizacion, "Fecha de Finalización")
+                                @Html.TextBoxFor(model => model.FechaFinalizacion, new { @class = "form-control", type = "date", @required = "true" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Estado, "Estado")
+                                @Html.DropDownListFor(
+                                    model => model.Estado,
+                                    (IEnumerable<SelectListItem>)ViewBag.Estados,
+                                    "Seleccione un estado",
+                                    new { @class = "form-control", @required = "true" }
+                                )
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tareas -->
+                    <h4 class="mb-3">Tareas</h4>
+                    <div id="tareas-container">
+                        <div class="tarea">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Descripción de la tarea</label>
+                                        <input type="text" name="Tareas[0].DescripcionTarea" class="form-control" placeholder="Descripción de la tarea" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Responsable</label>
+                                        <select name="Tareas[0].ResponsableId" class="form-control" required>
+                                            @foreach (var empleado in ViewBag.Empleados)
+                                            {
+                                                <option value="@empleado.Value">@empleado.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        <select name="Tareas[0].EstadoTareaId" class="form-control" required>
+                                            @foreach (var estado in ViewBag.EstadosTarea)
+                                            {
+                                                <option value="@estado.Value">@estado.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="add-tarea-btn" class="btn btn-secondary">Agregar otra tarea</button>
+
+                    <!-- Botón de enviar -->
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-primary">Registrar Plan de Acción</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script>
+    var tareaIndex = 1;
+
+    document.getElementById("add-tarea-btn").addEventListener("click", function () {
+        var newTarea = document.createElement("div");
+        newTarea.className = "tarea";
+        newTarea.innerHTML = `
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <label for="ResponsableId">Responsable</label>
-                        <select name="Tareas[0].ResponsableId" class="form-control" required>
+                        <label>Descripción de la tarea</label>
+                        <input type="text" name="Tareas[${tareaIndex}].DescripcionTarea" class="form-control" placeholder="Descripción de la tarea" required />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Responsable</label>
+                        <select name="Tareas[${tareaIndex}].ResponsableId" class="form-control" required>
                             @foreach (var empleado in ViewBag.Empleados)
                             {
                                 <option value="@empleado.Value">@empleado.Text</option>
                             }
                         </select>
                     </div>
-
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label for="EstadoTareaId">Estado de la tarea</label>
-                        <select name="Tareas[0].EstadoTareaId" class="form-control" required>
+                        <label>Estado</label>
+                        <select name="Tareas[${tareaIndex}].EstadoTareaId" class="form-control" required>
                             @foreach (var estado in ViewBag.EstadosTarea)
                             {
                                 <option value="@estado.Value">@estado.Text</option>
@@ -160,75 +200,51 @@
                     </div>
                 </div>
             </div>
+        `;
+        document.getElementById("tareas-container").appendChild(newTarea);
+        tareaIndex++;
+    });
 
-            <!-- Botón para agregar más tareas -->
-            <button type="button" id="add-tarea-btn" class="btn btn-secondary">Agregar otra tarea</button>
+    document.getElementById('planForm').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            <button type="submit" class="btn btn-primary">Registrar Plan de Acción</button>
-        }
-    </div>
+        const form = this;
+        const formData = new FormData(form);
 
-    <script>
-        // Manejo de la respuesta del formulario
-        $('#planForm').submit(function (event) {
-            event.preventDefault(); // Prevenimos el comportamiento por defecto
-
-            var formData = $(this).serialize(); // Serializamos los datos del formulario
-
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("RegistroAjax", "PlanDeAccion")',
-                data: formData,
-                success: function (response) {
-                    if (response.success) {
-                        $('#alert-container').html('<div class="alert alert-success">' + response.message + '</div>');
-                    } else {
-                        $('#alert-container').html('<div class="alert alert-danger">' + response.message + '</div>');
-                    }
-                },
-                error: function () {
-                    $('#alert-container').html('<div class="alert alert-danger">Hubo un error en el proceso.</div>');
-                }
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: data.message,
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    form.reset();
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                title: 'Error',
+                text: 'Ocurrió un problema al registrar el plan.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
             });
         });
-
-        // Función para agregar nuevas tareas
-        var tareaIndex = 1;
-        document.getElementById("add-tarea-btn").addEventListener("click", function () {
-            var newTarea = document.createElement("div");
-            newTarea.className = "tarea";
-            newTarea.id = "tarea-" + tareaIndex;
-
-            newTarea.innerHTML = `
-                <div class="form-group">
-                    <label for="DescripcionTarea">Descripción de la tarea</label>
-                    <input type="text" name="Tareas[` + tareaIndex + `].DescripcionTarea" class="form-control" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="ResponsableId">Responsable</label>
-                    <select name="Tareas[` + tareaIndex + `].ResponsableId" class="form-control" required>
-                        @foreach (var empleado in ViewBag.Empleados)
-                        {
-                            <option value="@empleado.Value">@empleado.Text</option>
-                        }
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="EstadoTareaId">Estado de la tarea</label>
-                    <select name="Tareas[` + tareaIndex + `].EstadoTareaId" class="form-control" required>
-                        @foreach (var estado in ViewBag.EstadosTarea)
-                        {
-                            <option value="@estado.Value">@estado.Text</option>
-                        }
-                    </select>
-                </div>
-            `;
-
-            document.getElementById("tareas-container").appendChild(newTarea);
-            tareaIndex++;
-        });
+    });
     </script>
+
 </body>
 </html>

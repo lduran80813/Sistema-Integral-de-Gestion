@@ -307,3 +307,7 @@ C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.cspr
 C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.csproj.Up2Date
 C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.dll
 C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\obj\Debug\SIG.pdb
+C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\BouncyCastle.Cryptography.dll
+C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\itextsharp.dll
+C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\BouncyCastle.Cryptography.xml
+C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\itextsharp.xml

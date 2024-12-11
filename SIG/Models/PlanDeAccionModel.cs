@@ -78,7 +78,7 @@ namespace SIG.Models
                     fecha_inicio = DateTime.Now,
                     fecha_finalizacion = plan.FechaFinalizacion ?? DateTime.Now.AddMonths(1),
                     estado = plan.Estado,
-                    ResponsableId = plan.ResponsableId 
+                    ResponsableId = plan.ResponsableId
                 };
 
                 context.PlanDeAccion.Add(tPlan);
@@ -120,7 +120,7 @@ namespace SIG.Models
                             FechaInicio = (DateTime)x.fecha_inicio,
                             FechaFinalizacion = x.fecha_finalizacion,
                             Estado = x.estado,
-                            ResponsableId = x.ResponsableId ?? 0 
+                            ResponsableId = x.ResponsableId ?? 0
                         }).ToList();
             }
         }
@@ -151,7 +151,7 @@ namespace SIG.Models
                                 FechaInicio = (DateTime)x.fecha_inicio,
                                 FechaFinalizacion = x.fecha_finalizacion,
                                 Estado = x.estado,
-                                ResponsableId = x.ResponsableId ?? 0, 
+                                ResponsableId = x.ResponsableId ?? 0,
                             }).FirstOrDefault();
 
                 if (plan == null)
@@ -166,7 +166,9 @@ namespace SIG.Models
                                   t.id,
                                   t.descripcion_tarea,
                                   t.responsable_id,
-                                  t.estado_tarea
+                                  t.estado_tarea,
+                                  t.calificacion,
+                                  t.observacion
                               }).ToList();
 
                 plan.Tareas = tareas.Select(t => new Tarea
@@ -178,7 +180,10 @@ namespace SIG.Models
                     EstadoTarea = new PDAEstado
                     {
                         Id = t.estado_tarea ?? 0
-                    }
+                    },
+                    Calificacion = t.calificacion,
+                    Observacion = t.observacion
+
                 }).ToList();
 
                 var responsablesIds = plan.Tareas.Select(t => t.ResponsableId).Distinct().ToList();
@@ -225,12 +230,45 @@ namespace SIG.Models
                     planExistente.estado = plan.Estado;
                     planExistente.ResponsableId = plan.ResponsableId;
 
-
                     rowsAffected = context.SaveChanges();
                 }
             }
 
             return rowsAffected > 0;
+        }
+
+        // Guardar una evaluación
+        public bool GuardarEvaluacionTarea(int tareaId, int calificacion, string observacion)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tarea = context.PDA_Tarea.FirstOrDefault(t => t.id == tareaId);
+                if (tarea != null)
+                {
+                    tarea.calificacion = calificacion;
+                    tarea.observacion = observacion;
+                    return context.SaveChanges() > 0;
+                }
+
+                return false;
+            }
+        }
+
+        public Tarea ObtenerTareaPorId(int tareaId)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tarea = context.PDA_Tarea.FirstOrDefault(t => t.id == tareaId);
+                return tarea != null
+                    ? new Tarea
+                    {
+                        Id = tarea.id,
+                        DescripcionTarea = tarea.descripcion_tarea,
+                        ResponsableId = tarea.responsable_id ?? 0,
+                        EstadoTareaId = tarea.estado_tarea ?? 0
+                    }
+                    : null;
+            }
         }
     }
 }

@@ -1,43 +1,36 @@
 ﻿@model IEnumerable<SIG.Entidades.Tarea>
-
 @{
     ViewBag.Title = "Tareas del Plan de Acción";
     var plan = ViewBag.Plan as SIG.Entidades.PlanDeAccion;
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+<div class="container mt-5">
+    <h3 class="text-center text-secondary">@ViewBag.Title</h3>
 
-    <!-- Cargar Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Plan de Acción: @plan.NombrePlan
+        </div>
+        <div class="card-body text-start">
+            <p><strong>Descripción:</strong> @plan.DescripcionPlan</p>
+            <p><strong>Fecha de Inicio:</strong> @plan.FechaInicio.ToString("dd/MM/yyyy")</p>
+            <p><strong>Fecha de Finalización:</strong> @(plan.FechaFinalizacion.HasValue ? plan.FechaFinalizacion.Value.ToString("dd/MM/yyyy") : "No disponible")</p>
+            <p><strong>Estado:</strong> @plan.Estado</p>
+        </div>
+    </div>
 
-    <!-- Cargar DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-</head>
-<body>
-    <div class="container">
-        <h1>@ViewBag.Title</h1>
-
-        <!-- Información del plan -->
-        <h3>Plan de Acción: @plan.NombrePlan</h3>
-        <p><strong>Descripción:</strong> @plan.DescripcionPlan</p>
-        <p><strong>Fecha de Inicio:</strong> @plan.FechaInicio.ToString("dd/MM/yyyy")</p>
-        <p><strong>Fecha de Finalización:</strong> @(plan.FechaFinalizacion.HasValue ? plan.FechaFinalizacion.Value.ToString("dd/MM/yyyy") : "No disponible")</p>
-        <p><strong>Estado:</strong> @plan.Estado</p>
-
-        <!-- Mostrar lista de tareas asociadas al plan -->
-        @if (Model != null && Model.Any())
-        {
-            <table id="tasksTable" class="table table-striped">
+    @if (Model != null && Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Descripción de la tarea</th>
+                        <th>Descripción</th>
                         <th>Responsable</th>
                         <th>Estado</th>
+                        <th>Calificación (1-10)</th>
+                        <th>Observación</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,39 +38,69 @@
                     {
                         <tr>
                             <td>@tarea.DescripcionTarea</td>
-                            <td>@(tarea.Responsable != null ? tarea.Responsable.Nombre : "No asignado")</td>
+                            <td>@(tarea.Responsable?.Nombre ?? "No asignado")</td>
                             <td>@tarea.EstadoTarea.Descripcion</td>
+                            <td>
+                                <input type="number" min="1" max="10" class="form-control" id="calificacion-@tarea.Id" value="@tarea.Calificacion">
+                            </td>
+                            <td>
+                                <textarea class="form-control" id="observacion-@tarea.Id">@tarea.Observacion</textarea>
+                            </td>
+                            <td>
+                                <button class="btn btn-success guardar-evaluacion" data-tarea-id="@tarea.Id">Guardar</button>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        }
-        else
-        {
-            <p>No hay tareas asociadas a este plan.</p>
-        }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">No hay tareas asociadas a este plan.</div>
+    }
+
+    <div class="row mt-4">
+        <div class="col text-center">
+            <a href="@Url.Action("ListarPlanesUsuario", "PlanDeAccion")" class="btn btn-secondary btn-lg px-5">Regresar</a>
+        </div>
     </div>
+</div>
 
-    <!-- Cargar jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.guardar-evaluacion').on('click', function () {
+            const tareaId = $(this).data('tarea-id');
+            const calificacion = $(`#calificacion-${tareaId}`).val();
+            const observacion = $(`#observacion-${tareaId}`).val();
 
-    <!-- Cargar DataTables JS -->
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+            if (!calificacion || calificacion < 1 || calificacion > 10) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Calificación inválida. Debe estar entre 1 y 10.",
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                return;
+            }
 
-    <!-- Inicializar DataTable -->
-    <script>
-        $(document).ready(function () {
-            $('#tasksTable').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json"
-                },
-                "paging": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "lengthChange": true
-            });
+            $.post('@Url.Action("GuardarEvaluacion", "PlanDeAccion")', { tareaId, calificacion, observacion })
+                .done(function (response) {
+                    Swal.fire({
+                        title: "Éxito",
+                        text: "Calificación guardada correctamente.",
+                        icon: "success",
+                        confirmButtonText: "Aceptar"
+                    });
+                })
+                .fail(function () {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Hubo un problema al guardar la calificación.",
+                        icon: "error",
+                        confirmButtonText: "Aceptar"
+                    });
+                });
         });
-    </script>
-</body>
-</html>
+    });
+</script>

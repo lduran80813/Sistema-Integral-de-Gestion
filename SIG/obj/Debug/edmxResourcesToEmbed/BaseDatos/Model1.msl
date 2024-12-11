@@ -290,6 +290,8 @@
           <ScalarProperty Name="descripcion_tarea" ColumnName="descripcion_tarea" />
           <ScalarProperty Name="responsable_id" ColumnName="responsable_id" />
           <ScalarProperty Name="estado_tarea" ColumnName="estado_tarea" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
