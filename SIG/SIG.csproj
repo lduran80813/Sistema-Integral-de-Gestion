@@ -561,6 +561,7 @@
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\PlanAccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\VacacionesController.cs" />
     <Compile Include="Entidades\AjusteManualCuentasCredito.cs" />
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\CategoriaIncidencia.cs" />
@@ -589,11 +590,13 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\Entrega.cs" />
     <Compile Include="Entidades\ReportePlan.cs" />
+    <Compile Include="Entidades\ResultadoOperativo.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Tarea.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\TransaccionFinanciera.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
+    <Compile Include="Entidades\Vacaciones.cs" />
     <Compile Include="Entidades\VentaPedido.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -610,6 +613,7 @@
     <Compile Include="Models\FiltroSeguridad.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\EntregasModel.cs" />
+    <Compile Include="Models\VacacionesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -866,6 +870,9 @@
     <Content Include="Views\PlanDeAccion\Editar.cshtml" />
     <Content Include="Views\Entregas\ListarEntregas.cshtml" />
     <Content Include="Views\Entregas\ActualizarEntrega.cshtml" />
+    <Content Include="Views\Empleados\Solicitar.cshtml" />
+    <Content Include="Views\Empleados\Historial.cshtml" />
+    <Content Include="Views\Empleados\RevisarPendientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,6 +18,11 @@ namespace SIG.BaseDatos
         public Nullable<int> empleado_id { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
         public Nullable<System.DateTime> fecha_fin { get; set; }
+        public string estado { get; set; }
+        public string comentario { get; set; }
+        public int supervisor_id { get; set; }
+        public System.DateTime fecha_solicitud { get; set; }
+        public Nullable<System.DateTime> fecha_respuesta { get; set; }
     
         public virtual Empleado Empleado { get; set; }
     }

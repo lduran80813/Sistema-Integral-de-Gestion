@@ -1,0 +1,58 @@
+﻿@model List<SIG.Entidades.Vacaciones>
+@{
+    ViewBag.Title = "RevisarPendientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Solicitudes Pendientes</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">@TempData["Mensaje"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Empleado</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.EmpleadoId</td>
+                <td>@item.FechaInicio.ToShortDateString()</td>
+                <td>@item.FechaFin.ToShortDateString()</td>
+                <td>@item.Estado</td>
+                <td>
+                    @using (Html.BeginForm("ResponderSolicitud", "Vacaciones", FormMethod.Post))
+                    {
+                        @Html.Hidden("solicitudId", item.SolicitudId)
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <select name="estado" class="form-control">
+                                <option value="Aprobado">Aprobar</option>
+                                <option value="Rechazado">Rechazar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentario</label>
+                            <textarea name="comentario" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">Enviar Respuesta</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

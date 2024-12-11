@@ -149,6 +149,11 @@
           <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
           <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
           <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="fecha_respuesta" ColumnName="fecha_respuesta" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -290,6 +295,8 @@
           <ScalarProperty Name="descripcion_tarea" ColumnName="descripcion_tarea" />
           <ScalarProperty Name="responsable_id" ColumnName="responsable_id" />
           <ScalarProperty Name="estado_tarea" ColumnName="estado_tarea" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="observacion" ColumnName="observacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

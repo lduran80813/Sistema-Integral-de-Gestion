@@ -1,0 +1,32 @@
+﻿@model List<SIG.Entidades.Vacaciones>
+@{
+    ViewBag.Title = "Historial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historial de Vacaciones</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Estado</th>
+            <th>Comentario</th>
+            <th>Fecha de Respuesta</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FechaInicio.ToShortDateString()</td>
+                <td>@item.FechaFin.ToShortDateString()</td>
+                <td>@item.Estado</td>
+                <td>@item.Comentario</td>
+                <td>@(item.FechaRespuesta.HasValue ? item.FechaRespuesta.Value.ToShortDateString() : "Pendiente")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
