@@ -19,6 +19,8 @@ namespace SIG.BaseDatos
         public string descripcion_tarea { get; set; }
         public Nullable<int> responsable_id { get; set; }
         public Nullable<int> estado_tarea { get; set; }
+        public Nullable<System.DateTime> fecha_inicio { get; set; }
+        public Nullable<System.DateTime> fecha_finalizacion { get; set; }
     
         public virtual Empleado Empleado { get; set; }
         public virtual Empleado Empleado1 { get; set; }

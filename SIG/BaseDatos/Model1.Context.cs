@@ -78,6 +78,7 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
         public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
         public virtual DbSet<Audit_Venta_Producto> Audit_Venta_Producto { get; set; }
+        public virtual DbSet<DiasVacacionesDisponibles> DiasVacacionesDisponibles { get; set; }
     
         public virtual ObjectResult<actualizaInventario_Result> actualizaInventario(Nullable<int> idProducto, Nullable<int> nuevoInventario, string motivo, Nullable<int> idUsuario)
         {

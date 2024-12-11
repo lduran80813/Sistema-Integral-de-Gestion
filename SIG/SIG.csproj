@@ -351,6 +351,9 @@
     <Compile Include="BaseDatos\datosRecibo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\DiasVacacionesDisponibles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\distribMetodoPago_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -589,11 +592,13 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\Entrega.cs" />
     <Compile Include="Entidades\ReportePlan.cs" />
+    <Compile Include="Entidades\ResultadoOperativo.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Tarea.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\TransaccionFinanciera.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
+    <Compile Include="Entidades\Vacaciones.cs" />
     <Compile Include="Entidades\VentaPedido.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -610,6 +615,7 @@
     <Compile Include="Models\FiltroSeguridad.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\EntregasModel.cs" />
+    <Compile Include="Models\VacacionesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

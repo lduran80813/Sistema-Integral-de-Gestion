@@ -119,6 +119,7 @@
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__tipo___57DD0BE4" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__59C55456" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Pro__estad__5AB9788F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

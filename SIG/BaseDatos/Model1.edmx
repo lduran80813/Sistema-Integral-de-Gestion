@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adm_Permiso">
           <Key>
             <PropertyRef Name="id" />
@@ -133,37 +133,12 @@ warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does 
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Audit_Venta_Producto">
-          <Key>
-            <PropertyRef Name="id_producto" />
-            <PropertyRef Name="motivo" />
-            <PropertyRef Name="fecha" />
-            <PropertyRef Name="responsable" />
-          </Key>
-          <Property Name="id_producto" Type="int" Nullable="false" />
-          <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="inventario" Type="int" />
-          <Property Name="motivo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
-          <Property Name="responsable" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Catalogo_Compra">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="CategoriaPlan">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NombreCategoria" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
-          <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Conta_CuentasContables">
           <Key>
@@ -217,6 +192,13 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="transaccion_referencia" Type="numeric" Precision="18" Scale="0" />
           <Property Name="usuario_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="DiasVacacionesDisponibles">
+          <Key>
+            <PropertyRef Name="empleado_id" />
+          </Key>
+          <Property Name="empleado_id" Type="int" Nullable="false" />
+          <Property Name="dias_disponibles" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Emp_BitacoraIngreso">
           <Key>
             <PropertyRef Name="id" />
@@ -268,6 +250,11 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="empleado_id" Type="int" />
           <Property Name="fecha_inicio" Type="date" />
           <Property Name="fecha_fin" Type="date" />
+          <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="comentario" Type="nvarchar" MaxLength="500" />
+          <Property Name="supervisor_id" Type="int" Nullable="false" />
+          <Property Name="fecha_solicitud" Type="datetime" Nullable="false" />
+          <Property Name="fecha_respuesta" Type="datetime" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -345,50 +332,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="DetalleCambio" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="EstadoCompraId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Modulos">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Notificaciones">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_mensaje_basico" Type="int" />
-          <Property Name="mensaje_final" Type="varchar" MaxLength="100" />
-          <Property Name="id_modulo" Type="int" Nullable="false" />
-          <Property Name="prioridad" Type="int" />
-          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
-          <Property Name="id_usuario_registro" Type="int" />
-          <Property Name="id_objeto_referencia" Type="int" />
-        </EntityType>
-        <EntityType Name="Notificaciones_basicas">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="mensaje" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Notificaciones_usuario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_notificacion" Type="int" Nullable="false" />
-          <Property Name="id_usuario_recibe" Type="int" Nullable="false" />
-          <Property Name="lectura" Type="bit" Nullable="false" />
-          <Property Name="fecha_lectura" Type="datetime" />
-        </EntityType>
-        <EntityType Name="PDA_Estado">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="descripcion_estado" Type="varchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="PDA_Tarea">
           <Key>
             <PropertyRef Name="id" />
@@ -397,14 +340,9 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="plan_id" Type="int" />
           <Property Name="descripcion_tarea" Type="varchar" MaxLength="100" />
           <Property Name="responsable_id" Type="int" />
-          <Property Name="estado_tarea" Type="int" />
-        </EntityType>
-        <EntityType Name="PDA_TipoAccion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="estado_tarea" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_finalizacion" Type="date" />
         </EntityType>
         <EntityType Name="Pedido">
           <Key>
@@ -425,11 +363,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="estado" Type="varchar" MaxLength="100" />
           <Property Name="fecha_inicio" Type="date" />
           <Property Name="fecha_finalizacion" Type="date" />
-          <Property Name="descripcion_plan" Type="varchar" MaxLength="500" />
-          <Property Name="CategoriaPlanId" Type="int" />
-          <Property Name="EstadoAccionId" Type="int" />
-          <Property Name="TipoAccionId" Type="int" />
-          <Property Name="ResponsableId" Type="int" />
         </EntityType>
         <EntityType Name="Prov_Compra">
           <Key>
@@ -626,7 +559,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Adm_Permi__rol_i__1F98B2C1">
+        <Association Name="FK__Adm_Permi__rol_i__10566F31">
           <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
           <End Role="Adm_Permiso" Type="Self.Adm_Permiso" Multiplicity="*" />
           <ReferentialConstraint>
@@ -638,7 +571,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_CxC__IdFac__208CD6FA">
+        <Association Name="FK__Conta_CxC__IdFac__114A936A">
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="1" />
           <End Role="Conta_CxC" Type="Self.Conta_CxC" Multiplicity="*" />
           <ReferentialConstraint>
@@ -650,7 +583,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_CxP__IdCom__2180FB33">
+        <Association Name="FK__Conta_CxP__IdCom__123EB7A3">
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="1" />
           <End Role="Conta_CxP" Type="Self.Conta_CxP" Multiplicity="*" />
           <ReferentialConstraint>
@@ -662,7 +595,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__compr__22751F6C">
+        <Association Name="FK__Conta_Tra__compr__1332DBDC">
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -674,7 +607,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__cuent__236943A5">
+        <Association Name="FK__Conta_Tra__cuent__14270015">
           <End Role="Conta_CuentasContables" Type="Self.Conta_CuentasContables" Multiplicity="1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -686,7 +619,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__entid__245D67DE">
+        <Association Name="FK__Conta_Tra__entid__151B244E">
           <End Role="EntidadesFinancieras" Type="Self.EntidadesFinancieras" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -698,7 +631,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__usuar__25518C17">
+        <Association Name="FK__Conta_Tra__usuar__160F4887">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -710,7 +643,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Conta_Tra__venta__2645B050">
+        <Association Name="FK__Conta_Tra__venta__17036CC0">
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
           <End Role="Conta_Transaccion" Type="Self.Conta_Transaccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -722,7 +655,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Conta__emple__2739D489">
+        <Association Name="FK__Emp_Conta__emple__17F790F9">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_ContactoEmergencia" Type="Self.Emp_ContactoEmergencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -734,7 +667,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Puest__depar__282DF8C2">
+        <Association Name="FK__Emp_Puest__depar__18EBB532">
           <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
           <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -746,7 +679,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Remun__emple__29221CFB">
+        <Association Name="FK__Emp_Remun__emple__19DFD96B">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_RemuneracionDeduccion" Type="Self.Emp_RemuneracionDeduccion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -758,7 +691,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Emp_Vacac__emple__2A164134">
+        <Association Name="FK__Emp_Vacac__emple__1AD3FDA4">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
           <ReferentialConstraint>
@@ -770,7 +703,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__depart__2B0A656D">
+        <Association Name="FK__Empleado__depart__1BC821DD">
           <End Role="Emp_Departamento" Type="Self.Emp_Departamento" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -782,7 +715,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__puesto__2BFE89A6">
+        <Association Name="FK__Empleado__puesto__1CBC4616">
           <End Role="Emp_Puesto" Type="Self.Emp_Puesto" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -794,7 +727,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__rol_id__2CF2ADDF">
+        <Association Name="FK__Empleado__rol_id__1DB06A4F">
           <End Role="Adm_Rol" Type="Self.Adm_Rol" Multiplicity="0..1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -806,7 +739,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Entregas__pedido__2DE6D218">
+        <Association Name="FK__Entregas__pedido__1EA48E88">
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
           <End Role="Entregas" Type="Self.Entregas" Multiplicity="*" />
           <ReferentialConstraint>
@@ -818,7 +751,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosFi__Prove__2EDAF651">
+        <Association Name="FK__EstadosFi__Prove__1F98B2C1">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
           <End Role="EstadosFinancieros" Type="Self.EstadosFinancieros" Multiplicity="*" />
           <ReferentialConstraint>
@@ -830,7 +763,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historial__Estad__30C33EC3">
+        <Association Name="FK__Historial__Estad__2180FB33">
           <End Role="EstadoCompra" Type="Self.EstadoCompra" Multiplicity="1" />
           <End Role="HistorialPedido" Type="Self.HistorialPedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -842,7 +775,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historial__Pedid__2FCF1A8A">
+        <Association Name="FK__Historial__Pedid__208CD6FA">
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
           <End Role="HistorialModificacion" Type="Self.HistorialModificacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -854,7 +787,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historial__Pedid__31B762FC">
+        <Association Name="FK__Historial__Pedid__22751F6C">
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
           <End Role="HistorialPedido" Type="Self.HistorialPedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -866,79 +799,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Notificac__id_me__32AB8735">
-          <End Role="Notificaciones_basicas" Type="Self.Notificaciones_basicas" Multiplicity="0..1" />
-          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Notificaciones_basicas">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Notificaciones">
-              <PropertyRef Name="id_mensaje_basico" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notificac__id_mo__339FAB6E">
-          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
-          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulos">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Notificaciones">
-              <PropertyRef Name="id_modulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notificac__id_no__3587F3E0">
-          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="1" />
-          <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Notificaciones">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Notificaciones_usuario">
-              <PropertyRef Name="id_notificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notificac__id_us__3493CFA7">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="Notificaciones" Type="Self.Notificaciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Notificaciones">
-              <PropertyRef Name="id_usuario_registro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Notificac__id_us__367C1819">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
-          <End Role="Notificaciones_usuario" Type="Self.Notificaciones_usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Notificaciones_usuario">
-              <PropertyRef Name="id_usuario_recibe" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PDA_Tarea__estad__37703C52">
-          <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PDA_Estado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="estado_tarea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PDA_Tarea__plan___3864608B">
+        <Association Name="FK__PDA_Tarea__plan___236943A5">
           <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -950,19 +811,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PDA_Tarea__plan___395884C4">
-          <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanDeAccion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="plan_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PDA_Tarea__respo__3A4CA8FD">
+        <Association Name="FK__PDA_Tarea__respo__245D67DE">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
           <ReferentialConstraint>
@@ -974,43 +823,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PDA_Tarea__respo__3B40CD36">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="responsable_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PDA_Tarea__respo__3C34F16F">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="responsable_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PDA_Tarea__respo__3D2915A8">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="responsable_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Pedido__EstadoCo__40058253">
+        <Association Name="FK__Pedido__EstadoCo__25518C17">
           <End Role="EstadoCompra" Type="Self.EstadoCompra" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1022,7 +835,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pedido__proveedo__40F9A68C">
+        <Association Name="FK__Pedido__proveedo__2645B050">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1034,19 +847,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PlanDeAcc__Respo__41EDCAC5">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PlanDeAccion">
-              <PropertyRef Name="ResponsableId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Prov_Comp__compr__47A6A41B">
+        <Association Name="FK__Prov_Comp__compr__29221CFB">
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="0..1" />
           <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1058,7 +859,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__produ__489AC854">
+        <Association Name="FK__Prov_Comp__produ__2A164134">
           <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="0..1" />
           <End Role="Prov_CompraDetalle" Type="Self.Prov_CompraDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1070,7 +871,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Comp__prove__45BE5BA9">
+        <Association Name="FK__Prov_Comp__prove__2739D489">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Compra" Type="Self.Prov_Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1082,7 +883,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Cont__prove__498EEC8D">
+        <Association Name="FK__Prov_Cont__prove__2B0A656D">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Contacto" Type="Self.Prov_Contacto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1094,7 +895,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Pago__autor__4A8310C6">
+        <Association Name="FK__Prov_Pago__autor__2BFE89A6">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1106,7 +907,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Pago__prove__4B7734FF">
+        <Association Name="FK__Prov_Pago__prove__2CF2ADDF">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Pago" Type="Self.Prov_Pago" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1118,7 +919,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prov_Prod__prove__4D5F7D71">
+        <Association Name="FK__Prov_Prod__prove__2EDAF651">
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
           <End Role="Prov_Producto" Type="Self.Prov_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1130,7 +931,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__estado__4E53A1AA">
+        <Association Name="FK__Ticket__estado__2FCF1A8A">
           <End Role="Ticket_Estado" Type="Self.Ticket_Estado" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1142,7 +943,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__id_tecni__4F47C5E3">
+        <Association Name="FK__Ticket__id_tecni__30C33EC3">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1154,7 +955,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__id_usuar__503BEA1C">
+        <Association Name="FK__Ticket__id_usuar__31B762FC">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1166,7 +967,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__priorida__51300E55">
+        <Association Name="FK__Ticket__priorida__32AB8735">
           <End Role="Ticket_Prioridad" Type="Self.Ticket_Prioridad" Multiplicity="0..1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1178,7 +979,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ticket__tipo_inc__5224328E">
+        <Association Name="FK__Ticket__tipo_inc__339FAB6E">
           <End Role="Ticket_Tipo" Type="Self.Ticket_Tipo" Multiplicity="1" />
           <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1190,7 +991,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Car__IdPro__531856C7">
+        <Association Name="FK__Venta_Car__IdPro__3493CFA7">
           <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="1" />
           <End Role="Venta_Carrito" Type="Self.Venta_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1202,7 +1003,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Car__IdUsu__540C7B00">
+        <Association Name="FK__Venta_Car__IdUsu__3587F3E0">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Venta_Carrito" Type="Self.Venta_Carrito" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1214,7 +1015,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__clien__55009F39">
+        <Association Name="FK__Venta_Fac__clien__367C1819">
           <End Role="Venta_Cliente" Type="Self.Venta_Cliente" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1226,7 +1027,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__estad__55F4C372">
+        <Association Name="FK__Venta_Fac__estad__37703C52">
           <End Role="Venta_Estado" Type="Self.Venta_Estado" Multiplicity="1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1238,7 +1039,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__factu__58D1301D">
+        <Association Name="FK__Venta_Fac__factu__3A4CA8FD">
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="0..1" />
           <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1250,7 +1051,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__metod__56E8E7AB">
+        <Association Name="FK__Venta_Fac__metod__3864608B">
           <End Role="Venta_MetodoPago" Type="Self.Venta_MetodoPago" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1262,7 +1063,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__produ__59C55456">
+        <Association Name="FK__Venta_Fac__produ__3B40CD36">
           <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="0..1" />
           <End Role="Venta_FacturaDetalle" Type="Self.Venta_FacturaDetalle" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1274,7 +1075,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Fac__tipo___57DD0BE4">
+        <Association Name="FK__Venta_Fac__tipo___395884C4">
           <End Role="Venta_Tipo" Type="Self.Venta_Tipo" Multiplicity="0..1" />
           <End Role="Venta_Factura" Type="Self.Venta_Factura" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1286,7 +1087,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venta_Pro__estad__5AB9788F">
+        <Association Name="FK__Venta_Pro__estad__3C34F16F">
           <End Role="Venta_ProductoEstado" Type="Self.Venta_ProductoEstado" Multiplicity="1" />
           <End Role="Venta_Producto" Type="Self.Venta_Producto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1295,66 +1096,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Principal>
             <Dependent Role="Venta_Producto">
               <PropertyRef Name="estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PDA_Tarea_Empleado">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="responsable_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PDA_Tarea_PDA_Estado">
-          <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
-          <End Role="PDA_Tarea" Type="Self.PDA_Tarea" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PDA_Estado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PDA_Tarea">
-              <PropertyRef Name="estado_tarea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PlanDeAccion_CategoriaPlan">
-          <End Role="CategoriaPlan" Type="Self.CategoriaPlan" Multiplicity="0..1" />
-          <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CategoriaPlan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PlanDeAccion">
-              <PropertyRef Name="CategoriaPlanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PlanDeAccion_PDA_Estado">
-          <End Role="PDA_Estado" Type="Self.PDA_Estado" Multiplicity="0..1" />
-          <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PDA_Estado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PlanDeAccion">
-              <PropertyRef Name="EstadoAccionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PlanDeAccion_PDA_TipoAccion">
-          <End Role="PDA_TipoAccion" Type="Self.PDA_TipoAccion" Multiplicity="0..1" />
-          <End Role="PlanDeAccion" Type="Self.PlanDeAccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PDA_TipoAccion">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PlanDeAccion">
-              <PropertyRef Name="TipoAccionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1382,12 +1123,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="actualizaInventario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdProducto" Type="int" Mode="In" />
-          <Parameter Name="NuevoInventario" Type="int" Mode="In" />
-          <Parameter Name="Motivo" Type="varchar" Mode="In" />
-          <Parameter Name="IdUsuario" Type="int" Mode="In" />
-        </Function>
         <Function Name="ActualizarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PedidoId" Type="int" Mode="In" />
           <Parameter Name="FechaEntrega" Type="datetime" Mode="In" />
@@ -1402,14 +1137,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Parameter Name="Id" Type="int" Mode="InOut" />
           <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
         </Function>
-        <Function Name="CambiarEstadoLectura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdNotificacion" Type="int" Mode="In" />
-        </Function>
         <Function Name="CancelarEntrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PedidoId" Type="int" Mode="In" />
-        </Function>
-        <Function Name="CantidadNotificacionesNuevas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="cierre_contable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Fecha_Inicio" Type="date" Mode="In" />
@@ -1425,10 +1154,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         <Function Name="ConsultarPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="datosRecibo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdFactura" Type="int" Mode="In" />
-        </Function>
-        <Function Name="distribMetodoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FechaInicio" Type="date" Mode="In" />
-          <Parameter Name="FechaFin" Type="date" Mode="In" />
         </Function>
         <Function Name="EditarEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
@@ -1457,18 +1182,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         <Function Name="GeneraFacturaEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdFactura" Type="int" Mode="In" />
         </Function>
-        <Function Name="GenerarBalanceGeneral" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Fecha" Type="date" Mode="In" />
-        </Function>
-        <Function Name="GenerarEstadoResultados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Fecha" Type="date" Mode="In" />
-        </Function>
-        <Function Name="HistorialAjustesCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="HistorialAjustesCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Informe_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FechaInicio" Type="date" Mode="In" />
-          <Parameter Name="FechaFin" Type="date" Mode="In" />
-        </Function>
         <Function Name="iniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="correo_electronico" Type="nvarchar" Mode="In" />
           <Parameter Name="Contrasena" Type="nvarchar" Mode="In" />
@@ -1483,22 +1196,10 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         <Function Name="ListarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ListarCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="listaTipoVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="NotificacionesVencimientoCuentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="NuevaNotificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdUsuarioRegistra" Type="int" Mode="In" />
-          <Parameter Name="IdModulo" Type="int" Mode="In" />
-          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
-          <Parameter Name="prioridad" Type="int" Mode="In" />
-          <Parameter Name="IdReferencia" Type="int" Mode="In" />
-          <Parameter Name="IdUsuarioReceptor" Type="int" Mode="In" />
-        </Function>
         <Function Name="ObtenerEmpleadoPorFiltro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="CorreoElectronico" Type="varchar" Mode="In" />
           <Parameter Name="NumeroCedula" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="ObtenerNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="PagarCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_Pedido" Type="int" Mode="In" />
@@ -1534,22 +1235,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Parameter Name="Estado" Type="int" Mode="In" />
           <Parameter Name="NotasAdicionales" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="RecordatorioCompraInsumos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
-          <Parameter Name="TiempoTranscurridoHoras" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RecordatorioNotificaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
-          <Parameter Name="TiempoTranscurridoHoras" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RecordatorioVencimientoCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
-          <Parameter Name="TiempoTranscurridoDias" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RecordatorioVencimientoCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdNotificacionBasica" Type="int" Mode="In" />
-          <Parameter Name="TiempoTranscurridoDias" Type="int" Mode="In" />
-        </Function>
         <Function Name="RegistrarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="IdProducto" Type="int" Mode="In" />
@@ -1583,13 +1268,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="Id_Usuario" Type="int" Mode="In" />
         </Function>
-        <Function Name="top5Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FechaInicio" Type="date" Mode="In" />
-          <Parameter Name="FechaFin" Type="date" Mode="In" />
-        </Function>
-        <Function Name="UltimoTicketUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdUsuario" Type="int" Mode="In" />
-        </Function>
         <Function Name="ValidarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="varchar" Mode="In" />
         </Function>
@@ -1600,12 +1278,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Catalogo_Compra" EntityType="Self.Catalogo_Compra" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CategoriaPlan" EntityType="Self.CategoriaPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conta_CuentasContables" EntityType="Self.Conta_CuentasContables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conta_CxC" EntityType="Self.Conta_CxC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiasVacacionesDisponibles" EntityType="Self.DiasVacacionesDisponibles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Emp_Departamento" EntityType="Self.Emp_Departamento" Schema="dbo" store:Type="Tables" />
@@ -1619,13 +1297,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySet Name="EstadosFinancieros" EntityType="Self.EstadosFinancieros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialModificacion" EntityType="Self.HistorialModificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistorialPedido" EntityType="Self.HistorialPedido" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Notificaciones" EntityType="Self.Notificaciones" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Notificaciones_basicas" EntityType="Self.Notificaciones_basicas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Notificaciones_usuario" EntityType="Self.Notificaciones_usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PDA_Estado" EntityType="Self.PDA_Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PDA_Tarea" EntityType="Self.PDA_Tarea" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PDA_TipoAccion" EntityType="Self.PDA_TipoAccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlanDeAccion" EntityType="Self.PlanDeAccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prov_Compra" EntityType="Self.Prov_Compra" Schema="dbo" store:Type="Tables" />
@@ -1647,259 +1319,185 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySet Name="Venta_Producto" EntityType="Self.Venta_Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_ProductoEstado" EntityType="Self.Venta_ProductoEstado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta_Tipo" EntityType="Self.Venta_Tipo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Audit_Venta_Producto" EntityType="Self.Audit_Venta_Producto" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Audit_Venta_Producto].[id_producto] AS [id_producto], 
-    [Audit_Venta_Producto].[precio] AS [precio], 
-    [Audit_Venta_Producto].[inventario] AS [inventario], 
-    [Audit_Venta_Producto].[motivo] AS [motivo], 
-    [Audit_Venta_Producto].[fecha] AS [fecha], 
-    [Audit_Venta_Producto].[responsable] AS [responsable]
-    FROM [dbo].[Audit_Venta_Producto] AS [Audit_Venta_Producto]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__Adm_Permi__rol_i__1F98B2C1" Association="Self.FK__Adm_Permi__rol_i__1F98B2C1">
+          <AssociationSet Name="FK__Adm_Permi__rol_i__10566F31" Association="Self.FK__Adm_Permi__rol_i__10566F31">
             <End Role="Adm_Rol" EntitySet="Adm_Rol" />
             <End Role="Adm_Permiso" EntitySet="Adm_Permiso" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_CxC__IdFac__208CD6FA" Association="Self.FK__Conta_CxC__IdFac__208CD6FA">
+          <AssociationSet Name="FK__Conta_CxC__IdFac__114A936A" Association="Self.FK__Conta_CxC__IdFac__114A936A">
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
             <End Role="Conta_CxC" EntitySet="Conta_CxC" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_CxP__IdCom__2180FB33" Association="Self.FK__Conta_CxP__IdCom__2180FB33">
+          <AssociationSet Name="FK__Conta_CxP__IdCom__123EB7A3" Association="Self.FK__Conta_CxP__IdCom__123EB7A3">
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
             <End Role="Conta_CxP" EntitySet="Conta_CxP" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__compr__22751F6C" Association="Self.FK__Conta_Tra__compr__22751F6C">
+          <AssociationSet Name="FK__Conta_Tra__compr__1332DBDC" Association="Self.FK__Conta_Tra__compr__1332DBDC">
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__cuent__236943A5" Association="Self.FK__Conta_Tra__cuent__236943A5">
+          <AssociationSet Name="FK__Conta_Tra__cuent__14270015" Association="Self.FK__Conta_Tra__cuent__14270015">
             <End Role="Conta_CuentasContables" EntitySet="Conta_CuentasContables" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__entid__245D67DE" Association="Self.FK__Conta_Tra__entid__245D67DE">
+          <AssociationSet Name="FK__Conta_Tra__entid__151B244E" Association="Self.FK__Conta_Tra__entid__151B244E">
             <End Role="EntidadesFinancieras" EntitySet="EntidadesFinancieras" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__usuar__25518C17" Association="Self.FK__Conta_Tra__usuar__25518C17">
+          <AssociationSet Name="FK__Conta_Tra__usuar__160F4887" Association="Self.FK__Conta_Tra__usuar__160F4887">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Conta_Tra__venta__2645B050" Association="Self.FK__Conta_Tra__venta__2645B050">
+          <AssociationSet Name="FK__Conta_Tra__venta__17036CC0" Association="Self.FK__Conta_Tra__venta__17036CC0">
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
             <End Role="Conta_Transaccion" EntitySet="Conta_Transaccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Conta__emple__2739D489" Association="Self.FK__Emp_Conta__emple__2739D489">
+          <AssociationSet Name="FK__Emp_Conta__emple__17F790F9" Association="Self.FK__Emp_Conta__emple__17F790F9">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_ContactoEmergencia" EntitySet="Emp_ContactoEmergencia" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Puest__depar__282DF8C2" Association="Self.FK__Emp_Puest__depar__282DF8C2">
+          <AssociationSet Name="FK__Emp_Puest__depar__18EBB532" Association="Self.FK__Emp_Puest__depar__18EBB532">
             <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
             <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Remun__emple__29221CFB" Association="Self.FK__Emp_Remun__emple__29221CFB">
+          <AssociationSet Name="FK__Emp_Remun__emple__19DFD96B" Association="Self.FK__Emp_Remun__emple__19DFD96B">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_RemuneracionDeduccion" EntitySet="Emp_RemuneracionDeduccion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Emp_Vacac__emple__2A164134" Association="Self.FK__Emp_Vacac__emple__2A164134">
+          <AssociationSet Name="FK__Emp_Vacac__emple__1AD3FDA4" Association="Self.FK__Emp_Vacac__emple__1AD3FDA4">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__depart__2B0A656D" Association="Self.FK__Empleado__depart__2B0A656D">
+          <AssociationSet Name="FK__Empleado__depart__1BC821DD" Association="Self.FK__Empleado__depart__1BC821DD">
             <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__puesto__2BFE89A6" Association="Self.FK__Empleado__puesto__2BFE89A6">
+          <AssociationSet Name="FK__Empleado__puesto__1CBC4616" Association="Self.FK__Empleado__puesto__1CBC4616">
             <End Role="Emp_Puesto" EntitySet="Emp_Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__rol_id__2CF2ADDF" Association="Self.FK__Empleado__rol_id__2CF2ADDF">
+          <AssociationSet Name="FK__Empleado__rol_id__1DB06A4F" Association="Self.FK__Empleado__rol_id__1DB06A4F">
             <End Role="Adm_Rol" EntitySet="Adm_Rol" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Entregas__pedido__2DE6D218" Association="Self.FK__Entregas__pedido__2DE6D218">
+          <AssociationSet Name="FK__Entregas__pedido__1EA48E88" Association="Self.FK__Entregas__pedido__1EA48E88">
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
             <End Role="Entregas" EntitySet="Entregas" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosFi__Prove__2EDAF651" Association="Self.FK__EstadosFi__Prove__2EDAF651">
+          <AssociationSet Name="FK__EstadosFi__Prove__1F98B2C1" Association="Self.FK__EstadosFi__Prove__1F98B2C1">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="EstadosFinancieros" EntitySet="EstadosFinancieros" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historial__Estad__30C33EC3" Association="Self.FK__Historial__Estad__30C33EC3">
+          <AssociationSet Name="FK__Historial__Estad__2180FB33" Association="Self.FK__Historial__Estad__2180FB33">
             <End Role="EstadoCompra" EntitySet="EstadoCompra" />
             <End Role="HistorialPedido" EntitySet="HistorialPedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historial__Pedid__2FCF1A8A" Association="Self.FK__Historial__Pedid__2FCF1A8A">
+          <AssociationSet Name="FK__Historial__Pedid__208CD6FA" Association="Self.FK__Historial__Pedid__208CD6FA">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="HistorialModificacion" EntitySet="HistorialModificacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historial__Pedid__31B762FC" Association="Self.FK__Historial__Pedid__31B762FC">
+          <AssociationSet Name="FK__Historial__Pedid__22751F6C" Association="Self.FK__Historial__Pedid__22751F6C">
             <End Role="Pedido" EntitySet="Pedido" />
             <End Role="HistorialPedido" EntitySet="HistorialPedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__Notificac__id_me__32AB8735" Association="Self.FK__Notificac__id_me__32AB8735">
-            <End Role="Notificaciones_basicas" EntitySet="Notificaciones_basicas" />
-            <End Role="Notificaciones" EntitySet="Notificaciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notificac__id_mo__339FAB6E" Association="Self.FK__Notificac__id_mo__339FAB6E">
-            <End Role="Modulos" EntitySet="Modulos" />
-            <End Role="Notificaciones" EntitySet="Notificaciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notificac__id_no__3587F3E0" Association="Self.FK__Notificac__id_no__3587F3E0">
-            <End Role="Notificaciones" EntitySet="Notificaciones" />
-            <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notificac__id_us__3493CFA7" Association="Self.FK__Notificac__id_us__3493CFA7">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Notificaciones" EntitySet="Notificaciones" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Notificac__id_us__367C1819" Association="Self.FK__Notificac__id_us__367C1819">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Notificaciones_usuario" EntitySet="Notificaciones_usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__estad__37703C52" Association="Self.FK__PDA_Tarea__estad__37703C52">
-            <End Role="PDA_Estado" EntitySet="PDA_Estado" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__plan___3864608B" Association="Self.FK__PDA_Tarea__plan___3864608B">
+          <AssociationSet Name="FK__PDA_Tarea__plan___236943A5" Association="Self.FK__PDA_Tarea__plan___236943A5">
             <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__plan___395884C4" Association="Self.FK__PDA_Tarea__plan___395884C4">
-            <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__respo__3A4CA8FD" Association="Self.FK__PDA_Tarea__respo__3A4CA8FD">
+          <AssociationSet Name="FK__PDA_Tarea__respo__245D67DE" Association="Self.FK__PDA_Tarea__respo__245D67DE">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
           </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__respo__3B40CD36" Association="Self.FK__PDA_Tarea__respo__3B40CD36">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__respo__3C34F16F" Association="Self.FK__PDA_Tarea__respo__3C34F16F">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PDA_Tarea__respo__3D2915A8" Association="Self.FK__PDA_Tarea__respo__3D2915A8">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Pedido__EstadoCo__40058253" Association="Self.FK__Pedido__EstadoCo__40058253">
+          <AssociationSet Name="FK__Pedido__EstadoCo__25518C17" Association="Self.FK__Pedido__EstadoCo__25518C17">
             <End Role="EstadoCompra" EntitySet="EstadoCompra" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pedido__proveedo__40F9A68C" Association="Self.FK__Pedido__proveedo__40F9A68C">
+          <AssociationSet Name="FK__Pedido__proveedo__2645B050" Association="Self.FK__Pedido__proveedo__2645B050">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FK__PlanDeAcc__Respo__41EDCAC5" Association="Self.FK__PlanDeAcc__Respo__41EDCAC5">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__compr__47A6A41B" Association="Self.FK__Prov_Comp__compr__47A6A41B">
+          <AssociationSet Name="FK__Prov_Comp__compr__29221CFB" Association="Self.FK__Prov_Comp__compr__29221CFB">
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
             <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__produ__489AC854" Association="Self.FK__Prov_Comp__produ__489AC854">
+          <AssociationSet Name="FK__Prov_Comp__produ__2A164134" Association="Self.FK__Prov_Comp__produ__2A164134">
             <End Role="Prov_Producto" EntitySet="Prov_Producto" />
             <End Role="Prov_CompraDetalle" EntitySet="Prov_CompraDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Comp__prove__45BE5BA9" Association="Self.FK__Prov_Comp__prove__45BE5BA9">
+          <AssociationSet Name="FK__Prov_Comp__prove__2739D489" Association="Self.FK__Prov_Comp__prove__2739D489">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Compra" EntitySet="Prov_Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Cont__prove__498EEC8D" Association="Self.FK__Prov_Cont__prove__498EEC8D">
+          <AssociationSet Name="FK__Prov_Cont__prove__2B0A656D" Association="Self.FK__Prov_Cont__prove__2B0A656D">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Contacto" EntitySet="Prov_Contacto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Pago__autor__4A8310C6" Association="Self.FK__Prov_Pago__autor__4A8310C6">
+          <AssociationSet Name="FK__Prov_Pago__autor__2BFE89A6" Association="Self.FK__Prov_Pago__autor__2BFE89A6">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Pago__prove__4B7734FF" Association="Self.FK__Prov_Pago__prove__4B7734FF">
+          <AssociationSet Name="FK__Prov_Pago__prove__2CF2ADDF" Association="Self.FK__Prov_Pago__prove__2CF2ADDF">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prov_Prod__prove__4D5F7D71" Association="Self.FK__Prov_Prod__prove__4D5F7D71">
+          <AssociationSet Name="FK__Prov_Prod__prove__2EDAF651" Association="Self.FK__Prov_Prod__prove__2EDAF651">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="Prov_Producto" EntitySet="Prov_Producto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__estado__4E53A1AA" Association="Self.FK__Ticket__estado__4E53A1AA">
+          <AssociationSet Name="FK__Ticket__estado__2FCF1A8A" Association="Self.FK__Ticket__estado__2FCF1A8A">
             <End Role="Ticket_Estado" EntitySet="Ticket_Estado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__id_tecni__4F47C5E3" Association="Self.FK__Ticket__id_tecni__4F47C5E3">
+          <AssociationSet Name="FK__Ticket__id_tecni__30C33EC3" Association="Self.FK__Ticket__id_tecni__30C33EC3">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__id_usuar__503BEA1C" Association="Self.FK__Ticket__id_usuar__503BEA1C">
+          <AssociationSet Name="FK__Ticket__id_usuar__31B762FC" Association="Self.FK__Ticket__id_usuar__31B762FC">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__priorida__51300E55" Association="Self.FK__Ticket__priorida__51300E55">
+          <AssociationSet Name="FK__Ticket__priorida__32AB8735" Association="Self.FK__Ticket__priorida__32AB8735">
             <End Role="Ticket_Prioridad" EntitySet="Ticket_Prioridad" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ticket__tipo_inc__5224328E" Association="Self.FK__Ticket__tipo_inc__5224328E">
+          <AssociationSet Name="FK__Ticket__tipo_inc__339FAB6E" Association="Self.FK__Ticket__tipo_inc__339FAB6E">
             <End Role="Ticket_Tipo" EntitySet="Ticket_Tipo" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Car__IdPro__531856C7" Association="Self.FK__Venta_Car__IdPro__531856C7">
+          <AssociationSet Name="FK__Venta_Car__IdPro__3493CFA7" Association="Self.FK__Venta_Car__IdPro__3493CFA7">
             <End Role="Venta_Producto" EntitySet="Venta_Producto" />
             <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Car__IdUsu__540C7B00" Association="Self.FK__Venta_Car__IdUsu__540C7B00">
+          <AssociationSet Name="FK__Venta_Car__IdUsu__3587F3E0" Association="Self.FK__Venta_Car__IdUsu__3587F3E0">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Venta_Carrito" EntitySet="Venta_Carrito" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__clien__55009F39" Association="Self.FK__Venta_Fac__clien__55009F39">
+          <AssociationSet Name="FK__Venta_Fac__clien__367C1819" Association="Self.FK__Venta_Fac__clien__367C1819">
             <End Role="Venta_Cliente" EntitySet="Venta_Cliente" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__estad__55F4C372" Association="Self.FK__Venta_Fac__estad__55F4C372">
+          <AssociationSet Name="FK__Venta_Fac__estad__37703C52" Association="Self.FK__Venta_Fac__estad__37703C52">
             <End Role="Venta_Estado" EntitySet="Venta_Estado" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__factu__58D1301D" Association="Self.FK__Venta_Fac__factu__58D1301D">
+          <AssociationSet Name="FK__Venta_Fac__factu__3A4CA8FD" Association="Self.FK__Venta_Fac__factu__3A4CA8FD">
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
             <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__metod__56E8E7AB" Association="Self.FK__Venta_Fac__metod__56E8E7AB">
+          <AssociationSet Name="FK__Venta_Fac__metod__3864608B" Association="Self.FK__Venta_Fac__metod__3864608B">
             <End Role="Venta_MetodoPago" EntitySet="Venta_MetodoPago" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__produ__59C55456" Association="Self.FK__Venta_Fac__produ__59C55456">
+          <AssociationSet Name="FK__Venta_Fac__produ__3B40CD36" Association="Self.FK__Venta_Fac__produ__3B40CD36">
             <End Role="Venta_Producto" EntitySet="Venta_Producto" />
             <End Role="Venta_FacturaDetalle" EntitySet="Venta_FacturaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Fac__tipo___57DD0BE4" Association="Self.FK__Venta_Fac__tipo___57DD0BE4">
+          <AssociationSet Name="FK__Venta_Fac__tipo___395884C4" Association="Self.FK__Venta_Fac__tipo___395884C4">
             <End Role="Venta_Tipo" EntitySet="Venta_Tipo" />
             <End Role="Venta_Factura" EntitySet="Venta_Factura" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venta_Pro__estad__5AB9788F" Association="Self.FK__Venta_Pro__estad__5AB9788F">
+          <AssociationSet Name="FK__Venta_Pro__estad__3C34F16F" Association="Self.FK__Venta_Pro__estad__3C34F16F">
             <End Role="Venta_ProductoEstado" EntitySet="Venta_ProductoEstado" />
             <End Role="Venta_Producto" EntitySet="Venta_Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PDA_Tarea_Empleado" Association="Self.FK_PDA_Tarea_Empleado">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PDA_Tarea_PDA_Estado" Association="Self.FK_PDA_Tarea_PDA_Estado">
-            <End Role="PDA_Estado" EntitySet="PDA_Estado" />
-            <End Role="PDA_Tarea" EntitySet="PDA_Tarea" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanDeAccion_CategoriaPlan" Association="Self.FK_PlanDeAccion_CategoriaPlan">
-            <End Role="CategoriaPlan" EntitySet="CategoriaPlan" />
-            <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanDeAccion_PDA_Estado" Association="Self.FK_PlanDeAccion_PDA_Estado">
-            <End Role="PDA_Estado" EntitySet="PDA_Estado" />
-            <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PlanDeAccion_PDA_TipoAccion" Association="Self.FK_PlanDeAccion_PDA_TipoAccion">
-            <End Role="PDA_TipoAccion" EntitySet="PDA_TipoAccion" />
-            <End Role="PlanDeAccion" EntitySet="PlanDeAccion" />
           </AssociationSet>
           <AssociationSet Name="FK_Prov_Compra_TipoCompra" Association="Self.FK_Prov_Compra_TipoCompra">
             <End Role="Catalogo_Compra" EntitySet="Catalogo_Compra" />
@@ -1910,8 +1508,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaIntegralGestionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2070,6 +1667,11 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
           <Property Name="fecha_fin" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__2A164134" FromRole="Emp_Vacaciones" ToRole="Empleado" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="supervisor_id" Type="Int32" Nullable="false" />
+          <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_respuesta" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -2247,6 +1849,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <NavigationProperty Name="PDA_Estado1" Relationship="Self.FK_PDA_Tarea_PDA_Estado" FromRole="PDA_Tarea" ToRole="PDA_Estado" />
           <NavigationProperty Name="PlanDeAccion" Relationship="Self.FK__PDA_Tarea__plan___3864608B" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
           <NavigationProperty Name="PlanDeAccion1" Relationship="Self.FK__PDA_Tarea__plan___395884C4" FromRole="PDA_Tarea" ToRole="PlanDeAccion" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+          <Property Name="fecha_finalizacion" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="PDA_TipoAccion">
           <Key>
@@ -3632,7 +3236,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CancelarEntrega">
-            <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+          <Parameter Name="PedidoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
@@ -3642,15 +3246,15 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCarrito" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarCarrito_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarClientes" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarClientes_Result)" />
           <FunctionImport Name="ConsultarDetallePedido" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarDetallePedido_Result)">
-            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+          <Parameter Name="IdPedido" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarPedidos_Result)" />
           <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
-            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="distribMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.distribMetodoPago_Result)">
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
@@ -3678,10 +3282,10 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
-            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
-            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GenerarBalanceGeneral" ReturnType="Collection(SistemaIntegralGestionModel.GenerarBalanceGeneral_Result)">
             <Parameter Name="Fecha" Mode="In" Type="DateTime" />
@@ -3817,11 +3421,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="DiasVacacionesDisponibles" EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" />
         </EntityContainer>
         <ComplexType Name="actualizaInventario_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -4044,6 +3649,13 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Inventario" Nullable="false" />
         </ComplexType>
+        <EntityType Name="DiasVacacionesDisponibles">
+          <Key>
+            <PropertyRef Name="empleado_id" />
+          </Key>
+          <Property Name="empleado_id" Type="Int32" Nullable="false" />
+          <Property Name="dias_disponibles" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4073,16 +3685,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               <MappingFragment StoreEntitySet="Catalogo_Compra">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CategoriaPlan">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.CategoriaPlan">
-              <MappingFragment StoreEntitySet="CategoriaPlan">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4194,6 +3796,11 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySetMapping Name="Emp_Vacaciones">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Vacaciones">
               <MappingFragment StoreEntitySet="Emp_Vacaciones">
+                <ScalarProperty Name="fecha_respuesta" ColumnName="fecha_respuesta" />
+                <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+                <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
                 <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
@@ -4282,71 +3889,16 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Modulos">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Modulos">
-              <MappingFragment StoreEntitySet="Modulos">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Notificaciones">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones">
-              <MappingFragment StoreEntitySet="Notificaciones">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_mensaje_basico" ColumnName="id_mensaje_basico" />
-                <ScalarProperty Name="mensaje_final" ColumnName="mensaje_final" />
-                <ScalarProperty Name="id_modulo" ColumnName="id_modulo" />
-                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
-                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
-                <ScalarProperty Name="id_usuario_registro" ColumnName="id_usuario_registro" />
-                <ScalarProperty Name="id_objeto_referencia" ColumnName="id_objeto_referencia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Notificaciones_basicas">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones_basicas">
-              <MappingFragment StoreEntitySet="Notificaciones_basicas">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Notificaciones_usuario">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Notificaciones_usuario">
-              <MappingFragment StoreEntitySet="Notificaciones_usuario">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_notificacion" ColumnName="id_notificacion" />
-                <ScalarProperty Name="id_usuario_recibe" ColumnName="id_usuario_recibe" />
-                <ScalarProperty Name="lectura" ColumnName="lectura" />
-                <ScalarProperty Name="fecha_lectura" ColumnName="fecha_lectura" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PDA_Estado">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_Estado">
-              <MappingFragment StoreEntitySet="PDA_Estado">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="descripcion_estado" ColumnName="descripcion_estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PDA_Tarea">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_Tarea">
               <MappingFragment StoreEntitySet="PDA_Tarea">
+                <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="plan_id" ColumnName="plan_id" />
                 <ScalarProperty Name="descripcion_tarea" ColumnName="descripcion_tarea" />
                 <ScalarProperty Name="responsable_id" ColumnName="responsable_id" />
                 <ScalarProperty Name="estado_tarea" ColumnName="estado_tarea" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PDA_TipoAccion">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.PDA_TipoAccion">
-              <MappingFragment StoreEntitySet="PDA_TipoAccion">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4369,12 +3921,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
-                <ScalarProperty Name="descripcion_plan" ColumnName="descripcion_plan" />
-                <ScalarProperty Name="CategoriaPlanId" ColumnName="CategoriaPlanId" />
-                <ScalarProperty Name="EstadoAccionId" ColumnName="EstadoAccionId" />
-                <ScalarProperty Name="TipoAccionId" ColumnName="TipoAccionId" />
-                <ScalarProperty Name="ResponsableId" ColumnName="ResponsableId" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Prov_Compra">
@@ -4591,35 +4138,9 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Audit_Venta_Producto">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Audit_Venta_Producto">
-              <MappingFragment StoreEntitySet="Audit_Venta_Producto">
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="inventario" ColumnName="inventario" />
-                <ScalarProperty Name="motivo" ColumnName="motivo" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="responsable" ColumnName="responsable" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="actualizaInventario" FunctionName="SistemaIntegralGestionModel.Store.actualizaInventario">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.actualizaInventario_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="precio" ColumnName="precio" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="inventario" ColumnName="inventario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ActualizarEntrega" FunctionName="SistemaIntegralGestionModel.Store.ActualizarEntrega" />
           <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
-          <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
           <FunctionImportMapping FunctionImportName="CancelarEntrega" FunctionName="SistemaIntegralGestionModel.Store.CancelarEntrega" />
-          <FunctionImportMapping FunctionImportName="CantidadNotificacionesNuevas" FunctionName="SistemaIntegralGestionModel.Store.CantidadNotificacionesNuevas" />
           <FunctionImportMapping FunctionImportName="cierre_contable" FunctionName="SistemaIntegralGestionModel.Store.cierre_contable">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.cierre_contable_Result">
@@ -4708,16 +4229,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="distribMetodoPago" FunctionName="SistemaIntegralGestionModel.Store.distribMetodoPago">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.distribMetodoPago_Result">
-                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
-                <ScalarProperty Name="CantidadVentas" ColumnName="CantidadVentas" />
-                <ScalarProperty Name="TotalVentas" ColumnName="TotalVentas" />
-                <ScalarProperty Name="PorcentajeVentas" ColumnName="PorcentajeVentas" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="EditarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.EditarEmpleado" />
           <FunctionImportMapping FunctionImportName="EliminarProductoCarrito" FunctionName="SistemaIntegralGestionModel.Store.EliminarProductoCarrito" />
           <FunctionImportMapping FunctionImportName="FacturarPedido" FunctionName="SistemaIntegralGestionModel.Store.FacturarPedido" />
@@ -4752,61 +4263,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
                 <ScalarProperty Name="EstadoFactura" ColumnName="EstadoFactura" />
                 <ScalarProperty Name="notas_adicionales" ColumnName="notas_adicionales" />
                 <ScalarProperty Name="TipoVenta" ColumnName="TipoVenta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GenerarBalanceGeneral" FunctionName="SistemaIntegralGestionModel.Store.GenerarBalanceGeneral">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GenerarBalanceGeneral_Result">
-                <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
-                <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GenerarEstadoResultados" FunctionName="SistemaIntegralGestionModel.Store.GenerarEstadoResultados">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GenerarEstadoResultados_Result">
-                <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
-                <ScalarProperty Name="CuentaContable" ColumnName="CuentaContable" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="HistorialAjustesCxC" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxC">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxC_Result">
-                <ScalarProperty Name="fechaAjuste" ColumnName="fechaAjuste" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="motivo" ColumnName="motivo" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="HistorialAjustesCxP" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxP">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxP_Result">
-                <ScalarProperty Name="fechaAjuste" ColumnName="fechaAjuste" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="motivo" ColumnName="motivo" />
-                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
-                <ScalarProperty Name="estadoCuenta" ColumnName="estadoCuenta" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Informe_Ventas" FunctionName="SistemaIntegralGestionModel.Store.Informe_Ventas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.Informe_Ventas_Result">
-                <ScalarProperty Name="Producto" ColumnName="Producto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
-                <ScalarProperty Name="MontoFinal" ColumnName="MontoFinal" />
-                <ScalarProperty Name="Clientes" ColumnName="Clientes" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4870,17 +4326,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NotificacionesVencimientoCuentas" FunctionName="SistemaIntegralGestionModel.Store.NotificacionesVencimientoCuentas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.NotificacionesVencimientoCuentas_Result">
-                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
-                <ScalarProperty Name="id_objeto_referencia" ColumnName="id_objeto_referencia" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NuevaNotificacion" FunctionName="SistemaIntegralGestionModel.Store.NuevaNotificacion" />
           <FunctionImportMapping FunctionImportName="ObtenerEmpleadoPorFiltro" FunctionName="SistemaIntegralGestionModel.Store.ObtenerEmpleadoPorFiltro">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerEmpleadoPorFiltro_Result">
@@ -4900,43 +4345,14 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ObtenerNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.ObtenerNotificaciones">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerNotificaciones_Result">
-                <ScalarProperty Name="IdNotificacion" ColumnName="IdNotificacion" />
-                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
-                <ScalarProperty Name="IdReferenciaBD" ColumnName="IdReferenciaBD" />
-                <ScalarProperty Name="MensajeB" ColumnName="MensajeB" />
-                <ScalarProperty Name="MensajeF" ColumnName="MensajeF" />
-                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="lectura" ColumnName="lectura" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PagarCxC" FunctionName="SistemaIntegralGestionModel.Store.PagarCxC" />
           <FunctionImportMapping FunctionImportName="PagarCxP" FunctionName="SistemaIntegralGestionModel.Store.PagarCxP" />
           <FunctionImportMapping FunctionImportName="PagoPedido" FunctionName="SistemaIntegralGestionModel.Store.PagoPedido" />
           <FunctionImportMapping FunctionImportName="ProcesarCarrito" FunctionName="SistemaIntegralGestionModel.Store.ProcesarCarrito" />
-          <FunctionImportMapping FunctionImportName="RecordatorioCompraInsumos" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioCompraInsumos" />
-          <FunctionImportMapping FunctionImportName="RecordatorioNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioNotificaciones" />
-          <FunctionImportMapping FunctionImportName="RecordatorioVencimientoCxC" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioVencimientoCxC" />
-          <FunctionImportMapping FunctionImportName="RecordatorioVencimientoCxP" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioVencimientoCxP" />
           <FunctionImportMapping FunctionImportName="RegistrarCarrito" FunctionName="SistemaIntegralGestionModel.Store.RegistrarCarrito" />
           <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
           <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
           <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
-          <FunctionImportMapping FunctionImportName="top5Clientes" FunctionName="SistemaIntegralGestionModel.Store.top5Clientes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.top5Clientes_Result">
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="CantidadVentas" ColumnName="CantidadVentas" />
-                <ScalarProperty Name="TotalVentas" ColumnName="TotalVentas" />
-                <ScalarProperty Name="PorcentajeVentas" ColumnName="PorcentajeVentas" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UltimoTicketUsuario" FunctionName="SistemaIntegralGestionModel.Store.UltimoTicketUsuario" />
           <FunctionImportMapping FunctionImportName="ValidarCorreo" FunctionName="SistemaIntegralGestionModel.Store.ValidarCorreo">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ValidarCorreo_Result">
@@ -4955,6 +4371,14 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="DiasVacacionesDisponibles">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.DiasVacacionesDisponibles">
+              <MappingFragment StoreEntitySet="DiasVacacionesDisponibles">
+                <ScalarProperty Name="dias_disponibles" ColumnName="dias_disponibles" />
+                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
