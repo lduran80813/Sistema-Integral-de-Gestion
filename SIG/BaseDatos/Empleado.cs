@@ -33,6 +33,7 @@ namespace SIG.BaseDatos
             this.Ticket1 = new HashSet<Ticket>();
             this.Venta_Carrito = new HashSet<Venta_Carrito>();
             this.PDA_Tarea4 = new HashSet<PDA_Tarea>();
+            this.SolicitudesVacaciones = new HashSet<SolicitudesVacaciones>();
         }
     
         public int id { get; set; }
@@ -85,5 +86,7 @@ namespace SIG.BaseDatos
         public virtual ICollection<Venta_Carrito> Venta_Carrito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PDA_Tarea> PDA_Tarea4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SolicitudesVacaciones> SolicitudesVacaciones { get; set; }
     }
 }

@@ -212,6 +212,13 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Property Name="transaccion_referencia" Type="numeric" Precision="18" Scale="0" />
     <Property Name="usuario_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="DiasVacacionesDisponibles">
+    <Key>
+      <PropertyRef Name="empleado_id" />
+    </Key>
+    <Property Name="empleado_id" Type="int" Nullable="false" />
+    <Property Name="dias_disponibles" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Emp_BitacoraIngreso">
     <Key>
       <PropertyRef Name="id" />
@@ -254,20 +261,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Property Name="tipo" Type="varchar" MaxLength="100" />
     <Property Name="monto" Type="decimal" Precision="10" Scale="2" />
     <Property Name="descripcion" Type="varchar" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="Emp_Vacaciones">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="empleado_id" Type="int" />
-    <Property Name="fecha_inicio" Type="date" />
-    <Property Name="fecha_fin" Type="date" />
-    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="comentario" Type="nvarchar" MaxLength="500" />
-    <Property Name="supervisor_id" Type="int" Nullable="false" />
-    <Property Name="fecha_solicitud" Type="datetime" Nullable="false" />
-    <Property Name="fecha_respuesta" Type="datetime" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -497,6 +490,22 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Property Name="nombre" Type="varchar" MaxLength="255" />
     <Property Name="direccion" Type="varchar" MaxLength="255" />
     <Property Name="estado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SolicitudesVacaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="empleado_id" Type="int" />
+    <Property Name="fecha_inicio" Type="date" />
+    <Property Name="fecha_fin" Type="date" />
+    <Property Name="estado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="motivo_rechazo" Type="nvarchar" MaxLength="500" />
+    <Property Name="fecha_solicitud" Type="datetime" Nullable="false" />
+    <Property Name="dias_solicitados" Type="int" />
+    <Property Name="observaciones" Type="nvarchar" MaxLength="255" />
+    <Property Name="aprobado_por" Type="int" />
+    <Property Name="fecha_aprobacion" Type="datetime" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -762,12 +771,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
   </Association>
   <Association Name="FK__Emp_Vacac__emple__29221CFB">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-    <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
+    <End Role="SolicitudesVacaciones" Type="Self.SolicitudesVacaciones" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Emp_Vacaciones">
+      <Dependent Role="SolicitudesVacaciones">
         <PropertyRef Name="empleado_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -1400,6 +1409,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Parameter Name="NombreDestinatario" Type="varchar" Mode="In" />
     <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="AprobarRechazarVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SolicitudId" Type="int" Mode="In" />
+    <Parameter Name="Estado" Type="nvarchar" Mode="In" />
+    <Parameter Name="AprobadoPor" Type="int" Mode="In" />
+    <Parameter Name="MotivoRechazo" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="InOut" />
     <Parameter Name="nuevaContrasena" Type="nvarchar(max)" Mode="In" />
@@ -1585,6 +1600,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Parameter Name="Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="Id_Usuario" Type="int" Mode="In" />
   </Function>
+  <Function Name="SolicitarVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CorreoEmpleado" Type="nvarchar" Mode="In" />
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
+    <Parameter Name="Estado" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="top5Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FechaInicio" Type="date" Mode="In" />
     <Parameter Name="FechaFin" Type="date" Mode="In" />
@@ -1598,6 +1619,11 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
   <Function Name="ValidarExistencias" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdUsuario" Type="int" Mode="In" />
   </Function>
+  <Function Name="ValidarFechasVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="empleado_id" Type="int" Mode="In" />
+    <Parameter Name="fecha_inicio" Type="date" Mode="In" />
+    <Parameter Name="fecha_fin" Type="date" Mode="In" />
+  </Function>
   <EntityContainer Name="SistemaIntegralGestionModelStoreContainer">
     <EntitySet Name="Adm_Permiso" EntityType="Self.Adm_Permiso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adm_Rol" EntityType="Self.Adm_Rol" Schema="dbo" store:Type="Tables" />
@@ -1608,12 +1634,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DiasVacacionesDisponibles" EntityType="Self.DiasVacacionesDisponibles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_Departamento" EntityType="Self.Emp_Departamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_Puesto" EntityType="Self.Emp_Puesto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Emp_RemuneracionDeduccion" EntityType="Self.Emp_RemuneracionDeduccion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EntidadesFinancieras" EntityType="Self.EntidadesFinancieras" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Entregas" EntityType="Self.Entregas" Schema="dbo" store:Type="Tables" />
@@ -1636,6 +1662,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <EntitySet Name="Prov_Pago" EntityType="Self.Prov_Pago" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prov_Producto" EntityType="Self.Prov_Producto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SolicitudesVacaciones" EntityType="Self.SolicitudesVacaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" Schema="dbo" store:Type="Tables" />
@@ -1705,7 +1732,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     </AssociationSet>
     <AssociationSet Name="FK__Emp_Vacac__emple__29221CFB" Association="Self.FK__Emp_Vacac__emple__29221CFB">
       <End Role="Empleado" EntitySet="Empleado" />
-      <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
+      <End Role="SolicitudesVacaciones" EntitySet="SolicitudesVacaciones" />
     </AssociationSet>
     <AssociationSet Name="FK__Empleado__depart__2A164134" Association="Self.FK__Empleado__depart__2A164134">
       <End Role="Emp_Departamento" EntitySet="Emp_Departamento" />

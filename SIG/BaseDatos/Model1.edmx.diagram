@@ -119,6 +119,9 @@
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__tipo___56E8E7AB" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__58D1301D" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Pro__estad__59C55456" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.SolicitudesVacaciones" Width="1.5" PointX="8.25" PointY="52.375" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

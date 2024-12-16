@@ -46,6 +46,8 @@ namespace SIG.Entidades
 
         public int puesto_id { get; set; }
 
+
+
     }
 
 

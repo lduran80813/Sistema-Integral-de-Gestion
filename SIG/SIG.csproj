@@ -351,6 +351,9 @@
     <Compile Include="BaseDatos\datosRecibo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\DiasVacacionesDisponibles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\distribMetodoPago_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -502,6 +505,9 @@
     <Compile Include="BaseDatos\Prov_Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\SolicitudesVacaciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -561,7 +567,6 @@
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\PlanAccionController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
-    <Compile Include="Controllers\VacacionesController.cs" />
     <Compile Include="Entidades\AjusteManualCuentasCredito.cs" />
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\CategoriaIncidencia.cs" />
@@ -590,7 +595,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\Entrega.cs" />
     <Compile Include="Entidades\ReportePlan.cs" />
-    <Compile Include="Entidades\ResultadoOperativo.cs" />
+    <Compile Include="Entidades\Resultado.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Tarea.cs" />
     <Compile Include="Entidades\Ticket.cs" />

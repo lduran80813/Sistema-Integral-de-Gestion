@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SIG.Entidades
 {
-    public class ResultadoOperativo
+    public class Resultado
     {
         public bool Exitoso { get; set; }
         public string MensajeError { get; set; }

@@ -142,21 +142,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Emp_Vacaciones">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Vacaciones">
-        <MappingFragment StoreEntitySet="Emp_Vacaciones">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
-          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="comentario" ColumnName="comentario" />
-          <ScalarProperty Name="supervisor_id" ColumnName="supervisor_id" />
-          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
-          <ScalarProperty Name="fecha_respuesta" ColumnName="fecha_respuesta" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Empleado">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Empleado">
         <MappingFragment StoreEntitySet="Empleado">
@@ -913,5 +898,32 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="DiasVacacionesDisponibles">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.DiasVacacionesDisponibles">
+        <MappingFragment StoreEntitySet="DiasVacacionesDisponibles">
+          <ScalarProperty Name="dias_disponibles" ColumnName="dias_disponibles" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SolicitarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.SolicitarVacaciones" />
+    <EntitySetMapping Name="SolicitudesVacaciones">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.SolicitudesVacaciones">
+        <MappingFragment StoreEntitySet="SolicitudesVacaciones">
+          <ScalarProperty Name="fecha_aprobacion" ColumnName="fecha_aprobacion" />
+          <ScalarProperty Name="aprobado_por" ColumnName="aprobado_por" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="dias_solicitados" ColumnName="dias_solicitados" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="motivo_rechazo" ColumnName="motivo_rechazo" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AprobarRechazarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.AprobarRechazarVacaciones" />
   </EntityContainerMapping>
 </Mapping>

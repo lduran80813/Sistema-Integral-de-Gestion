@@ -2,6 +2,8 @@
 using SIG.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -9,105 +11,50 @@ namespace SIG.Models
 {
     public class VacacionesModel
     {
-        public ResultadoOperativo SolicitarVacaciones(Vacaciones modelo)
+        public string SolicitarVacaciones(string correoEmpleado, DateTime fechaInicio, DateTime fechaFin, string observaciones)
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                // Verificar días disponibles
-                var diasDisponibles = context.DiasVacacionesDisponibles
-                    .FirstOrDefault(x => x.empleado_id == modelo.EmpleadoId)?.dias_disponibles ?? 0;
+                // Calcular la cantidad de días solicitados
+                int diasSolicitados = (fechaFin - fechaInicio).Days + 1;
 
-                int diasSolicitados = (modelo.FechaFin - modelo.FechaInicio).Days + 1;
+                // Configurar los parámetros del procedimiento almacenado
+                var correoEmpleadoParam = new SqlParameter("@CorreoEmpleado", correoEmpleado);
+                var fechaInicioParam = new SqlParameter("@FechaInicio", fechaInicio);
+                var fechaFinParam = new SqlParameter("@FechaFin", fechaFin);
+                var diasSolicitadosParam = new SqlParameter("@DiasSolicitados", diasSolicitados);
+                var observacionesParam = new SqlParameter("@Observaciones", observaciones ?? (object)DBNull.Value);
 
-                if (diasSolicitados > diasDisponibles)
+                // Configurar el parámetro de salida para el resultado
+                var resultadoParam = new SqlParameter("@Resultado", SqlDbType.NVarChar, 50)
                 {
-                    return new ResultadoOperativo
-                    {
-                        Exitoso = false,
-                        MensajeError = "No tienes suficientes días disponibles."
-                    };
-                }
-
-                // Crear la solicitud
-                var solicitud = new Emp_Vacaciones
-                {
-                    empleado_id = modelo.EmpleadoId,
-                    fecha_inicio = modelo.FechaInicio,
-                    fecha_fin = modelo.FechaFin,
-                    supervisor_id = modelo.SupervisorId,
-                    estado = "Pendiente",
-                    fecha_solicitud = DateTime.Now
+                    Direction = ParameterDirection.Output
                 };
 
-                context.Emp_Vacaciones.Add(solicitud);
-                context.SaveChanges();
+                // Llamar al procedimiento almacenado
+                context.Database.ExecuteSqlCommand(
+                    "EXEC RegistrarSolicitudVacaciones @CorreoEmpleado, @FechaInicio, @FechaFin, @DiasSolicitados, @Observaciones, @Resultado OUTPUT",
+                    correoEmpleadoParam, fechaInicioParam, fechaFinParam, diasSolicitadosParam, observacionesParam, resultadoParam);
 
-                return new ResultadoOperativo { Exitoso = true };
+                // Retornar el resultado
+                return resultadoParam.Value.ToString();
             }
         }
 
-        // Obtener historial de solicitudes del empleado
-        public List<Vacaciones> ObtenerHistorial(int empleadoId)
+        public void AprobarRechazarVacaciones(int solicitudId, string estado, int administradorId, string motivoRechazo = null)
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                return (from x in context.Emp_Vacaciones
-                        where x.empleado_id == empleadoId
-                        select new Vacaciones
-                        {
-                            SolicitudId = x.id,
-                            EmpleadoId = x.empleado_id.GetValueOrDefault(),
-                            FechaInicio = x.fecha_inicio.GetValueOrDefault(),
-                            FechaFin = x.fecha_fin.GetValueOrDefault(),
-                            Estado = x.estado,
-                            Comentario = x.comentario,
-                            FechaSolicitud = x.fecha_solicitud,
-                            FechaRespuesta = x.fecha_respuesta
-                        }).ToList();
-            }
-        }
+                // Configurar los parámetros del procedimiento almacenado
+                var solicitudIdParam = new SqlParameter("@SolicitudId", solicitudId);
+                var estadoParam = new SqlParameter("@Estado", estado);
+                var administradorIdParam = new SqlParameter("@AprobadoPor", administradorId);
+                var motivoRechazoParam = new SqlParameter("@MotivoRechazo", motivoRechazo ?? (object)DBNull.Value);
 
-        // Obtener solicitudes pendientes para el supervisor
-        public List<Vacaciones> ObtenerPendientes(int supervisorId)
-        {
-            using (var context = new SistemaIntegralGestionEntities())
-            {
-                return (from x in context.Emp_Vacaciones
-                        where x.supervisor_id == supervisorId && x.estado == "Pendiente"
-                        select new Vacaciones
-                        {
-                            SolicitudId = x.id,
-                            EmpleadoId = x.empleado_id.GetValueOrDefault(),
-                            FechaInicio = x.fecha_inicio.GetValueOrDefault(),
-                            FechaFin = x.fecha_fin.GetValueOrDefault(),
-                            Estado = x.estado,
-                            FechaSolicitud = x.fecha_solicitud
-                        }).ToList();
-            }
-        }
-
-        // Responder a una solicitud (aprobar/rechazar)
-        public ResultadoOperativo ResponderSolicitud(int solicitudId, string estado, string comentario)
-        {
-            using (var context = new SistemaIntegralGestionEntities())
-            {
-                var solicitud = context.Emp_Vacaciones.FirstOrDefault(x => x.id == solicitudId);
-                if (solicitud == null)
-                {
-                    return new ResultadoOperativo
-                    {
-                        Exitoso = false,
-                        MensajeError = "Solicitud no encontrada."
-                    };
-                }
-
-                solicitud.estado = estado;
-                solicitud.comentario = comentario;
-                solicitud.fecha_respuesta = DateTime.Now;
-
-                context.SaveChanges();
-
-                return new ResultadoOperativo { Exitoso = true };
+                // Llamar al procedimiento almacenado para actualizar el estado
+                context.Database.ExecuteSqlCommand(
+                    "EXEC AprobarRechazarVacaciones @SolicitudId, @Estado, @AprobadoPor, @MotivoRechazo",
+                    solicitudIdParam, estadoParam, administradorIdParam, motivoRechazoParam);
             }
         }
     }

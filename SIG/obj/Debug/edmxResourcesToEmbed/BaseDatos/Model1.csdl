@@ -155,11 +155,15 @@
     <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
     <Property Name="fecha_fin" Type="DateTime" Precision="0" />
     <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="comentario" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
     <Property Name="supervisor_id" Type="Int32" Nullable="false" />
     <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="fecha_respuesta" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Emp_Vacaciones" ToRole="Empleado" />
+    <Property Name="comentario_admin" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dias_solicitados" Type="Int32" Nullable="false" />
+    <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="dias_vacaciones" Type="Int32" />
   </EntityType>
   <EntityType Name="Empleado">
     <Key>
@@ -198,6 +202,7 @@
     <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__4F47C5E3" FromRole="Empleado" ToRole="Ticket" />
     <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdUsu__531856C7" FromRole="Empleado" ToRole="Venta_Carrito" />
     <NavigationProperty Name="PDA_Tarea4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="SolicitudesVacaciones" Relationship="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" FromRole="Empleado" ToRole="SolicitudesVacaciones" />
   </EntityType>
   <EntityType Name="EntidadesFinancieras">
     <Key>
@@ -1914,6 +1919,24 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="DiasVacacionesDisponibles" EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" />
+    <FunctionImport Name="SolicitarVacaciones">
+      <Parameter Name="CorreoEmpleado" Mode="In" Type="String" />
+      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="SolicitudesVacaciones" EntityType="SistemaIntegralGestionModel.SolicitudesVacaciones" />
+    <AssociationSet Name="FK__Emp_Vacac__emple__29221CFB1" Association="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="SolicitudesVacaciones" EntitySet="SolicitudesVacaciones" />
+    </AssociationSet>
+    <FunctionImport Name="AprobarRechazarVacaciones">
+      <Parameter Name="SolicitudId" Mode="In" Type="Int32" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+      <Parameter Name="AprobadoPor" Mode="In" Type="Int32" />
+      <Parameter Name="MotivoRechazo" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2136,4 +2159,40 @@
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
   </ComplexType>
+  <EntityType Name="DiasVacacionesDisponibles">
+    <Key>
+      <PropertyRef Name="empleado_id" />
+    </Key>
+    <Property Name="empleado_id" Type="Int32" Nullable="false" />
+    <Property Name="dias_disponibles" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SolicitudesVacaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empleado_id" Type="Int32" />
+    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dias_solicitados" Type="Int32" />
+    <Property Name="observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="aprobado_por" Type="Int32" />
+    <Property Name="fecha_aprobacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Empleado" Relationship="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" FromRole="SolicitudesVacaciones" ToRole="Empleado" />
+  </EntityType>
+  <Association Name="FK__Emp_Vacac__emple__29221CFB1">
+    <End Type="SistemaIntegralGestionModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+    <End Type="SistemaIntegralGestionModel.SolicitudesVacaciones" Role="SolicitudesVacaciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SolicitudesVacaciones">
+        <PropertyRef Name="empleado_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

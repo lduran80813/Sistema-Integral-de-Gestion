@@ -7,30 +7,33 @@
 
 <h2>Solicitar Vacaciones</h2>
 
-@if (ViewBag.Error != null)
+@if (TempData["MensajeError"] != null)
 {
-    <div class="alert alert-danger">@ViewBag.Error</div>
+    <div class="alert alert-danger">@TempData["MensajeError"]</div>
 }
 
-@using (Html.BeginForm("Solicitar", "Vacaciones", FormMethod.Post))
+@if (TempData["MensajeExito"] != null)
 {
+    <div class="alert alert-success">@TempData["MensajeExito"]</div>
+}
+
+<form method="post" action="@Url.Action("Solicitar", "Empleados")">
+    <input type="hidden" name="correoEmpleado" value="@Model.CorreoEmpleado" />
+
     <div class="form-group">
-        <label for="FechaInicio">Fecha de Inicio</label>
-        @Html.TextBoxFor(m => m.FechaInicio, new { @class = "form-control", type = "date" })
-        @Html.ValidationMessageFor(m => m.FechaInicio, "", new { @class = "text-danger" })
+        <label for="fechaInicio">Fecha de Inicio</label>
+        <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" required />
     </div>
 
     <div class="form-group">
-        <label for="FechaFin">Fecha de Fin</label>
-        @Html.TextBoxFor(m => m.FechaFin, new { @class = "form-control", type = "date" })
-        @Html.ValidationMessageFor(m => m.FechaFin, "", new { @class = "text-danger" })
+        <label for="fechaFin">Fecha de Fin</label>
+        <input type="date" name="fechaFin" id="fechaFin" class="form-control" required />
     </div>
 
     <div class="form-group">
-        <label for="SupervisorId">Supervisor</label>
-        @Html.TextBoxFor(m => m.SupervisorId, new { @class = "form-control", type = "number", placeholder = "ID del Supervisor" })
-        @Html.ValidationMessageFor(m => m.SupervisorId, "", new { @class = "text-danger" })
+        <label for="observaciones">Observaciones</label>
+        <textarea name="observaciones" id="observaciones" class="form-control" rows="3"></textarea>
     </div>
 
     <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
-}
+</form>

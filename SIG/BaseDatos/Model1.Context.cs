@@ -78,6 +78,8 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
         public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
         public virtual DbSet<Audit_Venta_Producto> Audit_Venta_Producto { get; set; }
+        public virtual DbSet<DiasVacacionesDisponibles> DiasVacacionesDisponibles { get; set; }
+        public virtual DbSet<SolicitudesVacaciones> SolicitudesVacaciones { get; set; }
     
         public virtual ObjectResult<actualizaInventario_Result> actualizaInventario(Nullable<int> idProducto, Nullable<int> nuevoInventario, string motivo, Nullable<int> idUsuario)
         {
@@ -807,6 +809,48 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
+        }
+    
+        public virtual int SolicitarVacaciones(string correoEmpleado, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string estado)
+        {
+            var correoEmpleadoParameter = correoEmpleado != null ?
+                new ObjectParameter("CorreoEmpleado", correoEmpleado) :
+                new ObjectParameter("CorreoEmpleado", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SolicitarVacaciones", correoEmpleadoParameter, fechaInicioParameter, fechaFinParameter, estadoParameter);
+        }
+    
+        public virtual int AprobarRechazarVacaciones(Nullable<int> solicitudId, string estado, Nullable<int> aprobadoPor, string motivoRechazo)
+        {
+            var solicitudIdParameter = solicitudId.HasValue ?
+                new ObjectParameter("SolicitudId", solicitudId) :
+                new ObjectParameter("SolicitudId", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            var aprobadoPorParameter = aprobadoPor.HasValue ?
+                new ObjectParameter("AprobadoPor", aprobadoPor) :
+                new ObjectParameter("AprobadoPor", typeof(int));
+    
+            var motivoRechazoParameter = motivoRechazo != null ?
+                new ObjectParameter("MotivoRechazo", motivoRechazo) :
+                new ObjectParameter("MotivoRechazo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AprobarRechazarVacaciones", solicitudIdParameter, estadoParameter, aprobadoPorParameter, motivoRechazoParameter);
         }
     }
 }
