@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "MisSolicitudes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<SIG.Models.VacacionesModel>
+
+@{
+    ViewBag.Title = "Mis Solicitudes de Vacaciones";
+}
+
+<h2>Mis Solicitudes de Vacaciones</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha de Solicitud</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Días Solicitados</th>
+            <th>Estado</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var solicitud in Model)
+        {
+            <tr>
+                <td>@solicitud.fecha_solicitud.ToString("dd/MM/yyyy")</td>
+                <td>@solicitud.fecha_inicio.ToString("dd/MM/yyyy")</td>
+                <td>@solicitud.fecha_fin.ToString("dd/MM/yyyy")</td>
+                <td>@solicitud.dias_solicitados</td>
+                <td>@solicitud.estado</td>
+                <td>@solicitud.observaciones</td>
+            </tr>
+        }
+    </tbody>
+</table>

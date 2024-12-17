@@ -357,6 +357,9 @@
     <Compile Include="BaseDatos\datosRecibo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\DiasVacacionesDisponibles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\distribMetodoPago_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -384,9 +387,6 @@
     <Compile Include="BaseDatos\Emp_RemuneracionDeduccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDatos\Emp_Vacaciones.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="BaseDatos\EntidadesFinancieras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -409,6 +409,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\GenerarEstadoResultados_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\GetEmpleadoById_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\HistorialAjustesCxC_Result.cs">
@@ -514,6 +517,9 @@
     <Compile Include="BaseDatos\Prov_Producto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\SolicitudesVacaciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -577,6 +583,7 @@
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\CategoriaIncidencia.cs" />
     <Compile Include="Entidades\CategoriaPlan.cs" />
+    <Compile Include="Entidades\SolicitudVacacionViewModel.cs" />
     <Compile Include="Entidades\ConsultaEstadoFinanciero.cs" />
     <Compile Include="Entidades\CuentasCredito.cs" />
     <Compile Include="Entidades\EmpCapacitacion.cs" />
@@ -603,11 +610,13 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entidades\Entrega.cs" />
     <Compile Include="Entidades\ReportePlan.cs" />
+    <Compile Include="Entidades\Resultado.cs" />
     <Compile Include="Entidades\TablaTicket.cs" />
     <Compile Include="Entidades\Tarea.cs" />
     <Compile Include="Entidades\Ticket.cs" />
     <Compile Include="Entidades\TransaccionFinanciera.cs" />
     <Compile Include="Entidades\UsuarioEmpleado.cs" />
+    <Compile Include="Entidades\Vacaciones.cs" />
     <Compile Include="Entidades\VentaPedido.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -625,6 +634,7 @@
     <Compile Include="Models\FiltroSeguridad.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Models\EntregasModel.cs" />
+    <Compile Include="Models\VacacionesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -885,6 +895,10 @@
     <Content Include="Views\Empleados\RegistroCapacitacion.cshtml" />
     <Content Include="Views\Empleados\VerParticipantes.cshtml" />
     <Content Include="Views\Empleados\EditarCapacitacion.cshtml" />
+    <Content Include="Views\Empleados\Solicitar.cshtml" />
+    <Content Include="Views\Empleados\Historial.cshtml" />
+    <Content Include="Views\Empleados\RevisarPendientes.cshtml" />
+    <Content Include="Views\Empleados\MisSolicitudes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

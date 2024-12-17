@@ -1,0 +1,60 @@
+﻿@model List<SIG.Entidades.Vacaciones>
+@{
+    ViewBag.Title = "Historial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historial de Vacaciones</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">No tienes solicitudes de vacaciones en tu historial.</div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Fin</th>
+                <th>Estado</th>
+                <th>Comentario</th>
+                <th>Fecha de Respuesta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FechaInicio.ToShortDateString()</td>
+                    <td>@item.FechaFin.ToShortDateString()</td>
+                    <td>
+                        @if (item.Estado == "Pendiente")
+                        {
+                            <span class="badge badge-warning">Pendiente</span>
+                        }
+                        else if (item.Estado == "Aprobado")
+                        {
+                            <span class="badge badge-success">Aprobado</span>
+                        }
+                        else if (item.Estado == "Rechazado")
+                        {
+                            <span class="badge badge-danger">Rechazado</span>
+                        }
+                    </td>
+                    <td>@item.Comentario</td>
+                    <td>
+                        @if (item.FechaRespuesta.HasValue)
+                        {
+                            @item.FechaRespuesta.Value.ToShortDateString()
+                        }
+                        else
+                        {
+                            <span class="text-muted">Pendiente</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

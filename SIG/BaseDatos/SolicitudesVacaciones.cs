@@ -12,12 +12,19 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Emp_Vacaciones
+    public partial class SolicitudesVacaciones
     {
         public int id { get; set; }
         public Nullable<int> empleado_id { get; set; }
         public Nullable<System.DateTime> fecha_inicio { get; set; }
         public Nullable<System.DateTime> fecha_fin { get; set; }
+        public string estado { get; set; }
+        public string motivo_rechazo { get; set; }
+        public System.DateTime fecha_solicitud { get; set; }
+        public Nullable<int> dias_solicitados { get; set; }
+        public string observaciones { get; set; }
+        public Nullable<int> aprobado_por { get; set; }
+        public Nullable<System.DateTime> fecha_aprobacion { get; set; }
     
         public virtual Empleado Empleado { get; set; }
     }
