@@ -908,5 +908,28 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="Emp_Capacitacion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Capacitacion">
+        <MappingFragment StoreEntitySet="Emp_Capacitacion">
+          <ScalarProperty Name="ResponsableId" ColumnName="ResponsableId" />
+          <ScalarProperty Name="descripcion_capacitacion" ColumnName="descripcion_capacitacion" />
+          <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="nombre_capacitacion" ColumnName="nombre_capacitacion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Capacitacion_Participantes">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes">
+        <MappingFragment StoreEntitySet="Emp_Capacitacion_Participantes">
+          <ScalarProperty Name="retroalimentacion" ColumnName="retroalimentacion" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="participante_id" ColumnName="participante_id" />
+          <ScalarProperty Name="capacitacion_id" ColumnName="capacitacion_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
