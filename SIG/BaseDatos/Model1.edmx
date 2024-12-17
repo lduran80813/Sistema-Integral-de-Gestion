@@ -22,118 +22,6 @@
           <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Compra' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Compra">
-          <Property Name="id" Type="int" />
-          <Property Name="proveedor_id" Type="int" />
-          <Property Name="fecha_compra" Type="date" />
-          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="no_factura" Type="varchar" MaxLength="100" />
-          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Empleado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Empleado">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre" Type="varchar" MaxLength="100" />
-          <Property Name="apellidos" Type="varchar" MaxLength="255" />
-          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
-          <Property Name="fecha_nacimiento" Type="date" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="telefono" Type="varchar" MaxLength="50" />
-          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
-          <Property Name="departamento_id" Type="int" />
-          <Property Name="puesto_id" Type="int" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Entrega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Entrega">
-          <Property Name="id" Type="int" />
-          <Property Name="pedido_id" Type="int" />
-          <Property Name="fecha_entrega" Type="date" />
-          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
-          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
-          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Factura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Factura">
-          <Property Name="id" Type="int" />
-          <Property Name="cliente_id" Type="int" />
-          <Property Name="fecha_venta" Type="date" />
-          <Property Name="metodo_pago_id" Type="int" />
-          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="no_factura" Type="varchar" MaxLength="100" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
-          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_PlanDeAccion">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
-          <Property Name="estado" Type="varchar" MaxLength="100" />
-          <Property Name="fecha_inicio" Type="date" />
-          <Property Name="fecha_finalizacion" Type="date" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Proveedor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Proveedor">
-          <Property Name="id" Type="int" />
-          <Property Name="nombre" Type="varchar" MaxLength="255" />
-          <Property Name="direccion" Type="varchar" MaxLength="255" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Ticket' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Ticket">
-          <Property Name="id_ticket" Type="int" />
-          <Property Name="id_usuario" Type="int" />
-          <Property Name="estado" Type="int" />
-          <Property Name="tipo_incidencia" Type="int" />
-          <Property Name="prioridad" Type="int" />
-          <Property Name="titulo" Type="varchar" MaxLength="30" />
-          <Property Name="descripcion" Type="varchar" MaxLength="200" />
-          <Property Name="fecha_registro_usuario" Type="datetime" />
-          <Property Name="fecha_registra_tecnico" Type="datetime" />
-          <Property Name="id_tecnico" Type="int" />
-          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
-          <Property Name="fecha_cierre_ticket" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Usuario">
-          <Property Name="id" Type="int" />
-          <Property Name="usuario" Type="varchar" MaxLength="100" />
-          <Property Name="contrasena" Type="varchar" MaxLength="255" />
-          <Property Name="rol_id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Audit_Vacaciones">
-          <Property Name="id" Type="int" />
-          <Property Name="empleado_id" Type="int" />
-          <Property Name="fecha_inicio" Type="date" />
-          <Property Name="fecha_fin" Type="date" />
-          <Property Name="accion" Type="varchar" MaxLength="50" />
-          <Property Name="fecha_hora" Type="datetime" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Audit_Venta_Producto">
           <Key>
@@ -1485,6 +1373,9 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         <Function Name="GenerarEstadoResultados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Fecha" Type="date" Mode="In" />
         </Function>
+        <Function Name="GetEmpleadoById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="empleadoId" Type="int" Mode="In" />
+        </Function>
         <Function Name="HistorialAjustesCxC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="HistorialAjustesCxP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Informe_Ventas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1606,10 +1497,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Parameter Name="Id_Usuario" Type="int" Mode="In" />
         </Function>
         <Function Name="SolicitarVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="CorreoEmpleado" Type="nvarchar" Mode="In" />
-          <Parameter Name="FechaInicio" Type="date" Mode="In" />
-          <Parameter Name="FechaFin" Type="date" Mode="In" />
-          <Parameter Name="Estado" Type="varchar" Mode="In" />
+          <Parameter Name="empleado_id" Type="int" Mode="In" />
+          <Parameter Name="fecha_inicio" Type="date" Mode="In" />
+          <Parameter Name="fecha_fin" Type="date" Mode="In" />
+          <Parameter Name="dias_solicitados" Type="int" Mode="In" />
+          <Parameter Name="observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="motivo_rechazo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="top5Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaInicio" Type="date" Mode="In" />
@@ -2045,6 +1938,13 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Conta_Tra__usuar__245D67DE" FromRole="Conta_Transaccion" ToRole="Empleado" />
           <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Conta_Tra__venta__25518C17" FromRole="Conta_Transaccion" ToRole="Venta_Factura" />
         </EntityType>
+        <EntityType Name="DiasVacacionesDisponibles">
+          <Key>
+            <PropertyRef Name="empleado_id" />
+          </Key>
+          <Property Name="empleado_id" Type="Int32" Nullable="false" />
+          <Property Name="dias_disponibles" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Emp_BitacoraIngreso">
           <Key>
             <PropertyRef Name="id" />
@@ -2094,25 +1994,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Remun__emple__282DF8C2" FromRole="Emp_RemuneracionDeduccion" ToRole="Empleado" />
         </EntityType>
-        <EntityType Name="Emp_Vacaciones">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="empleado_id" Type="Int32" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
-          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="comentario" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="supervisor_id" Type="Int32" Nullable="false" />
-          <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fecha_respuesta" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Emp_Vacaciones" ToRole="Empleado" />
-          <Property Name="comentario_admin" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="dias_solicitados" Type="Int32" Nullable="false" />
-          <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="dias_vacaciones" Type="Int32" />
-        </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="id" />
@@ -2137,7 +2018,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Empleado__depart__2A164134" FromRole="Empleado" ToRole="Emp_Departamento" />
           <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__2B0A656D" FromRole="Empleado" ToRole="Emp_Puesto" />
           <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__282DF8C2" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
-          <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Empleado" ToRole="Emp_Vacaciones" />
+          <NavigationProperty Name="SolicitudesVacaciones" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Empleado" ToRole="SolicitudesVacaciones" />
           <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_us__339FAB6E" FromRole="Empleado" ToRole="Notificaciones" />
           <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_us__3587F3E0" FromRole="Empleado" ToRole="Notificaciones_usuario" />
           <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__395884C4" FromRole="Empleado" ToRole="PDA_Tarea" />
@@ -2150,7 +2031,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__4F47C5E3" FromRole="Empleado" ToRole="Ticket" />
           <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdUsu__531856C7" FromRole="Empleado" ToRole="Venta_Carrito" />
           <NavigationProperty Name="PDA_Tarea4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="Empleado" ToRole="PDA_Tarea" />
-          <NavigationProperty Name="SolicitudesVacaciones" Relationship="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" FromRole="Empleado" ToRole="SolicitudesVacaciones" />
         </EntityType>
         <EntityType Name="EntidadesFinancieras">
           <Key>
@@ -2420,6 +2300,23 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <NavigationProperty Name="Prov_Contacto" Relationship="Self.FK__Prov_Cont__prove__489AC854" FromRole="Proveedor" ToRole="Prov_Contacto" />
           <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__4A8310C6" FromRole="Proveedor" ToRole="Prov_Pago" />
           <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__4C6B5938" FromRole="Proveedor" ToRole="Prov_Producto" />
+        </EntityType>
+        <EntityType Name="SolicitudesVacaciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empleado_id" Type="Int32" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dias_solicitados" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="aprobado_por" Type="Int32" />
+          <Property Name="fecha_aprobacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="SolicitudesVacaciones" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -2787,12 +2684,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         </Association>
         <Association Name="FK__Emp_Vacac__emple__29221CFB">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-          <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
+          <End Role="SolicitudesVacaciones" Type="Self.SolicitudesVacaciones" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Empleado">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Emp_Vacaciones">
+            <Dependent Role="SolicitudesVacaciones">
               <PropertyRef Name="empleado_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -3359,12 +3256,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" />
           <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" />
           <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" />
+          <EntitySet Name="DiasVacacionesDisponibles" EntityType="Self.DiasVacacionesDisponibles" />
           <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" />
           <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" />
           <EntitySet Name="Emp_Departamento" EntityType="Self.Emp_Departamento" />
           <EntitySet Name="Emp_Puesto" EntityType="Self.Emp_Puesto" />
           <EntitySet Name="Emp_RemuneracionDeduccion" EntityType="Self.Emp_RemuneracionDeduccion" />
-          <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" />
           <EntitySet Name="EntidadesFinancieras" EntityType="Self.EntidadesFinancieras" />
           <EntitySet Name="Entregas" EntityType="Self.Entregas" />
@@ -3387,6 +3284,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySet Name="Prov_Pago" EntityType="Self.Prov_Pago" />
           <EntitySet Name="Prov_Producto" EntityType="Self.Prov_Producto" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="SolicitudesVacaciones" EntityType="Self.SolicitudesVacaciones" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" />
           <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" />
           <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" />
@@ -3467,7 +3365,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           </AssociationSet>
           <AssociationSet Name="FK__Emp_Vacac__emple__29221CFB" Association="Self.FK__Emp_Vacac__emple__29221CFB">
             <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
+            <End Role="SolicitudesVacaciones" EntitySet="SolicitudesVacaciones" />
           </AssociationSet>
           <AssociationSet Name="FK__Notificac__id_us__339FAB6E" Association="Self.FK__Notificac__id_us__339FAB6E">
             <End Role="Empleado" EntitySet="Empleado" />
@@ -3669,6 +3567,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
             <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AprobarRechazarVacaciones">
+            <Parameter Name="SolicitudId" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+            <Parameter Name="AprobadoPor" Mode="In" Type="Int32" />
+            <Parameter Name="MotivoRechazo" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="CambiarContrasenna">
             <Parameter Name="Id" Mode="InOut" Type="Int32" />
             <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
@@ -3854,6 +3758,14 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SolicitarVacaciones">
+            <Parameter Name="empleado_id" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+            <Parameter Name="dias_solicitados" Mode="In" Type="Int32" />
+            <Parameter Name="observaciones" Mode="In" Type="String" />
+            <Parameter Name="motivo_rechazo" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="top5Clientes" ReturnType="Collection(SistemaIntegralGestionModel.top5Clientes_Result)">
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
@@ -3867,23 +3779,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
           <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="DiasVacacionesDisponibles" EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" />
-          <FunctionImport Name="SolicitarVacaciones">
-            <Parameter Name="CorreoEmpleado" Mode="In" Type="String" />
-            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-            <Parameter Name="Estado" Mode="In" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="SolicitudesVacaciones" EntityType="SistemaIntegralGestionModel.SolicitudesVacaciones" />
-          <AssociationSet Name="FK__Emp_Vacac__emple__29221CFB1" Association="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="SolicitudesVacaciones" EntitySet="SolicitudesVacaciones" />
-          </AssociationSet>
-          <FunctionImport Name="AprobarRechazarVacaciones">
-            <Parameter Name="SolicitudId" Mode="In" Type="Int32" />
-            <Parameter Name="Estado" Mode="In" Type="String" />
-            <Parameter Name="AprobadoPor" Mode="In" Type="Int32" />
-            <Parameter Name="MotivoRechazo" Mode="In" Type="String" />
+          <FunctionImport Name="GetEmpleadoById" ReturnType="Collection(SistemaIntegralGestionModel.GetEmpleadoById_Result)">
+            <Parameter Name="empleadoId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="actualizaInventario_Result">
@@ -4107,42 +4004,22 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Inventario" Nullable="false" />
         </ComplexType>
-        <EntityType Name="DiasVacacionesDisponibles">
-          <Key>
-            <PropertyRef Name="empleado_id" />
-          </Key>
-          <Property Name="empleado_id" Type="Int32" Nullable="false" />
-          <Property Name="dias_disponibles" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SolicitudesVacaciones">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="empleado_id" Type="Int32" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="0" />
-          <Property Name="estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dias_solicitados" Type="Int32" />
-          <Property Name="observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="aprobado_por" Type="Int32" />
-          <Property Name="fecha_aprobacion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Empleado" Relationship="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" FromRole="SolicitudesVacaciones" ToRole="Empleado" />
-        </EntityType>
-        <Association Name="FK__Emp_Vacac__emple__29221CFB1">
-          <End Type="SistemaIntegralGestionModel.Empleado" Role="Empleado" Multiplicity="0..1" />
-          <End Type="SistemaIntegralGestionModel.SolicitudesVacaciones" Role="SolicitudesVacaciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SolicitudesVacaciones">
-              <PropertyRef Name="empleado_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="GetEmpleadoById_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="departamento_id" Nullable="true" />
+          <Property Type="Int32" Name="puesto_id" Nullable="true" />
+          <Property Type="Int32" Name="rol_id" Nullable="true" />
+          <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+          <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4239,6 +4116,14 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
                 <ScalarProperty Name="entidad_financiera" ColumnName="entidad_financiera" />
                 <ScalarProperty Name="transaccion_referencia" ColumnName="transaccion_referencia" />
                 <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiasVacacionesDisponibles">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.DiasVacacionesDisponibles">
+              <MappingFragment StoreEntitySet="DiasVacacionesDisponibles">
+                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+                <ScalarProperty Name="dias_disponibles" ColumnName="dias_disponibles" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4539,6 +4424,23 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SolicitudesVacaciones">
+            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.SolicitudesVacaciones">
+              <MappingFragment StoreEntitySet="SolicitudesVacaciones">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="motivo_rechazo" ColumnName="motivo_rechazo" />
+                <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+                <ScalarProperty Name="dias_solicitados" ColumnName="dias_solicitados" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="aprobado_por" ColumnName="aprobado_por" />
+                <ScalarProperty Name="fecha_aprobacion" ColumnName="fecha_aprobacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ticket">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket">
               <MappingFragment StoreEntitySet="Ticket">
@@ -4707,6 +4609,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ActualizarEntrega" FunctionName="SistemaIntegralGestionModel.Store.ActualizarEntrega" />
+          <FunctionImportMapping FunctionImportName="AprobarRechazarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.AprobarRechazarVacaciones" />
           <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
           <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
           <FunctionImportMapping FunctionImportName="CancelarEntrega" FunctionName="SistemaIntegralGestionModel.Store.CancelarEntrega" />
@@ -5017,6 +4920,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
           <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
           <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
+          <FunctionImportMapping FunctionImportName="SolicitarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.SolicitarVacaciones" />
           <FunctionImportMapping FunctionImportName="top5Clientes" FunctionName="SistemaIntegralGestionModel.Store.top5Clientes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.top5Clientes_Result">
@@ -5046,33 +4950,26 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="DiasVacacionesDisponibles">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.DiasVacacionesDisponibles">
-              <MappingFragment StoreEntitySet="DiasVacacionesDisponibles">
-                <ScalarProperty Name="dias_disponibles" ColumnName="dias_disponibles" />
-                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SolicitarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.SolicitarVacaciones" />
-          <EntitySetMapping Name="SolicitudesVacaciones">
-            <EntityTypeMapping TypeName="SistemaIntegralGestionModel.SolicitudesVacaciones">
-              <MappingFragment StoreEntitySet="SolicitudesVacaciones">
-                <ScalarProperty Name="fecha_aprobacion" ColumnName="fecha_aprobacion" />
-                <ScalarProperty Name="aprobado_por" ColumnName="aprobado_por" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="dias_solicitados" ColumnName="dias_solicitados" />
-                <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
-                <ScalarProperty Name="motivo_rechazo" ColumnName="motivo_rechazo" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <FunctionImportMapping FunctionImportName="GetEmpleadoById" FunctionName="SistemaIntegralGestionModel.Store.GetEmpleadoById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GetEmpleadoById_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AprobarRechazarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.AprobarRechazarVacaciones" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+                <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

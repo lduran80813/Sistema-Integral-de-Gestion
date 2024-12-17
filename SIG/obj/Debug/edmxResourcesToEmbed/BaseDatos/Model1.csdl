@@ -97,6 +97,13 @@
     <NavigationProperty Name="Empleado" Relationship="Self.FK__Conta_Tra__usuar__245D67DE" FromRole="Conta_Transaccion" ToRole="Empleado" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Conta_Tra__venta__25518C17" FromRole="Conta_Transaccion" ToRole="Venta_Factura" />
   </EntityType>
+  <EntityType Name="DiasVacacionesDisponibles">
+    <Key>
+      <PropertyRef Name="empleado_id" />
+    </Key>
+    <Property Name="empleado_id" Type="Int32" Nullable="false" />
+    <Property Name="dias_disponibles" Type="Int32" Nullable="false" />
+  </EntityType>
   <EntityType Name="Emp_BitacoraIngreso">
     <Key>
       <PropertyRef Name="id" />
@@ -146,25 +153,6 @@
     <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Remun__emple__282DF8C2" FromRole="Emp_RemuneracionDeduccion" ToRole="Empleado" />
   </EntityType>
-  <EntityType Name="Emp_Vacaciones">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="empleado_id" Type="Int32" />
-    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
-    <Property Name="fecha_fin" Type="DateTime" Precision="0" />
-    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="comentario" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-    <Property Name="supervisor_id" Type="Int32" Nullable="false" />
-    <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="fecha_respuesta" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Emp_Vacaciones" ToRole="Empleado" />
-    <Property Name="comentario_admin" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="dias_solicitados" Type="Int32" Nullable="false" />
-    <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="dias_vacaciones" Type="Int32" />
-  </EntityType>
   <EntityType Name="Empleado">
     <Key>
       <PropertyRef Name="id" />
@@ -189,7 +177,7 @@
     <NavigationProperty Name="Emp_Departamento" Relationship="Self.FK__Empleado__depart__2A164134" FromRole="Empleado" ToRole="Emp_Departamento" />
     <NavigationProperty Name="Emp_Puesto" Relationship="Self.FK__Empleado__puesto__2B0A656D" FromRole="Empleado" ToRole="Emp_Puesto" />
     <NavigationProperty Name="Emp_RemuneracionDeduccion" Relationship="Self.FK__Emp_Remun__emple__282DF8C2" FromRole="Empleado" ToRole="Emp_RemuneracionDeduccion" />
-    <NavigationProperty Name="Emp_Vacaciones" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Empleado" ToRole="Emp_Vacaciones" />
+    <NavigationProperty Name="SolicitudesVacaciones" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="Empleado" ToRole="SolicitudesVacaciones" />
     <NavigationProperty Name="Notificaciones" Relationship="Self.FK__Notificac__id_us__339FAB6E" FromRole="Empleado" ToRole="Notificaciones" />
     <NavigationProperty Name="Notificaciones_usuario" Relationship="Self.FK__Notificac__id_us__3587F3E0" FromRole="Empleado" ToRole="Notificaciones_usuario" />
     <NavigationProperty Name="PDA_Tarea" Relationship="Self.FK__PDA_Tarea__respo__395884C4" FromRole="Empleado" ToRole="PDA_Tarea" />
@@ -202,7 +190,6 @@
     <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__4F47C5E3" FromRole="Empleado" ToRole="Ticket" />
     <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdUsu__531856C7" FromRole="Empleado" ToRole="Venta_Carrito" />
     <NavigationProperty Name="PDA_Tarea4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="Empleado" ToRole="PDA_Tarea" />
-    <NavigationProperty Name="SolicitudesVacaciones" Relationship="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" FromRole="Empleado" ToRole="SolicitudesVacaciones" />
   </EntityType>
   <EntityType Name="EntidadesFinancieras">
     <Key>
@@ -472,6 +459,23 @@
     <NavigationProperty Name="Prov_Contacto" Relationship="Self.FK__Prov_Cont__prove__489AC854" FromRole="Proveedor" ToRole="Prov_Contacto" />
     <NavigationProperty Name="Prov_Pago" Relationship="Self.FK__Prov_Pago__prove__4A8310C6" FromRole="Proveedor" ToRole="Prov_Pago" />
     <NavigationProperty Name="Prov_Producto" Relationship="Self.FK__Prov_Prod__prove__4C6B5938" FromRole="Proveedor" ToRole="Prov_Producto" />
+  </EntityType>
+  <EntityType Name="SolicitudesVacaciones">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="empleado_id" Type="Int32" />
+    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dias_solicitados" Type="Int32" />
+    <Property Name="observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="aprobado_por" Type="Int32" />
+    <Property Name="fecha_aprobacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FK__Emp_Vacac__emple__29221CFB" FromRole="SolicitudesVacaciones" ToRole="Empleado" />
   </EntityType>
   <EntityType Name="Ticket">
     <Key>
@@ -839,12 +843,12 @@
   </Association>
   <Association Name="FK__Emp_Vacac__emple__29221CFB">
     <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
-    <End Role="Emp_Vacaciones" Type="Self.Emp_Vacaciones" Multiplicity="*" />
+    <End Role="SolicitudesVacaciones" Type="Self.SolicitudesVacaciones" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empleado">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="Emp_Vacaciones">
+      <Dependent Role="SolicitudesVacaciones">
         <PropertyRef Name="empleado_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -1411,12 +1415,12 @@
     <EntitySet Name="Conta_CxP" EntityType="Self.Conta_CxP" />
     <EntitySet Name="Conta_TipoTransaccion" EntityType="Self.Conta_TipoTransaccion" />
     <EntitySet Name="Conta_Transaccion" EntityType="Self.Conta_Transaccion" />
+    <EntitySet Name="DiasVacacionesDisponibles" EntityType="Self.DiasVacacionesDisponibles" />
     <EntitySet Name="Emp_BitacoraIngreso" EntityType="Self.Emp_BitacoraIngreso" />
     <EntitySet Name="Emp_ContactoEmergencia" EntityType="Self.Emp_ContactoEmergencia" />
     <EntitySet Name="Emp_Departamento" EntityType="Self.Emp_Departamento" />
     <EntitySet Name="Emp_Puesto" EntityType="Self.Emp_Puesto" />
     <EntitySet Name="Emp_RemuneracionDeduccion" EntityType="Self.Emp_RemuneracionDeduccion" />
-    <EntitySet Name="Emp_Vacaciones" EntityType="Self.Emp_Vacaciones" />
     <EntitySet Name="Empleado" EntityType="Self.Empleado" />
     <EntitySet Name="EntidadesFinancieras" EntityType="Self.EntidadesFinancieras" />
     <EntitySet Name="Entregas" EntityType="Self.Entregas" />
@@ -1439,6 +1443,7 @@
     <EntitySet Name="Prov_Pago" EntityType="Self.Prov_Pago" />
     <EntitySet Name="Prov_Producto" EntityType="Self.Prov_Producto" />
     <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+    <EntitySet Name="SolicitudesVacaciones" EntityType="Self.SolicitudesVacaciones" />
     <EntitySet Name="Ticket" EntityType="Self.Ticket" />
     <EntitySet Name="Ticket_Estado" EntityType="Self.Ticket_Estado" />
     <EntitySet Name="Ticket_Prioridad" EntityType="Self.Ticket_Prioridad" />
@@ -1519,7 +1524,7 @@
     </AssociationSet>
     <AssociationSet Name="FK__Emp_Vacac__emple__29221CFB" Association="Self.FK__Emp_Vacac__emple__29221CFB">
       <End Role="Empleado" EntitySet="Empleado" />
-      <End Role="Emp_Vacaciones" EntitySet="Emp_Vacaciones" />
+      <End Role="SolicitudesVacaciones" EntitySet="SolicitudesVacaciones" />
     </AssociationSet>
     <AssociationSet Name="FK__Notificac__id_us__339FAB6E" Association="Self.FK__Notificac__id_us__339FAB6E">
       <End Role="Empleado" EntitySet="Empleado" />
@@ -1721,6 +1726,12 @@
       <Parameter Name="NombreDestinatario" Mode="In" Type="String" />
       <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="AprobarRechazarVacaciones">
+      <Parameter Name="SolicitudId" Mode="In" Type="Int32" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+      <Parameter Name="AprobadoPor" Mode="In" Type="Int32" />
+      <Parameter Name="MotivoRechazo" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="CambiarContrasenna">
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
       <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
@@ -1906,6 +1917,14 @@
       <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SolicitarVacaciones">
+      <Parameter Name="empleado_id" Mode="In" Type="Int32" />
+      <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="dias_solicitados" Mode="In" Type="Int32" />
+      <Parameter Name="observaciones" Mode="In" Type="String" />
+      <Parameter Name="motivo_rechazo" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="top5Clientes" ReturnType="Collection(SistemaIntegralGestionModel.top5Clientes_Result)">
       <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
       <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
@@ -1919,23 +1938,8 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
-    <EntitySet Name="DiasVacacionesDisponibles" EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" />
-    <FunctionImport Name="SolicitarVacaciones">
-      <Parameter Name="CorreoEmpleado" Mode="In" Type="String" />
-      <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
-      <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
-      <Parameter Name="Estado" Mode="In" Type="String" />
-    </FunctionImport>
-    <EntitySet Name="SolicitudesVacaciones" EntityType="SistemaIntegralGestionModel.SolicitudesVacaciones" />
-    <AssociationSet Name="FK__Emp_Vacac__emple__29221CFB1" Association="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1">
-      <End Role="Empleado" EntitySet="Empleado" />
-      <End Role="SolicitudesVacaciones" EntitySet="SolicitudesVacaciones" />
-    </AssociationSet>
-    <FunctionImport Name="AprobarRechazarVacaciones">
-      <Parameter Name="SolicitudId" Mode="In" Type="Int32" />
-      <Parameter Name="Estado" Mode="In" Type="String" />
-      <Parameter Name="AprobadoPor" Mode="In" Type="Int32" />
-      <Parameter Name="MotivoRechazo" Mode="In" Type="String" />
+    <FunctionImport Name="GetEmpleadoById" ReturnType="Collection(SistemaIntegralGestionModel.GetEmpleadoById_Result)">
+      <Parameter Name="empleadoId" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
@@ -2159,40 +2163,20 @@
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
   </ComplexType>
-  <EntityType Name="DiasVacacionesDisponibles">
-    <Key>
-      <PropertyRef Name="empleado_id" />
-    </Key>
-    <Property Name="empleado_id" Type="Int32" Nullable="false" />
-    <Property Name="dias_disponibles" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SolicitudesVacaciones">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="empleado_id" Type="Int32" />
-    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
-    <Property Name="fecha_fin" Type="DateTime" Precision="0" />
-    <Property Name="estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="motivo_rechazo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="fecha_solicitud" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="dias_solicitados" Type="Int32" />
-    <Property Name="observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="aprobado_por" Type="Int32" />
-    <Property Name="fecha_aprobacion" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Empleado" Relationship="SistemaIntegralGestionModel.FK__Emp_Vacac__emple__29221CFB1" FromRole="SolicitudesVacaciones" ToRole="Empleado" />
-  </EntityType>
-  <Association Name="FK__Emp_Vacac__emple__29221CFB1">
-    <End Type="SistemaIntegralGestionModel.Empleado" Role="Empleado" Multiplicity="0..1" />
-    <End Type="SistemaIntegralGestionModel.SolicitudesVacaciones" Role="SolicitudesVacaciones" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Empleado">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="SolicitudesVacaciones">
-        <PropertyRef Name="empleado_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="GetEmpleadoById_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="apellidos" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="numero_identificacion" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="fecha_nacimiento" Nullable="true" />
+    <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="departamento_id" Nullable="true" />
+    <Property Type="Int32" Name="puesto_id" Nullable="true" />
+    <Property Type="Int32" Name="rol_id" Nullable="true" />
+    <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
+    <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
+    <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
+  </ComplexType>
 </Schema>

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,76 +20,143 @@ namespace SIG.Controllers
             _vacacionesService = new VacacionesModel();
         }
 
-        /// <summary>
-        /// Muestra el formulario para solicitar vacaciones.
-        /// </summary>
-        public ActionResult Solicitar(string correo)
+        public ActionResult Solicitar()
         {
-            try
-            {
-                using (var context = new SistemaIntegralGestionEntities())
-                {
-                    // Buscar empleado por correo
-                    var empleado = context.Empleado.FirstOrDefault(e => e.correo_electronico == correo);
-                    if (empleado == null)
-                    {
-                        TempData["MensajeError"] = "No se encontró un empleado con el correo proporcionado.";
-                        return RedirectToAction("Solicitar");
-                    }
-
-                    // Crear el modelo para la vista
-                    var model = new Vacaciones
-                    {
-                        EmpleadoId = empleado.id,
-                        CorreoEmpleado = correo
-                    };
-
-                    return View(model); // Renderizar la vista con el modelo
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["MensajeError"] = $"Error al buscar el empleado: {ex.Message}";
-                return RedirectToAction("Solicitar");
-            }
+            return View();
         }
 
-        /// <summary>
-        /// Procesa la solicitud de vacaciones enviada por el formulario.
-        /// </summary>
         [HttpPost]
-        public ActionResult Solicitar(string correoEmpleado, DateTime fechaInicio, DateTime fechaFin, string observaciones)
+        [ValidateAntiForgeryToken]
+        public ActionResult Solicitar(string correoElectronico, DateTime fechaInicio, DateTime fechaFin, string observaciones)
         {
             try
             {
-                if (string.IsNullOrEmpty(correoEmpleado))
+                // Verificar si el correo electrónico es válido
+                if (string.IsNullOrEmpty(correoElectronico))
                 {
-                    TempData["MensajeError"] = "El correo del empleado es obligatorio.";
+                    TempData["ErrorMessage"] = "El correo electrónico es obligatorio.";
                     return RedirectToAction("Solicitar");
                 }
 
-                // Llama al servicio para procesar la solicitud de vacaciones
-                string resultado = _vacacionesService.SolicitarVacaciones(correoEmpleado, fechaInicio, fechaFin, observaciones);
+                // Obtener el empleadoId usando el correo electrónico
+                int empleadoId = ObtenerEmpleadoId(correoElectronico);
 
-                if (resultado == "Éxito")
+                if (empleadoId == 0)
                 {
-                    TempData["MensajeExito"] = "Solicitud registrada correctamente.";
+                    TempData["ErrorMessage"] = "No se encontró un empleado con ese correo electrónico.";
+                    return RedirectToAction("Solicitar");
+                }
+
+                // Verificar si ya hay una solicitud de vacaciones en proceso
+                using (var context = new SistemaIntegralGestionEntities())
+                {
+                    var solicitudExistente = context.SolicitudesVacaciones
+                        .FirstOrDefault(s => s.empleado_id == empleadoId && s.estado == "Pendiente");
+
+                    if (solicitudExistente != null)
+                    {
+                        TempData["ErrorMessage"] = "Ya tienes una solicitud de vacaciones en proceso. No puedes realizar una nueva solicitud hasta que se resuelva la actual.";
+                        return RedirectToAction("Solicitar");
+                    }
+                }
+
+                // Lógica para calcular los días solicitados (si es necesario)
+                int diasSolicitados = (fechaFin - fechaInicio).Days + 1;
+
+                // Llamar al servicio para realizar la solicitud de vacaciones
+                var result = _vacacionesService.SolicitarVacaciones(empleadoId, fechaInicio, fechaFin, diasSolicitados, observaciones, null);
+
+                if (result)
+                {
+                    TempData["SuccessMessage"] = "Solicitud de vacaciones realizada con éxito.";
                 }
                 else
                 {
-                    TempData["MensajeError"] = resultado; // Mostrar el error devuelto por el servicio
+                    TempData["ErrorMessage"] = "Error al procesar la solicitud de vacaciones.";
                 }
 
-                return RedirectToAction("Solicitar");
+                return RedirectToAction("Solicitar"); // O cualquier otra acción a la que desees redirigir
             }
             catch (Exception ex)
             {
-                TempData["MensajeError"] = $"Error: {ex.Message}";
+                TempData["ErrorMessage"] = "Ocurrió un error al procesar la solicitud: " + ex.Message;
                 return RedirectToAction("Solicitar");
             }
         }
 
+        // Método auxiliar para obtener el id del empleado
+        public int ObtenerEmpleadoId(string correoElectronico)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var empleado = context.Empleado
+                    .FirstOrDefault(e => e.correo_electronico == correoElectronico);
 
+                return empleado?.id ?? 0; // Devuelve el id del empleado o 0 si no lo encuentra
+            }
+        }
 
+        public ActionResult RevisarPendientes()
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var solicitudes = context.SolicitudesVacaciones.ToList(); // Obtener todas las solicitudes de vacaciones
+                return View(solicitudes);
+            }
+        }
+
+        public ActionResult AprobarRechazar(int solicitudId)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var solicitud = context.SolicitudesVacaciones
+                    .FirstOrDefault(s => s.id == solicitudId);
+
+                if (solicitud == null)
+                {
+                    TempData["ErrorMessage"] = "La solicitud de vacaciones no existe.";
+                    return RedirectToAction("VerSolicitudesVacaciones");
+                }
+
+                return View(solicitud);
+            }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AprobarRechazar(int solicitudId, string estado, string motivoRechazo)
+        {
+            try
+            {
+                // Verificar que el estado es válido
+                if (string.IsNullOrEmpty(estado) || (estado != "Aprobado" && estado != "Rechazado"))
+                {
+                    TempData["ErrorMessage"] = "Estado no válido.";
+                    return RedirectToAction("VerSolicitudesVacaciones");
+                }
+
+                // Aquí llamamos al método que obtiene el empleadoId a través del correo electrónico u otro mecanismo
+                string correoAdmin = "admin@dominio.com"; // Asigna el correo del administrador de alguna forma (por ejemplo, desde la base de datos)
+                int administradorId = ObtenerEmpleadoId(correoAdmin); // Suponiendo que tienes el correo del administrador
+
+                // Llamar al servicio para aprobar o rechazar la solicitud
+                var resultado = _vacacionesService.AprobarRechazarVac(solicitudId, estado, administradorId, motivoRechazo);
+
+                if (resultado)
+                {
+                    TempData["SuccessMessage"] = "Solicitud procesada con éxito.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Error al procesar la solicitud.";
+                }
+
+                return RedirectToAction("VerSolicitudesVacaciones");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocurrió un error: " + ex.Message;
+                return RedirectToAction("VerSolicitudesVacaciones");
+            }
+        }
     }
-}
+    }
