@@ -31,14 +31,13 @@ namespace SIG.Controllers
         {
             try
             {
-                // Verificar si el correo electrónico es válido
+
                 if (string.IsNullOrEmpty(correoElectronico))
                 {
                     TempData["ErrorMessage"] = "El correo electrónico es obligatorio.";
                     return RedirectToAction("Solicitar");
                 }
 
-                // Obtener el empleadoId usando el correo electrónico
                 int empleadoId = ObtenerEmpleadoId(correoElectronico);
 
                 if (empleadoId == 0)
@@ -47,7 +46,6 @@ namespace SIG.Controllers
                     return RedirectToAction("Solicitar");
                 }
 
-                // Verificar si ya hay una solicitud de vacaciones en proceso
                 using (var context = new SistemaIntegralGestionEntities())
                 {
                     var solicitudExistente = context.SolicitudesVacaciones
@@ -60,10 +58,9 @@ namespace SIG.Controllers
                     }
                 }
 
-                // Lógica para calcular los días solicitados (si es necesario)
+
                 int diasSolicitados = (fechaFin - fechaInicio).Days + 1;
 
-                // Llamar al servicio para realizar la solicitud de vacaciones
                 var result = _vacacionesService.SolicitarVacaciones(empleadoId, fechaInicio, fechaFin, diasSolicitados, observaciones, null);
 
                 if (result)
@@ -75,7 +72,7 @@ namespace SIG.Controllers
                     TempData["ErrorMessage"] = "Error al procesar la solicitud de vacaciones.";
                 }
 
-                return RedirectToAction("Solicitar"); // O cualquier otra acción a la que desees redirigir
+                return RedirectToAction("Solicitar"); 
             }
             catch (Exception ex)
             {
@@ -84,7 +81,7 @@ namespace SIG.Controllers
             }
         }
 
-        // Método auxiliar para obtener el id del empleado
+
         public int ObtenerEmpleadoId(string correoElectronico)
         {
             using (var context = new SistemaIntegralGestionEntities())
@@ -92,7 +89,7 @@ namespace SIG.Controllers
                 var empleado = context.Empleado
                     .FirstOrDefault(e => e.correo_electronico == correoElectronico);
 
-                return empleado?.id ?? 0; // Devuelve el id del empleado o 0 si no lo encuentra
+                return empleado?.id ?? 0; 
             }
         }
 
@@ -100,7 +97,7 @@ namespace SIG.Controllers
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                var solicitudes = context.SolicitudesVacaciones.ToList(); // Obtener todas las solicitudes de vacaciones
+                var solicitudes = context.SolicitudesVacaciones.ToList(); 
                 return View(solicitudes);
             }
         }
@@ -127,18 +124,16 @@ namespace SIG.Controllers
         {
             try
             {
-                // Verificar que el estado es válido
+
                 if (string.IsNullOrEmpty(estado) || (estado != "Aprobado" && estado != "Rechazado"))
                 {
                     TempData["ErrorMessage"] = "Estado no válido.";
                     return RedirectToAction("VerSolicitudesVacaciones");
                 }
 
-                // Aquí llamamos al método que obtiene el empleadoId a través del correo electrónico u otro mecanismo
-                string correoAdmin = "admin@dominio.com"; // Asigna el correo del administrador de alguna forma (por ejemplo, desde la base de datos)
-                int administradorId = ObtenerEmpleadoId(correoAdmin); // Suponiendo que tienes el correo del administrador
+                string correoAdmin = "admin@dominio.com"; 
+                int administradorId = ObtenerEmpleadoId(correoAdmin); 
 
-                // Llamar al servicio para aprobar o rechazar la solicitud
                 var resultado = _vacacionesService.AprobarRechazarVac(solicitudId, estado, administradorId, motivoRechazo);
 
                 if (resultado)
