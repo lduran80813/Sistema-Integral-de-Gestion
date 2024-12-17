@@ -12,20 +12,22 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class CategoriaPlan
+    public partial class Emp_Capacitacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CategoriaPlan()
+        public Emp_Capacitacion()
         {
-            this.PlanDeAccion = new HashSet<PlanDeAccion>();
+            this.Emp_Capacitacion_Participantes = new HashSet<Emp_Capacitacion_Participantes>();
         }
     
-        public int Id { get; set; }
-        public string NombreCategoria { get; set; }
-        public string Descripcion { get; set; }
-        public bool Estado { get; set; }
+        public int id { get; set; }
+        public string nombre_capacitacion { get; set; }
+        public Nullable<System.DateTime> fecha_inicio { get; set; }
+        public Nullable<System.DateTime> fecha_finalizacion { get; set; }
+        public string descripcion_capacitacion { get; set; }
+        public Nullable<int> ResponsableId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanDeAccion> PlanDeAccion { get; set; }
+        public virtual ICollection<Emp_Capacitacion_Participantes> Emp_Capacitacion_Participantes { get; set; }
     }
 }

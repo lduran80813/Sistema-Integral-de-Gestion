@@ -311,3 +311,7 @@ C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\BouncyCastle.C
 C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\itextsharp.dll
 C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\BouncyCastle.Cryptography.xml
 C:\Users\Kou\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\itextsharp.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\BouncyCastle.Cryptography.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\itextsharp.dll
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\BouncyCastle.Cryptography.xml
+C:\Users\ldied\OneDrive\Documents\GitHub\Sistema-Integral-de-Gestion\SIG\bin\itextsharp.xml

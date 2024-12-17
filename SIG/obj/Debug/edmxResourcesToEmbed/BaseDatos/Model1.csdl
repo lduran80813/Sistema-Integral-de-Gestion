@@ -193,6 +193,7 @@
     <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket__id_usuar__503BEA1C" FromRole="Empleado" ToRole="Ticket" />
     <NavigationProperty Name="Venta_Carrito" Relationship="Self.FK__Venta_Car__IdUsu__540C7B00" FromRole="Empleado" ToRole="Venta_Carrito" />
     <NavigationProperty Name="PDA_Tarea4" Relationship="Self.FK_PDA_Tarea_Empleado" FromRole="Empleado" ToRole="PDA_Tarea" />
+    <NavigationProperty Name="Emp_Capacitacion_Participantes" Relationship="SistemaIntegralGestionModel.FK__Emp_Capac__parti__1E6F845E" FromRole="Empleado" ToRole="Emp_Capacitacion_Participantes" />
   </EntityType>
   <EntityType Name="EntidadesFinancieras">
     <Key>
@@ -1909,6 +1910,16 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Emp_Capacitacion" EntityType="SistemaIntegralGestionModel.Emp_Capacitacion" />
+    <EntitySet Name="Emp_Capacitacion_Participantes" EntityType="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes" />
+    <AssociationSet Name="FK__Emp_Capac__capac__1D7B6025" Association="SistemaIntegralGestionModel.FK__Emp_Capac__capac__1D7B6025">
+      <End Role="Emp_Capacitacion" EntitySet="Emp_Capacitacion" />
+      <End Role="Emp_Capacitacion_Participantes" EntitySet="Emp_Capacitacion_Participantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Emp_Capac__parti__1E6F845E" Association="SistemaIntegralGestionModel.FK__Emp_Capac__parti__1E6F845E">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Emp_Capacitacion_Participantes" EntitySet="Emp_Capacitacion_Participantes" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2131,4 +2142,52 @@
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Emp_Capacitacion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_capacitacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Precision="0" />
+    <Property Name="fecha_finalizacion" Type="DateTime" Precision="0" />
+    <Property Name="descripcion_capacitacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ResponsableId" Type="Int32" />
+    <NavigationProperty Name="Emp_Capacitacion_Participantes" Relationship="SistemaIntegralGestionModel.FK__Emp_Capac__capac__1D7B6025" FromRole="Emp_Capacitacion" ToRole="Emp_Capacitacion_Participantes" />
+  </EntityType>
+  <EntityType Name="Emp_Capacitacion_Participantes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="capacitacion_id" Type="Int32" />
+    <Property Name="participante_id" Type="Int32" />
+    <Property Name="calificacion" Type="Int32" />
+    <Property Name="retroalimentacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Emp_Capacitacion" Relationship="SistemaIntegralGestionModel.FK__Emp_Capac__capac__1D7B6025" FromRole="Emp_Capacitacion_Participantes" ToRole="Emp_Capacitacion" />
+    <NavigationProperty Name="Empleado" Relationship="SistemaIntegralGestionModel.FK__Emp_Capac__parti__1E6F845E" FromRole="Emp_Capacitacion_Participantes" ToRole="Empleado" />
+  </EntityType>
+  <Association Name="FK__Emp_Capac__capac__1D7B6025">
+    <End Type="SistemaIntegralGestionModel.Emp_Capacitacion" Role="Emp_Capacitacion" Multiplicity="0..1" />
+    <End Type="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes" Role="Emp_Capacitacion_Participantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emp_Capacitacion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_Capacitacion_Participantes">
+        <PropertyRef Name="capacitacion_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Emp_Capac__parti__1E6F845E">
+    <End Type="SistemaIntegralGestionModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+    <End Type="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes" Role="Emp_Capacitacion_Participantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Emp_Capacitacion_Participantes">
+        <PropertyRef Name="participante_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

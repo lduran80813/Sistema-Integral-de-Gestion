@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d2d7bfb4dc74d799d568db926a5c91d" Name="Diagram1">
+      <Diagram DiagramId="ad634fbffcc246cab71e987d3d000c28" Name="Diagram1">
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="0.75" PointY="22.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Catalogo_Compra" Width="1.5" PointX="3.75" PointY="29.25" IsExpanded="true" />
@@ -119,6 +119,10 @@
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__tipo___57DD0BE4" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Fac__produ__59C55456" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Venta_Pro__estad__5AB9788F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Capacitacion" Width="1.5" PointX="15" PointY="12.375" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes" Width="1.5" PointX="17.25" PointY="25.375" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Capac__capac__1D7B6025" />
+        <AssociationConnector Association="SistemaIntegralGestionModel.FK__Emp_Capac__parti__1E6F845E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

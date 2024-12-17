@@ -12,14 +12,15 @@ namespace SIG.BaseDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadosFinancieros
+    public partial class Emp_Capacitacion_Participantes
     {
-        public int Id { get; set; }
-        public int ProveedorId { get; set; }
-        public decimal Saldo { get; set; }
-        public string Estado { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public int id { get; set; }
+        public Nullable<int> capacitacion_id { get; set; }
+        public Nullable<int> participante_id { get; set; }
+        public Nullable<int> calificacion { get; set; }
+        public string retroalimentacion { get; set; }
     
-        public virtual Proveedor Proveedor { get; set; }
+        public virtual Emp_Capacitacion Emp_Capacitacion { get; set; }
+        public virtual Empleado Empleado { get; set; }
     }
 }
