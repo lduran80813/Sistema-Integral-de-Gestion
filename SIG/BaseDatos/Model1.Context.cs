@@ -38,10 +38,13 @@ namespace SIG.BaseDatos
         public virtual DbSet<Conta_Transaccion> Conta_Transaccion { get; set; }
         public virtual DbSet<DiasVacacionesDisponibles> DiasVacacionesDisponibles { get; set; }
         public virtual DbSet<Emp_BitacoraIngreso> Emp_BitacoraIngreso { get; set; }
+        public virtual DbSet<Emp_Capacitacion> Emp_Capacitacion { get; set; }
+        public virtual DbSet<Emp_Capacitacion_Participantes> Emp_Capacitacion_Participantes { get; set; }
         public virtual DbSet<Emp_ContactoEmergencia> Emp_ContactoEmergencia { get; set; }
         public virtual DbSet<Emp_Departamento> Emp_Departamento { get; set; }
         public virtual DbSet<Emp_Puesto> Emp_Puesto { get; set; }
         public virtual DbSet<Emp_RemuneracionDeduccion> Emp_RemuneracionDeduccion { get; set; }
+        public virtual DbSet<Emp_Vacaciones> Emp_Vacaciones { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<EntidadesFinancieras> EntidadesFinancieras { get; set; }
         public virtual DbSet<Entregas> Entregas { get; set; }
@@ -79,8 +82,6 @@ namespace SIG.BaseDatos
         public virtual DbSet<Venta_ProductoEstado> Venta_ProductoEstado { get; set; }
         public virtual DbSet<Venta_Tipo> Venta_Tipo { get; set; }
         public virtual DbSet<Audit_Venta_Producto> Audit_Venta_Producto { get; set; }
-        public virtual DbSet<Emp_Capacitacion> Emp_Capacitacion { get; set; }
-        public virtual DbSet<Emp_Capacitacion_Participantes> Emp_Capacitacion_Participantes { get; set; }
     
         public virtual ObjectResult<actualizaInventario_Result> actualizaInventario(Nullable<int> idProducto, Nullable<int> nuevoInventario, string motivo, Nullable<int> idUsuario)
         {
@@ -369,6 +370,15 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Fecha", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GenerarEstadoResultados_Result>("GenerarEstadoResultados", fechaParameter);
+        }
+    
+        public virtual ObjectResult<GetEmpleadoById_Result> GetEmpleadoById(Nullable<int> empleadoId)
+        {
+            var empleadoIdParameter = empleadoId.HasValue ?
+                new ObjectParameter("empleadoId", empleadoId) :
+                new ObjectParameter("empleadoId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEmpleadoById_Result>("GetEmpleadoById", empleadoIdParameter);
         }
     
         public virtual ObjectResult<HistorialAjustesCxC_Result> HistorialAjustesCxC()
@@ -860,15 +870,6 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
-        }
-    
-        public virtual ObjectResult<GetEmpleadoById_Result> GetEmpleadoById(Nullable<int> empleadoId)
-        {
-            var empleadoIdParameter = empleadoId.HasValue ?
-                new ObjectParameter("empleadoId", empleadoId) :
-                new ObjectParameter("empleadoId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEmpleadoById_Result>("GetEmpleadoById", empleadoIdParameter);
         }
     }
 }
