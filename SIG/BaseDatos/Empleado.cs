@@ -18,9 +18,9 @@ namespace SIG.BaseDatos
         public Empleado()
         {
             this.Conta_Transaccion = new HashSet<Conta_Transaccion>();
+            this.Emp_Capacitacion_Participantes = new HashSet<Emp_Capacitacion_Participantes>();
             this.Emp_ContactoEmergencia = new HashSet<Emp_ContactoEmergencia>();
             this.Emp_RemuneracionDeduccion = new HashSet<Emp_RemuneracionDeduccion>();
-            this.SolicitudesVacaciones = new HashSet<SolicitudesVacaciones>();
             this.Notificaciones = new HashSet<Notificaciones>();
             this.Notificaciones_usuario = new HashSet<Notificaciones_usuario>();
             this.PDA_Tarea = new HashSet<PDA_Tarea>();
@@ -29,11 +29,11 @@ namespace SIG.BaseDatos
             this.PDA_Tarea3 = new HashSet<PDA_Tarea>();
             this.PlanDeAccion = new HashSet<PlanDeAccion>();
             this.Prov_Pago = new HashSet<Prov_Pago>();
+            this.SolicitudesVacaciones = new HashSet<SolicitudesVacaciones>();
             this.Ticket = new HashSet<Ticket>();
             this.Ticket1 = new HashSet<Ticket>();
             this.Venta_Carrito = new HashSet<Venta_Carrito>();
             this.PDA_Tarea4 = new HashSet<PDA_Tarea>();
-            this.Emp_Capacitacion_Participantes = new HashSet<Emp_Capacitacion_Participantes>();
         }
     
         public int id { get; set; }
@@ -55,13 +55,13 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Conta_Transaccion> Conta_Transaccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Emp_Capacitacion_Participantes> Emp_Capacitacion_Participantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emp_ContactoEmergencia> Emp_ContactoEmergencia { get; set; }
         public virtual Emp_Departamento Emp_Departamento { get; set; }
         public virtual Emp_Puesto Emp_Puesto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emp_RemuneracionDeduccion> Emp_RemuneracionDeduccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolicitudesVacaciones> SolicitudesVacaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notificaciones> Notificaciones { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -79,6 +79,8 @@ namespace SIG.BaseDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prov_Pago> Prov_Pago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SolicitudesVacaciones> SolicitudesVacaciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Ticket1 { get; set; }
@@ -86,7 +88,5 @@ namespace SIG.BaseDatos
         public virtual ICollection<Venta_Carrito> Venta_Carrito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PDA_Tarea> PDA_Tarea4 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Emp_Capacitacion_Participantes> Emp_Capacitacion_Participantes { get; set; }
     }
 }

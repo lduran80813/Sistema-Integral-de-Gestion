@@ -1,3 +1,4 @@
+using SIG.BaseDatos;
 using SIG.Entidades;
 using SIG.Models;
 using System;
@@ -13,20 +14,19 @@ namespace SIG.Controllers
     public class EmpleadosController : Controller
     {
         private readonly EmpleadosModel _empleadosModel;
+        private readonly VacacionesModel _vacacionesService;
 
         public EmpleadosController()
         {
             _empleadosModel = new EmpleadosModel();
+            _vacacionesService = new VacacionesModel();
         }
 
 
         // GET: Empleados
         public ActionResult Registro()
-        private readonly VacacionesModel _vacacionesService;
-
-        public EmpleadosController()
         {
-            _vacacionesService = new VacacionesModel();
+            return View();
         }
 
         public ActionResult Solicitar()

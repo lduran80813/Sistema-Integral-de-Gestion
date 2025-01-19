@@ -387,6 +387,9 @@
     <Compile Include="BaseDatos\Emp_RemuneracionDeduccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\Emp_Vacaciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\EntidadesFinancieras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

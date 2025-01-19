@@ -94,12 +94,43 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DiasVacacionesDisponibles">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.DiasVacacionesDisponibles">
+        <MappingFragment StoreEntitySet="DiasVacacionesDisponibles">
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="dias_disponibles" ColumnName="dias_disponibles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Emp_BitacoraIngreso">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_BitacoraIngreso">
         <MappingFragment StoreEntitySet="Emp_BitacoraIngreso">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
           <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Capacitacion">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Capacitacion">
+        <MappingFragment StoreEntitySet="Emp_Capacitacion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre_capacitacion" ColumnName="nombre_capacitacion" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+          <ScalarProperty Name="descripcion_capacitacion" ColumnName="descripcion_capacitacion" />
+          <ScalarProperty Name="ResponsableId" ColumnName="ResponsableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Capacitacion_Participantes">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes">
+        <MappingFragment StoreEntitySet="Emp_Capacitacion_Participantes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="capacitacion_id" ColumnName="capacitacion_id" />
+          <ScalarProperty Name="participante_id" ColumnName="participante_id" />
+          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
+          <ScalarProperty Name="retroalimentacion" ColumnName="retroalimentacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -401,6 +432,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SolicitudesVacaciones">
+      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.SolicitudesVacaciones">
+        <MappingFragment StoreEntitySet="SolicitudesVacaciones">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="motivo_rechazo" ColumnName="motivo_rechazo" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="dias_solicitados" ColumnName="dias_solicitados" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="aprobado_por" ColumnName="aprobado_por" />
+          <ScalarProperty Name="fecha_aprobacion" ColumnName="fecha_aprobacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Ticket">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Ticket">
         <MappingFragment StoreEntitySet="Ticket">
@@ -569,6 +617,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ActualizarEntrega" FunctionName="SistemaIntegralGestionModel.Store.ActualizarEntrega" />
+    <FunctionImportMapping FunctionImportName="AprobarRechazarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.AprobarRechazarVacaciones" />
     <FunctionImportMapping FunctionImportName="CambiarContrasenna" FunctionName="SistemaIntegralGestionModel.Store.CambiarContrasenna" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoLectura" FunctionName="SistemaIntegralGestionModel.Store.CambiarEstadoLectura" />
     <FunctionImportMapping FunctionImportName="CancelarEntrega" FunctionName="SistemaIntegralGestionModel.Store.CancelarEntrega" />
@@ -728,6 +777,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetEmpleadoById" FunctionName="SistemaIntegralGestionModel.Store.GetEmpleadoById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.GetEmpleadoById_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+          <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="departamento_id" ColumnName="departamento_id" />
+          <ScalarProperty Name="puesto_id" ColumnName="puesto_id" />
+          <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+          <ScalarProperty Name="estado_empleado" ColumnName="estado_empleado" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="HistorialAjustesCxC" FunctionName="SistemaIntegralGestionModel.Store.HistorialAjustesCxC">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.HistorialAjustesCxC_Result">
@@ -879,6 +948,7 @@
     <FunctionImportMapping FunctionImportName="registrarEmpleado" FunctionName="SistemaIntegralGestionModel.Store.registrarEmpleado" />
     <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
     <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
+    <FunctionImportMapping FunctionImportName="SolicitarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.SolicitarVacaciones" />
     <FunctionImportMapping FunctionImportName="top5Clientes" FunctionName="SistemaIntegralGestionModel.Store.top5Clientes">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.top5Clientes_Result">
@@ -908,28 +978,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="Emp_Capacitacion">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Capacitacion">
-        <MappingFragment StoreEntitySet="Emp_Capacitacion">
-          <ScalarProperty Name="ResponsableId" ColumnName="ResponsableId" />
-          <ScalarProperty Name="descripcion_capacitacion" ColumnName="descripcion_capacitacion" />
-          <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
-          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-          <ScalarProperty Name="nombre_capacitacion" ColumnName="nombre_capacitacion" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Emp_Capacitacion_Participantes">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Capacitacion_Participantes">
-        <MappingFragment StoreEntitySet="Emp_Capacitacion_Participantes">
-          <ScalarProperty Name="retroalimentacion" ColumnName="retroalimentacion" />
-          <ScalarProperty Name="calificacion" ColumnName="calificacion" />
-          <ScalarProperty Name="participante_id" ColumnName="participante_id" />
-          <ScalarProperty Name="capacitacion_id" ColumnName="capacitacion_id" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
