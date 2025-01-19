@@ -508,6 +508,12 @@
     <Compile Include="BaseDatos\SolicitudesVacaciones.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\sp_ListarTodasVacaciones_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\sp_ObtenerHistorialVacaciones_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -692,6 +698,7 @@
     <Content Include="root\dist\js\pages\dashboard.js" />
     <Content Include="root\dist\js\pages\dashboard2.js" />
     <Content Include="root\dist\js\pages\dashboard3.js" />
+    <Content Include="root\dist\js\solicitudVacaciones.js" />
     <Content Include="root\plugins\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="root\plugins\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="root\plugins\bootstrap\js\bootstrap.js" />
@@ -855,7 +862,6 @@
     <Content Include="Views\Login\ListarEmpleadosEliminados.cshtml" />
     <Content Include="Views\Login\Editar.cshtml" />
     <Content Include="Views\Entregas\Registrar.cshtml" />
-    <Content Include="Views\Entregas\Lista.cshtml" />
     <Content Include="Views\Contabilidad\InformeVenta.cshtml" />
     <Content Include="Views\Contabilidad\InformeVentasPDF.cshtml" />
     <Content Include="Views\Contabilidad\Inventario.cshtml" />
@@ -880,6 +886,7 @@
     <Content Include="Views\Empleados\Historial.cshtml" />
     <Content Include="Views\Empleados\RevisarPendientes.cshtml" />
     <Content Include="Views\Empleados\MisSolicitudes.cshtml" />
+    <Content Include="Views\Empleados\HistorialPorUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

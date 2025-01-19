@@ -78,7 +78,7 @@ namespace SIG.Controllers
                 return View();
             }
 
-            // Obtener el ID del usuario de la sesión
+
             if (Session["IdUsuario"] == null)
             {
                 ViewBag.msj = "Sesión expirada. Por favor, inicie sesión nuevamente.";
@@ -128,20 +128,20 @@ namespace SIG.Controllers
         [HttpPost]
         public ActionResult RestaurarEmpleado(int id)
         {
-            bool resultado = usuarioM.RestaurarEmpleado(id); // Llamar al método del servicio
+            bool resultado = usuarioM.RestaurarEmpleado(id);
 
             if (resultado)
             {
-                // Puedes agregar un mensaje de éxito aquí si lo deseas
+
                 TempData["Mensaje"] = "Empleado restaurado exitosamente.";
             }
             else
             {
-                // Puedes agregar un mensaje de error aquí si lo deseas
+
                 TempData["Mensaje"] = "No se pudo restaurar el empleado.";
             }
 
-            return RedirectToAction("ListarUsuarios"); // Redirigir a la lista de empleados
+            return RedirectToAction("ListarUsuarios"); 
         }
 
         [HttpGet]

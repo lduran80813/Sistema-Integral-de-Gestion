@@ -31,6 +31,8 @@ function eliminarEmpleado(id) {
 
 
 
+
+
 function restaurarEmpleado(id) {
     if (confirm('¿Está seguro de que desea restaurar este usuario?')) {
         window.location.href = '@Url.Action("RestaurarEmpleado", "Login")/' + id; 
@@ -51,3 +53,7 @@ function restaurarEmpleado(id) {
             "pageLength": 10,
         });
     });
+
+
+
+

@@ -216,7 +216,7 @@ namespace SIG.Models
                 return context.Adm_Rol 
                     .Select(r => new SelectListItem
                     {
-                        Value = r.id.ToString(),
+                        Text = r.id.ToString(),
                     })
                     .ToList();
             }

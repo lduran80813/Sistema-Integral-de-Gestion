@@ -45,52 +45,18 @@ namespace SIG.Models
             }
         }
 
-
-        public void AprobarRechazarVacaciones(int solicitudId, string estado, int administradorId, string motivoRechazo = null)
+        public List<Vacaciones> ListarTodasVacaciones()
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
+                var solicitudes = context.Database.SqlQuery<Vacaciones>(
+                    "EXEC sp_ListarTodasVacaciones").ToList();
 
-                var solicitudIdParam = new SqlParameter("@solicitud_id", solicitudId);
-                var estadoParam = new SqlParameter("@estado", estado);
-                var administradorIdParam = new SqlParameter("@aprobado_por", administradorId);
-                var motivoRechazoParam = new SqlParameter("@motivo_rechazo",
-                    string.IsNullOrEmpty(motivoRechazo) ? (object)DBNull.Value : motivoRechazo);
-
-
-                context.Database.ExecuteSqlCommand(
-                    "EXEC aprobarrechazarvacaciones @solicitud_id, @estado, @aprobado_por, @motivo_rechazo",
-                    solicitudIdParam, estadoParam, administradorIdParam, motivoRechazoParam);
-            
-        }
-        }
-
-        public bool AprobarRechazarVac(int solicitudId, string estado, int administradorId, string motivoRechazo)
-        {
-            try
-            {
-                using (var context = new SistemaIntegralGestionEntities())
-                {
-
-                    var solicitudIdParam = new SqlParameter("@SolicitudId", solicitudId);
-                    var estadoParam = new SqlParameter("@Estado", estado);
-                    var administradorIdParam = new SqlParameter("@AprobadoPor", administradorId);
-                    var motivoRechazoParam = new SqlParameter("@MotivoRechazo",
-                        string.IsNullOrEmpty(motivoRechazo) ? (object)DBNull.Value : motivoRechazo);
-
-                    context.Database.ExecuteSqlCommand(
-                        "EXEC AprobarRechazarVacaciones @SolicitudId, @Estado, @AprobadoPor, @MotivoRechazo",
-                        solicitudIdParam, estadoParam, administradorIdParam, motivoRechazoParam);
-                }
-
-                return true; 
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine($"Error al procesar la solicitud: {ex.Message}");
-                return false; 
+                return solicitudes;
             }
         }
+
+
+
     }
 }

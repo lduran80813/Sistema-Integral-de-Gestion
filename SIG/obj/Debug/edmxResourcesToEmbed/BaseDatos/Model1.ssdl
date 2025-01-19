@@ -1299,9 +1299,9 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
   </Function>
   <Function Name="AprobarRechazarVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="SolicitudId" Type="int" Mode="In" />
-    <Parameter Name="Estado" Type="nvarchar" Mode="In" />
-    <Parameter Name="AprobadoPor" Type="int" Mode="In" />
-    <Parameter Name="MotivoRechazo" Type="nvarchar" Mode="In" />
+    <Parameter Name="Estado" Type="varchar" Mode="In" />
+    <Parameter Name="MotivoRechazo" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
   </Function>
   <Function Name="CambiarContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="InOut" />
@@ -1498,6 +1498,10 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Parameter Name="dias_solicitados" Type="int" Mode="In" />
     <Parameter Name="observaciones" Type="varchar" Mode="In" />
     <Parameter Name="motivo_rechazo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_ListarTodasVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_ObtenerHistorialVacaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="empleado_id" Type="int" Mode="In" />
   </Function>
   <Function Name="top5Clientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="FechaInicio" Type="date" Mode="In" />

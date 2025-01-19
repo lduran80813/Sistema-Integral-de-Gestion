@@ -3,11 +3,13 @@ using SIG.Entidades;
 using SIG.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace SIG.Controllers
 {
@@ -26,28 +28,28 @@ namespace SIG.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Solicitar(string correoElectronico, DateTime fechaInicio, DateTime fechaFin, string observaciones)
+        public ActionResult Solicitar(string cedulaEmpleado, DateTime fechaInicio, DateTime fechaFin, string observaciones)
         {
             try
             {
-
-                if (string.IsNullOrEmpty(correoElectronico))
+                if (string.IsNullOrEmpty(cedulaEmpleado))
                 {
-                    TempData["ErrorMessage"] = "El correo electrónico es obligatorio.";
+                    TempData["ErrorMessage"] = "La cédula es obligatoria.";
                     return RedirectToAction("Solicitar");
                 }
 
-                int empleadoId = ObtenerEmpleadoId(correoElectronico);
+            
+                int empleadoId = ObtenerEmpleadoIdPorCedula(cedulaEmpleado);
 
                 if (empleadoId == 0)
                 {
-                    TempData["ErrorMessage"] = "No se encontró un empleado con ese correo electrónico.";
+                    TempData["ErrorMessage"] = "No se encontró un empleado con esa cédula.";
                     return RedirectToAction("Solicitar");
                 }
 
                 using (var context = new SistemaIntegralGestionEntities())
                 {
+                
                     var solicitudExistente = context.SolicitudesVacaciones
                         .FirstOrDefault(s => s.empleado_id == empleadoId && s.estado == "Pendiente");
 
@@ -58,10 +60,11 @@ namespace SIG.Controllers
                     }
                 }
 
-
+        
                 int diasSolicitados = (fechaFin - fechaInicio).Days + 1;
 
-                var result = _vacacionesService.SolicitarVacaciones(empleadoId, fechaInicio, fechaFin, diasSolicitados, observaciones, null);
+               
+                bool result = _vacacionesService.SolicitarVacaciones(empleadoId, fechaInicio, fechaFin, diasSolicitados, observaciones, null);
 
                 if (result)
                 {
@@ -72,7 +75,7 @@ namespace SIG.Controllers
                     TempData["ErrorMessage"] = "Error al procesar la solicitud de vacaciones.";
                 }
 
-                return RedirectToAction("Solicitar"); 
+                return RedirectToAction("Solicitar");
             }
             catch (Exception ex)
             {
@@ -82,76 +85,106 @@ namespace SIG.Controllers
         }
 
 
-        public int ObtenerEmpleadoId(string correoElectronico)
+
+        private int ObtenerEmpleadoIdPorCedula(string cedulaEmpleado)
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                var empleado = context.Empleado
-                    .FirstOrDefault(e => e.correo_electronico == correoElectronico);
-
-                return empleado?.id ?? 0; 
+                var empleado = context.Empleado.FirstOrDefault(e => e.numero_identificacion == cedulaEmpleado);
+                return empleado != null ? empleado.id : 0;
             }
         }
 
-        public ActionResult RevisarPendientes()
+
+
+
+        public ActionResult Historial()
         {
+            var solicitudes = _vacacionesService.ListarTodasVacaciones();
+            return View(solicitudes);
+        }
+
+
+        public ActionResult HistorialPorUsuario()
+        {
+            var idUsuario = Session["IdUsuario"] as int?;
+
+            if (idUsuario == null)
+            {
+                ViewBag.msj = "No estás autenticado.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            List<SIG.Entidades.Vacaciones> solicitudes = new List<SIG.Entidades.Vacaciones>();
+
             using (var context = new SistemaIntegralGestionEntities())
             {
-                var solicitudes = context.SolicitudesVacaciones.ToList(); 
-                return View(solicitudes);
+
+                var idParametro = new SqlParameter("@id_empleado", SqlDbType.Int) { Value = idUsuario };
+
+                solicitudes = context.Database.SqlQuery<SIG.Entidades.Vacaciones>(
+                    "EXEC ObtenerHistorialSolicitudesVacaciones @id_empleado", idParametro
+                ).ToList();
             }
+
+            return View(solicitudes);
         }
 
-        public ActionResult AprobarRechazar(int solicitudId)
-        {
-            using (var context = new SistemaIntegralGestionEntities())
-            {
-                var solicitud = context.SolicitudesVacaciones
-                    .FirstOrDefault(s => s.id == solicitudId);
 
-                if (solicitud == null)
-                {
-                    TempData["ErrorMessage"] = "La solicitud de vacaciones no existe.";
-                    return RedirectToAction("VerSolicitudesVacaciones");
-                }
-
-                return View(solicitud);
-            }
-        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AprobarRechazar(int solicitudId, string estado, string motivoRechazo)
+        public ActionResult AprobarRechazarVacaciones(int solicitudId, string estado, string motivoRechazo)
         {
-            try
+   
+            var rolUsuario = Session["RolUsuario"] as int?;
+
+            if (rolUsuario == null || rolUsuario != 1) 
             {
+                ViewBag.msj = "No tienes permisos para aprobar o rechazar solicitudes de vacaciones.";
+                return RedirectToAction("Index", "Home");
+            }
 
-                if (string.IsNullOrEmpty(estado) || (estado != "Aprobado" && estado != "Rechazado"))
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var solicitud = context.SolicitudesVacaciones.FirstOrDefault(s => s.id == solicitudId);
+                if (solicitud != null)
                 {
-                    TempData["ErrorMessage"] = "Estado no válido.";
-                    return RedirectToAction("VerSolicitudesVacaciones");
-                }
+                    solicitud.estado = estado;
 
-                string correoAdmin = "admin@dominio.com"; 
-                int administradorId = ObtenerEmpleadoId(correoAdmin); 
 
-                var resultado = _vacacionesService.AprobarRechazarVac(solicitudId, estado, administradorId, motivoRechazo);
+                    if (estado == "Aprobado")
+                    {
+                        solicitud.fecha_aprobacion = DateTime.Now;
+                        solicitud.aprobado_por = (int)Session["IdUsuario"];
+                    }
+                    else
+                    {
 
-                if (resultado)
-                {
-                    TempData["SuccessMessage"] = "Solicitud procesada con éxito.";
+                        if (!string.IsNullOrEmpty(motivoRechazo))
+                        {
+                            solicitud.motivo_rechazo = motivoRechazo;
+                        }
+                        else
+                        {
+                            solicitud.motivo_rechazo = "Rechazado por administración sin motivo específico"; 
+                        }
+                    }
+
+                    context.SaveChanges();
+                    ViewBag.msj = "La solicitud de vacaciones ha sido " + estado.ToLower() + " correctamente.";
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Error al procesar la solicitud.";
+                    ViewBag.msj = "La solicitud no existe.";
                 }
+            }
 
-                return RedirectToAction("VerSolicitudesVacaciones");
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = "Ocurrió un error: " + ex.Message;
-                return RedirectToAction("VerSolicitudesVacaciones");
-            }
+            return RedirectToAction("Historial", "Empleados"); 
         }
+
+
+
+
+
     }
-    }
+}

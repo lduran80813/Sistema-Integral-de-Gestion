@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SIG.Entidades.Vacaciones>
+@{
+    ViewBag.Title = "Historial de Solicitudes de Vacaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Mi Historial de Solicitudes de Vacaciones</h2>
+
+    @if (ViewBag.msj != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.msj
+        </div>
+    }
+
+    <table id="vacacionesTable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Empleado</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Días Solicitados</th>
+                <th>Estado</th>
+                <th>Fecha Solicitud</th>
+                <th>Observaciones</th>
+                <th>Motivo Rechazo</th>
+                <th>Aprobado Por</th>
+                <th>Fecha Aprobación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var solicitud in Model)
+            {
+                <tr class="@(solicitud.Estado == "Rechazado" ? "table-danger" : (solicitud.Estado == "Aprobado" ? "table-success" : ""))">
+                    <td>@solicitud.SolicitudId</td>
+                    <td>@solicitud.EmpleadoNombre</td>
+                    <td>@solicitud.FechaInicio.ToShortDateString()</td>
+                    <td>@solicitud.FechaFin.ToShortDateString()</td>
+                    <td>@solicitud.DiasSolicitados</td>
+                    <td>@solicitud.Estado</td>
+                    <td>@solicitud.FechaSolicitud.ToShortDateString()</td>
+                    <td>@solicitud.Observaciones</td>
+                    <td>@solicitud.MotivoRechazo</td>
+                    <td>@solicitud.AdministradorNombre</td>
+                    <td>
+                        @if (solicitud.FechaAprobacion.HasValue)
+                        {
+                            @solicitud.FechaAprobacion.Value.ToShortDateString()
+                        }
+                        else
+                        {
+                            @: -
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('#vacacionesTable').DataTable({
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "searching": true,
+            "lengthChange": false,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            }
+        });
+    });
+</script>
+
+

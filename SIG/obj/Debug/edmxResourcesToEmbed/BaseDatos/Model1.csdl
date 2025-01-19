@@ -1729,8 +1729,8 @@
     <FunctionImport Name="AprobarRechazarVacaciones">
       <Parameter Name="SolicitudId" Mode="In" Type="Int32" />
       <Parameter Name="Estado" Mode="In" Type="String" />
-      <Parameter Name="AprobadoPor" Mode="In" Type="Int32" />
       <Parameter Name="MotivoRechazo" Mode="In" Type="String" />
+      <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="CambiarContrasenna">
       <Parameter Name="Id" Mode="InOut" Type="Int32" />
@@ -1941,6 +1941,10 @@
     <FunctionImport Name="GetEmpleadoById" ReturnType="Collection(SistemaIntegralGestionModel.GetEmpleadoById_Result)">
       <Parameter Name="empleadoId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_ObtenerHistorialVacaciones" ReturnType="Collection(SistemaIntegralGestionModel.sp_ObtenerHistorialVacaciones_Result)">
+      <Parameter Name="empleado_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ListarTodasVacaciones" ReturnType="Collection(SistemaIntegralGestionModel.sp_ListarTodasVacaciones_Result)" />
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2178,5 +2182,35 @@
     <Property Type="Boolean" Name="estado_empleado" Nullable="true" />
     <Property Type="String" Name="usuario" Nullable="true" MaxLength="100" />
     <Property Type="Binary" Name="contrasena" Nullable="true" MaxLength="64" />
+  </ComplexType>
+  <ComplexType Name="sp_ObtenerHistorialVacaciones_Result">
+    <Property Type="Int32" Name="solicitud_id" Nullable="false" />
+    <Property Type="Int32" Name="empleado_id" Nullable="true" />
+    <Property Type="String" Name="empleado_nombre" Nullable="true" MaxLength="356" />
+    <Property Type="DateTime" Name="fecha_inicio" Nullable="true" />
+    <Property Type="DateTime" Name="fecha_fin" Nullable="true" />
+    <Property Type="String" Name="estado" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="motivo_rechazo" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="fecha_solicitud" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dias_solicitados" Nullable="true" />
+    <Property Type="String" Name="observaciones" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="aprobado_por" Nullable="true" />
+    <Property Type="String" Name="administrador_nombre" Nullable="true" MaxLength="356" />
+    <Property Type="DateTime" Name="fecha_aprobacion" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_ListarTodasVacaciones_Result">
+    <Property Type="Int32" Name="SolicitudId" Nullable="false" />
+    <Property Type="Int32" Name="EmpleadoId" Nullable="true" />
+    <Property Type="String" Name="EmpleadoNombre" Nullable="true" MaxLength="356" />
+    <Property Type="DateTime" Name="FechaInicio" Nullable="true" />
+    <Property Type="DateTime" Name="FechaFin" Nullable="true" />
+    <Property Type="Int32" Name="DiasSolicitados" Nullable="true" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaSolicitud" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="MotivoRechazo" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="AprobadoPor" Nullable="true" />
+    <Property Type="String" Name="AdministradorNombre" Nullable="true" MaxLength="356" />
+    <Property Type="DateTime" Name="FechaAprobacion" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>
