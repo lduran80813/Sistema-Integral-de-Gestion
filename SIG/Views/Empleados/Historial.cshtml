@@ -1,60 +1,108 @@
-﻿@model List<SIG.Entidades.Vacaciones>
+﻿﻿@model IEnumerable<SIG.Entidades.Vacaciones>
 @{
     ViewBag.Title = "Historial";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Historial de Vacaciones</h2>
-
-@if (Model == null || !Model.Any())
-{
-    <div class="alert alert-info">No tienes solicitudes de vacaciones en tu historial.</div>
+@{
+    var rolUsuario = Session["RolUsuario"] as int?;
 }
-else
+
+@if (ViewBag.msj != null)
 {
-    <table class="table table-bordered">
+    <div class="alert alert-info">
+        @ViewBag.msj
+    </div>
+}
+
+<div class="container mt-4">
+    <h2>Historial de Vacaciones</h2>
+
+    <table id="vacacionesTable" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
+                <th>#</th>
+                <th>Empleado</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Días Solicitados</th>
                 <th>Estado</th>
-                <th>Comentario</th>
-                <th>Fecha de Respuesta</th>
+                <th>Fecha Solicitud</th>
+                <th>Observaciones</th>
+                <th>Motivo Rechazo</th>
+                <th>Aprobado Por</th>
+                <th>Fecha Aprobación</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var solicitud in Model)
             {
-                <tr>
-                    <td>@item.FechaInicio.ToShortDateString()</td>
-                    <td>@item.FechaFin.ToShortDateString()</td>
+                <tr class="@(solicitud.Estado == "Rechazado" ? "table-danger" : (solicitud.Estado == "Aprobado" ? "table-success" : ""))">
+                    <td>@solicitud.SolicitudId</td>
+                    <td>@solicitud.EmpleadoNombre</td>
+                    <td>@solicitud.FechaInicio.ToShortDateString()</td>
+                    <td>@solicitud.FechaFin.ToShortDateString()</td>
+                    <td>@solicitud.DiasSolicitados</td>
+                    <td>@solicitud.Estado</td>
+                    <td>@solicitud.FechaSolicitud.ToShortDateString()</td>
+                    <td>@solicitud.Observaciones</td>
+                    <td>@solicitud.MotivoRechazo</td>
+                    <td>@solicitud.AdministradorNombre</td>
                     <td>
-                        @if (item.Estado == "Pendiente")
+                        @if (solicitud.FechaAprobacion.HasValue)
                         {
-                            <span class="badge badge-warning">Pendiente</span>
-                        }
-                        else if (item.Estado == "Aprobado")
-                        {
-                            <span class="badge badge-success">Aprobado</span>
-                        }
-                        else if (item.Estado == "Rechazado")
-                        {
-                            <span class="badge badge-danger">Rechazado</span>
-                        }
-                    </td>
-                    <td>@item.Comentario</td>
-                    <td>
-                        @if (item.FechaRespuesta.HasValue)
-                        {
-                            @item.FechaRespuesta.Value.ToShortDateString()
+                            @solicitud.FechaAprobacion.Value.ToShortDateString()
                         }
                         else
                         {
-                            <span class="text-muted">Pendiente</span>
+                            @:
                         }
                     </td>
+
+                    <td>
+                        @if (solicitud.Estado == "Pendiente")
+                        {
+                            <a href="@Url.Action("AprobarRechazarVacaciones", "Empleados", new { solicitudId = solicitud.SolicitudId, estado = "Aprobado" })" class="btn btn-success">Aprobar</a>
+
+                            <!-- Modal para rechazar con motivo -->
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rechazarModal_@solicitud.SolicitudId">Rechazar</button>
+
+                            <!-- Modal de confirmación de rechazo -->
+                            <div class="modal fade" id="rechazarModal_@solicitud.SolicitudId" tabindex="-1" aria-labelledby="rechazarModalLabel_@solicitud.SolicitudId" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="rechazarModalLabel_@solicitud.SolicitudId">Rechazar Solicitud</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label for="motivoRechazo">Motivo de Rechazo:</label>
+                                            <textarea id="motivoRechazo" name="motivoRechazo" class="form-control" rows="4"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <form action="@Url.Action("AprobarRechazarVacaciones", "Empleados")" method="post">
+                                                <input type="hidden" name="solicitudId" value="@solicitud.SolicitudId" />
+                                                <input type="hidden" name="estado" value="Rechazado" />
+                                                <input type="hidden" name="motivoRechazo" id="motivoRechazoInput_@solicitud.SolicitudId" value="" />
+                                                <button type="submit" class="btn btn-danger">Confirmar Rechazo</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Ya procesado</span>
+                        }
+                    </td>
+
                 </tr>
             }
         </tbody>
     </table>
-}
+</div>
+
+<script src="~/root/dist/js/solicitudVacaciones.js"></script>

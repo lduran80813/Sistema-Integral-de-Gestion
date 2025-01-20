@@ -387,9 +387,6 @@
     <Compile Include="BaseDatos\Emp_RemuneracionDeduccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseDatos\Emp_Vacaciones.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="BaseDatos\EntidadesFinancieras.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -484,6 +481,9 @@
     <Compile Include="BaseDatos\ObtenerEmpleadoPorFiltro_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\ObtenerHistorialSolicitudesVacaciones_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\ObtenerNotificaciones_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -521,6 +521,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\SolicitudesVacaciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\sp_ListarTodasVacaciones_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseDatos\sp_ObtenerHistorialVacaciones_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseDatos\Ticket.cs">
@@ -706,6 +712,7 @@
     <Content Include="root\dist\js\adminlte.js" />
     <Content Include="root\dist\js\adminlte.min.js" />
     <Content Include="root\dist\js\demo.js" />
+    <Content Include="root\dist\js\solicitudVacaciones.js" />
     <Content Include="root\dist\js\Listar.js" />
     <Content Include="root\dist\js\pages\dashboard.js" />
     <Content Include="root\dist\js\pages\dashboard2.js" />
@@ -902,6 +909,7 @@
     <Content Include="Views\Empleados\Historial.cshtml" />
     <Content Include="Views\Empleados\RevisarPendientes.cshtml" />
     <Content Include="Views\Empleados\MisSolicitudes.cshtml" />
+    <Content Include="Views\Empleados\HistorialPorUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

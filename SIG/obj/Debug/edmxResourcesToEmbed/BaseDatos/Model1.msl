@@ -173,16 +173,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Emp_Vacaciones">
-      <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Emp_Vacaciones">
-        <MappingFragment StoreEntitySet="Emp_Vacaciones">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
-          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Empleado">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Empleado">
         <MappingFragment StoreEntitySet="Empleado">
@@ -922,6 +912,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerHistorialSolicitudesVacaciones" FunctionName="SistemaIntegralGestionModel.Store.ObtenerHistorialSolicitudesVacaciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerHistorialSolicitudesVacaciones_Result">
+          <ScalarProperty Name="SolicitudId" ColumnName="SolicitudId" />
+          <ScalarProperty Name="EmpleadoNombre" ColumnName="EmpleadoNombre" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="DiasSolicitados" ColumnName="DiasSolicitados" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="MotivoRechazo" ColumnName="MotivoRechazo" />
+          <ScalarProperty Name="AdministradorNombre" ColumnName="AdministradorNombre" />
+          <ScalarProperty Name="FechaAprobacion" ColumnName="FechaAprobacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.ObtenerNotificaciones">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ObtenerNotificaciones_Result">
@@ -949,6 +956,44 @@
     <FunctionImportMapping FunctionImportName="RegistrarEntrega" FunctionName="SistemaIntegralGestionModel.Store.RegistrarEntrega" />
     <FunctionImportMapping FunctionImportName="RegistrarTransaccionesFinancieras" FunctionName="SistemaIntegralGestionModel.Store.RegistrarTransaccionesFinancieras" />
     <FunctionImportMapping FunctionImportName="SolicitarVacaciones" FunctionName="SistemaIntegralGestionModel.Store.SolicitarVacaciones" />
+    <FunctionImportMapping FunctionImportName="sp_ListarTodasVacaciones" FunctionName="SistemaIntegralGestionModel.Store.sp_ListarTodasVacaciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.sp_ListarTodasVacaciones_Result">
+          <ScalarProperty Name="SolicitudId" ColumnName="SolicitudId" />
+          <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+          <ScalarProperty Name="EmpleadoNombre" ColumnName="EmpleadoNombre" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="DiasSolicitados" ColumnName="DiasSolicitados" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+          <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+          <ScalarProperty Name="MotivoRechazo" ColumnName="MotivoRechazo" />
+          <ScalarProperty Name="AprobadoPor" ColumnName="AprobadoPor" />
+          <ScalarProperty Name="AdministradorNombre" ColumnName="AdministradorNombre" />
+          <ScalarProperty Name="FechaAprobacion" ColumnName="FechaAprobacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ObtenerHistorialVacaciones" FunctionName="SistemaIntegralGestionModel.Store.sp_ObtenerHistorialVacaciones">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.sp_ObtenerHistorialVacaciones_Result">
+          <ScalarProperty Name="solicitud_id" ColumnName="solicitud_id" />
+          <ScalarProperty Name="empleado_id" ColumnName="empleado_id" />
+          <ScalarProperty Name="empleado_nombre" ColumnName="empleado_nombre" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="motivo_rechazo" ColumnName="motivo_rechazo" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="dias_solicitados" ColumnName="dias_solicitados" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="aprobado_por" ColumnName="aprobado_por" />
+          <ScalarProperty Name="administrador_nombre" ColumnName="administrador_nombre" />
+          <ScalarProperty Name="fecha_aprobacion" ColumnName="fecha_aprobacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="top5Clientes" FunctionName="SistemaIntegralGestionModel.Store.top5Clientes">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.top5Clientes_Result">

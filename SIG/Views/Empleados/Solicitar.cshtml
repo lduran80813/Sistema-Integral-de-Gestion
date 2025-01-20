@@ -1,43 +1,48 @@
-﻿@model SIG.Entidades.Vacaciones
+﻿﻿@model SIG.Entidades.Vacaciones
 
 @{
     ViewBag.Title = "Solicitar Vacaciones";
 }
 
-<h2>Solicitar Vacaciones</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Solicitar Vacaciones</h2>
 
-<form method="post" action="@Url.Action("Solicitar", "Empleados")">
-    @Html.AntiForgeryToken()
+    <form method="post" action="@Url.Action("Solicitar", "Empleados")">
+        @Html.AntiForgeryToken()
 
-    <div class="form-group">
-        <label for="correoElectronico">Correo Electrónico</label>
-        <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" required />
-    </div>
+        <div class="form-group">
+            <label for="cedulaEmpleado">Cédula</label>
+            <input type="text" class="form-control" id="cedulaEmpleado" name="cedulaEmpleado" required />
+        </div>
 
-    <div class="form-group">
-        <label for="fechaInicio">Fecha de Inicio</label>
-        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required />
-    </div>
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required />
+        </div>
 
-    <div class="form-group">
-        <label for="fechaFin">Fecha de Fin</label>
-        <input type="date" class="form-control" id="fechaFin" name="fechaFin" required />
-    </div>
+        <div class="form-group">
+            <label for="fechaFin">Fecha de Fin</label>
+            <input type="date" class="form-control" id="fechaFin" name="fechaFin" required />
+        </div>
 
-    <div class="form-group">
-        <label for="observaciones">Observaciones</label>
-        <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
-    </div>
+        <div class="form-group">
+            <label for="observaciones">Observaciones</label>
+            <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Solicitar</button>
-</form>
+        <button type="submit" class="btn btn-primary btn-block">Solicitar</button>
+    </form>
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger mt-3">@TempData["ErrorMessage"]</div>
-}
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger mt-3">@TempData["ErrorMessage"]</div>
+    }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success mt-3">@TempData["SuccessMessage"]</div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success mt-3">@TempData["SuccessMessage"]</div>
+    }
+</div>
+
+
 }

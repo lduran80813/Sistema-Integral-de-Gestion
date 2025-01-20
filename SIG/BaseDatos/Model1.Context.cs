@@ -44,7 +44,6 @@ namespace SIG.BaseDatos
         public virtual DbSet<Emp_Departamento> Emp_Departamento { get; set; }
         public virtual DbSet<Emp_Puesto> Emp_Puesto { get; set; }
         public virtual DbSet<Emp_RemuneracionDeduccion> Emp_RemuneracionDeduccion { get; set; }
-        public virtual DbSet<Emp_Vacaciones> Emp_Vacaciones { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<EntidadesFinancieras> EntidadesFinancieras { get; set; }
         public virtual DbSet<Entregas> Entregas { get; set; }
@@ -141,7 +140,7 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarEntrega", pedidoIdParameter, fechaEntregaParameter, direccionEntregaParameter, articulosEntregadosParameter, observacionesAdicionalesParameter, estadoEntregaParameter, nombreDestinatarioParameter, correoElectronicoParameter);
         }
     
-        public virtual int AprobarRechazarVacaciones(Nullable<int> solicitudId, string estado, Nullable<int> aprobadoPor, string motivoRechazo)
+        public virtual ObjectResult<string> AprobarRechazarVacaciones(Nullable<int> solicitudId, string estado, string motivoRechazo, Nullable<int> idUsuario)
         {
             var solicitudIdParameter = solicitudId.HasValue ?
                 new ObjectParameter("SolicitudId", solicitudId) :
@@ -151,15 +150,15 @@ namespace SIG.BaseDatos
                 new ObjectParameter("Estado", estado) :
                 new ObjectParameter("Estado", typeof(string));
     
-            var aprobadoPorParameter = aprobadoPor.HasValue ?
-                new ObjectParameter("AprobadoPor", aprobadoPor) :
-                new ObjectParameter("AprobadoPor", typeof(int));
-    
             var motivoRechazoParameter = motivoRechazo != null ?
                 new ObjectParameter("MotivoRechazo", motivoRechazo) :
                 new ObjectParameter("MotivoRechazo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AprobarRechazarVacaciones", solicitudIdParameter, estadoParameter, aprobadoPorParameter, motivoRechazoParameter);
+            var idUsuarioParameter = idUsuario.HasValue ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("AprobarRechazarVacaciones", solicitudIdParameter, estadoParameter, motivoRechazoParameter, idUsuarioParameter);
         }
     
         public virtual int CambiarContrasenna(ObjectParameter id, string nuevaContrasena)
@@ -498,6 +497,15 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpleadoPorFiltro_Result>("ObtenerEmpleadoPorFiltro", nombreParameter, correoElectronicoParameter, numeroCedulaParameter);
         }
     
+        public virtual ObjectResult<ObtenerHistorialSolicitudesVacaciones_Result> ObtenerHistorialSolicitudesVacaciones(Nullable<int> id_empleado)
+        {
+            var id_empleadoParameter = id_empleado.HasValue ?
+                new ObjectParameter("id_empleado", id_empleado) :
+                new ObjectParameter("id_empleado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerHistorialSolicitudesVacaciones_Result>("ObtenerHistorialSolicitudesVacaciones", id_empleadoParameter);
+        }
+    
         public virtual ObjectResult<ObtenerNotificaciones_Result> ObtenerNotificaciones(Nullable<int> idUsuario)
         {
             var idUsuarioParameter = idUsuario.HasValue ?
@@ -830,6 +838,20 @@ namespace SIG.BaseDatos
                 new ObjectParameter("motivo_rechazo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SolicitarVacaciones", empleado_idParameter, fecha_inicioParameter, fecha_finParameter, dias_solicitadosParameter, observacionesParameter, motivo_rechazoParameter);
+        }
+    
+        public virtual ObjectResult<sp_ListarTodasVacaciones_Result> sp_ListarTodasVacaciones()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListarTodasVacaciones_Result>("sp_ListarTodasVacaciones");
+        }
+    
+        public virtual ObjectResult<sp_ObtenerHistorialVacaciones_Result> sp_ObtenerHistorialVacaciones(Nullable<int> empleado_id)
+        {
+            var empleado_idParameter = empleado_id.HasValue ?
+                new ObjectParameter("empleado_id", empleado_id) :
+                new ObjectParameter("empleado_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ObtenerHistorialVacaciones_Result>("sp_ObtenerHistorialVacaciones", empleado_idParameter);
         }
     
         public virtual ObjectResult<top5Clientes_Result> top5Clientes(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
