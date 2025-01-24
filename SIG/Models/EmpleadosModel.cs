@@ -22,7 +22,7 @@ namespace SIG.Models
                             nombre_capacitacion = x.nombre_capacitacion,
                             descripcion_capacitacion = x.descripcion_capacitacion,
                             fecha_inicio = (DateTime)x.fecha_inicio,
-                            fecha_finalizacion = x.fecha_finalizacion,
+                            fecha_finalizacion = (DateTime)x.fecha_finalizacion,
                             ResponsableId = x.ResponsableId ?? 0
                         }).ToList();
             }
@@ -72,21 +72,21 @@ namespace SIG.Models
                 context.Emp_Capacitacion.Add(tCapacitacion);
                 rowsAffected = context.SaveChanges();
 
-                if (rowsAffected > 0 && capacitacion.Participantes != null)
-                {
-                    foreach (var participante in capacitacion.Participantes)
-                    {
-                        var tParticipante = new SIG.BaseDatos.Emp_Capacitacion_Participantes
-                        {
-                            participante_id = participante.participante_id,
-                            capacitacion_id = tCapacitacion.id
-                        };
+                //if (rowsAffected > 0 && capacitacion.Participantes != null)
+                //{
+                //    foreach (var participante in capacitacion.Participantes)
+                //    {
+                //        var tParticipante = new SIG.BaseDatos.Emp_Capacitacion_Participantes
+                //        {
+                //            participante_id = participante.participante_id,
+                //            capacitacion_id = tCapacitacion.id
+                //        };
 
-                        context.Emp_Capacitacion_Participantes.Add(tParticipante);
-                    }
+                //        context.Emp_Capacitacion_Participantes.Add(tParticipante);
+                //    }
 
-                    rowsAffected = context.SaveChanges();
-                }
+                //    rowsAffected = context.SaveChanges();
+                //}
             }
 
             return rowsAffected > 0;
@@ -104,8 +104,8 @@ namespace SIG.Models
                                 id = x.id,
                                 nombre_capacitacion = x.nombre_capacitacion,
                                 descripcion_capacitacion = x.descripcion_capacitacion,
-                                fecha_inicio = x.fecha_inicio,
-                                fecha_finalizacion = x.fecha_finalizacion,
+                                fecha_inicio = (DateTime)x.fecha_inicio,
+                                fecha_finalizacion = (DateTime)x.fecha_finalizacion,
                                 ResponsableId = x.ResponsableId ?? 0
                             }).FirstOrDefault();
 
@@ -128,9 +128,9 @@ namespace SIG.Models
                 capacitacion.Participantes = participantes.Select(t => new EmpCapacitacionParticipantes
                 {
                     id = t.id,
-                    capacitacion_id = t.capacitacion_id,
-                    participante_id = t.participante_id,
-                    calificacion = t.calificacion,
+                    capacitacion_id = (int)t.capacitacion_id,
+                    participante_id = (int)t.participante_id,
+                    calificacion = (int)t.calificacion,
                     retroalimentacion = t.retroalimentacion
                 }).ToList();
 

@@ -475,16 +475,22 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
+                                @*<li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-people-carry"></i>
                                         <p>Realizar evaluaciones de desempeño a los empleados</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="@Url.Action("RegistroCapacitacion", "Empleados")" class="nav-link">
+                                        <i class="nav-icon fas fa-people-carry"></i>
+                                        <p>Registro de capacitación</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-people-carry"></i>
-                                        <p>Gestionar las sesiones de capacitación para los empleados</p>
+                                        <p>Lista de capacitaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -492,7 +498,7 @@
                                         <i class="nav-icon fas fa-people-carry"></i>
                                         <p>Gestionar los pagos de planilla</p>
                                     </a>
-                                </li>
+                                </li>*@
                             </ul>
                         </li>
 
@@ -539,32 +545,33 @@
                                         <p>Creación de una Nueva Acción</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ListarPlanesUsuario", "PlanDeAccion")" class="nav-link">
-                                        <i class="nav-icon fas fa-list"></i>
-                                        <p>Ver Planes de Acción</p>
-                                    </a>
-                                </li>
-                                @*<li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-file"></i>
-                                            <p>Verificación del estado de las acciones correctivas y preventivas</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-file"></i>
-                                            <p>Asignación de responsabilidades a los usuarios para asegurar cada acción al responsable</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="nav-icon fas fa-file"></i>
-                                            <p>Verificación de los plazos de ejecución de las tareas para gestionar tiempos</p>
-                                        </a>
-                                    </li>*@
-                            </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("ListarPlanesUsuario", "PlanDeAccion")" class="nav-link">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>Ver Planes de Acción</p>
+                            </a>
+                        </li>
+                        @*<li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>Verificación del estado de las acciones correctivas y preventivas</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>Asignación de responsabilidades a los usuarios para asegurar cada acción al responsable</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>Verificación de los plazos de ejecución de las tareas para gestionar tiempos</p>
+                                </a>
+                            </li>*@
+                    </ul>
+                    </li>
 
                     </ul>
                 </nav>
@@ -723,4 +730,3 @@
 
 </body>
 </html>
-

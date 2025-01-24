@@ -43,7 +43,7 @@ namespace SIG.Controllers
             return View(planes);
         }
 
-        // Acción GET para registrar un nuevo Plan de Acción
+        // Acción GET para registrar una nueva capacitación
         [HttpGet]
         public ActionResult RegistroCapacitacion()
         {
@@ -59,7 +59,7 @@ namespace SIG.Controllers
             return View(capacitacion);
         }
 
-        // Acción POST para registrar un nuevo Plan de Acción
+        // Acción POST para registrar una nueva capacitación
         [HttpPost]
         public JsonResult RegistroAjax(EmpCapacitacion capacitacion)
         {
@@ -69,11 +69,11 @@ namespace SIG.Controllers
 
                 if (resultado)
                 {
-                    return Json(new { success = true, message = "Plan de Acción registrado con éxito." });
+                    return Json(new { success = true, message = "Capacitación registrada con éxito." });
                 }
                 else
                 {
-                    return Json(new { success = false, message = "Hubo un problema al registrar el Plan de Acción." });
+                    return Json(new { success = false, message = "Hubo un problema al registrar la capacitación." });
                 }
             }
             return Json(new { success = false, message = "Datos proporcionados no válidos." });
@@ -107,7 +107,7 @@ namespace SIG.Controllers
             return View(plan);
         }
 
-        // Acción POST para editar un Plan de Acción
+        // Acción POST para editar una capacitación
         [HttpPost]
         public ActionResult EditarCapacitacion(EmpCapacitacion capacitacion)
         {

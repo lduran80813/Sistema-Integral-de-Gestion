@@ -1,37 +1,39 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible=IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PROYECTO | Log in</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/gh/startbootstrap/startbootstrap-sb-admin-2@master/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/startbootstrap/startbootstrap-sb-admin-2@master/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
 
-    <link href="~/root/plugins/fontawesome-free/css/all.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, rgba(0, 107, 0, 1), rgba(255, 255, 255, 0.05));
+            font-family: 'Nunito', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link href="~/root/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
-    <link href="~/root/dist/css/adminlte.min.css" rel="stylesheet" />
-    
-
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        .container {
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="../../index2.html"><b>Sistema De Gestion</b>Grupo#7</a>
-        </div>
-
+<body>
+    <div class="container">
         @RenderBody()
-        
-   
-    
-    <script src="~/root/plugins/jquery/jquery.min.js"></script>
-    
-    <script src="~/root/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="~/root/dist/js/adminlte.min.js"></script>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/gh/startbootstrap/startbootstrap-sb-admin-2@master/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/startbootstrap/startbootstrap-sb-admin-2@master/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/startbootstrap/startbootstrap-sb-admin-2@master/js/sb-admin-2.min.js"></script>
 </body>
 </html>
-
