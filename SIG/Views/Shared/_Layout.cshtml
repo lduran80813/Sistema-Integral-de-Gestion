@@ -37,7 +37,7 @@
 
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="buscar" aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -82,8 +82,11 @@
                                     <i class="ti-user"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                                    <a class="dropdown-item" href="@Url.Action("EditarUsuario", "Login")">
-                                        <i class="ti-settings text-primary"></i> Perfil
+                                    <a class="btn btn-info" href="@Url.Action("VerPerfil", "Login")">
+                                        <i class="ti-user"></i> Ver Perfil
+                                    </a>
+
+
                                     </a><a class="dropdown-item" href="@Url.Action("CambiarContrasenna", "Login")">
                                         <i class="ti-settings text-primary"></i> Cambiar contraseña
                                     </a>
@@ -119,9 +122,9 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                     <div class="info">
-                        <a href="#" class="d-block">Hola! @Session["Usuario"]</a>
+                        <a href="#" class="d-block">Hola @Session["Usuario"]!</a>
                         <a class="d-block">
-                            Rol: @ViewBag.RolNombre
+                           Rol: @Session["NombreRolUsuario"]
                         </a>
                     </div>
                 </div>

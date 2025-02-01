@@ -910,6 +910,8 @@
     <Content Include="Views\Empleados\RevisarPendientes.cshtml" />
     <Content Include="Views\Empleados\MisSolicitudes.cshtml" />
     <Content Include="Views\Empleados\HistorialPorUsuario.cshtml" />
+    <Content Include="Views\Login\VerPerfil.cshtml" />
+    <Content Include="Views\Login\EditarEmp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

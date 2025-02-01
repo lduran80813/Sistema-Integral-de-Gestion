@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.ApplicationServices;
+using System.Web.Services.Description;
 
 
 namespace SIG.Controllers
@@ -33,6 +34,7 @@ namespace SIG.Controllers
                     ViewBag.msj = string.Join(", ", errores);
                     return View(user);
                 }
+
                 var respuesta = usuarioM.IniciarSesion(user);
 
                 if (respuesta != null)
@@ -40,6 +42,11 @@ namespace SIG.Controllers
                     Session["Usuario"] = respuesta.nombre;
                     Session["IdUsuario"] = respuesta.id;
                     Session["RolUsuario"] = respuesta.rol_id;
+
+
+                    Session["NombreRolUsuario"] = respuesta.rol_id.HasValue
+                        ? usuarioM.ObtenerRolPorId(respuesta.rol_id.Value)
+                        : "No asignado";
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -55,6 +62,28 @@ namespace SIG.Controllers
                 return View(user);
             }
         }
+
+
+        public ActionResult VerPerfil()
+        {
+
+            var idUsuario = Session["IdUsuario"] as int?;
+
+            if (idUsuario.HasValue)
+            {
+
+                var perfil = usuarioM.ObtenerPerfilPorId(idUsuario.Value);
+
+
+                return View(perfil);
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Home");
+            }
+        }
+
 
 
         [HttpGet]
@@ -266,6 +295,29 @@ namespace SIG.Controllers
             }
         }
 
+        public ActionResult EditarEmp(int id)
+        {
+            try
+            {
+                var empleado = usuarioM.ObtenerEmpleadoPorId(id);
+
+                if (empleado == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
+                ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
+                ViewBag.Roles = usuarioM.ObtenerListaRoles();
+
+                return View(empleado);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Error al cargar el empleado: {ex.Message}");
+                return RedirectToAction("Index");
+            }
+        }
 
         [HttpPost]
 
@@ -277,6 +329,27 @@ namespace SIG.Controllers
                 if (resultado)
                 {
                     return RedirectToAction("ListarUsuarios");
+                }
+                ModelState.AddModelError("", "Error al editar el empleado. Intente nuevamente.");
+            }
+
+            ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
+            ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
+            ViewBag.Roles = usuarioM.ObtenerListaRoles();
+
+            return View(empleado);
+        }
+
+        [HttpPost]
+
+        public ActionResult EditarEmp(Empleado empleado)
+        {
+            if (ModelState.IsValid)
+            {
+                var resultado = usuarioM.EditarEmpleado(empleado);
+                if (resultado)
+                {
+                    return RedirectToAction("VerPerfil");
                 }
                 ModelState.AddModelError("", "Error al editar el empleado. Intente nuevamente.");
             }

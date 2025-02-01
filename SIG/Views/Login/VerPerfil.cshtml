@@ -1,0 +1,107 @@
+﻿@model SIG.Entidades.UsuarioEmpleado
+@{
+    ViewBag.Title = "ver_perfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container mt-4">
+    <h2>Perfil del Empleado</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>@Model.nombre @Model.apellidos</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+
+                <div class="form-group col-md-4">
+                    <strong>Identificación:</strong>
+                    <p>@Model.numero_identificacion</p>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <strong>Fecha de Nacimiento:</strong>
+                    @if (Model.fecha_nacimiento.HasValue)
+                    {
+                        <p>@Model.fecha_nacimiento.Value.ToString("dd/MM/yyyy")</p>
+                    }
+                    else
+                    {
+                        <p>No disponible</p>
+                    }
+                </div>
+
+                <div class="form-group col-md-4">
+                    <strong>Dirección:</strong>
+                    <p>@Model.direccion</p>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group col-md-4">
+                    <strong>Teléfono:</strong>
+                    <p>@Model.telefono</p>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <strong>Correo Electrónico:</strong>
+                    <p>@Model.correo_electronico</p>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <strong>Departamento:</strong>
+                    @if (!string.IsNullOrEmpty(Model.nombre_departamento))
+                    {
+                        <p>@Model.nombre_departamento</p>
+                    }
+                    else
+                    {
+                        <p>No asignado</p>
+                    }
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group col-md-4">
+                    <strong>Puesto:</strong>
+                    @if (!string.IsNullOrEmpty(Model.nombre_puesto))
+                    {
+                        <p>@Model.nombre_puesto</p>
+                    }
+                    else
+                    {
+                        <p>No asignado</p>
+                    }
+                </div>
+
+
+                <div class="form-group col-md-4">
+                    <strong>Rol:</strong>
+                    @if (!string.IsNullOrEmpty(Model.nombre_rol))
+                    {
+                        <p>@Model.nombre_rol</p>
+                    }
+                    else
+                    {
+                        <p>No asignado</p>
+                    }
+                </div>
+            </div>
+
+            <a class="btn btn-primary" href="@Url.Action("EditarEmp", "Login", new { id = Model.id_usuario })">
+                Editar Perfil
+            </a>
+            </a>
+            <a class="btn btn-secondary" href="@Url.Action("Index", "Home")">
+                Cancelar
+            </a>
+        </div>
+    </div>
+</div>
+
+
+

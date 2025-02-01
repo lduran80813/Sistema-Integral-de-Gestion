@@ -194,6 +194,77 @@ namespace SIG.Models
             }
         }
 
+        public UsuarioEmpleado ObtenerPerfilPorId(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Empleado
+      .Where(e => e.id == id)
+      .Join(context.Emp_Departamento,
+          e => e.departamento_id,
+          d => d.id,
+          (e, d) => new { e, d })
+      .Join(context.Emp_Puesto,
+          ed => ed.e.puesto_id,
+          p => p.id,
+          (ed, p) => new { ed.e, ed.d, p })
+      .Join(context.Adm_Rol,
+          edp => edp.e.rol_id,
+          r => r.id,
+          (edp, r) => new UsuarioEmpleado
+          {
+              id_usuario = edp.e.id,
+              nombre = edp.e.nombre,
+              apellidos = edp.e.apellidos,
+              numero_identificacion = edp.e.numero_identificacion,
+              fecha_nacimiento = edp.e.fecha_nacimiento,
+              direccion = edp.e.direccion,
+              telefono = edp.e.telefono,
+              correo_electronico = edp.e.correo_electronico,
+              usuario = edp.e.usuario,
+              nombre_departamento = edp.d.nombre_departamento, 
+              nombre_puesto = edp.p.nombre_puesto,
+              nombre_rol = r.nombre_rol 
+          })
+      .FirstOrDefault();
+
+            }
+        }
+
+        public string ObtenerDepartamentoPorId(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Emp_Departamento
+                    .Where(d => d.id == id)
+                    .Select(d => d.nombre_departamento)
+                    .FirstOrDefault();
+            }
+        }
+
+        public string ObtenerPuestoPorId(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Emp_Puesto
+                    .Where(p => p.id == id)
+                    .Select(p => p.nombre_puesto)
+                    .FirstOrDefault();
+            }
+        }
+
+        public string ObtenerRolPorId(int id)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return context.Adm_Rol
+                    .Where(r => r.id == id)
+                    .Select(r => r.nombre_rol)
+                    .FirstOrDefault();
+            }
+        }
+
+
 
         public List<SelectListItem> ObtenerListaPuestos()
         {
