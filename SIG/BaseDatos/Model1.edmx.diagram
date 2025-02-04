@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79a47d7a23e14dec9d3d93aec2b3e7ad" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="09e1cc46b0f44d78b599024f9b7a1ff6" Name="Diagram1">
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="0.75" PointY="25" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Catalogo_Compra" Width="1.5" PointX="3.75" PointY="33.625" IsExpanded="true" />

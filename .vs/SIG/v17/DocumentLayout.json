@@ -1,22 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
+  "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\kou\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\login\\cambiarcontrasenna.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\login\\cambiarcontrasenna.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\basedatos\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,6 +18,10 @@
           "Children": [
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
             },
             {
@@ -37,57 +29,16 @@
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CambiarContrasenna.cshtml",
-              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\CambiarContrasenna.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Login\\CambiarContrasenna.cshtml",
-              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\CambiarContrasenna.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Login\\CambiarContrasenna.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC8AAAAGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-31T00:11:26.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\Login.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Login\\Login.cshtml",
-              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\Login.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Login\\Login.cshtml",
-              "ViewState": "AQIAABUAAAAAAAAAAAAswDUAAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-31T00:11:23.89Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAE8CAAAAAAAAAAAswF4CAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T00:04:07.293Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAgwDcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-28T00:03:49.873Z"
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx",
+              "RelativeDocumentMoniker": "SIG\\BaseDatos\\Model1.edmx",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\BaseDatos\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "SIG\\BaseDatos\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-02-04T03:38:45.343Z",
+              "EditorCaption": " [Diagram1]"
             }
           ]
         }
