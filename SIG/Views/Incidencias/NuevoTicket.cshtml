@@ -10,63 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Incidencia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
+    <link href="~/root/dist/css/nuevoTicket.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -88,7 +32,10 @@
             @Html.Label("Comentarios Usuario", new { @for = "user-comments" })
             @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @maxlength = "200", @id = "user-comments", @name = "user-comments", @rows = "4" })
 
-            <button type="submit">Registrar Incidencia</button>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Registrar Incidencia</button>
+                <button type="button" class="btn btn-secondary" onclick="window.history.back();">Regresar</button>
+            </div>
         }
 
     </div>

@@ -13,7 +13,7 @@ else
 {
     <body>
 
-        <div class="container">
+        <div class="container" style="width: 100%; background-color: #b5d4b5">
             <h2>Incidencias activas</h2>
             <div class="row">
                 <div class="col-12">
@@ -91,16 +91,4 @@ else
 
 
 <script src="~/root/plugins/jquery/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#tablaTickets").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            }
-        });
-    })
-    $(document).on("click", ".AbrirModal", function () {
-        $("#id_ticket").val($(this).attr('data-id'));
-        $("#Nombre").text($(this).attr('data-name'));
-    });
-</script>
+<script src="~/root/dist/js/listaIncidenciasUsuario.js"></script>

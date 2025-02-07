@@ -689,8 +689,10 @@
     <Content Include="root\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="root\dist\css\alt\adminlte.plugins.css" />
     <Content Include="root\dist\css\alt\adminlte.plugins.min.css" />
-    <Content Include="root\dist\css\alt\StyleSheet1.css" />
+    <Content Include="root\dist\css\nuevoTicket.css" />
+    <Content Include="root\dist\css\RegEntrada.css" />
     <Content Include="root\dist\css\Style.css" />
+    <Content Include="root\dist\css\registro.css" />
     <Content Include="root\dist\img\AdminLTELogo.png" />
     <Content Include="root\dist\img\avatar.png" />
     <Content Include="root\dist\img\avatar04.png" />
@@ -712,11 +714,14 @@
     <Content Include="root\dist\js\adminlte.js" />
     <Content Include="root\dist\js\adminlte.min.js" />
     <Content Include="root\dist\js\demo.js" />
+    <Content Include="root\dist\js\listaIncidenciasUsuario.js" />
+    <Content Include="root\dist\js\listarUsuarios.js" />
     <Content Include="root\dist\js\solicitudVacaciones.js" />
     <Content Include="root\dist\js\Listar.js" />
     <Content Include="root\dist\js\pages\dashboard.js" />
     <Content Include="root\dist\js\pages\dashboard2.js" />
     <Content Include="root\dist\js\pages\dashboard3.js" />
+    <Content Include="root\images\yjd3b15m_preview_rev_1.png" />
     <Content Include="root\plugins\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="root\plugins\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="root\plugins\bootstrap\js\bootstrap.js" />
@@ -810,6 +815,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="root\dist\css\listView.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

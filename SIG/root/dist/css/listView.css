@@ -1,0 +1,122 @@
+﻿
+#tablaUsuarios {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px; 
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    table-layout: auto; 
+}
+
+
+    #tablaUsuarios thead {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+    }
+
+    #tablaUsuarios th {
+        padding: 16px;
+        text-align: center;
+        font-size: 16px; 
+        border: 2px solid #ddd; 
+    }
+
+
+    #tablaUsuarios tbody tr {
+        border-bottom: 2px solid #ddd; 
+        height: 50px; 
+    }
+
+
+        #tablaUsuarios tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+
+.table-danger {
+    background-color: #f8d7da !important;
+    color: #721c24;
+}
+
+td .btn {
+    padding: 10px 15px; 
+    font-size: 16px; 
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none; 
+}
+
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #0056b3, #003f7f);
+        transform: scale(1.05);
+    }
+
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+}
+
+    .btn-success:hover {
+        background: linear-gradient(135deg, #218838, #1e7e34);
+        transform: scale(1.05);
+    }
+
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+    .btn-danger:hover {
+        background: linear-gradient(135deg, #c82333, #a71d2a);
+        transform: scale(1.05);
+    }
+
+
+td .btn + span {
+    margin: 0 5px;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px; 
+}
+
+
+.titulo-tabla {
+    font-size: 28px; 
+    font-weight: bold;
+    margin-bottom: 20px; 
+    text-align: center; 
+    color: #333;
+}
+
+.botones-acciones {
+    display: flex; 
+    gap: 15px; 
+}
+
+
+    .botones-acciones button {
+        white-space: nowrap;
+    }
+
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+

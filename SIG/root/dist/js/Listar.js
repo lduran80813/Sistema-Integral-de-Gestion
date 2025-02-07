@@ -6,6 +6,8 @@
         "searching": true,
         "pageLength": 20,
         "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+   
+
     });
 });
 

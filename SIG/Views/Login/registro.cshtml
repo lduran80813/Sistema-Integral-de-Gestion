@@ -4,71 +4,92 @@
     ViewBag.Title = "Registro de Usuario";
 }
 
-<div style="width: 400px; margin: auto; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.4); border-radius: 15px; overflow: hidden; background-color: #ffffff;">
-    <div style="text-align: center; background-color: #ffffff; padding: 20px;">
-        <img src="https://acciontrabajo.co.cr/biz_pic/yjd3b15m" alt="Logo Empresa" style="width: 120px; height: auto;">
-    </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link href="~/root/dist/css/registro.css" rel="stylesheet" />
+</head>
+<body>
 
-    <div style="padding: 30px;">
-        <p style="text-align: center; font-size: 22px; font-weight: bold; color: #444; margin-bottom: 25px;">Registro de Usuario</p>
-
-        @if (ViewBag.msj != null)
-        {
-            <div style="background: rgba(253, 238, 238, 0.9); border: 1px solid #e74c3c; color: #e74c3c; text-align: center; font-size: 14px; padding: 10px; border-radius: 10px; margin-bottom: 20px;">
-                @ViewBag.msj
-            </div>
-        }
-
-        @if (!string.IsNullOrEmpty(ViewBag.msj))
-        {
-            <div class="alert alert-danger">
-                @ViewBag.msj
-            </div>
-        }
-
-        @using (Html.BeginForm("registro", "Login", FormMethod.Post))
-        {
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.nombre, new { @class = "form-control form-control-lg", @placeholder = "Nombre Completo", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
+    <div class="container">
+        <div class="regis">
+            <div class="logo-container">
+                <img src="https://firebasestorage.googleapis.com/v0/b/lunes-login202410.appspot.com/o/yjd3b15m_preview_rev_1.png?alt=media&token=8574b583-7a47-44f0-b659-4e2c490a1ba6" alt="Logo Empresa" class="logo">
             </div>
 
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.apellidos, new { @class = "form-control form-control-lg", @placeholder = "Apellidos", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
-            </div>
+            <p class="titulo">Registro de Usuario</p>
 
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.numero_identificacion, new { @class = "form-control form-control-lg", @placeholder = "Cédula", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true", @id = "cedula" })
-            </div>
+            <form action="/Login/registro" method="post">
 
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.fecha_nacimiento, new { @class = "form-control form-control-lg", @placeholder = "Fecha de nacimiento", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true", @type = "date" })
-            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
 
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.direccion, new { @class = "form-control form-control-lg", @placeholder = "Dirección", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
-            </div>
-
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.telefono, new { @class = "form-control form-control-lg", @placeholder = "Teléfono", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
-            </div>
-
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.correo_electronico, new { @type = "email", @class = "form-control form-control-lg", @placeholder = "Email", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true", @id = "email" })
-            </div>
-
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.usuario, new { @class = "form-control form-control-lg", @placeholder = "Nombre de Usuario", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true", @id = "usuario" })
-            </div>
-
-            <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
-            </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success btn-block" style="background: linear-gradient(135deg, #4caf50, #32a852); font-size: 16px; font-weight: bold; border-radius: 8px; box-shadow: 0px 5px 10px rgba(0,0,0,0.2);">Registrar</button>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" class="form-control" required>
+                    </div>
                 </div>
-            </div>
-        }
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numero_identificacion">Cédula</label>
+                        <input type="text" id="numero_identificacion" name="numero_identificacion" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="correo_electronico">Email</label>
+                        <input type="email" id="correo_electronico" name="correo_electronico" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="usuario">Nombre de Usuario</label>
+                        <input type="text" id="usuario" name="usuario" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group" style="width: 100%;">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" id="contrasena" name="contrasena" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="botones-container">
+                    <button type="submit" class="btn btn-success" style="width:250px">Registrar</button>
+
+                    <button type="button" class="btn btn-secondary" style="width:250px" onclick="window.history.back();">Regresar</button>
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
+
+</body>
+</html>
+
+

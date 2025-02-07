@@ -4,7 +4,7 @@
     ViewBag.Title = "Solicitar Vacaciones";
 }
 
-<div class="container mt-5">
+<div class="container mt-5 p-4" style="background-color: #b5d4b5; border-radius: 10px;">
     <h2 class="text-center mb-4">Solicitar Vacaciones</h2>
 
     <form method="post" action="@Url.Action("Solicitar", "Empleados")">
@@ -30,7 +30,10 @@
             <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Solicitar</button>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">Solicitar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.history.back();">Regresar</button>
+        </div>
     </form>
 
     @if (TempData["ErrorMessage"] != null)
@@ -45,4 +48,3 @@
 </div>
 
 
-}
