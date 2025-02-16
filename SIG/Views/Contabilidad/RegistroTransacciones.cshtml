@@ -1,213 +1,162 @@
 ﻿@model SIG.Entidades.TransaccionFinanciera
 @{
     ViewBag.Title = "CxC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
+<body style="margin: 0; padding: 0; background-color: #101010;">
+    <div class="d-flex flex-column min-vh-100" style="background-color: #f3f5f8; padding: 20px; border-radius: 15px; height: auto; width: 95%; margin: auto;">
+        <div class="text-center mb-4">
+            <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+                Registro de Transacciones Financieras
+            </h2>
+        </div>
 
-    .container {
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        max-height: 100vh;
-        overflow-y: auto;
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    label {
-        margin-bottom: 5px;
-        font-weight: bold;
-        color: #555;
-    }
-
-    input, select, textarea {
-        margin-bottom: 15px;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    button {
-        padding: 10px 15px;
-        background-color: #5cb85c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-        button:hover {
-            background-color: #4cae4c;
-        }
-</style>
-
-<body>
-
-    <div class="container">
-        <h2>Registro de transacciones financieras</h2>
-        <div class="row">
-            <div class="col-12">
-                @using (Html.BeginForm("RegistroTransacciones", "Contabilidad", FormMethod.Post))
-                {
-                    <table id="tablaTransFinan" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Cuenta</th>
-                                <th>Monto</th>
-                                <th>Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody id="transaccionesBody">
-                            <tr>
-                                <td>
-                                    <select name="ListaTransacciones[0].IdCuenta" class="form-select" required>
-                                        @foreach (var cuenta in ViewBag.CuentasContables as List<SelectListItem>)
-                                        {
-                                            <option value="@cuenta.Value">@cuenta.Text</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="number" name="ListaTransacciones[0].Monto" class="form-control" required />
-                                </td>
-                                <td>
-                                    <input type="text" name="ListaTransacciones[0].Descripcion" class="form-control" required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select name="ListaTransacciones[1].IdCuenta" class="form-select" required>
-                                        @foreach (var cuenta in ViewBag.CuentasContables as List<SelectListItem>)
-                                        {
-                                            <option value="@cuenta.Value">@cuenta.Text</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="number" name="ListaTransacciones[1].Monto" class="form-control" required />
-                                </td>
-                                <td>
-                                    <input type="text" name="ListaTransacciones[1].Descripcion" class="form-control" required />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button type="button" onclick="agregarFila()">Agregar Fila</button>
-                    <br />
-                    <button type="submit">Guardar</button>
-                }
-                @*@using (Html.BeginForm("RegistroTransacciones", "Contabilidad"))
-        {
-            <table id="tablaTransFinan" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Cuenta</th>
-                        <th>Monto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            @Html.DropDownListFor(m => m.IdCuenta, ViewBag.CuentasContables as List<SelectListItem>, new { @class = "form-select", @id = "cuenta", @name = "cuenta", @required = "true" })
-                        </td>
-                        <td>@Html.TextBoxFor(m => m.Monto, new { @class = "form-control", @id = "monto", @type = "number", @name = "incident-title", @required = "true" })</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @Html.DropDownListFor(m => m.IdCuenta, ViewBag.CuentasContables as List<SelectListItem>, new { @class = "form-select", @id = "cuenta", @name = "cuenta", @required = "true" })
-                        </td>
-                        <td>@Html.TextBoxFor(m => m.Monto, new { @class = "form-control", @id = "monto", @type = "number", @name = "incident-title", @required = "true" })</td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="button" onclick="agregarFila()">Agregar Fila</button>
-            <br />
-            <button type="submit">Guardar</button>
-        }*@
-
-                @*<form id="formulario" action="/Controlador/GuardarDatos" method="post">
-            <table id="tabla-datos">
-                <tr>
-                    <th>Campo 1</th>
-                    <th>Campo 2</th>
-                </tr>
-                <tr>
-                    <td><input type="text" name="campo1[]" required></td>
-                    <td><input type="text" name="campo2[]" required></td>
-                </tr>
-            </table>
-            <button type="button" onclick="agregarFila()">Agregar Fila</button>
-            <button type="submit">Guardar</button>
-        </form>*@
-
-
-            </div>
+        <div class="container">
+            @using (Html.BeginForm("RegistroTransacciones", "Contabilidad", FormMethod.Post))
+            {
+                <table id="tablaTransFinan" class="table table-modern">
+                    <thead>
+                        <tr>
+                            <th>Cuenta</th>
+                            <th>Monto</th>
+                            <th>Descripción</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaccionesBody">
+                        <tr>
+                            <td>
+                                <select name="ListaTransacciones[0].IdCuenta" class="form-select" required>
+                                    @foreach (var cuenta in ViewBag.CuentasContables as List<SelectListItem>)
+                                    {
+                                        <option value="@cuenta.Value">@cuenta.Text</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" name="ListaTransacciones[0].Monto" class="form-control" required />
+                            </td>
+                            <td>
+                                <input type="text" name="ListaTransacciones[0].Descripcion" class="form-control" required />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-delete" onclick="eliminarFila(this)">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button type="button" class="btn btn-update" onclick="agregarFila()">Agregar Fila</button>
+                    <button type="submit" class="btn btn-gradient">Guardar</button>
+                </div>
+            }
         </div>
     </div>
+
+    <script>
+        let rowIndex = 1;
+
+        function agregarFila() {
+            const tableBody = document.getElementById("transaccionesBody");
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                        <td>
+                            <select name="ListaTransacciones[\${rowIndex}].IdCuenta" class="form-select" required>
+                                ${document.querySelector("select[name='ListaTransacciones[0].IdCuenta']").innerHTML}
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="ListaTransacciones[\${rowIndex}].Monto" class="form-control" required />
+                        </td>
+                        <td>
+                            <input type="text" name="ListaTransacciones[\${rowIndex}].Descripcion" class="form-control" required />
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="eliminarFila(this)">Eliminar</button>
+                        </td>
+                    `;
+            tableBody.appendChild(row);
+            rowIndex++;
+        }
+
+        function eliminarFila(button) {
+            const row = button.closest("tr");
+            row.remove();
+        }
+    </script>
+
+    <style>
+        .table-modern {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            background-color: #ffffff;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .table-modern thead {
+                background: black;
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .table-modern th, .table-modern td {
+                padding: 14px;
+                text-align: center;
+                border: 1px solid black;
+            }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #5b8c5a, #2f5930);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .btn-gradient:hover {
+                transform: scale(1.1);
+                background: linear-gradient(to right, #2f5930, #5b8c5a);
+            }
+
+        .btn-update {
+            background: linear-gradient(to right, #65a9ca, #5481a2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .btn-update:hover {
+                transform: scale(1.1);
+                background: linear-gradient(to right, #2c3e50, #4a6d89);
+            }
+
+        .btn-delete {
+            background: linear-gradient(to right, #d9534f, #b52b27);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .btn-delete:hover {
+                transform: scale(1.1);
+                background: linear-gradient(to right, #b52b27, #d9534f);
+            }
+    </style>
 </body>
-
-<script>
-    //function agregarFila() {
-    //        const table = document.getElementById("tabla-datos");
-    //        const row = table.insertRow(-1);
-
-    //        const cell1 = row.insertCell(0);
-    //        const cell2 = row.insertCell(1);
-
-    //        cell1.innerHTML = `<input type="text" name="campo1[]" required>`;
-    //        cell2.innerHTML = `<input type="text" name="campo2[]" required>`;
-    //}
-    @*function agregarFila() {
-        const table = document.getElementById("tablaTransFinan");
-        const row = table.insertRow(-1);
-
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-
-        cell1.innerHTML = `@Html.DropDownListFor(m => m.IdCuenta, ViewBag.CuentasContables as List<SelectListItem>, new { @class = "form-select", @id = "cuenta", @name = "cuenta", @required = "true" })`;
-        cell2.innerHTML = `@Html.TextBoxFor(m => m.Monto, new { @class = "form-control", @id = "monto", @type = "number", @name = "incident-title", @required = "true" })`;
-    }*@
-    let rowIndex = 2; 
-
-    function agregarFila() {
-        const tableBody = document.getElementById("transaccionesBody");
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-            <td>
-                <select name="ListaTransacciones[${rowIndex}].IdCuenta" class="form-select" required>
-                    ${document.querySelector("select[name='ListaTransacciones[0].IdCuenta']").innerHTML}
-                </select>
-            </td>
-            <td>
-                <input type="number" name="ListaTransacciones[${rowIndex}].Monto" class="form-control" required />
-            </td>
-            <td>
-                <input type="text" name="ListaTransacciones[${rowIndex}].Descripcion" class="form-control" required />
-            </td>
-        `;
-        tableBody.appendChild(row);
-        rowIndex++;
-    }
-</script>

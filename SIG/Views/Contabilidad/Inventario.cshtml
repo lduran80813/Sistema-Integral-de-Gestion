@@ -3,69 +3,75 @@
     ViewBag.Title = "Inventario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @if (Model.Productos.Count == 0)
 {
     <h3>No existen productos</h3>
 }
 else
 {
-    <body>
-
-        <div class="container">
-            <h2>Inventario de productos</h2>
-            <br />
-            <a class="btn btn-primary" href="@Url.Action("HistorialModificacionesInventario", "Contabilidad")">Historial de cambios en inventario</a>
-            <div class="row">
-                <div class="col-12">
-
-                    @if (ViewBag.msj != null)
-                    {
-                        <div class="alert alert-info" role="alert" style="text-align:center">
-                            @ViewBag.msj
-                        </div>
-                    }
-                    <table id="tablaProductos" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Producto ID</th>
-                                <th>Nombre</th>
-                                <th>Precio Unitario</th>
-                                <th>Estado</th>
-                                <th>Inventario</th>
-                                <th></th>
+    <div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+        <div class="text-center mb-4">
+            <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+                Inventario de productos
+            </h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                @if (ViewBag.msj != null)
+                {
+                    <div class="alert alert-info text-center" role="alert">
+                        @ViewBag.msj
+                    </div>
+                }
+                <table id="tablaProductos" class="table table-modern">
+                    <thead>
+                        <tr>
+                            <th>Producto ID</th>
+                            <th>Nombre</th>
+                            <th>Precio Unitario</th>
+                            <th>Estado</th>
+                            <th>Inventario</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Productos)
+                        {
+                            <tr class="@(item.estadoDescripcion == "Agotado" ? "table-danger" : "table-success")">
+                                <td>@item.id</td>
+                                <td>@item.nombre</td>
+                                <td>₡@item.precio.ToString("N2")</td>
+                                <td>@item.estadoDescripcion</td>
+                                <td>@item.inventario</td>
+                                <td>
+                                    <button type="button" class="btn btn-update AbrirModalActualizar" data-bs-toggle="modal" data-bs-target="#ModalActualizar"
+                                            data-id="@item.id">
+                                        <i class="bi bi-pencil-square"></i> Actualizar Inventario
+                                    </button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Productos)
-                            {
-                                <tr>
-                                    <td>@item.id</td>
-                                    <td>@item.nombre</td>
-                                    <td>@item.precio</td>
-                                    <td>@item.estadoDescripcion</td>
-                                    <td>@item.inventario</td>
-
-                                    <td>
-                                        <button type="button" class="btn btn-primary AbrirModalActualizar" data-bs-toggle="modal" data-bs-target="#ModalActualizar"
-                                                data-id="@item.id">
-                                            Actualizar Inventario
-                                        </button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-    </body>
+        <br />
+        <div class="text-center">
+            <a class="btn btn-gradient" href="@Url.Action("HistorialModificacionesInventario", "Contabilidad")">
+                <i class="bi bi-clock-history"></i> Historial de cambios en inventario
+            </a>
+        </div>
+    </div>
 }
 
+<!-- Modal Actualizar -->
 <div class="modal fade" id="ModalActualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Detalles de facturación</h5>
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Actualizar Inventario</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -73,15 +79,14 @@ else
                 {
                     <div class="modal-body">
                         @Html.Hidden("id", "")
-                        @Html.Label("Nueva cantidad en inventario", new { @for = "nuevaCantidad" })
-                        @Html.TextBoxFor(m => m.nuevaCantidad, new
-                        { @placeholder = "Cantidad", @type = "number", @value = "0", @min = "1", @onkeypress = "return ValidarNumeros(this.id)", @required = "true" })
+                        @Html.Label("Nueva cantidad en inventario")
+                        @Html.TextBoxFor(m => m.nuevaCantidad, new { @type = "number", @min = "1", @required = "true", @class = "form-control" })
                         <br />
-                        @Html.Label("Motivo de la actualizacion", new { @for = "motivo" })
-                        @Html.TextBoxFor(m => m.motivo, new { @placeholder = "Motivo", @type = "text", @maxlength = "100", @required = "true" })
+                        @Html.Label("Motivo de la actualización")
+                        @Html.TextBoxFor(m => m.motivo, new { @maxlength = "100", @required = "true", @class = "form-control" })
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <button type="submit" class="btn btn-update">Actualizar</button>
                     </div>
                 }
             </div>
@@ -89,75 +94,95 @@ else
     </div>
 </div>
 
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<!-- Scripts -->
 <script>
     $(document).ready(function () {
         $("#tablaProductos").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            }
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
     });
 
     $(document).on("click", ".AbrirModalActualizar", function () {
         $("#id").val($(this).attr('data-id'));
     });
-
-    $(document).ready(function () {
-        $("#ModalActualizar form").on("submit", function (e) {
-            e.preventDefault();
-
-            var formData = $(this).serialize();
-            $.ajax({
-                url: $(this).attr("action"),
-                type: $(this).attr("method"),
-                data: formData,
-                success: function (response) {
-                    if (response.success) {
-                        //setTimeout(function () {
-                        //    window.location.href = '/Contabilidad/Inventario';
-                        //}, 1000);
-                        MostrarMensaje("Información", "Actualizado correctamente", "success");
-                    } else {
-                        MostrarMensaje("Información", "Hubo un error al actualizar inventario.", "failed");
-                    }
-                },
-                error: function () {
-                    alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
-                }
-            });
-        });
-    });
-
-    function MostrarMensaje(titulo, mensaje, icono) {
-        //Swal.fire({
-        //    title: titulo,
-        //    text: mensaje,
-        //    icon: icono
-        //});
-        Swal.fire({
-            title: titulo,
-            showDenyButton: false,
-            showCancelButton: false,
-            confirmButtonText: "Aceptar",
-            text: mensaje,
-            icon: icono
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/Contabilidad/Inventario'
-            }
-        });
-    }
-
-    function ValidarNumeros(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode;
-
-        if (charCode >= 48 && charCode <= 57) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
 </script>
+
+<!-- Estilos -->
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+        .table-modern tbody tr.fade-in {
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .table-modern tbody tr.table-success {
+            background-color: #d4edda !important;
+        }
+
+        .table-modern tbody tr.table-danger {
+            background-color: #f8d7da !important;
+        }
+</style>

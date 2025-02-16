@@ -3,59 +3,60 @@
     ViewBag.Title = "HistorialInventario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @if (Model.cuentasCreditos.Count == 0)
 {
     <h3>No existen pagos asociados</h3>
 }
 else
 {
-    <body>
-
-        <div class="container">
-            <h2>Lista de pagos de la cuenta por cobrar</h2>
-            <br />
-            <button type="button" class="btn btn-primary AbrirModalAjuste" data-bs-toggle="modal" data-bs-target="#ModalAjusteManualCxC"
-                    data-id="@Model.cuentasCreditos.FirstOrDefault().IdReferencia" data-saldo="@Model.cuentasCreditos.FirstOrDefault().SaldoActual">
-                Incluir ajuste manual
-            </button>
-            <br />
-            <div class="row">
-                <div class="col-12">
-
-                    @if (ViewBag.msj != null)
-                    {
-                        <div class="alert alert-info" role="alert" style="text-align:center">
-                            @ViewBag.msj
-                        </div>
-                    }
-                    <table id="historicoPagoCuenta" class="table table-bordered table-hover">
-                        <thead>
+    <div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+        <div class="text-center mb-4">
+            <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+                Lista de pagos de la cuenta por cobrar
+            </h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                @if (ViewBag.msj != null)
+                {
+                    <div class="alert alert-info text-center" role="alert">
+                        @ViewBag.msj
+                    </div>
+                }
+                <table id="historicoPagoCuenta" class="table table-modern table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fecha de pago</th>
+                            <th>Saldo anterior</th>
+                            <th>Abono</th>
+                            <th>Saldo Actual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.cuentasCreditos)
+                        {
                             <tr>
-                                <th>Fecha de pago</th>
-                                <th>Saldo anterior</th>
-                                <th>Abono</th>
-                                <th>Saldo Actual</th>
+                                <td>@item.fecha</td>
+                                <td>@item.SaldoAnterior</td>
+                                <td>@item.montoPago</td>
+                                <td>@item.SaldoActual</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.cuentasCreditos)
-                            {
-                                <tr>
-                                    <td>@item.fecha</td>
-                                    <td>@item.SaldoAnterior</td>
-                                    <td>@item.montoPago</td>
-                                    <td>@item.SaldoActual</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-    </body>
+        <br />
+        <div class="text-center">
+            <button type="button" class="btn btn-gradient AbrirModalAjuste" data-bs-toggle="modal" data-bs-target="#ModalAjusteManualCxC"
+                    data-id="@Model.cuentasCreditos.FirstOrDefault()?.IdReferencia" data-saldo="@Model.cuentasCreditos.FirstOrDefault().SaldoActual">
+                Incluir ajuste manual
+            </button>
+        </div>
+    </div>
 }
-
-
 
 <div class="modal fade" id="ModalAjusteManualCxC" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -70,17 +71,16 @@ else
                     @Html.Hidden("Id_Cuenta", "", new { id = "IdCuenta" })
                     <div class="mb-3">
                         @Html.Label("Saldo actual:", new { @for = "saldo" })
-                        <input type="text" id="saldo" class="form-control" readonly /> 
+                        <input type="text" id="saldo" class="form-control" readonly />
                     </div>
                     <div class="mb-3">
                         @Html.Label("Ingrese el monto del ajuste", new { @for = "abono" })
                         @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @type = "number", @required = "true", @onkeypress = "return ValidarNumeros(event)" })
                     </div>
-
                     @Html.Label("Motivo del ajuste", new { @for = "descripcion" })
                     @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Ajustar</button>
+                        <button type="submit" class="btn btn-gradient">Ajustar</button>
                     </div>
                 }
             </div>
@@ -88,36 +88,75 @@ else
     </div>
 </div>
 
-
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#historicoPagoCuenta").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            }
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
     });
+
     $(document).on("click", ".AbrirModalAjuste", function () {
         var idCuenta = $(this).data('id');
         var saldo = $(this).data('saldo');
-
         $("#IdCuenta").val(idCuenta);
         $("#saldo").val(saldo);
     });
+
     function ValidarNumeros(evt) {
         var charCode = (evt.which) ? evt.which : evt.keyCode;
         var inputValue = evt.target.value;
-
         if (charCode >= 48 && charCode <= 57) {
             return true;
         }
-
         if (charCode === 45 && inputValue.indexOf('-') === -1 && inputValue === "") {
             return true;
         }
-
         return false;
     }
-
 </script>
+
+<style>
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+</style>

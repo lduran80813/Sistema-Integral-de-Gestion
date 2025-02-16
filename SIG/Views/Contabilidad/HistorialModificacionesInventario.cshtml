@@ -3,59 +3,64 @@
     ViewBag.Title = "HistorialInventario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @if (Model.Count == 0)
 {
     <h3>No existen productos</h3>
 }
 else
 {
-    <body>
-
-        <div class="container">
-            <h2>Reporte historial de ajustes en el inventario</h2>
-            <br />
-            @if (Model != null)
-            {
-                <a class="btn btn-primary" href="@Url.Action("AjusteInventarioPDF", "Contabilidad")">Exportar reporte PDF</a>
-            }
-            <div class="row">
-                <div class="col-12">
-
-                    @if (ViewBag.msj != null)
-                    {
-                        <div class="alert alert-info" role="alert" style="text-align:center">
-                            @ViewBag.msj
-                        </div>
-                    }
-                    <table id="historicoInventario" class="table table-bordered table-hover">
-                        <thead>
+    <div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+        <div class="text-center mb-4">
+            <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+                Reporte historial de ajustes en el inventario
+            </h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                @if (ViewBag.msj != null)
+                {
+                    <div class="alert alert-info text-center" role="alert">
+                        @ViewBag.msj
+                    </div>
+                }
+                <table id="historicoInventario" class="table table-modern">
+                    <thead>
+                        <tr>
+                            <th>Fecha ajuste</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Motivo</th>
+                            <th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th>Fecha ajuste</th>
-                                <th>Producto</th>
-                                <th>Cantidad</th>
-                                <th>Motivo</th>
-                                <th>Responsable</th>
+                                <td>@item.fechaAjuste</td>
+                                <td>@item.producto</td>
+                                <td>@item.nuevaCantidad</td>
+                                <td>@item.motivo</td>
+                                <td>@item.nombreResponsable</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.fechaAjuste</td>
-                                    <td>@item.producto</td>
-                                    <td>@item.nuevaCantidad</td>
-                                    <td>@item.motivo</td>
-                                    <td>@item.nombreResponsable</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-    </body>
+        <br />
+        <div class="text-center">
+            @if (Model != null)
+            {
+                <a class="btn btn-gradient" href="@Url.Action("AjusteInventarioPDF", "Contabilidad")">
+                    <i class="bi bi-file-earmark-pdf"></i> Exportar reporte PDF
+                </a>
+            }
+        </div>
+    </div>
 }
-
 
 <script src="~/root/plugins/jquery/jquery.min.js"></script>
 <script>
@@ -66,5 +71,55 @@ else
             }
         });
     });
-
 </script>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+        .table-modern tbody tr.fade-in {
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>

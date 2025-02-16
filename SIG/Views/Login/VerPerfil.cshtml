@@ -1,107 +1,133 @@
 ﻿@model SIG.Entidades.UsuarioEmpleado
 @{
-    ViewBag.Title = "ver_perfil";
+    ViewBag.Title = "Ver Perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <div class="container mt-4">
-    <h2>Perfil del Empleado</h2>
+    <h2 class="text-center mb-4" style="font-family: 'Arial', sans-serif; font-weight: bold;">Perfil del Empleado</h2>
 
-    <div class="card">
-        <div class="card-header">
-            <h4>@Model.nombre @Model.apellidos</h4>
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">@Model.nombre @Model.apellidos</h4>
         </div>
         <div class="card-body">
-            <div class="form-row">
-
-                <div class="form-group col-md-4">
-                    <strong>Identificación:</strong>
-                    <p>@Model.numero_identificacion</p>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Identificación: </strong>
+                        <p>@Model.numero_identificacion</p>
+                    </div>
                 </div>
-
-                <div class="form-group col-md-4">
-                    <strong>Fecha de Nacimiento:</strong>
-                    @if (Model.fecha_nacimiento.HasValue)
-                    {
-                        <p>@Model.fecha_nacimiento.Value.ToString("dd/MM/yyyy")</p>
-                    }
-                    else
-                    {
-                        <p>No disponible</p>
-                    }
-                </div>
-
-                <div class="form-group col-md-4">
-                    <strong>Dirección:</strong>
-                    <p>@Model.direccion</p>
-                </div>
-            </div>
-
-            <div class="form-row">
-
-                <div class="form-group col-md-4">
-                    <strong>Teléfono:</strong>
-                    <p>@Model.telefono</p>
-                </div>
-
-                <div class="form-group col-md-4">
-                    <strong>Correo Electrónico:</strong>
-                    <p>@Model.correo_electronico</p>
-                </div>
-
-                <div class="form-group col-md-4">
-                    <strong>Departamento:</strong>
-                    @if (!string.IsNullOrEmpty(Model.nombre_departamento))
-                    {
-                        <p>@Model.nombre_departamento</p>
-                    }
-                    else
-                    {
-                        <p>No asignado</p>
-                    }
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Fecha de Nacimiento: </strong>
+                        <p>
+                            @if (Model.fecha_nacimiento.HasValue)
+                            {
+                                @Model.fecha_nacimiento.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <span>No disponible</span>
+                            }
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-row">
-
-                <div class="form-group col-md-4">
-                    <strong>Puesto:</strong>
-                    @if (!string.IsNullOrEmpty(Model.nombre_puesto))
-                    {
-                        <p>@Model.nombre_puesto</p>
-                    }
-                    else
-                    {
-                        <p>No asignado</p>
-                    }
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Teléfono: </strong>
+                        <p>@Model.telefono</p>
+                    </div>
                 </div>
-
-
-                <div class="form-group col-md-4">
-                    <strong>Rol:</strong>
-                    @if (!string.IsNullOrEmpty(Model.nombre_rol))
-                    {
-                        <p>@Model.nombre_rol</p>
-                    }
-                    else
-                    {
-                        <p>No asignado</p>
-                    }
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Correo Electrónico: </strong>
+                        <p>@Model.correo_electronico</p>
+                    </div>
                 </div>
             </div>
 
-            <a class="btn btn-primary" href="@Url.Action("EditarEmp", "Login", new { id = Model.id_usuario })">
-                Editar Perfil
-            </a>
-            </a>
-            <a class="btn btn-secondary" href="@Url.Action("Index", "Home")">
-                Cancelar
-            </a>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Dirección: </strong>
+                        <p>@Model.direccion</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Departamento: </strong>
+                        <p>
+                            @if (!string.IsNullOrEmpty(Model.nombre_departamento))
+                            {
+                                @Model.nombre_departamento
+                            }
+                            else
+                            {
+                                <span>No asignado</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Puesto: </strong>
+                        <p>
+                            @if (!string.IsNullOrEmpty(Model.nombre_puesto))
+                            {
+                                @Model.nombre_puesto
+                            }
+                            else
+                            {
+                                <span>No asignado</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box shadow-sm p-3 mb-3" style="border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Rol: </strong>
+                        <p>
+                            @if (!string.IsNullOrEmpty(Model.nombre_rol))
+                            {
+                                @Model.nombre_rol
+                            }
+                            else
+                            {
+                                <span>No asignado</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                <a class="btn" href="@Url.Action("EditarEmp", "Login", new { id = Model.id_usuario })" style="background: linear-gradient(to right, #0056b3, #004494); color: white;">
+                    Editar Perfil
+                </a>
+                <a class="btn" href="@Url.Action("Index", "Home")" style="background: linear-gradient(to right, #333, #666); color: white; margin-left: 10px;">
+                    Cancelar
+                </a>
+            </div>
         </div>
     </div>
 </div>
 
+<style>
+    .info-box {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-
+        .info-box:hover {
+            transform: scale(1.05); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background-color: #f0f8ff; 
+        }
+</style>

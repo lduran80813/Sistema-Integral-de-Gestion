@@ -4,172 +4,163 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar cierre contable</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Estados Financieros</h1>
-
-        @using (Html.BeginForm("ContaEstadosFinancieros", "Contabilidad"))
-        {
-            <label>Escoja el período para generar el reporte</label>
-
-            @Html.Label("Inicio")
-            @Html.TextBoxFor(m => m.mesCorte, new { @class = "form-control", @id = "corte", @type = "month", @min= "2024-10", @max = "2024-11" })
-
-            <br />
-
-            <button type="submit">Generar</button>
-
-            if (Model != null)
-            {
-                <a href="@Url.Action("ContaEstadosFinancierosPDF", new { fecha = Model.mesCorte.ToString("yyyy-MM") })" class="btn btn-primary">Descargar reporte PDF</a>
-
-                <br />
-                <h3>Balance General</h3>
-                <table id="tablaBG" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Tipo de Cuenta</th>
-                            <th>Código</th>
-                            <th>Cuenta</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.BalanceGeneral)
-                        {
-                            <tr>
-                                <td>@item.TipoCuenta</td>
-                                <td>@item.CuentaContable</td>
-                                <td>@item.Descripcion</td>
-                                <td>@item.Total</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-
-                <br />
-                <h3>Estado de Resultados</h3>
-                <table id="tablaER" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Tipo de Cuenta</th>
-                            <th>Código</th>
-                            <th>Cuenta</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.EstadoResultados)
-                        {
-                            <tr>
-                                <td>@item.TipoCuenta</td>
-                                <td>@item.CuentaContable</td>
-                                <td>@item.Descripcion</td>
-                                <td>@item.Total</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-
-                @Html.Label("Reporte generado:")
-                <input type="text" class="form-control" readonly value="@DateTime.Now" />
-            }
-        }
-
-
-
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Estados Financieros
+        </h2>
     </div>
 
-</body>
-</html>
+    @using (Html.BeginForm("ContaEstadosFinancieros", "Contabilidad"))
+    {
+        <label class="form-label">Escoja el período para generar el reporte</label>
 
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
+        <div class="input-container">
+            <label class="input-label">Período</label>
+            <div class="input-wrapper">
+                @Html.TextBoxFor(m => m.mesCorte, new { @class = "form-control input-field", @id = "corte", @type = "month" })
+            </div>
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-gradient">Generar</button>
+
+        if (Model != null)
+        {
+            <a href="@Url.Action("ContaEstadosFinancierosPDF", new { fecha = Model.mesCorte.ToString("yyyy-MM") })" class="btn btn-gradient">Descargar reporte PDF</a>
+            <br />
+            <h3>Balance General</h3>
+            <table id="tablaBG" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>Tipo de Cuenta</th>
+                        <th>Código</th>
+                        <th>Cuenta</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.BalanceGeneral)
+                    {
+                        <tr>
+                            <td>@item.TipoCuenta</td>
+                            <td>@item.CuentaContable</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <br />
+            <h3>Estado de Resultados</h3>
+            <table id="tablaER" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>Tipo de Cuenta</th>
+                        <th>Código</th>
+                        <th>Cuenta</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.EstadoResultados)
+                    {
+                        <tr>
+                            <td>@item.TipoCuenta</td>
+                            <td>@item.CuentaContable</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>
+
 <script>
     $(document).ready(function () {
         $("#tablaBG").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            },
-            columnDefs: [{ type: 'string', target: [0, 1, 2, 3] }]
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
         $("#tablaER").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            },
-            columnDefs: [{ type: 'string', target: [0, 1, 2, 3] }]
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
     });
-
-    const hoy = new Date();
-    const mesAnterior = new Date(hoy.getFullYear(), hoy.getMonth() - 1);
-    const mesAnteriorF = mesAnterior.toISOString().slice(0, 7);
-    const mesCorriente = hoy.toISOString().slice(0, 7);
-    document.getElementById('corte').value = mesAnteriorF;
-    document.getElementById('corte').max = mesCorriente;
 </script>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+    }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .input-label {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 5px;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .input-wrapper:hover, .input-wrapper:focus-within {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            border-color: #5b8c5a;
+        }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background: transparent;
+    }
+</style>

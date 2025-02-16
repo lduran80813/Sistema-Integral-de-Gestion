@@ -4,121 +4,108 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Proveedores</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .form-group {
-            display: flex;
-            justify-content: space-between;
-        }
-
-            .form-group > div {
-                flex: 1;
-                margin-right: 10px;
-            }
-
-                .form-group > div:last-child {
-                    margin-right: 0;
-                }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Registro de Proveedores</h1>
-
-        @using (Html.BeginForm("Registro_Proveedores", "Proveedores"))
-        {
-
-            @Html.Label("Nombre del Proveedor", new { @for = "supplier-name" })
-            @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", @id = "supplier-name", @name = "supplier-name", @required = "true" })
-
-
-            @Html.Label("Dirección", new { @for = "address" })
-            @Html.TextAreaFor(m => m.direccion, new { @class = "form-control", @id = "address", @name = "address", @rows = "3", @required = "true" })
-
-            @Html.Label("Nombre de contacto", new { @for = "contact-name" })
-            @Html.TextBoxFor(m => m.nombre_contacto, new { @class = "form-control", @id = "contact-name", @name = "contact-name", @required = "true" })
-
-            <div class="form-group">
-                <div>
-                    @Html.Label("Teléfono", new { @for = "phone" })
-                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", @type = "tel", @id = "phone", @name = "phone", @required = "true" })
-                </div>
-                <div>
-                    @Html.Label("Correo electrónico", new { @for = "email" })
-                    @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control", @type = "email", @id = "email", @name = "email", @required = "true" })
-                </div>
-            </div>
-
-            @Html.Label("Descripción adicional", new { @for = "description" })
-            @Html.TextAreaFor(m => m.descripcion_adicional, new { @class = "form-control", @id = "description", @name = "description", @rows = "4", @required = "true" })
-
-            <button type="submit">Registrar Proveedor</button>
-        }
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Registro de Proveedores
+        </h2>
     </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
+                </div>
+            }
+            <div class="container">
+                @using (Html.BeginForm("Registro_Proveedores", "Proveedores"))
+                {
+                    <div class="mb-3">
+                        @Html.Label("Nombre del Proveedor", new { @for = "supplier-name" })
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", @id = "supplier-name", @name = "supplier-name", @required = "true" })
+                    </div>
 
-</body>
-</html>
+                    <div class="mb-3">
+                        @Html.Label("Dirección", new { @for = "address" })
+                        @Html.TextAreaFor(m => m.direccion, new { @class = "form-control", @id = "address", @name = "address", @rows = "3", @required = "true" })
+                    </div>
 
+                    <div class="mb-3">
+                        @Html.Label("Nombre de contacto", new { @for = "contact-name" })
+                        @Html.TextBoxFor(m => m.nombre_contacto, new { @class = "form-control", @id = "contact-name", @name = "contact-name", @required = "true" })
+                    </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.Label("Teléfono", new { @for = "phone" })
+                            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", @type = "tel", @id = "phone", @name = "phone", @required = "true" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.Label("Correo electrónico", new { @for = "email" })
+                            @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control", @type = "email", @id = "email", @name = "email", @required = "true" })
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="mb-3">
+                        @Html.Label("Descripción adicional", new { @for = "description" })
+                        @Html.TextAreaFor(m => m.descripcion_adicional, new { @class = "form-control", @id = "description", @name = "description", @rows = "4", @required = "true" })
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-gradient">Registrar Proveedor</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+</style>
+    
