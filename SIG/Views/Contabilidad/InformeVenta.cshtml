@@ -4,206 +4,150 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar cierre contable</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Informe de Ventas</h1>
-
-        @using (Html.BeginForm("InformeVenta", "Contabilidad"))
-        {
-            <label>Escoja las fechas para generar el informe</label>
-
-            @Html.Label("Inicio")
-            @Html.TextBoxFor(m => m.inicioCorte, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-
-            @Html.Label("Fin")
-            @Html.TextBoxFor(m => m.finCorte, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-
-            <br />
-
-            <button type="submit">Generar informe</button>
-
-            if (Model != null)
-            {
-                <a href="@Url.Action("InformeVentaPDF", new { inicioCorte = Model.inicioCorte, finCorte = Model.finCorte })" class="btn btn-primary">Descargar reporte PDF</a>
-
-                <br />
-                <h3>Resultados del Informe</h3>
-                <h4>Resumen de productos</h4>
-                <table id="tablaInforme" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Unidades Vendidas</th>
-                            <th>Precio Unitario</th>
-                            <th>Descuento</th>
-                            <th>Impuesto</th>
-                            <th>Monto Final</th>
-                            <th>Clientes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.datosInforme)
-                        {
-                            <tr>
-                                <td>@item.Producto</td>
-                                <td>@item.Cantidad</td>
-                                <td>₡@item.PrecioUnitario</td>
-                                <td>₡@item.Descuento</td>
-                                <td>₡@item.Impuesto</td>
-                                <td>₡@item.MontoFinal</td>
-                                <td>@item.Clientes</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-                <br />
-                <br />
-                <h4>Datos para análisis</h4>
-                <div>
-                    <div>
-                        <h5>Cantidad de ventas: @Model.cantidadVentas</h5>
-                    </div>
-                    <div>
-                        <h5>Total de ventas: ₡@Model.ingresosTotales</h5>
-                    </div>
-                </div>
-                <br />
-                <div>
-                    <h5>Principales clientes</h5>
-                    <table id="tablaClientes" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Cliente</th>
-                                <th>Cantidad de ventas</th>
-                                <th>Total venta</th>
-                                <th>Porcentaje de Ventas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.principalesClientes)
-                            {
-                                <tr>
-                                    <td>@item.Cliente</td>
-                                    <td>@item.CantidadVentas</td>
-                                    <td>₡@item.TotalVentas</td>
-                                    <td>@item.PorcentajeVentas%</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <br />
-                <div>
-                    <h5>Preferencia en métodos de pago</h5>
-                    <table id="tablaMetodoPago" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Método de pago</th>
-                                <th>Cantidad de ventas</th>
-                                <th>Total venta</th>
-                                <th>Porcentaje de Ventas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.distribucionMediosPago)
-                            {
-                                <tr>
-                                    <td>@item.MetodoPago</td>
-                                    <td>@item.CantidadVentas</td>
-                                    <td>₡@item.TotalVentas</td>
-                                    <td>@item.PorcentajeVentas%</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-
-
-                @Html.Label("Reporte generado:")
-                <input type="text" class="form-control" readonly value="@DateTime.Now" />
-            }
-        }
-
-
-
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Informe de Ventas
+        </h2>
     </div>
 
-</body>
-</html>
+    @using (Html.BeginForm("InformeVenta", "Contabilidad"))
+    {
+        <label class="form-label">Escoja las fechas para generar el informe</label>
 
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
+        <div class="input-container">
+            <label class="input-label">Inicio</label>
+            <div class="input-wrapper">
+                @Html.TextBoxFor(m => m.inicioCorte, "{0:yyyy-MM-dd}", new { @class = "form-control input-field", @type = "date" })
+            </div>
+        </div>
+
+        <div class="input-container">
+            <label class="input-label">Fin</label>
+            <div class="input-wrapper">
+                @Html.TextBoxFor(m => m.finCorte, "{0:yyyy-MM-dd}", new { @class = "form-control input-field", @type = "date" })
+            </div>
+        </div>
+
+        <br />
+
+        <button type="submit" class="btn btn-gradient">Generar informe</button>
+
+        if (Model != null)
+        {
+            <a href="@Url.Action("InformeVentaPDF", new { inicioCorte = Model.inicioCorte, finCorte = Model.finCorte })" class="btn btn-gradient">Descargar reporte PDF</a>
+            <br />
+            <h3>Resultados del Informe</h3>
+            <table id="tablaInforme" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Unidades Vendidas</th>
+                        <th>Precio Unitario</th>
+                        <th>Descuento</th>
+                        <th>Impuesto</th>
+                        <th>Monto Final</th>
+                        <th>Clientes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.datosInforme)
+                    {
+                        <tr>
+                            <td>@item.Producto</td>
+                            <td>@item.Cantidad</td>
+                            <td>₡@item.PrecioUnitario</td>
+                            <td>₡@item.Descuento</td>
+                            <td>₡@item.Impuesto</td>
+                            <td>₡@item.MontoFinal</td>
+                            <td>@item.Clientes</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>
+
 <script>
     $(document).ready(function () {
         $("#tablaInforme").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            },
-            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4] }]
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
     });
 </script>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+    }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .input-label {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 5px;
+        background-color: white;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .input-wrapper:hover, .input-wrapper:focus-within {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            border-color: #5b8c5a;
+        }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background: transparent;
+    }
+</style>

@@ -3,249 +3,268 @@
     ViewBag.Title = "ConsultarPedido";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        max-height: 100vh;
-        overflow-y: auto;
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    label {
-        margin-bottom: 5px;
-        font-weight: bold;
-        color: #555;
-    }
-
-    input, select, textarea {
-        margin-bottom: 15px;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    button {
-        padding: 10px 15px;
-        background-color: #5cb85c;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-        button:hover {
-            background-color: #4cae4c;
-        }
-</style>
-
-<body>
-
-    <div class="container">
-        <h2>Consulta de pedido</h2>
-        <div class="row">
-            <div class="col-12">
 
 
 
-                @if (ViewBag.msj != null)
-                {
-                    <div class="alert alert-info" role="alert" style="text-align:center">
-                        @ViewBag.msj
-                    </div>
-                }
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%; overflow-y: auto;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Consulta de Pedido
+        </h2>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
+                </div>
+            }
+            <table id="tablaCarrito" class="table table-modern table-hover">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>SubTotal</th>
+                        <th>Impuesto</th>
+                        <th>Total</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.DatosCarrito)
+                    {
+                        <tr>
+                            <td>@item.descripcion</td>
+                            <td>@item.Precio.ToString("N2")</td>
+                            <td>@item.Cantidad</td>
+                            <td>@item.SubTotal.Value.ToString("N2")</td>
+                            <td>@item.Impuesto.Value.ToString("N2")</td>
+                            <td>@item.Total.Value.ToString("N2")</td>
+                            <td style="text-align:center">
+                                <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalCarrito"
+                                        data-id="@item.id" data-name="@item.descripcion">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br /><br />
+                  <div class="d-flex justify-content-center mt-4">
+                      <div class="info-box shadow">
+                          <div class="info-content">
+                              <i class="bi bi-cash-stack" style="font-size: 28px; color: #01e173;"></i>
+                              <div>
+                                  <p>Monto a cancelar</p>
+                                  <h4>₡<b>@decimal.Parse(Session["Total"].ToString()).ToString("N2")</b></h4>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
-                <table id="tablaCarrito" class="table table-bordered">
+
+            @if (Session["Total"].ToString() != "0")
+            {
+                <h5 class="text-center">Seleccione al cliente que realiza el pedido</h5>
+                <table id="tablaClientes" class="table table-modern table-hover">
                     <thead>
                         <tr>
-                            <th>Producto</th>
-                            <th>Precio Unitario</th>
-                            <th>Cantidad</th>
-                            <th>SubTotal</th>
-                            <th>Impuesto</th>
-                            <th>Total</th>
-                            <th>Eliminar</th>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Correo electrónico</th>
+                            <th>Seleccionar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.DatosCarrito)
+                        @foreach (var item in Model.Clientes)
                         {
                             <tr>
-                                <td>@item.descripcion</td>
-                                <td>@item.Precio.ToString("N2")</td>
-                                <td>@item.Cantidad</td>
-                                <td>@item.SubTotal.Value.ToString("N2")</td>
-                                <td>@item.Impuesto.Value.ToString("N2")</td>
-                                <td>@item.Total.Value.ToString("N2")</td>
-
-                                <td style="text-align:center">
-                                    <button type="button" class="btn btn-primary AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalCarrito"
-                                            data-id="@item.id" data-name="@item.descripcion">
-                                        <i class="fa fa-share-square"></i>
-                                    </button>
+                                <td>@item.id</td>
+                                <td id="nombre-@item.id">@item.nombre</td>
+                                <td>@item.telefono</td>
+                                <td>@item.correo_electronico</td>
+                                <td class="text-center">
+                                    <a onclick="SeleccionarCliente(@item.id, this)" class="btn btn-update text-white">
+                                        <i class="fa fa-check"></i>
+                                    </a>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-
-                <br /><br />
-
-                <div class="row">
-                    <div class="col-3">
-                        <p style="font-size:14pt; margin-top:2%">El monto a cancelar es de: ₡<b>@decimal.Parse(Session["Total"].ToString()).ToString("N2")</b></p>
-                    </div>
-                    <div>
-                        @if (Session["Total"].ToString() != "0")
-                        {
-                            <br /><br />
-                            <h5>Seleccione al cliente que realiza el pedido</h5>
-                            <table id="tablaClientes" class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Seleccionar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Clientes)
-                                    {
-                                        <tr>
-                                            <td>@item.id</td>
-                                            <td id="nombre-@item.id">@item.nombre</td>
-                                            <td>@item.telefono</td>
-                                            <td>@item.correo_electronico</td>
-
-                                            <td style="text-align:center">
-                                                <a onclick="SeleccionarCliente(@item.id)" class="card-link btn btn-primary text-white"><i class="fa fa-check"></i></a>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            using (Html.BeginForm("ProcesarPedido", "Contabilidad", FormMethod.Post, new { id = "procesarPedido"}))
-                            {
-                                <br />
-                                <input type="hidden" id="idCliente" name="idCliente" />
-                                <label>Nombre de cliente seleccionado:</label>
-                                <input type="text" id="nombreCliente" readonly />
-                                <br />
-                                <label>Notas adicionales (en caso de ser requerido):</label>
-                                <textarea id="notasAdicionales" name="notasAdicionales" maxlength="100"></textarea>
-                                <button id="btn-procesar" type="submit" class="btn btn-outline-primary" style="align-items:center">Procesar</button>
-                            }
-                        }
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</body>
-
-
-<div class="modal fade" id="ModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @using (Html.BeginForm("EliminarProductoPedido", "Contabilidad"))
+                using (Html.BeginForm("ProcesarPedido", "Contabilidad", FormMethod.Post, new { id = "procesarPedido" }))
                 {
-                    <div class="modal-body">
-                        @Html.Hidden("IdProducto", "")
-                        ¿Desea remover de su pedido el producto <label id="Nombre"></label>?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Remover</button>
-                    </div>
+                    <br />
+                    <input type="hidden" id="idCliente" name="idCliente" />
+                    <label>Nombre de cliente seleccionado:</label>
+                    <input type="text" id="nombreCliente" readonly class="form-control" />
+                    <br />
+                    <label>Notas adicionales:</label>
+                    <textarea id="notasAdicionales" name="notasAdicionales" maxlength="100" class="form-control"></textarea>
+                    <br>
+                    <button id="btn-procesar" type="submit" class="btn btn-gradient">Procesar</button>
                 }
-            </div>
+            }
         </div>
     </div>
 </div>
 
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<style>
+
+    .d-flex.flex-column {
+        max-height: 100%;
+        overflow-y: scroll;
+        display: none;
+        scrollbar-width: none;
+    }
+
+    .info-box {
+        background-color: #222222;
+        border-radius: 8px;
+        padding: 20px 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .info-box:hover {
+            transform: scale(1.05);
+        }
+
+    .info-content {
+        display: flex;
+        align-items: center;
+        color: white;
+        gap: 15px;
+    }
+
+        .info-content i {
+            font-size: 28px;
+            color: #01e173;
+        }
+
+        .info-content p {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .info-content h4 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 6px;
+        transition: transform 0.2s, background 0.3s;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+
+        .btn-update.active {
+            background: linear-gradient(to right, #65a9ca, #5481a2);
+            transform: scale(1.1);
+        }
+
+
+    .btn-delete {
+        background: linear-gradient(to right, #d9534f, #b52b27);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #b52b27, #d9534f);
+        }
+</style>
+
 <script>
     $(document).ready(function () {
-        $("#tablaCarrito").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            },
-            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4, 5] }]
-        });
-        $("#tablaClientes").DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-            },
-            columnDefs: [{ type: 'string', target: [0, 1, 2, 3, 4] }]
-        });
-    })
-    $(document).on("click", ".AbrirModal", function () {
-        $("#IdProducto").val($(this).attr('data-id'));
-        $("#Nombre").text($(this).attr('data-name'));
-    });
-
-    $(document).ready(function () {
-        $('#procesarPedido').on("submit", function (e) {
-            let idCliente = $("#idCliente").val();
-
-            if (idCliente == "") {
-                e.preventDefault();
-                MostrarMensaje("Información", "Debe seleccionar un cliente para poder continuar", "error");
-                return;
-                }
+        $("#tablaCarrito, #tablaClientes").DataTable({
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
     });
-    
 
-    function SeleccionarCliente(id) {
+    document.addEventListener("DOMContentLoaded", function () {
+        let botones = document.querySelectorAll(".btn-update");
+        botones.forEach(btn => {
+            btn.style.background = "linear-gradient(to right, #b0b0b0, #808080)";
+        });
+    });
+
+    function SeleccionarCliente(id, boton) {
         let nombre = $("#nombre-" + id).text();
         $("#idCliente").val(id);
         $("#nombreCliente").val(nombre);
-    }
 
-    function MostrarMensaje(titulo, mensaje, icono) {
-        Swal.fire({
-            title: titulo,
-            showDenyButton: false,
-            showCancelButton: false,
-            confirmButtonText: "Aceptar",
-            text: mensaje,
-            icon: icono
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/Contabilidad/ConsultarPedido'
-            }
+        let botones = document.querySelectorAll(".btn-update");
+        botones.forEach(btn => {
+            btn.classList.remove("active");
+            btn.style.background = "linear-gradient(to right, #b0b0b0, #808080)";
         });
-    }
 
+        boton.classList.add("active");
+        boton.style.background = "linear-gradient(to right, #65a9ca, #5481a2)";
+    }
 </script>
