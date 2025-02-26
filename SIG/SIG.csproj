@@ -709,6 +709,7 @@
     <Content Include="root\dist\img\default-150x150.png" />
     <Content Include="root\dist\img\icons.png" />
     <Content Include="root\dist\img\logo.png" />
+    <Content Include="root\dist\img\logoRajasa.jpg" />
     <Content Include="root\dist\js\adminlte.js" />
     <Content Include="root\dist\js\adminlte.min.js" />
     <Content Include="root\dist\js\demo.js" />

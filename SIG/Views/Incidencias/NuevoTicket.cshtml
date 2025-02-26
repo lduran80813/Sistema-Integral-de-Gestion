@@ -1,99 +1,91 @@
 ﻿@model SIG.Entidades.Ticket
+
 @{
-    ViewBag.Title = "Registro";
+    ViewBag.Title = "Registro de Incidencia";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Incidencia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Registro de Incidencia</h1>
-
-        @using (Html.BeginForm("NuevoTicket", "Incidencias"))
-        {
-
-            @Html.Label("Título", new { @for = "incident-title" })
-            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @maxlength = "20", @id = "incident-title", @name = "incident-title", @required = "true" })
-
-            @Html.Label("Tipo de incidente", new { @for = "type" })
-            @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-select", @id = "type", @name = "type", @required = "true" })
-
-            @Html.Label("Descripción", new { @for = "description" })
-            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @maxlength = "200", @id = "description", @name = "description", @rows = "4", @required = "true" })
-
-            @Html.Label("Comentarios Usuario", new { @for = "user-comments" })
-            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @maxlength = "200", @id = "user-comments", @name = "user-comments", @rows = "4" })
-
-            <button type="submit">Registrar Incidencia</button>
-        }
-
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Registro de Incidencia
+        </h2>
     </div>
 
-</body>
-</html>
+    <div class="container">
+        @using (Html.BeginForm("NuevoTicket", "Incidencias"))
+        {
+            @Html.AntiForgeryToken()
 
+            <div class="mb-3">
+                @Html.LabelFor(m => m.titulo, "Título", new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.titulo, new { @class = "form-control form-control-lg shadow-lg", @maxlength = "20", @required = "true", @placeholder = "Ingrese el título de la incidencia" })
+            </div>
 
+            <div class="mb-3">
+                @Html.LabelFor(m => m.tipo_incidencia, "Tipo de Incidente", new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, "Seleccione un tipo", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.descripcion, "Descripción", new { @class = "form-label" })
+                @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control shadow-lg", @maxlength = "200", @rows = "4", @required = "true", @placeholder = "Ingrese una descripción detallada" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.comentarios_usuario, "Comentarios del Usuario", new { @class = "form-label" })
+                @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control shadow-lg", @maxlength = "200", @rows = "4", @placeholder = "Ingrese comentarios adicionales" })
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-gradient">Registrar Incidencia</button>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .select-style {
+        text-align: left;
+        padding-left: 12px;
+        height: 50px;
+        font-size: 16px;
+    }
+</style>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>

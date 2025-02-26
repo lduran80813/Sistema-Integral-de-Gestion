@@ -95,14 +95,14 @@
               scrollbar-width: thin;
               scrollbar-color: #222 #111;">
 
-            <!-- Encabezado: GIF de Usuario (Animado) -->
+
             <div style="background-color: #222222;
                 padding: 20px 15px;
                 text-align: center;
                 border-bottom: 1px solid #333;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
-                <!-- GIF del usuario -->
-                <img src="https://png.pngtree.com/png-vector/20221203/ourmid/pngtree-cartoon-style-male-user-profile-icon-vector-illustraton-png-image_6489287.png"
+
+                <img src="~/root/dist/img/avatar.png" 
                      alt="Usuario"
                      class="img-circle elevation-3"
                      style="border: 3px solid #00e676;
@@ -113,7 +113,7 @@
                 <p style="font-size: 14px; color: #a5d6a7;">Rol: @Session["NombreRolUsuario"]</p>
             </div>
 
-            <!-- Menú Principal -->
+
             <div class="sidebar" style="flex: 1; margin-top: 10px; padding: 0 15px;">
                 <nav>
                     <ul class="nav nav-pills nav-sidebar flex-column"
@@ -121,7 +121,7 @@
                         role="menu"
                         style="padding: 0; list-style: none;">
 
-                        <!-- Módulo: Contabilidad -->
+
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -133,7 +133,7 @@
                             <ul class="nav nav-treeview collapsible-content"
                                 style="margin-top: 5px; padding-left: 25px; display: none;">
 
-                                <!-- Submódulo: Nuevo Pedido -->
+  
                                 <li class="nav-item">
                                     <a href="@Url.Action("Productos_Ventas", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-plus-circle nav-icon" style="color: #a5d6a7;"></i>
@@ -141,7 +141,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Lista Pedidos -->
+       
                                 <li class="nav-item">
                                     <a href="@Url.Action("ListaPedidos", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
@@ -149,7 +149,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Inventario -->
+                  
                                 <li class="nav-item">
                                     <a href="@Url.Action("Inventario", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-boxes nav-icon" style="color: #a5d6a7;"></i>
@@ -157,7 +157,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Informe Venta -->
+                  
                                 <li class="nav-item">
                                     <a href="@Url.Action("InformeVenta", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
@@ -165,7 +165,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Cuentas por Pagar -->
+                       
                                 <li class="nav-item">
                                     <a href="@Url.Action("CxP", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-file-invoice nav-icon" style="color: #a5d6a7;"></i>
@@ -173,7 +173,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Cuentas por Cobrar -->
+                            
                                 <li class="nav-item">
                                     <a href="@Url.Action("CxC", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-wallet nav-icon" style="color: #a5d6a7;"></i>
@@ -181,7 +181,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Registro Transacciones -->
+                          
                                 <li class="nav-item">
                                     <a href="@Url.Action("RegistroTransacciones", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-exchange-alt nav-icon" style="color: #a5d6a7;"></i>
@@ -189,7 +189,6 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Cierre Contable -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("ContaCierreCorte", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-calendar-check nav-icon" style="color: #a5d6a7;"></i>
@@ -197,7 +196,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Estados Financieros -->
+                         
                                 <li class="nav-item">
                                     <a href="@Url.Action("ContaEstadosFinancieros", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-money-bill nav-icon" style="color: #a5d6a7;"></i>
@@ -205,7 +204,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Vencimiento Cuentas -->
+                  
                                 <li class="nav-item">
                                     <a href="@Url.Action("VencimientoCuentas", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-calendar-alt nav-icon" style="color: #a5d6a7;"></i>
@@ -213,15 +212,14 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo adicional: Recibos de Transportistas -->
-                                <li class="nav-item">
+                                @*<li class="nav-item">
                                     <a href="@Url.Action("RecibosTransportistas", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-file-invoice nav-icon" style="color: #a5d6a7;"></i>
                                         <p style="color: #a5d6a7;">Recibos de Transportistas</p>
                                     </a>
                                 </li>
 
-                                <!-- Submódulo adicional: Ajustes de Inventario -->
+                     
                                 <li class="nav-item">
                                     <a href="@Url.Action("AjustesInventario", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-box-open nav-icon" style="color: #a5d6a7;"></i>
@@ -229,17 +227,16 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo adicional: Estados Financieros Automáticos -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("EstFinancierosAutomaticos", "Contabilidad")" class="nav-link">
                                         <i class="fas fa-robot nav-icon" style="color: #a5d6a7;"></i>
                                         <p style="color: #a5d6a7;">Estados Automáticos</p>
                                     </a>
-                                </li>
+                                </li>*@
                             </ul>
                         </li>
 
-                        <!-- Módulo: Proveedores -->
+      
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -251,7 +248,7 @@
                             <ul class="nav nav-treeview collapsible-content"
                                 style="margin-top: 5px; padding-left: 25px; display: none;">
 
-                                <!-- Submódulo: Registrar Proveedor -->
+                     
                                 <li class="nav-item">
                                     <a href="@Url.Action("Registro_Proveedores", "Proveedores")" class="nav-link">
                                         <i class="fas fa-user-plus nav-icon" style="color: #a5d6a7;"></i>
@@ -259,7 +256,6 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Lista de Proveedores -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("ListaProveedores", "Proveedores")" class="nav-link">
                                         <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
@@ -267,7 +263,6 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Estado Financiero -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("ConsultarEstadoFinanciero", "Proveedores")" class="nav-link">
                                         <i class="fas fa-info-circle nav-icon" style="color: #a5d6a7;"></i>
@@ -275,7 +270,6 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Estado Financiero Conjunto -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("ConsultarEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
                                         <i class="fas fa-balance-scale nav-icon" style="color: #a5d6a7;"></i>
@@ -283,7 +277,6 @@
                                     </a>
                                 </li>
 
-                                <!-- Subnivel: Pedidos -->
                                 <li class="nav-item has-treeview">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-shopping-cart nav-icon" style="color: #a5d6a7;"></i>
@@ -292,7 +285,6 @@
                                     </a>
                                     <ul class="nav nav-treeview"
                                         style="margin-top: 5px; padding-left: 20px;">
-                                        <!-- Submódulo: Registrar Pedido -->
                                         <li class="nav-item">
                                             <a href="@Url.Action("RegistrarPedido", "Pedidos")" class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon" style="color: #a5d6a7;"></i>
@@ -300,7 +292,6 @@
                                             </a>
                                         </li>
 
-                                        <!-- Submódulo: Lista de Pedidos -->
                                         <li class="nav-item">
                                             <a href="@Url.Action("ListaPedidos", "Pedidos")" class="nav-link">
                                                 <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
@@ -308,7 +299,6 @@
                                             </a>
                                         </li>
 
-                                        <!-- Submódulo: Generar Reporte -->
                                         <li class="nav-item">
                                             <a href="@Url.Action("GenerarReporteForm", "Pedidos")" class="nav-link">
                                                 <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
@@ -320,7 +310,6 @@
                             </ul>
                         </li>
 
-                        <!-- Módulo: Incidencias -->
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -332,7 +321,6 @@
                             <ul class="nav nav-treeview collapsible-content"
                                 style="margin-top: 5px; padding-left: 25px; display: none;">
 
-                                <!-- Submódulo: Nueva Incidencia -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("NuevoTicket", "Incidencias")" class="nav-link">
                                         <i class="fas fa-exclamation-circle nav-icon" style="color: #a5d6a7;"></i>
@@ -340,7 +328,6 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Incidencias en Proceso -->
                                 <li class="nav-item">
                                     <a href="@Url.Action("ListaIncidenciasUsuario", "Incidencias")" class="nav-link">
                                         <i class="fas fa-hourglass-start nav-icon" style="color: #a5d6a7;"></i>
@@ -348,7 +335,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Submódulo: Histórico de Incidencias -->
+  
                                 <li class="nav-item">
                                     <a href="@Url.Action("ListaHistoricoUsuario", "Incidencias")" class="nav-link">
                                         <i class="fas fa-history nav-icon" style="color: #a5d6a7;"></i>
@@ -356,7 +343,7 @@
                                     </a>
                                 </li>
 
-                                <!-- Subnivel: Atención (según RolUsuario > 1) -->
+         
                                 @if (int.Parse(Session["RolUsuario"].ToString()) > 1)
                                 {
                                     <li class="nav-item has-treeview">
@@ -367,7 +354,7 @@
                                         </a>
                                         <ul class="nav nav-treeview"
                                             style="margin-top: 5px; padding-left: 25px;">
-                                            <!-- Asignadas -->
+                      
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaTicketsAsignados", "IncidenciasITAnalyst")" class="nav-link">
                                                     <i class="fas fa-user-check nav-icon" style="color: #a5d6a7;"></i>
@@ -375,7 +362,7 @@
                                                 </a>
                                             </li>
 
-                                            <!-- Atendidas -->
+                               
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaHistoricoAtendidos", "IncidenciasITAnalyst")" class="nav-link">
                                                     <i class="fas fa-check-double nav-icon" style="color: #a5d6a7;"></i>
@@ -383,7 +370,7 @@
                                                 </a>
                                             </li>
 
-                                            <!-- Reporte -->
+                                  
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ReporteITAnalyst", "IncidenciasITAnalyst")" class="nav-link">
                                                     <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
@@ -394,7 +381,7 @@
                                     </li>
                                 }
 
-                                <!-- Subnivel: Administración (según RolUsuario == 3) -->
+                   
                                 @if (int.Parse(Session["RolUsuario"].ToString()) == 3)
                                 {
                                     <li class="nav-item has-treeview">
@@ -406,7 +393,7 @@
                                         <ul class="nav nav-treeview"
                                             style="margin-top: 5px; padding-left: 25px;">
 
-                                            <!-- Asignación -->
+                          
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaTicketsRegistrados", "IncidenciasITManager")" class="nav-link">
                                                     <i class="fas fa-tasks nav-icon" style="color: #a5d6a7;"></i>
@@ -414,7 +401,7 @@
                                                 </a>
                                             </li>
 
-                                            <!-- Histórico de Tickets -->
+                      
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaHistoricoTickets", "IncidenciasITManager")" class="nav-link">
                                                     <i class="fas fa-history nav-icon" style="color: #a5d6a7;"></i>
@@ -422,7 +409,7 @@
                                                 </a>
                                             </li>
 
-                                            <!-- Reporte -->
+                        
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ReporteITManager", "IncidenciasITManager")" class="nav-link">
                                                     <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
@@ -432,7 +419,7 @@
                                         </ul>
                                     </li>
 
-                                    <!-- Categorías de Incidencias -->
+                        
                                     <li class="nav-item">
                                         <a href="@Url.Action("ListaTiposTicket", "IncidenciasITManager")" class="nav-link">
                                             <i class="fas fa-tags nav-icon" style="color: #a5d6a7;"></i>
@@ -442,7 +429,7 @@
                                 }
                             </ul>
                         </li>
-                        <!-- Módulo: Empleados -->
+     
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -513,7 +500,7 @@
                             </ul>
                         </li>
 
-                        <!-- Módulo: Entregas -->
+
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -539,7 +526,7 @@
                             </ul>
                         </li>
 
-                        <!-- Módulo: Planes de Acción -->
+             
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -562,7 +549,8 @@
                                         <p style="color: #a5d6a7;">Listar Planes</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+
+                                @*<li class="nav-item">
                                     <a href="@Url.Action("VerificarEstado","PlanDeAccion")" class="nav-link">
                                         <i class="fas fa-tasks nav-icon" style="color: #a5d6a7;"></i>
                                         <p style="color: #a5d6a7;">Verificar Estado</p>
@@ -585,7 +573,7 @@
                                         <i class="nav-icon fas fa-clock" style="color: #a5d6a7;"></i>
                                         <p style="color: #a5d6a7;">Verificar plazos</p>
                                     </a>
-                                </li>
+                                </li>*@
                             </ul>
                         </li>
 
@@ -594,9 +582,8 @@
             </div>
         </aside>
 
-        <!-- Estilo personalizado para barra de desplazamiento -->
         <style>
-            /* Estilos para el contenedor de la barra lateral */
+
             .main-sidebar {
                 overflow-y: auto; 
                 scrollbar-width: thin; 
@@ -625,7 +612,7 @@
             }
         </style>
 
-        <!-- Script para abrir/cerrar módulos -->
+
         <script>
             document.querySelectorAll('.toggle-menu').forEach(menu => {
                 menu.addEventListener('click', function () {
@@ -702,11 +689,10 @@
                     } else {
                         $('#notificationCircle').hide(); // Oculta el círculo si no hay notificaciones
                     }
-                    // Actualiza la lista de notificaciones en el menú desplegable
-                    const notificationList = $('#notificationList');
-                    notificationList.empty(); // Limpia la lista actual
 
-                    // Agrega cada notificación a la lista
+                    const notificationList = $('#notificationList');
+                    notificationList.empty(); 
+
                     data.notificaciones.forEach(function (notificacion) {
                         const item = $('<div>').addClass('dropdown-item')
                             .attr('id', notificacion.IdNotificacion)

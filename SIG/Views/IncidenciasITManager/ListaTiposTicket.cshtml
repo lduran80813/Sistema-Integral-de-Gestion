@@ -4,87 +4,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (ViewBag.warning != null)
-{
-    <h3>
-        @ViewBag.msj
-    </h3>
-}
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Categorías de Incidencias
+        </h2>
+    </div>
 
-
-    <body>
-
-        <div class="container">
-            <h2>Categorías de incidencias</h2>
-            <div class="row">
-                <div class="col-12">
-                    <br>
-                    <a class="btn btn-primary" href="@Url.Action("CrearCategoria", "IncidenciasITManager")"><i class="fa fa-plus"></i> Nueva categoría</a>
-                    @if (Model.Count == 0)
+    @if (Model.Count == 0)
+    {
+        <h3 class="text-center">No existen categorías registradas</h3>
+    }
+    else
+    {
+        <div>
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
+                </div>
+            }
+            <table id="tablaTipos" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>Tipo ID</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Desactivar</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
                     {
-                        <h3>No existen categorías registradas</h3>
-                        // crear botón para añadir una categoría
-                    }
-                    else
-                    {
-                        if (ViewBag.msj != null)
-                        {
-                            <br>
-                            <div class="alert alert-info" role="alert" style="text-align:center">
-                                @ViewBag.msj
-                            </div>
-                        }
-                        <table id="tablaTipos" class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Tipo ID</th>
-                                    <th>Descripción</th>
-                                    <th>Estado</th>
-                                    <th>Desactivar</th>
-                                    <th>Editar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
+                        <tr class="@(item.estado ? "table-success" : "table-danger")">
+                            <td>@item.tipo_incidencia</td>
+                            <td>@item.descripcion</td>
+                            <td>@(item.estado ? "Activa" : "Inactiva")</td>
+                            <td class="text-center">
+                                @if (item.estado)
                                 {
-                                    <tr>
-                                        <td>@item.tipo_incidencia</td>
-                                        <td>@item.descripcion</td>
-                                        @if (item.estado == true)
-                                        {
-                                            <td>Activa</td>
-                                            <td style="text-align:center">
-                                                <button type="button" class="btn btn-primary AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.tipo_incidencia" data-name="@item.descripcion">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </td>
-                                            <td style="text-align:center">
-                                                <a class="btn btn-primary" href="@Url.Action("EditarCategoria", "IncidenciasITManager", new { idCategoria = item.tipo_incidencia })">
-                                                    <i class="fa fa-user"></i>
-                                                </a>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>Inactiva</td>
-                                            <td style="text-align:center">
-                                            </td>
-                                            <td style="text-align:center">
-                                            </td>
-                                        }
-
-                                    </tr>
+                                    <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.tipo_incidencia" data-name="@item.descripcion">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                 }
-                            </tbody>
-                        </table>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-update" href="@Url.Action("EditarCategoria", "IncidenciasITManager", new { idCategoria = item.tipo_incidencia })">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                            </td>
+                        </tr>
                     }
-                </div>                    
-            </div>
+                </tbody>
+            </table>
         </div>
-    </body>
 
-
-
+        <div class="text-center mt-3">
+            <a class="btn btn-gradient" href="@Url.Action("CrearCategoria", "IncidenciasITManager")">
+                <i class="fa fa-plus"></i> Nueva categoría
+            </a>
+        </div>
+    }
+</div>
 
 <div class="modal fade" id="ModalTicket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -101,7 +83,7 @@
                         ¿Desea desactivar la categoría <label id="Nombre"></label>?
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Desactivar</button>
+                        <button type="submit" class="btn btn-delete">Desactivar</button>
                     </div>
                 }
             </div>
@@ -109,9 +91,6 @@
     </div>
 </div>
 
-
-
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#tablaTipos").DataTable({
@@ -119,10 +98,85 @@
                 url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
             }
         });
-    })
+    });
+
     $(document).on("click", ".AbrirModal", function () {
-        $("#tipo_incidencia").val($(this).attr('data-id'));
-        $("#Nombre").text($(this).attr('data-name'));
+        var tipoId = $(this).data("id");
+        $("#tipo_incidencia").val(tipoId);
+        $("#Nombre").text($(this).data("name"));
     });
 </script>
 
+
+<style>
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .table-modern {
+        border-radius: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        border: 1px solid black;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-delete {
+        background: linear-gradient(to right, #d9534f, #b52b27);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #b52b27, #d9534f);
+        }
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+</style>

@@ -1,120 +1,126 @@
 ﻿@model SIG.Entidades.Pedido
+
 @{
     ViewBag.Title = "Registrar Pedido";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Pedido</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px; 
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, textarea, select {
-            margin-bottom: 20px; 
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c; 
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-            button:hover {
-                background-color: #4cae4c; 
-            }
-
-        .alert {
-            color: red;
-            text-align: center;
-            margin-bottom: 20px; 
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h2>Registrar Pedido</h2>
-
-        @if (ViewBag.msj != null)
-        {
-            <div class="alert">@ViewBag.msj</div>
-        }
-
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.fecha_pedido, "Fecha de Pedido")
-                @Html.TextBoxFor(model => model.fecha_pedido, new { @class = "form-control", @type = "date" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.proveedor_id, "Proveedor")
-                @Html.DropDownListFor(model => model.proveedor_id, new SelectList(ViewBag.Proveedores, "id", "nombre"), "Seleccione un proveedor", new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.total_pedido, "Total de Pedido")
-                @Html.TextBoxFor(model => model.total_pedido, new { @class = "form-control", @type = "number", step = "1", value = "0", min = "0" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EstadoCompraId, "Estado de Compra")
-                @Html.DropDownListFor(model => model.EstadoCompraId, new SelectList(ViewBag.EstadosCompra, "id", "nombre"), "Seleccione un estado", new { @class = "form-control" })
-            </div>
-
-            <button type="submit">Registrar Pedido</button>
-        }
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Registrar Pedido
+        </h2>
     </div>
 
-    <script src="~/root/plugins/jquery/jquery.min.js"></script>
-    <script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
+                </div>
+            }
+            <div class="container">
+                @using (Html.BeginForm("RegistrarPedido", "Pedidos"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.fecha_pedido, "Fecha de Pedido", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.fecha_pedido, new { @class = "form-control form-control-lg shadow-lg", @type = "date", @required = "true" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.proveedor_id, "Proveedor", new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.proveedor_id, new SelectList(ViewBag.Proveedores, "id", "nombre"), "Seleccione un proveedor", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.total_pedido, "Total del Pedido", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.total_pedido, new { @class = "form-control shadow-lg", @type = "number", @step = "0.01", @min = "0", @required = "true", @placeholder = "Ingrese el total del pedido" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.EstadoCompraId, "Estado de Compra", new { @class = "form-label" })
+                        @Html.DropDownListFor(m => m.EstadoCompraId, new SelectList(ViewBag.EstadosCompra, "id", "nombre"), "Seleccione un estado", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-gradient">Registrar Pedido</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    /* Ajuste para los Select */
+    .select-style {
+        text-align: left;
+        padding-left: 12px;
+        height: 50px;
+        font-size: 16px;
+    }
+</style>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>

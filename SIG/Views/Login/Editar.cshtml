@@ -1,107 +1,148 @@
 ﻿@model SIG.BaseDatos.Empleado
 
 @{
-    ViewBag.Title = "EditarEmpleado";
+    ViewBag.Title = "Editar Empleado";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-6">
-    <div class="card shadow-lg bg-light p-5">
-        <h3 class="text-center mb-4">Editar Usuario</h3>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Editar Usuario
+        </h2>
+    </div>
 
+    <div class="container">
         @using (Html.BeginForm("EditarEmp", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
         {
             @Html.HiddenFor(m => m.id)
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nombre" class="col-form-label">Nombre:</label>
-                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", required = "required" })
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.nombre, "Nombre", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control shadow-lg", required = "required" })
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label for="apellidos" class="col-form-label">Apellidos:</label>
-                    @Html.TextBoxFor(m => m.apellidos, new { @class = "form-control", required = "required" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="correo_electronico" class="col-form-label">Correo Electrónico:</label>
-                    @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control", required = "required", @readonly = "readonly" })
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="usuario" class="col-form-label">Usuario:</label>
-                    @Html.TextBoxFor(m => m.usuario, new { @class = "form-control", required = "required", @readonly = "readonly" })
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.apellidos, "Apellidos", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.apellidos, new { @class = "form-control shadow-lg", required = "required" })
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="telefono" class="col-form-label">Teléfono:</label>
-                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", required = "required" })
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.correo_electronico, "Correo Electrónico", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control shadow-lg", required = "required", @readonly = "readonly" })
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label for="direccion" class="col-form-label">Dirección:</label>
-                    @Html.TextBoxFor(m => m.direccion, new { @class = "form-control", required = "required" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="fecha_nacimiento" class="col-form-label">Fecha de Nacimiento:</label>
-                    @Html.TextBoxFor(m => m.fecha_nacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @disabled = "disabled" })
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="numero_identificacion" class="col-form-label">Número de Identificación:</label>
-                    @Html.TextBoxFor(m => m.numero_identificacion, new { @class = "form-control", required = "required" })
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.usuario, "Usuario", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.usuario, new { @class = "form-control shadow-lg", required = "required", @readonly = "readonly" })
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Departamento:</label>
-                    @Html.DropDownList("departamento_id", (IEnumerable<SelectListItem>)ViewBag.Departamentos, "Seleccione un departamento", new { @class = "form-control" })
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.telefono, "Teléfono", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control shadow-lg", required = "required" })
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label class="col-form-label">Puesto:</label>
-                    @Html.DropDownList("puesto_id", (IEnumerable<SelectListItem>)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="form-row justify-content-center">
-                <div class="form-group col-md-6 text-center">
-                    <label class="col-form-label">Rol:</label>
-                    @Html.DropDownList("rol_id", (IEnumerable<SelectListItem>)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control" })
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.direccion, "Dirección", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.direccion, new { @class = "form-control shadow-lg", required = "required" })
                 </div>
             </div>
 
-
-
-            <div class="form-row justify-content-center">
-                <div class="col-md-6 text-center">
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.history.back();">
-                        Retroceder
-                    </button>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.fecha_nacimiento, "Fecha de Nacimiento", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.fecha_nacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control shadow-lg", type = "date", @disabled = "disabled" })
                 </div>
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.numero_identificacion, "Número de Identificación", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.numero_identificacion, new { @class = "form-control shadow-lg", required = "required" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.Label("Departamento", new { @class = "form-label" })
+                    @Html.DropDownList("departamento_id", (IEnumerable<SelectListItem>)ViewBag.Departamentos, "Seleccione un departamento", new { @class = "form-control shadow-lg" })
+                </div>
+                <div class="col-md-6 mb-3">
+                    @Html.Label("Puesto", new { @class = "form-label" })
+                    @Html.DropDownList("puesto_id", (IEnumerable<SelectListItem>)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control shadow-lg" })
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-3">
+                    @Html.Label("Rol", new { @class = "form-label" })
+                    @Html.DropDownList("rol_id", (IEnumerable<SelectListItem>)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control shadow-lg" })
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-gradient">Guardar Cambios</button>
+                <button type="button" class="btn btn-retroceder" onclick="window.history.back();">Retroceder</button>
             </div>
         }
     </div>
 </div>
 
-
-
 @if (ViewBag.ErrorMessage != null)
 {
-    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+    <div class="alert alert-danger text-center">@ViewBag.ErrorMessage</div>
 }
 
 @if (ViewBag.SuccessMessage != null)
 {
-    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+    <div class="alert alert-success text-center">@ViewBag.SuccessMessage</div>
 }
+
+
+
+<style>
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+
+    .btn-retroceder{
+        background: linear-gradient(to right, #6c757d, #495057); 
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #495057, #6c757d); 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+
+</style>

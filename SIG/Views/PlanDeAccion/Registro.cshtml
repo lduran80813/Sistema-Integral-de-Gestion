@@ -5,246 +5,88 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-        }
-
-        .btn-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .tarea {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-
-        #add-tarea-btn {
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <div class="card mb-4">
-            <div class="card-header text-center">
-                Registro de Plan de Acción
-            </div>
-            <div class="card-body">
-                @using (Html.BeginForm("RegistroAjax", "PlanDeAccion", FormMethod.Post, new { id = "planForm" }))
-                {
-                    <!-- Información del Plan -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.NombrePlan, "Nombre del Plan")
-                                @Html.TextBoxFor(model => model.NombrePlan, new { @class = "form-control", @placeholder = "Ingrese el nombre del plan", @maxlength = "100", @required = "true" })
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.DescripcionPlan, "Descripción del Plan")
-                                @Html.TextAreaFor(model => model.DescripcionPlan, new { @class = "form-control", @rows = "3", @maxlength = "200", @placeholder = "Describa el plan", @required = "true" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Responsable y Fechas -->
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ResponsableId, "Responsable")
-                                @Html.DropDownListFor(
-                                    model => model.ResponsableId,
-                                    (IEnumerable<SelectListItem>)ViewBag.Empleados,
-                                    "Seleccione un responsable",
-                                    new { @class = "form-control", @required = "true" }
-                                )
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.FechaInicio, "Fecha de Inicio")
-                                @Html.TextBoxFor(model => model.FechaInicio, new { @class = "form-control", type = "date", @required = "true" })
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.FechaFinalizacion, "Fecha de Finalización")
-                                @Html.TextBoxFor(model => model.FechaFinalizacion, new { @class = "form-control", type = "date", @required = "true" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Estado -->
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Estado, "Estado")
-                                @Html.DropDownListFor(
-                                    model => model.Estado,
-                                    (IEnumerable<SelectListItem>)ViewBag.Estados,
-                                    "Seleccione un estado",
-                                    new { @class = "form-control", @required = "true" }
-                                )
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tareas -->
-                    <h4 class="mb-3">Tareas</h4>
-                    <div id="tareas-container">
-                        <div class="tarea">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Descripción de la tarea</label>
-                                        <input type="text" name="Tareas[0].DescripcionTarea" class="form-control" placeholder="Descripción de la tarea" required />
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Responsable</label>
-                                        <select name="Tareas[0].ResponsableId" class="form-control" required>
-                                            @foreach (var empleado in ViewBag.Empleados)
-                                            {
-                                                <option value="@empleado.Value">@empleado.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Estado</label>
-                                        <select name="Tareas[0].EstadoTareaId" class="form-control" required>
-                                            @foreach (var estado in ViewBag.EstadosTarea)
-                                            {
-                                                <option value="@estado.Value">@estado.Text</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="button" id="add-tarea-btn" class="btn btn-secondary">Agregar otra tarea</button>
-
-                    <!-- Botón de enviar -->
-                    <div class="btn-container">
-                        <button type="submit" class="btn btn-primary">Registrar Plan de Acción</button>
-                    </div>
-                }
-            </div>
-        </div>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Registro de Plan de Acción
+        </h2>
     </div>
 
-    <script>
-    var tareaIndex = 1;
-
-    document.getElementById("add-tarea-btn").addEventListener("click", function () {
-        var newTarea = document.createElement("div");
-        newTarea.className = "tarea";
-        newTarea.innerHTML = `
+    <div class="container">
+        @using (Html.BeginForm("RegistroAjax", "PlanDeAccion", FormMethod.Post, new { id = "planForm" }))
+        {
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Descripción de la tarea</label>
-                        <input type="text" name="Tareas[${tareaIndex}].DescripcionTarea" class="form-control" placeholder="Descripción de la tarea" required />
-                    </div>
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.NombrePlan, "Nombre del Plan", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.NombrePlan, new { @class = "form-control shadow-lg", placeholder = "Ingrese el nombre del plan", @maxlength = "100", required = "true" })
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Responsable</label>
-                        <select name="Tareas[${tareaIndex}].ResponsableId" class="form-control" required>
-                            @foreach (var empleado in ViewBag.Empleados)
-                            {
-                                <option value="@empleado.Value">@empleado.Text</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Estado</label>
-                        <select name="Tareas[${tareaIndex}].EstadoTareaId" class="form-control" required>
-                            @foreach (var estado in ViewBag.EstadosTarea)
-                            {
-                                <option value="@estado.Value">@estado.Text</option>
-                            }
-                        </select>
-                    </div>
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.DescripcionPlan, "Descripción del Plan", new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.DescripcionPlan, new { @class = "form-control shadow-lg", rows = "3", maxlength = "200", placeholder = "Describa el plan", required = "true" })
                 </div>
             </div>
-        `;
-        document.getElementById("tareas-container").appendChild(newTarea);
-        tareaIndex++;
-    });
 
-    document.getElementById('planForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.ResponsableId, "Responsable", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.ResponsableId, (IEnumerable<SelectListItem>)ViewBag.Empleados, "Seleccione un responsable", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                </div>
+                <div class="col-md-3 mb-3">
+                    @Html.LabelFor(m => m.FechaInicio, "Fecha de Inicio", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaInicio, new { @class = "form-control shadow-lg", type = "date", required = "true" })
+                </div>
+                <div class="col-md-3 mb-3">
+                    @Html.LabelFor(m => m.FechaFinalizacion, "Fecha de Finalización", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaFinalizacion, new { @class = "form-control shadow-lg", type = "date", required = "true" })
+                </div>
+            </div>
 
-        const form = this;
-        const formData = new FormData(form);
+            <div class="text-center">
+                <button type="submit" class="btn btn-gradient">Registrar Plan de Acción</button>
+            </div>
+        }
+    </div>
+</div>
 
-        fetch(form.action, {
-            method: form.method,
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                Swal.fire({
-                    title: 'Éxito',
-                    text: data.message,
-                    icon: 'success',
-                    confirmButtonText: 'Aceptar'
-                }).then(() => {
-                    form.reset();
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error',
-                    text: data.message,
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
-        })
-        .catch(error => {
-            Swal.fire({
-                title: 'Error',
-                text: 'Ocurrió un problema al registrar el plan.',
-                icon: 'error',
-                confirmButtonText: 'Aceptar'
-            });
-        });
-    });
-    </script>
+<style>
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
 
-</body>
-</html>
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .select-style {
+        text-align: left;
+        padding-left: 12px;
+        height: 50px;
+        font-size: 16px;
+    }
+</style>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>

@@ -2,120 +2,109 @@
 
 @{
     ViewBag.Title = "Editar Plan de Acción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <!-- Encabezado -->
-    <h2 class="text-center mb-4">@ViewBag.Title</h2>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            @ViewBag.Title
+        </h2>
+    </div>
 
-    @using (Html.BeginForm("Editar", "PlanDeAccion", FormMethod.Post, new { @id = "editForm" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.Id)
+    <div class="container">
+        @using (Html.BeginForm("Editar", "PlanDeAccion", FormMethod.Post, new { @id = "editForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
 
-        <div class="row">
-            <!-- Primera columna -->
-            <div class="col-md-6">
-                <div class="form-group mb-3">
-                    @Html.LabelFor(m => m.NombrePlan, htmlAttributes: new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.NombrePlan, new { @class = "form-control", placeholder = "Nombre del Plan" })
-                    @Html.ValidationMessageFor(m => m.NombrePlan, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.NombrePlan, "Nombre del Plan", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.NombrePlan, new { @class = "form-control shadow-lg", placeholder = "Ingrese el nombre del plan", @maxlength = "100", required = "true" })
                 </div>
-
-                <div class="form-group mb-3">
-                    @Html.LabelFor(m => m.DescripcionPlan, htmlAttributes: new { @class = "form-label" })
-                    @Html.TextAreaFor(m => m.DescripcionPlan, new { @class = "form-control", placeholder = "Descripción del Plan", rows = 4 })
-                    @Html.ValidationMessageFor(m => m.DescripcionPlan, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <!-- Segunda columna -->
-            <div class="col-md-6">
-                <div class="form-group mb-3">
-                    @Html.LabelFor(m => m.FechaInicio, htmlAttributes: new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-                    @Html.ValidationMessageFor(m => m.FechaInicio, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group mb-3">
-                    @Html.LabelFor(m => m.FechaFinalizacion, htmlAttributes: new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.FechaFinalizacion, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-                    @Html.ValidationMessageFor(m => m.FechaFinalizacion, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <!-- Estado -->
-            <div class="col-md-6">
-                <div class="form-group mb-3">
-                    @Html.LabelFor(m => m.Estado, htmlAttributes: new { @class = "form-label" })
-                    @Html.DropDownListFor(m => m.Estado, (IEnumerable<SelectListItem>)ViewBag.Estados, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Estado, "", new { @class = "text-danger" })
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.DescripcionPlan, "Descripción del Plan", new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.DescripcionPlan, new { @class = "form-control shadow-lg", rows = "3", maxlength = "200", placeholder = "Describa el plan", required = "true" })
                 </div>
             </div>
 
-            <!-- Responsable -->
-            <div class="col-md-6">
-                <div class="form-group mb-3">
-                    @Html.LabelFor(m => m.ResponsableId, htmlAttributes: new { @class = "form-label" })
-                    @Html.DropDownListFor(m => m.ResponsableId, (IEnumerable<SelectListItem>)ViewBag.Empleados, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.ResponsableId, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.ResponsableId, "Responsable", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.ResponsableId, (IEnumerable<SelectListItem>)ViewBag.Empleados, "Seleccione un responsable", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                </div>
+                <div class="col-md-3 mb-3">
+                    @Html.LabelFor(m => m.FechaInicio, "Fecha de Inicio", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaInicio, new { @class = "form-control shadow-lg", type = "date", required = "true" })
+                </div>
+                <div class="col-md-3 mb-3">
+                    @Html.LabelFor(m => m.FechaFinalizacion, "Fecha de Finalización", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaFinalizacion, new { @class = "form-control shadow-lg", type = "date", required = "true" })
                 </div>
             </div>
-        </div>
 
-        <!-- Sección de Tareas -->
-        <h3 class="mt-4">Tareas Asociadas</h3>
+            <h3 class="mt-4">Tareas Asociadas</h3>
 
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Descripción</th>
-                        <th>Responsable</th>
-                        <th>Estado</th>
-                        <th>Calificación (1-10)</th>
-                        <th>Observación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Tareas != null && Model.Tareas.Any())
-                    {
-                        foreach (var tarea in Model.Tareas)
+            <div>
+                <table id="tablaTareas" class="table table-modern">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Responsable</th>
+                            <th>Estado</th>
+                            <th>Calificación (1-10)</th>
+                            <th>Observación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Tareas != null && Model.Tareas.Any())
+                        {
+                            foreach (var tarea in Model.Tareas)
+                            {
+                                <tr>
+                                    <td>@tarea.DescripcionTarea</td>
+                                    <td>@(tarea.Responsable?.Nombre ?? "No asignado")</td>
+                                    <td>@tarea.EstadoTarea.Descripcion</td>
+                                    <td>@tarea.Calificacion</td>
+                                    <td>@tarea.Observacion</td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>@tarea.DescripcionTarea</td>
-                                <td>@(tarea.Responsable?.Nombre ?? "No asignado")</td>
-                                <td>@tarea.EstadoTarea.Descripcion</td>
-                                <td>@tarea.Calificacion</td>
-                                <td>@tarea.Observacion</td>
+                                <td colspan="5" class="text-center">No hay tareas asociadas a este plan.</td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="5" class="text-center">No hay tareas asociadas a este plan.</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
 
-        <!-- Botones -->
-        <div class="row mt-4">
-            <div class="col-md-6 text-center">
-                <button type="button" id="saveButton" class="btn btn-success btn-lg px-5">Guardar cambios</button>
+            <div class="text-center mt-4">
+                <button type="button" id="saveButton" class="btn btn-gradient">
+                    <i class="fa fa-save"></i> Guardar cambios
+                </button>
+                <a href="@Url.Action("ListarPlanesUsuario", "PlanDeAccion")" class="btn btn-delete">
+                    <i class="fa fa-times"></i> Regresar
+                </a>
             </div>
-            <div class="col-md-6 text-center">
-                <a href="@Url.Action("ListarPlanesUsuario", "PlanDeAccion")" class="btn btn-secondary btn-lg px-5">Regresar</a>
-            </div>
-        </div>
-    }
+        }
+    </div>
 </div>
 
 <script>
+    $(document).ready(function () {
+        $("#tablaTareas").DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            },
+            autoWidth: false,
+            responsive: true,
+            pageLength: 10
+        });
+    });
+
     document.getElementById('saveButton').addEventListener('click', function (event) {
         Swal.fire({
             title: 'Confirmar Acción',
@@ -131,3 +120,79 @@
         });
     });
 </script>
+
+<style>
+    .table-modern {
+        border-radius: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        border: 1px solid black;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern thead {
+            background: black;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .btn-delete {
+        background: linear-gradient(to right, #6c757d, #495057);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #495057, #6c757d);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+</style>

@@ -4,65 +4,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Count == 0)
-{
-    <h3>No existen incidencias registradas</h3>
-}
-else
-{
-    <body>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Incidencias por Asignar
+        </h2>
+    </div>
 
-        <div class="container">
-            <h2>Incidencias por asignar</h2>
-            <div class="row">
-                <div class="col-12">
-
-
-
-                    @if (ViewBag.msj != null)
-                    {
-                        <div class="alert alert-info" role="alert" style="text-align:center">
-                            @ViewBag.msj
-                        </div>
-                    }
-                    <table id="tablaTickets" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Ticket ID</th>
-                                <th>Fecha de registro</th>
-                                <th>Tipo de incidente</th>
-                                <th>Estado</th>
-                                <th>Cerrar</th>
-                                <th>Asignar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@item.id_ticket</td>
-                                    <td>@item.fecha_registro_usuario</td>
-                                    <td>@item.tipo_incidencia</td>
-                                    <td>@item.estado</td>
-                                    <td style="text-align:center">
-                                        <button type="button" class="btn btn-primary AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.id_ticket" data-name="@item.id_ticket">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <a class="btn btn-primary" href="@Url.Action("AsignarTicket", "IncidenciasITManager", new { idTicket = item.id_ticket})">
-                                            <i class="fa fa-user"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+    @if (Model.Count == 0)
+    {
+        <h3 class="text-center">No existen incidencias registradas</h3>
+    }
+    else
+    {
+        <div>
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
                 </div>
-            </div>
+            }
+            <table id="tablaTickets" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Fecha de registro</th>
+                        <th>Tipo de incidente</th>
+                        <th>Estado</th>
+                        <th>Cerrar</th>
+                        <th>Asignar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="@(item.estado == "Registrado" ? "table-success" : "")">
+                            <td>@item.id_ticket</td>
+                            <td>@item.fecha_registro_usuario</td>
+                            <td>@item.tipo_incidencia</td>
+                            <td>@item.estado</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.id_ticket">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-update" href="@Url.Action("AsignarTicket", "IncidenciasITManager", new { idTicket = item.id_ticket})">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    </body>
-}
+    }
+</div>
 
 <div class="modal fade" id="ModalTicket" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -76,10 +73,10 @@ else
                 {
                     <div class="modal-body">
                         @Html.Hidden("id_ticket", "")
-                        ¿Desea cerrar el ticket <label id="Nombre"></label>?
+                        ¿Desea cerrar el ticket <label id="ticketNumero"></label>?
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                        <button type="submit" class="btn btn-delete">Eliminar</button>
                     </div>
                 }
             </div>
@@ -87,9 +84,6 @@ else
     </div>
 </div>
 
-
-
-<script src="~/root/plugins/jquery/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#tablaTickets").DataTable({
@@ -97,9 +91,67 @@ else
                 url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
             }
         });
-    })
+    });
+
     $(document).on("click", ".AbrirModal", function () {
-        $("#id_ticket").val($(this).attr('data-id'));
-        $("#Nombre").text($(this).attr('data-name'));
+        var ticketId = $(this).data("id");
+        $("#ticketNumero").text(ticketId);
     });
 </script>
+
+<style>
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-delete {
+        background: linear-gradient(to right, #d9534f, #b52b27);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #b52b27, #d9534f);
+        }
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+</style>

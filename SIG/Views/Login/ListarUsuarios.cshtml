@@ -1,66 +1,163 @@
 ﻿@model IEnumerable<SIG.Entidades.UsuarioEmpleado>
 
-<form method="get" action="@Url.Action("ListarUsuarios")">
-</form>
+@{
+    ViewBag.Title = "Lista de Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<table id="tablaUsuarios" class="table display">
-    <thead>
-        <tr>
-            <th>Nombre Completo</th>
-            <th>Email</th>
-            <th>Estado</th>
-            <th>Usuario</th>
-            <th>Teléfono</th>
-            <th>Dirección</th>
-            <th>Fecha de Nacimiento</th>
-            <th>Número de Identificación</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="@(item.estado ? "" : "table-danger")">
-                <td>@item.nombre @item.apellidos</td>
-                <td>@item.correo_electronico</td>
-                <td>@(item.estado ? "Activo" : "Inactivo")</td>
-                <td>@item.usuario</td>
-                <td>@item.telefono</td>
-                <td>@item.direccion</td>
-                <td>@(item.fecha_nacimiento.HasValue ? item.fecha_nacimiento.Value.ToString("dd/MM/yyyy") : "N/A")</td>
-                <td style="text-align: center ">@item.numero_identificacion</td>
-                <td>
-                    @if (!item.estado)
-                    {
-                        using (Html.BeginForm("RestaurarEmpleado", "Login", FormMethod.Post, new { id = "restaurarForm" + item.id_usuario, @class = "d-inline" }))
-                        {
-                            @Html.Hidden("id", item.id_usuario)
-                            <button type="submit" class="btn btn-success" onclick="return confirm('¿Está seguro de que desea restaurar este usuario?');">Restaurar</button>
-                        }
-                    }
-                    else
-                    {
-                        using (Html.BeginForm("Editar", "Login", FormMethod.Get, new { id = "editarForm" + item.id_usuario, @class = "d-inline" }))
-                        {
-                            @Html.Hidden("id", item.id_usuario)
-                            <button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro de que desea editar este usuario?');">Editar</button>
-                        }
-                        <span>-</span>
-                        using (Html.BeginForm("EliminarEmpleado", "Login", FormMethod.Post, new { id = "form" + item.id_usuario, @class = "d-inline" }))
-                        {
-                            @Html.Hidden("id", item.id_usuario)
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este usuario?');">Eliminar</button>
-                        }
-                    }
-                </td>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Lista de Usuarios
+        </h2>
+    </div>
+
+    <table id="tablaUsuarios" class="table table-modern">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Email</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Número de Identificación</th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@(item.estado ? "table-success" : "table-danger")">
+                    <td>@item.nombre @item.apellidos</td>
+                    <td>@item.correo_electronico</td>
+                    <td>@(item.estado ? "Activo" : "Inactivo")</td>
+                    <td>@item.usuario</td>
+                    <td>@item.telefono</td>
+                    <td>@item.direccion</td>
+                    <td>@(item.fecha_nacimiento.HasValue ? item.fecha_nacimiento.Value.ToString("dd/MM/yyyy") : "N/A")</td>
+                    <td style="text-align: center">@item.numero_identificacion</td>
+                    <td>
+                        @if (!item.estado)
+                        {
+                            using (Html.BeginForm("RestaurarEmpleado", "Login", FormMethod.Post, new { id = "restaurarForm" + item.id_usuario, @class = "d-inline" }))
+                            {
+                                @Html.Hidden("id", item.id_usuario)
+                                <button type="submit" class="btn btn-gradient">Restaurar</button>
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("Editar", "Login", FormMethod.Get, new { id = "editarForm" + item.id_usuario, @class = "d-inline" }))
+                            {
+                                @Html.Hidden("id", item.id_usuario)
+                                <button type="submit" class="btn btn-update"><i class="fa fa-edit"></i></button>
 
+                            }
+
+                            using (Html.BeginForm("EliminarEmpleado", "Login", FormMethod.Post, new { id = "form" + item.id_usuario, @class = "d-inline" }))
+                            {
+                                @Html.Hidden("id", item.id_usuario)
+                                <button type="submit" class="btn btn-delete"><i class="fa fa-trash"></i></button>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="~/root/dist/js/Listar.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#tablaUsuarios").DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            }
+        });
+    });
+</script>
 
+<style>
 
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-delete {
+        background: linear-gradient(to right, #d9534f, #b52b27);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #b52b27, #d9534f);
+        }
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .table-success {
+        background-color: #d4edda !important;
+    }
+
+    .table-danger {
+        background-color: #f8d7da !important;
+    }
+</style>

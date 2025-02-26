@@ -1,20 +1,25 @@
-﻿﻿@model IEnumerable<SIG.Entidades.Vacaciones>
+﻿@model IEnumerable<SIG.Entidades.Vacaciones>
+
 @{
     ViewBag.Title = "Historial de Solicitudes de Vacaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-4">
-    <h2>Mi Historial de Solicitudes de Vacaciones</h2>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Mi Historial de Solicitudes de Vacaciones
+        </h2>
+    </div>
 
     @if (ViewBag.msj != null)
     {
-        <div class="alert alert-info">
+        <div class="alert alert-info text-center" role="alert">
             @ViewBag.msj
         </div>
     }
 
-    <table id="vacacionesTable" class="table table-bordered table-striped">
+    <table id="vacacionesTable" class="table table-modern">
         <thead>
             <tr>
                 <th>#</th>
@@ -33,7 +38,7 @@
         <tbody>
             @foreach (var solicitud in Model)
             {
-                <tr class="@(solicitud.Estado == "Rechazado" ? "table-danger" : (solicitud.Estado == "Aprobado" ? "table-success" : ""))">
+                <tr class="@(solicitud.Estado == "Rechazado" ? "table-danger" : (solicitud.Estado == "Aprobado" ? "table-success" : (solicitud.Estado == "Pendiente" ? "table-warning" : "")))">
                     <td>@solicitud.SolicitudId</td>
                     <td>@solicitud.EmpleadoNombre</td>
                     <td>@solicitud.FechaInicio.ToShortDateString()</td>
@@ -44,16 +49,7 @@
                     <td>@solicitud.Observaciones</td>
                     <td>@solicitud.MotivoRechazo</td>
                     <td>@solicitud.AdministradorNombre</td>
-                    <td>
-                        @if (solicitud.FechaAprobacion.HasValue)
-                        {
-                            @solicitud.FechaAprobacion.Value.ToShortDateString()
-                        }
-                        else
-                        {
-                            @: -
-                        }
-                    </td>
+                    <td>@(solicitud.FechaAprobacion.HasValue ? solicitud.FechaAprobacion.Value.ToShortDateString() : "-")</td>
                 </tr>
             }
         </tbody>
@@ -62,7 +58,6 @@
 
 <script>
     $(document).ready(function () {
-
         $('#vacacionesTable').DataTable({
             "paging": true,
             "ordering": true,
@@ -75,3 +70,36 @@
         });
     });
 </script>
+
+<style>
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .table-success {
+        background-color: #d4edda !important;
+    }
+
+    .table-danger {
+        background-color: #f8d7da !important;
+    }
+</style>

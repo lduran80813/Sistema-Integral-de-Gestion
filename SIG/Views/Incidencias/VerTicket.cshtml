@@ -3,150 +3,110 @@
     ViewBag.Title = "VerTicket";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Incidencia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
 
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            max-height: 100vh;
-            overflow-y: auto;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, select, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-    </style>
-</head>
-<body>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%"; overflow-y: auto;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Ver Ticket
+        </h2>
+    </div>
     <div class="container">
-        <h2>Ver Ticket</h2>
-
-
         @if (ViewBag.msj != null)
         {
-            <div class="alert alert-info" role="alert" style="text-align:center">
-                @ViewBag.msj
-            </div>
+            <div class="alert alert-info text-center">@ViewBag.msj</div>
         }
 
         @using (Html.BeginForm("ActualizarTicket", "Incidencias"))
         {
-            @Html.Label("Id de Ticket")
-            @Html.TextBoxFor(m => m.id_ticket, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+            <div class="form-group">
+                @Html.Label("Id de Ticket", new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(m => m.id_ticket, new { @class = "form-control shadow-lg", @disabled = "true" })
+            </div>
 
             if (int.Parse(Session["RolUsuario"].ToString()) > 1)
             {
-                @Html.Label("Usuario")
-                @Html.DropDownListFor(m => m.id_usuario, ViewBag.Usuarios as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+                <div class="form-group">
+                    @Html.Label("Usuario", new { @class = "form-label fw-bold" })
+                    @Html.DropDownListFor(m => m.id_usuario, ViewBag.Usuarios as List<SelectListItem>, new { @class = "form-control form-control-lg shadow-lg select-style", @disabled = "true" })
+                </div>
             }
 
-            @Html.Label("Título")
-            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+            <div class="form-group">
+                @Html.Label("Título", new { @class = "form-label fw-bold" })
+                @Html.TextBoxFor(m => m.titulo, new { @class = "form-control shadow-lg", @disabled = "true" })
+            </div>
 
-            @Html.Label("Tipo de incidente")
-            @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+            <div class="form-group">
+                @Html.Label("Tipo de incidente", new { @class = "form-label fw-bold" })
+                @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-control form-control-lg shadow-lg select-style", @disabled = "true" })
+            </div>
 
-            @Html.Label("Descripción")
-            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @disabled = "true" })
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control shadow-lg", @rows = "4", @disabled = "true" })
+            </div>
 
-            @Html.Label("Comentarios Usuario")
-            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @disabled = "true" })
+            <div class="form-group">
+                @Html.Label("Comentarios Usuario", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control shadow-lg", @rows = "4", @disabled = "true" })
+            </div>
 
-            @Html.Label("Fecha de registro")
-            @Html.TextBoxFor(m => m.fecha_registro_usuario, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+            <div class="form-group">
+                @Html.Label("Estado de incidente", new { @class = "form-label fw-bold" })
+                @Html.DropDownListFor(m => m.estado, ViewBag.Estados as List<SelectListItem>, new { @class = "form-control form-control-lg shadow-lg select-style", @disabled = "true" })
+            </div>
 
-            @Html.Label("Estado de incidente")
-            @Html.DropDownListFor(m => m.estado, ViewBag.Estados as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+            <div class="text-center mt-4">
+                <a class="btn btn-gradient" href="@Url.Action(ViewBag.Accion, ViewBag.Controlador)">Regresar</a>
+            </div>
+        }
+    </div>
+</div>
 
-            if (Model.id_tecnico != null)
-            {
-                @Html.Label("Prioridad")
-                @Html.DropDownListFor(m => m.prioridad, ViewBag.Prioridades as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+<style>
 
-                @Html.Label("Técnico asignado")
-                @Html.DropDownListFor(m => m.id_tecnico, ViewBag.Tecnicos as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+    .select-style {
+        font-size: 1.5rem; 
+        height: 50px; 
+        padding: 10px;
+    }
 
-                @Html.Label("Comentarios Técnico")
-                @Html.TextAreaFor(m => m.comentario_tecnico, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @disabled = "true" })
+    
+    .d-flex.flex-column {
+        max-height: 100%;
+        overflow-y: scroll;
+        display: none;
+        scrollbar-width: none;
+    }
 
-                @Html.Label("Fecha de asignada a Técnico")
-                @Html.TextBoxFor(m => m.fecha_registra_tecnico, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
 
-            }
-            else if (Model.id_tecnico == null && Model.estado == 4)
-            {
-                @Html.Label("Prioridad")
-                <input type="text" class="form-control" value="No hubo prioridad asignada (caso fue cerrado por usuario)" disabled />
-                @Html.Label("Técnico asignado")
-                <input type="text" class="form-control" value="No hubo técnico asignado (caso fue cerrado por usuario)" disabled />
-
-            }
-            else
-            {
-                @Html.Label("Técnico asignado")
-                <input type="text" class="form-control" value="No hay técnico asignado" disabled />
-
-            }
-            @Html.Label("Fecha de cierre")
-            @Html.TextBoxFor(m => m.fecha_cierre_ticket, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
-
-            <a class="btn btn-primary me-2" href="@Url.Action(ViewBag.Accion, ViewBag.Controlador)">Regresar</a>//revisar este porque no siempre se debe devolver aquí
-
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
         }
 
-    </div>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-</body>
-</html>
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+</style>

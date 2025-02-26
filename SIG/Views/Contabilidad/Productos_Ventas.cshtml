@@ -6,16 +6,15 @@
 
 <body style="margin: 0; padding: 0; background-color: #101010;">
 
-    <!-- Contenedor principal -->
+
     <div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
-        <!-- Encabezado -->
+
         <div class="text-center mb-4">
             <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
                 Productos
             </h2>
         </div>
 
-        <!-- Información del Carrito Mejorada -->
         <div class="row mb-4 d-flex justify-content-center">
             <div class="col-md-5">
                 <div class="info-box shadow">
@@ -41,7 +40,7 @@
             </div>
         </div>
 
-        <!-- Mensaje de Alerta -->
+
         @if (ViewBag.msj != null)
         {
             <div class="alert alert-info text-center" role="alert">
@@ -49,7 +48,7 @@
             </div>
         }
 
-        <!-- Tabla de Productos -->
+
         <div>
             <table id="tablaProductos" class="table table-modern">
                 <thead>
@@ -93,7 +92,7 @@
             </table>
         </div>
 
-        <!-- Botón Revisar Pedido Mejorado -->
+
         <div class="text-center mt-4">
             <a href="@Url.Action("ConsultarPedido", "Contabilidad")" class="btn btn-gradient">
                 <i class="bi bi-receipt"></i> Revisar pedido
@@ -101,7 +100,7 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+
     <script>
         $(document).ready(function () {
             $("#tablaProductos").DataTable({
@@ -131,13 +130,12 @@
         }
     </script>
 
-    <!-- Enlace a Bootstrap Icons -->
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-    <!-- Estilos -->
     <style>
 
-        /* Caja de información mejorada */
+
         .info-box {
             background-color: #222222;
             border-radius: 8px;
@@ -175,7 +173,7 @@
                 font-size: 20px;
             }
 
-        /* Estilo de la tabla mejorada con diseño moderno y profesional */
+
         .table-modern {
             border-radius: 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -236,8 +234,6 @@
             }
 
 
-
-        /* Botón Revisar Pedido con Degradado */
         .btn-gradient {
             background: linear-gradient(to right, #5b8c5a, #2f5930);
             color: white;

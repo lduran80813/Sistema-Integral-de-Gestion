@@ -5,92 +5,115 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Pedidos</title>
-    <link rel="stylesheet" href="~/root/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 80%;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h2>Historial de Pedidos</h2>
-
-        <table id="tablaHistorial" class="table table-striped display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Fecha de Modificación</th>
-                    <th>Descripción</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var historial in Model)
-                {
-                    <tr>
-                        <td>@historial.PedidoId</td>
-                        <td>@historial.FechaModificacion.ToString("dd/MM/yyyy HH:mm")</td> 
-                        <td>@historial.DetalleCambio</td>
-                        <td>@ViewBag.EstadoDescripciones[historial.EstadoCompraId]</td> 
-                    </tr>
-                }
-            </tbody>
-        </table>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Historial de Pedidos
+        </h2>
     </div>
 
-    <script src="~/root/plugins/jquery/jquery.min.js"></script>
-    <script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#tablaHistorial').DataTable({
-                language: {
-                    url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
-                },
-                paging: true,
-                searching: true,
-                ordering: true,
-                info: true
-            });
-        });
-    </script>
+    <div class="row">
+        <div class="col-12">
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
+                </div>
+            }
 
-</body>
-</html>
+            <table id="tablaHistorial" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>ID Pedido</th>
+                        <th>Fecha de Modificación</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var historial in Model)
+                    {
+                       <tr class="@(historial.EstadoCompraId == 2 ? "table-warning" : "table-danger")">
+                           <td>@historial.PedidoId</td>
+                           <td>@historial.FechaModificacion.ToString("dd/MM/yyyy HH:mm")</td>
+                           <td>@historial.DetalleCambio</td>
+                           <td>@ViewBag.EstadoDescripciones[historial.EstadoCompraId]</td>
+                       </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br />
+    <div class="text-center">
+        <a class="btn btn-gradient" href="@Url.Action("ListaPedidos", "Pedidos")">
+            <i class="bi bi-arrow-left"></i> Volver a Lista de Pedidos
+        </a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#tablaHistorial").DataTable({
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
+        });
+    });
+</script>
+
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+        .table-modern tbody tr.table-success {
+            background-color: #d4edda !important;
+        }
+
+        .table-modern tbody tr.table-danger {
+            background-color: #f8d7da !important;
+        }
+
+        .table-modern tbody tr.table-warning {
+            background-color: #fff3cd !important;
+        }
+</style>

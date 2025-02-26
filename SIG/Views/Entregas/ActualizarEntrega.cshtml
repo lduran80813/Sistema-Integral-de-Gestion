@@ -1,81 +1,142 @@
 ﻿@{
-    ViewBag.Title = "ActualizarEntrega";
+    ViewBag.Title = "Actualizar Entrega";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 @model SIG.Entidades.Entrega
 
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Actualizar Entrega
+        </h2>
+    </div>
 
-<div class="container">
-    <h2 class="text-left">Actualizar Entrega</h2>
-    @if (TempData["Error"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["Error"]
-        </div>
+    <div class="container">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger text-center">@TempData["Error"]</div>
+        }
+
+        @using (Html.BeginForm("ActualizarEntrega", "Entregas", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.PedidoId, "Número de Pedido", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.PedidoId, new { @class = "form-control shadow-lg", @readonly = "readonly" })
+                </div>
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.FechaEntrega, "Fecha de Entrega", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FechaEntrega, new
+                    {
+                        @class = "form-control shadow-lg",
+                        @type = "date",
+                        @value = Model.FechaEntrega.HasValue ? Model.FechaEntrega.Value.ToString("yyyy-MM-dd") : DateTime.Today.ToString("yyyy-MM-dd")
+                    })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.DireccionEntrega, "Dirección de Entrega", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.DireccionEntrega, new { @class = "form-control shadow-lg", required = "required" })
+                </div>
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.ArticulosEntregados, "Artículos Entregados", new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.ArticulosEntregados, new { @class = "form-control shadow-lg", rows = "3", required = "required" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.ObservacionesAdicionales, "Observaciones Adicionales", new { @class = "form-label" })
+                @Html.TextAreaFor(m => m.ObservacionesAdicionales, new { @class = "form-control shadow-lg", rows = "3" })
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.EstadoEntrega, "Estado de Entrega", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.EstadoEntrega,
+                        new SelectList(new[] { "Pendiente", "En tránsito", "Entregado", "Cancelado" }),
+                        new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                </div>
+                <div class="col-md-6 mb-3">
+                    @Html.LabelFor(m => m.NombreDestinatario, "Nombre del Destinatario", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.NombreDestinatario, new { @class = "form-control shadow-lg", required = "required" })
+                </div>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.CorreoElectronico, "Correo Electrónico", new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.CorreoElectronico, new { @class = "form-control shadow-lg", required = "required", placeholder = "Ingrese el correo electrónico" })
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-gradient">Actualizar</button>
+                <a href="@Url.Action("ListarEntregas", "Entregas")" class="btn btn-retroceder">Cancelar</a>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
     }
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
 
-        <div class="form-group">
-            @Html.HiddenFor(m => m.PedidoId)
-            @Html.HiddenFor(m => m.PedidoId, new { @class = "form-control", @readonly = "readonly" })
-        </div>
-
-        <div class="form-group">
-            <label for="FechaEntrega">Fecha de Entrega:</label>
-            @Html.TextBoxFor(model => model.FechaEntrega, new
-            {
-                @class = "form-control",
-                @type = "date",
-                @Value = Model.FechaEntrega.HasValue
-                    ? Model.FechaEntrega.Value.ToString("yyyy-MM-dd")
-                    : DateTime.Today.ToString("yyyy-MM-dd") // Fecha actual como predeterminada
-            })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.DireccionEntrega)
-            @Html.TextBoxFor(m => m.DireccionEntrega, new { @class = "form-control" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.ArticulosEntregados)
-            @Html.TextAreaFor(m => m.ArticulosEntregados, new { @class = "form-control", rows = "3" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.ObservacionesAdicionales)
-            @Html.TextAreaFor(m => m.ObservacionesAdicionales, new { @class = "form-control", rows = "3" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.EstadoEntrega)
-            @Html.DropDownListFor(m => m.EstadoEntrega, new SelectList(new[] { "Pendiente", "En tránsito", "Entregado", "Cancelado" }), new { @class = "form-control" })
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.NombreDestinatario)
-            @Html.TextBoxFor(m => m.NombreDestinatario, new { @class = "form-control" })
-        </div>
-
-        <div class="form-group">
-            <label for="CorreoElectronico">Correo Electrónico:</label>
-            @Html.TextBoxFor(model => model.CorreoElectronico, new
-            {
-                @class = "form-control",
-                @required = "required", 
-                @placeholder = "Ingrese el correo electrónico"
-            })
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Actualizar</button>
-            <a href="@Url.Action("ListarEntregas", "Entregas")" class="btn btn-secondary">Cancelar</a>
-        </div>
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .btn-retroceder {
+        background: linear-gradient(to right, #6c757d, #495057);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-retroceder:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #495057, #6c757d);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+    .select-style {
+        text-align: left;
+        padding-left: 12px;
+        height: 50px;
+        font-size: 16px;
+    }
+</style>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>

@@ -1,48 +1,92 @@
-﻿﻿@model SIG.Entidades.Vacaciones
+﻿@model SIG.Entidades.Vacaciones
 
 @{
     ViewBag.Title = "Solicitar Vacaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Solicitar Vacaciones</h2>
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Solicitar Vacaciones
+        </h2>
+    </div>
 
-    <form method="post" action="@Url.Action("Solicitar", "Empleados")">
-        @Html.AntiForgeryToken()
+    <div class="container">
+        @using (Html.BeginForm("Solicitar", "Empleados", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <label for="cedulaEmpleado">Cédula</label>
-            <input type="text" class="form-control" id="cedulaEmpleado" name="cedulaEmpleado" required />
-        </div>
+            <div class="mb-3">
+                @Html.Label("Cédula del empleado", "", new { @class = "form-label" })
+                <input type="text" class="form-control shadow-lg" id="cedulaEmpleado" name="cedulaEmpleado" required placeholder="Ingrese la cédula del empleado" />
+            </div>
 
-        <div class="form-group">
-            <label for="fechaInicio">Fecha de Inicio</label>
-            <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required />
-        </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    @Html.Label("Fecha de Inicio", "", new { @class = "form-label" })
+                    <input type="date" class="form-control shadow-lg" id="fechaInicio" name="fechaInicio" required />
+                </div>
+                <div class="col-md-6 mb-3">
+                    @Html.Label("Fecha de Fin", "", new { @class = "form-label" })
+                    <input type="date" class="form-control shadow-lg" id="fechaFin" name="fechaFin" required />
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="fechaFin">Fecha de Fin</label>
-            <input type="date" class="form-control" id="fechaFin" name="fechaFin" required />
-        </div>
+            <div class="mb-3">
+                @Html.Label("Observaciones", "", new { @class = "form-label" })
+                <textarea class="form-control shadow-lg" id="observaciones" name="observaciones" placeholder="Ingrese observaciones adicionales"></textarea>
+            </div>
 
-        <div class="form-group">
-            <label for="observaciones">Observaciones</label>
-            <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
-        </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-gradient">Solicitar Vacaciones</button>
+            </div>
+        }
 
-        <button type="submit" class="btn btn-primary btn-block">Solicitar</button>
-    </form>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger mt-3 text-center">@TempData["ErrorMessage"]</div>
+        }
 
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger mt-3">@TempData["ErrorMessage"]</div>
-    }
-
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success mt-3">@TempData["SuccessMessage"]</div>
-    }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mt-3 text-center">@TempData["SuccessMessage"]</div>
+        }
+    </div>
 </div>
 
+<style>
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
 
-}
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+</style>
+
+<script src="~/root/plugins/jquery/jquery.min.js"></script>
+<script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>

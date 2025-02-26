@@ -1,108 +1,206 @@
-﻿﻿@model IEnumerable<SIG.Entidades.Vacaciones>
+﻿@model IEnumerable<SIG.Entidades.Vacaciones>
+
 @{
-    ViewBag.Title = "Historial";
+    ViewBag.Title = "Historial de Vacaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    var rolUsuario = Session["RolUsuario"] as int?;
-}
-
-@if (ViewBag.msj != null)
-{
-    <div class="alert alert-info">
-        @ViewBag.msj
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%; overflow-y: auto;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Historial de Vacaciones
+        </h2>
     </div>
-}
 
-<div class="container mt-4">
-    <h2>Historial de Vacaciones</h2>
+    <div class="table-responsive">
 
-    <table id="vacacionesTable" class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Empleado</th>
-                <th>Fecha Inicio</th>
-                <th>Fecha Fin</th>
-                <th>Días Solicitados</th>
-                <th>Estado</th>
-                <th>Fecha Solicitud</th>
-                <th>Observaciones</th>
-                <th>Motivo Rechazo</th>
-                <th>Aprobado Por</th>
-                <th>Fecha Aprobación</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var solicitud in Model)
-            {
-                <tr class="@(solicitud.Estado == "Rechazado" ? "table-danger" : (solicitud.Estado == "Aprobado" ? "table-success" : ""))">
-                    <td>@solicitud.SolicitudId</td>
-                    <td>@solicitud.EmpleadoNombre</td>
-                    <td>@solicitud.FechaInicio.ToShortDateString()</td>
-                    <td>@solicitud.FechaFin.ToShortDateString()</td>
-                    <td>@solicitud.DiasSolicitados</td>
-                    <td>@solicitud.Estado</td>
-                    <td>@solicitud.FechaSolicitud.ToShortDateString()</td>
-                    <td>@solicitud.Observaciones</td>
-                    <td>@solicitud.MotivoRechazo</td>
-                    <td>@solicitud.AdministradorNombre</td>
-                    <td>
-                        @if (solicitud.FechaAprobacion.HasValue)
-                        {
-                            @solicitud.FechaAprobacion.Value.ToShortDateString()
-                        }
-                        else
-                        {
-                            @:
-                        }
-                    </td>
+        <table id="vacacionesTable" class="table table-modern">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Empleado</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Días Solicitados</th>
+                    <th>Estado</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Observaciones</th>
+                    <th>Motivo Rechazo</th>
+                    <th>Aprobado Por</th>
+                    <th>Fecha Aprobación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var solicitud in Model)
+                {
+                    <tr class="@(solicitud.Estado == "Rechazado" ? "table-danger" : (solicitud.Estado == "Aprobado" ? "table-success" : (solicitud.Estado == "Pendiente" ? "table-warning" : "")))">
+                        <td>@solicitud.SolicitudId</td>
+                        <td>@solicitud.EmpleadoNombre</td>
+                        <td>@solicitud.FechaInicio.ToShortDateString()</td>
+                        <td>@solicitud.FechaFin.ToShortDateString()</td>
+                        <td>@solicitud.DiasSolicitados</td>
+                        <td>@solicitud.Estado</td>
+                        <td>@solicitud.FechaSolicitud.ToShortDateString()</td>
+                        <td>@solicitud.Observaciones</td>
+                        <td>@solicitud.MotivoRechazo</td>
+                        <td>@solicitud.AdministradorNombre</td>
+                        <td>@(solicitud.FechaAprobacion.HasValue ? solicitud.FechaAprobacion.Value.ToShortDateString() : "-")</td>
+                        <td>
+                            @if (solicitud.Estado == "Pendiente")
+                            {
 
-                    <td>
-                        @if (solicitud.Estado == "Pendiente")
-                        {
-                            <a href="@Url.Action("AprobarRechazarVacaciones", "Empleados", new { solicitudId = solicitud.SolicitudId, estado = "Aprobado" })" class="btn btn-success">Aprobar</a>
-
-                            <!-- Modal para rechazar con motivo -->
-                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rechazarModal_@solicitud.SolicitudId">Rechazar</button>
-
-                            <!-- Modal de confirmación de rechazo -->
-                            <div class="modal fade" id="rechazarModal_@solicitud.SolicitudId" tabindex="-1" aria-labelledby="rechazarModalLabel_@solicitud.SolicitudId" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="rechazarModalLabel_@solicitud.SolicitudId">Rechazar Solicitud</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <label for="motivoRechazo">Motivo de Rechazo:</label>
-                                            <textarea id="motivoRechazo" name="motivoRechazo" class="form-control" rows="4"></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <form action="@Url.Action("AprobarRechazarVacaciones", "Empleados")" method="post">
-                                                <input type="hidden" name="solicitudId" value="@solicitud.SolicitudId" />
-                                                <input type="hidden" name="estado" value="Rechazado" />
-                                                <input type="hidden" name="motivoRechazo" id="motivoRechazoInput_@solicitud.SolicitudId" value="" />
-                                                <button type="submit" class="btn btn-danger">Confirmar Rechazo</button>
-                                            </form>
+                                <div class="botones">
+                                <a href="@Url.Action("AprobarRechazarVacaciones", "Empleados", new { solicitudId = solicitud.SolicitudId, estado = "Aprobado" })" class="btn btn-gradient">Aprobar</a>
+                                <button class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#rechazarModal_@solicitud.SolicitudId">Rechazar</button>
+                                <div class="modal fade" id="rechazarModal_@solicitud.SolicitudId" tabindex="-1" aria-labelledby="rechazarModalLabel_@solicitud.SolicitudId" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Rechazar Solicitud</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="motivoRechazo">Motivo de Rechazo:</label>
+                                                <textarea id="motivoRechazo" name="motivoRechazo" class="form-control" rows="4"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <form action="@Url.Action("AprobarRechazarVacaciones", "Empleados")" method="post">
+                                                    <input type="hidden" name="solicitudId" value="@solicitud.SolicitudId" />
+                                                    <input type="hidden" name="estado" value="Rechazado" />
+                                                    <button type="submit" class="btn btn-delete">Confirmar Rechazo</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <span class="text-muted">Ya procesado</span>
-                        }
-                    </td>
+                                    </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
 
-                </tr>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#vacacionesTable").DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                }
+            });
+        });
+    </script>
+
+    <style>
+
+        .d-flex.flex-column {
+            max-height: 100%;
+            overflow-y: scroll;
+            display: none;
+            scrollbar-width: none;
+        }
+
+        .d-flex.flex-row {
+            max-width: 100%;
+            overflow-x: scroll;
+            scrollbar-width: none;
+            white-space: nowrap;
+        }
+
+        .table-modern {
+            border-radius: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            background-color: #ffffff;
+            overflow: hidden;
+            border-collapse: collapse;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            border: 1px solid black;
+            transition: all 0.5s ease-in-out;
+        }
+
+            .table-modern:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+                transform: scale(1.01);
             }
-        </tbody>
-    </table>
-</div>
 
-<script src="~/root/dist/js/solicitudVacaciones.js"></script>
+            .table-modern thead {
+                background: black;
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .table-modern th, .table-modern td {
+                padding: 14px;
+                text-align: center;
+                vertical-align: middle;
+                border: 1px solid black;
+            }
+
+            .table-modern thead tr {
+                background-color: black !important;
+                color: white !important;
+            }
+
+            .table-modern tbody tr:nth-child(even) {
+                background-color: #f0f8ff;
+            }
+
+            .table-modern tbody tr:nth-child(odd) {
+                background-color: #e6f7ff;
+            }
+
+            .table-modern tbody tr.fade-in {
+                opacity: 0;
+                transform: translateY(5px);
+                transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .botones {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        .table-success {
+            background-color: #d4edda !important;
+        }
+
+        .table-danger {
+            background-color: #f8d7da !important;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #5b8c5a, #2f5930);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .btn-delete {
+            background: linear-gradient(to right, #d9534f, #b52b27);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+
+    <script src="~/root/plugins/jquery/jquery.min.js"></script>
+    <script src="~/root/plugins/bootstrap/js/bootstrap.min.js"></script>

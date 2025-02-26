@@ -23,35 +23,35 @@
                 @using (Html.BeginForm("Registro_Proveedores", "Proveedores"))
                 {
                     <div class="mb-3">
-                        @Html.Label("Nombre del Proveedor", new { @for = "supplier-name" })
-                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control", @id = "supplier-name", @name = "supplier-name", @required = "true" })
+                        @Html.LabelFor(m => m.nombre, "Nombre del proveedor", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control form-control-lg shadow-lg", @id = "supplier-name", @name = "supplier-name", @required = "true", @placeholder = "Ingrese el nombre del proveedor" })
                     </div>
 
                     <div class="mb-3">
                         @Html.Label("Dirección", new { @for = "address" })
-                        @Html.TextAreaFor(m => m.direccion, new { @class = "form-control", @id = "address", @name = "address", @rows = "3", @required = "true" })
+                        @Html.TextAreaFor(m => m.direccion, new { @class = "form-control shadow-lg", @id = "address", @name = "address", @rows = "3", @required = "true", @placeholder = "Ingrese la dirección del proveedor" })
                     </div>
 
                     <div class="mb-3">
                         @Html.Label("Nombre de contacto", new { @for = "contact-name" })
-                        @Html.TextBoxFor(m => m.nombre_contacto, new { @class = "form-control", @id = "contact-name", @name = "contact-name", @required = "true" })
+                        @Html.TextBoxFor(m => m.nombre_contacto, new { @class = "form-control shadow-lg", @id = "contact-name", @name = "contact-name", @required = "true", @placeholder = "Ingrese el nombre del contacto" })
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             @Html.Label("Teléfono", new { @for = "phone" })
-                            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control", @type = "tel", @id = "phone", @name = "phone", @required = "true" })
+                            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control shadow-lg", @type = "tel", @id = "phone", @name = "phone", @required = "true", @placeholder = "Ingrese el número de teléfono" })
                         </div>
                         <div class="col-md-6">
                             @Html.Label("Correo electrónico", new { @for = "email" })
-                            @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control", @type = "email", @id = "email", @name = "email", @required = "true" })
+                            @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control shadow-lg", @type = "email", @id = "email", @name = "email", @required = "true", @placeholder = "Ingrese el correo electrónico" })
                         </div>
                     </div>
 
                     <br>
                     <div class="mb-3">
                         @Html.Label("Descripción adicional", new { @for = "description" })
-                        @Html.TextAreaFor(m => m.descripcion_adicional, new { @class = "form-control", @id = "description", @name = "description", @rows = "4", @required = "true" })
+                        @Html.TextAreaFor(m => m.descripcion_adicional, new { @class = "form-control shadow-lg", @id = "description", @name = "description", @rows = "4", @required = "true", @placeholder = "Ingrese una descripción adicional" })
                     </div>
 
                     <div class="text-center">
@@ -62,6 +62,7 @@
         </div>
     </div>
 </div>
+
 
 <style>
     .table-modern {
@@ -87,6 +88,19 @@
             border: 1px solid black;
         }
 
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
     .btn-gradient {
         background: linear-gradient(to right, #5b8c5a, #2f5930);
         color: white;
@@ -108,4 +122,3 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 </style>
-    

@@ -1,186 +1,229 @@
 ﻿@model List<SIG.Entidades.ProveedorFinanciero>
+
 @{
     ViewBag.Title = "Consulta Estado Financiero";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta Estado Financiero</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%; font-family: 'Poppins', sans-serif;">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Consulta Estado Financiero
+        </h2>
+    </div>
 
-        .container {
-            width: 50%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    <div class="info-box" style="max-width: 850px; margin: auto; padding: 10px;">
+        <div class="info-content">
+            <i class="bi bi-calendar-check"></i>
+            <p style="font-size: 16px;">Seleccione los proveedores y un rango de fechas para consultar el estado financiero</p>
+        </div>
+    </div>
 
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        input, textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .form-group {
-            display: flex;
-            justify-content: space-between;
-        }
-
-            .form-group > div {
-                flex: 1;
-                margin-right: 10px;
-            }
-
-                .form-group > div:last-child {
-                    margin-right: 0;
-                }
-
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-            .checkbox-group .form-check {
-                display: flex;
-                align-items: center;
-                margin: 5px 0;
-            }
-
-        button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 18px;
-            width: 100%;
-        }
-
-            button:hover {
-                background-color: #4cae4c;
-            }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-            table th, table td {
-                border: 1px solid #ddd;
-                padding: 10px;
-                text-align: center;
-            }
-
-            table th {
-                background-color: #f4f4f4;
-            }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Consulta Estado Financiero</h1>
-
-        <!-- Formulario de consulta -->
-        @using (Html.BeginForm("ConsultarEstadoFinanciero", "Proveedores", FormMethod.Post))
-        {
-            <label>Proveedores</label>
-            <div class="checkbox-group">
-                @foreach (var proveedor in ViewBag.Proveedores as List<SIG.Entidades.Proveedor>)
-                {
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="ProveedorIds" value="@proveedor.id" id="proveedor_@proveedor.id" />
-                        <label class="form-check-label" for="proveedor_@proveedor.id">@proveedor.nombre</label>
-                    </div>
-                }
-            </div>
-
-            <div class="form-group">
-                <div>
-                    <label for="fechaInicio">Fecha de Inicio</label>
-                    @Html.TextBox("FechaInicio", null, new { @class = "form-control", type = "date" })
-                </div>
-                <div>
-                    <label for="fechaFin">Fecha de Fin</label>
-                    @Html.TextBox("FechaFin", null, new { @class = "form-control", type = "date" })
-                </div>
-            </div>
-
-            <button type="submit">Consultar Estado Financiero</button>
-        }
-
-        <!-- Tabla de resultados -->
-        @if (Model != null && Model.Any())
-        {
-            <table id="tablaEstadoFinanciero" class="table table-bordered table-hover">
+    @using (Html.BeginForm("ConsultarEstadoFinanciero", "Proveedores", FormMethod.Post, new { @class = "form-cierre-contable" }))
+    {
+        <div class="mb-3">
+            <br>
+            <table id="tablaProveedores" class="table table-modern">
                 <thead>
                     <tr>
-                        <th>Proveedor</th>
-                        <th>Total Compras Contado</th>
-                        <th>Total Compras Crédito</th>
-                        <th>Total Compras</th>
-                        <th>Fecha de Corte</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Seleccionar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var proveedor in ViewBag.Proveedores as List<SIG.Entidades.Proveedor>)
                     {
                         <tr>
-                            <td>@item.NombreProveedor</td>
-                            <td>@item.TotalComprasContado.ToString("C")</td>
-                            <td>@item.TotalComprasCredito.ToString("C")</td>
-                            <td>@item.TotalCompras.ToString("C")</td>
-                            <td>@item.FechaCorte.ToShortDateString()</td>
+                            <td>@proveedor.id</td>
+                            <td>@proveedor.nombre</td>
+                            <td class="text-center">
+                                <a onclick="SeleccionarProveedor(@proveedor.id, this)" class="btn btn-update btn-disabled text-white">
+                                    <i class="fa fa-check"></i>
+                                </a>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
-        }
-    </div>
+        </div>
 
-    <!-- Scripts para jQuery y DataTables -->
-    <script src="~/root/plugins/jquery/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#tablaEstadoFinanciero").DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
-                },
-                autoWidth: false,
-                responsive: true,
-                pageLength: 10
-            });
+        <div class="input-container">
+            <label class="input-label">Fecha de Inicio</label>
+            <div class="input-wrapper">
+                @Html.TextBox("FechaInicio", null, new { @class = "form-control input-field shadow-lg", @type = "date", @placeholder = "Seleccione la fecha de inicio" })
+            </div>
+        </div>
+
+        <div class="input-container">
+            <label class="input-label">Fecha de Fin</label>
+            <div class="input-wrapper">
+                @Html.TextBox("FechaFin", null, new { @class = "form-control input-field shadow-lg", @type = "date", @placeholder = "Seleccione la fecha de fin" })
+            </div>
+        </div>
+
+        <br />
+        <div class="text-center">
+            <button type="submit" class="btn btn-gradient">
+                <i class="bi bi-search"></i> Consultar Estado Financiero
+            </button>
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <br />
+        <h3 class="text-center">Resultados del Estado Financiero</h3>
+        <table id="tablaEstadoFinanciero" class="table table-modern">
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Total Compras Contado</th>
+                    <th>Total Compras Crédito</th>
+                    <th>Total Compras</th>
+                    <th>Fecha de Corte</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.NombreProveedor</td>
+                        <td>₡@item.TotalComprasContado.ToString("N2")</td>
+                        <td>₡@item.TotalComprasCredito.ToString("N2")</td>
+                        <td>₡@item.TotalCompras.ToString("N2")</td>
+                        <td>@item.FechaCorte.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            @using (Html.BeginForm("ExportarEstadoFinanciero", "Proveedores", FormMethod.Get))
+            {
+                @Html.Hidden("FechaInicio", Request.Form["FechaInicio"])
+                @Html.Hidden("FechaFin", Request.Form["FechaFin"])
+                <button type="submit" class="btn btn-gradient">
+                    <i class="bi bi-file-earmark-excel"></i> Exportar a Excel
+                </button>
+            }
+        </div>
+    }
+    else
+    {
+        if (ViewBag.msj != null)
+        {
+            <div class="alert alert-warning text-center mt-4" role="alert">
+                @ViewBag.msj
+            </div>
+        }
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#tablaProveedores, #tablaEstadoFinanciero").DataTable({
+            language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
         });
-    </script>
-</body>
-</html>
+
+        $(".btn-update").each(function () {
+            $(this).data("selected", false);
+            $(this).css("background", "linear-gradient(to right, #b0b0b0, #808080)");
+        });
+    });
+
+    function SeleccionarProveedor(id, boton) {
+        let isSelected = $(boton).data("selected");
+
+        if (!isSelected) {
+            $(boton).css("background", "linear-gradient(to right, #65a9ca, #5481a2)");
+        } else {
+            $(boton).css("background", "linear-gradient(to right, #b0b0b0, #808080)");
+        }
+
+        $(boton).data("selected", !isSelected);
+    }
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .info-box {
+        background-color: #222222;
+        border-radius: 8px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto 20px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .info-box:hover {
+            transform: scale(1.05);
+        }
+
+    .info-content {
+        display: flex;
+        align-items: center;
+        color: white;
+        gap: 20px;
+    }
+
+        .info-content i {
+            font-size: 22px;
+            color: #01e173;
+        }
+
+        .info-content p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+        }
+
+    .table-modern {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .table-modern thead {
+            background: black;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid black;
+        }
+</style>
