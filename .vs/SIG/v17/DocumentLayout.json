@@ -7,7 +7,11 @@
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\kou\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\kou\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\shared\\_layoutexterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\shared\\_layoutexterno.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,6 +39,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "_LayoutExterno.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_LayoutExterno.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_LayoutExterno.cshtml",
+              "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_LayoutExterno.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Shared\\_LayoutExterno.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-17T16:11:17.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Registro.cshtml",
               "DocumentMoniker": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Empleados\\Registro.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Empleados\\Registro.cshtml",
@@ -42,8 +59,7 @@
               "RelativeToolTip": "SIG\\Views\\Empleados\\Registro.cshtml",
               "ViewState": "AQIAAGYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-26T01:50:11.987Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T01:50:11.987Z"
             },
             {
               "$type": "Document",
@@ -53,7 +69,7 @@
               "RelativeDocumentMoniker": "SIG\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Kou\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "SIG\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAKoBAAAAAAAAAAAUwLsBAABKAAAA",
+              "ViewState": "AQIAACUAAAAAAAAAAAAkwEYAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-26T01:49:35.356Z",
               "EditorCaption": ""
