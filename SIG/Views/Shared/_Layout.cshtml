@@ -86,7 +86,7 @@
         <aside class="main-sidebar"
                style="background-color: #111111;
               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-              width: 300px; 
+              width: 300px;
               height: 100vh;
               overflow-y: auto;
               overflow-x: hidden;
@@ -103,7 +103,7 @@
                 border-bottom: 1px solid #333;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
 
-                <img src="~/root/dist/img/avatar.png" 
+                <img src="~/root/dist/img/avatar.png"
                      alt="Usuario"
                      class="img-circle elevation-3"
                      style="border: 3px solid #00e676;
@@ -114,6 +114,9 @@
                 <p style="font-size: 14px; color: #a5d6a7;">Rol: @Session["NombreRolUsuario"]</p>
             </div>
 
+            @{
+                int rolUsuario = int.Parse(Session["RolUsuario"].ToString());
+                }
 
             <div class="sidebar" style="flex: 1; margin-top: 10px; padding: 0 15px;">
                 <nav>
@@ -122,194 +125,193 @@
                         role="menu"
                         style="padding: 0; list-style: none;">
 
+                        @if (rolUsuario == 1 || rolUsuario == 4 || rolUsuario == 5 || rolUsuario == 6 || rolUsuario == 7)
+                        {
+                            <li class="nav-item has-treeview"
+                                style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+                                <a href="#" class="nav-link toggle-menu"
+                                   style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-chart-pie nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
+                                    <p style="font-weight: 500;">Contabilidad</p>
+                                    <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
+                                </a>
+                                <ul class="nav nav-treeview collapsible-content"
+                                    style="margin-top: 5px; padding-left: 25px; display: none;">
 
-                        <li class="nav-item has-treeview"
-                            style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
-                            <a href="#" class="nav-link toggle-menu"
-                               style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
-                                <i class="fas fa-chart-pie nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
-                                <p style="font-weight: 500;">Contabilidad</p>
-                                <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
-                            </a>
-                            <ul class="nav nav-treeview collapsible-content"
-                                style="margin-top: 5px; padding-left: 25px; display: none;">
-
-  
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Productos_Ventas", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-plus-circle nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Nuevo Pedido</p>
-                                    </a>
-                                </li>
-
-       
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ListaPedidos", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Lista Pedidos</p>
-                                    </a>
-                                </li>
-
-                  
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Inventario", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-boxes nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Inventario</p>
-                                    </a>
-                                </li>
-
-                  
-                                <li class="nav-item">
-                                    <a href="@Url.Action("InformeVenta", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Informe de Ventas</p>
-                                    </a>
-                                </li>
-
-                       
-                                <li class="nav-item">
-                                    <a href="@Url.Action("CxP", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-file-invoice nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Cuentas por Pagar</p>
-                                    </a>
-                                </li>
-
-                            
-                                <li class="nav-item">
-                                    <a href="@Url.Action("CxC", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-wallet nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Cuentas por Cobrar</p>
-                                    </a>
-                                </li>
-
-                          
-                                <li class="nav-item">
-                                    <a href="@Url.Action("RegistroTransacciones", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-exchange-alt nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Registro de Transacciones</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ContaCierreCorte", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-calendar-check nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Cierre Contable</p>
-                                    </a>
-                                </li>
-
-                         
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ContaEstadosFinancieros", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-money-bill nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Estados Financieros</p>
-                                    </a>
-                                </li>
-
-                  
-                                <li class="nav-item">
-                                    <a href="@Url.Action("VencimientoCuentas", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-calendar-alt nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Vencimiento de Cuentas</p>
-                                    </a>
-                                </li>
-
-                                @*<li class="nav-item">
-                                    <a href="@Url.Action("RecibosTransportistas", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-file-invoice nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Recibos de Transportistas</p>
-                                    </a>
-                                </li>
-
-                     
-                                <li class="nav-item">
-                                    <a href="@Url.Action("AjustesInventario", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-box-open nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Ajustes de Inventario</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="@Url.Action("EstFinancierosAutomaticos", "Contabilidad")" class="nav-link">
-                                        <i class="fas fa-robot nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Estados Automáticos</p>
-                                    </a>
-                                </li>*@
-                            </ul>
-                        </li>
-
-      
-                        <li class="nav-item has-treeview"
-                            style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
-                            <a href="#" class="nav-link toggle-menu"
-                               style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
-                                <i class="fas fa-users nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
-                                <p style="font-weight: 500;">Proveedores</p>
-                                <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
-                            </a>
-                            <ul class="nav nav-treeview collapsible-content"
-                                style="margin-top: 5px; padding-left: 25px; display: none;">
-
-                     
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Registro_Proveedores", "Proveedores")" class="nav-link">
-                                        <i class="fas fa-user-plus nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Registrar Proveedor</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ListaProveedores", "Proveedores")" class="nav-link">
-                                        <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Lista de Proveedores</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ConsultarEstadoFinanciero", "Proveedores")" class="nav-link">
-                                        <i class="fas fa-info-circle nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Estado Financiero</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ConsultarEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
-                                        <i class="fas fa-balance-scale nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Estado Financiero Conjunto</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-shopping-cart nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Pedidos</p>
-                                        <i class="fas fa-angle-down right" style="color: #a5d6a7;"></i>
-                                    </a>
-                                    <ul class="nav nav-treeview"
-                                        style="margin-top: 5px; padding-left: 20px;">
+                                    @if (rolUsuario == 1 || rolUsuario == 4)
+                                    {
                                         <li class="nav-item">
-                                            <a href="@Url.Action("RegistrarPedido", "Pedidos")" class="nav-link">
+                                            <a href="@Url.Action("Productos_Ventas", "Contabilidad")" class="nav-link">
                                                 <i class="fas fa-plus-circle nav-icon" style="color: #a5d6a7;"></i>
-                                                <p style="color: #a5d6a7;">Registrar Pedido</p>
+                                                <p style="color: #a5d6a7;">Nuevo Pedido</p>
                                             </a>
                                         </li>
 
+                                    }
+
+                                    @if (rolUsuario == 1 || rolUsuario == 4 || rolUsuario == 6)
+                                    {
                                         <li class="nav-item">
-                                            <a href="@Url.Action("ListaPedidos", "Pedidos")" class="nav-link">
+                                            <a href="@Url.Action("ListaPedidos", "Contabilidad")" class="nav-link">
                                                 <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
-                                                <p style="color: #a5d6a7;">Lista de Pedidos</p>
+                                                <p style="color: #a5d6a7;">Lista Pedidos</p>
+                                            </a>
+                                        </li>
+                                    }
+
+                                    @if (rolUsuario == 1 || rolUsuario == 5)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Inventario", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-boxes nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Inventario</p>
+                                            </a>
+                                        </li>
+                                    }
+
+
+
+                                    @if (rolUsuario == 1 || rolUsuario == 6)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("InformeVenta", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Informe de Ventas</p>
+                                            </a>
+                                        </li>
+                                    }
+
+
+                                    @if (rolUsuario == 1 || rolUsuario == 7)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("CxP", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-file-invoice nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Cuentas por Pagar</p>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("CxC", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-wallet nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Cuentas por Cobrar</p>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("RegistroTransacciones", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-exchange-alt nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Registro de Transacciones</p>
                                             </a>
                                         </li>
 
                                         <li class="nav-item">
-                                            <a href="@Url.Action("GenerarReporteForm", "Pedidos")" class="nav-link">
-                                                <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
-                                                <p style="color: #a5d6a7;">Generar Reporte</p>
+                                            <a href="@Url.Action("ContaCierreCorte", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-calendar-check nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Cierre Contable</p>
                                             </a>
                                         </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+
+
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("ContaEstadosFinancieros", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-money-bill nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Estados Financieros</p>
+                                            </a>
+                                        </li>
+
+
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("VencimientoCuentas", "Contabilidad")" class="nav-link">
+                                                <i class="fas fa-calendar-alt nav-icon" style="color: #a5d6a7;"></i>
+                                                <p style="color: #a5d6a7;">Vencimiento de Cuentas</p>
+                                            </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </li>
+                        }
+
+
+                        @if (rolUsuario == 1 || rolUsuario == 8)
+                        {
+                            <li class="nav-item has-treeview"
+                                style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+                                <a href="#" class="nav-link toggle-menu"
+                                   style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-users nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
+                                    <p style="font-weight: 500;">Proveedores</p>
+                                    <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
+                                </a>
+                                <ul class="nav nav-treeview collapsible-content"
+                                    style="margin-top: 5px; padding-left: 25px; display: none;">
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Registro_Proveedores", "Proveedores")" class="nav-link">
+                                            <i class="fas fa-user-plus nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Registrar Proveedor</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ListaProveedores", "Proveedores")" class="nav-link">
+                                            <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Lista de Proveedores</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ConsultarEstadoFinanciero", "Proveedores")" class="nav-link">
+                                            <i class="fas fa-info-circle nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Estado Financiero</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ConsultarEstadoFinancieroConjunto", "Proveedores")" class="nav-link">
+                                            <i class="fas fa-balance-scale nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Estado Financiero Conjunto</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-shopping-cart nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Pedidos</p>
+                                            <i class="fas fa-angle-down right" style="color: #a5d6a7;"></i>
+                                        </a>
+                                        <ul class="nav nav-treeview"
+                                            style="margin-top: 5px; padding-left: 20px;">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("RegistrarPedido", "Pedidos")" class="nav-link">
+                                                    <i class="fas fa-plus-circle nav-icon" style="color: #a5d6a7;"></i>
+                                                    <p style="color: #a5d6a7;">Registrar Pedido</p>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("ListaPedidos", "Pedidos")" class="nav-link">
+                                                    <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
+                                                    <p style="color: #a5d6a7;">Lista de Pedidos</p>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("GenerarReporteForm", "Pedidos")" class="nav-link">
+                                                    <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
+                                                    <p style="color: #a5d6a7;">Generar Reporte</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
 
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
@@ -336,7 +338,7 @@
                                     </a>
                                 </li>
 
-  
+
                                 <li class="nav-item">
                                     <a href="@Url.Action("ListaHistoricoUsuario", "Incidencias")" class="nav-link">
                                         <i class="fas fa-history nav-icon" style="color: #a5d6a7;"></i>
@@ -344,8 +346,8 @@
                                     </a>
                                 </li>
 
-         
-                                @if (int.Parse(Session["RolUsuario"].ToString()) > 1)
+
+                                @if (rolUsuario == 1 || rolUsuario == 2)
                                 {
                                     <li class="nav-item has-treeview">
                                         <a href="#" class="nav-link">
@@ -355,7 +357,7 @@
                                         </a>
                                         <ul class="nav nav-treeview"
                                             style="margin-top: 5px; padding-left: 25px;">
-                      
+
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaTicketsAsignados", "IncidenciasITAnalyst")" class="nav-link">
                                                     <i class="fas fa-user-check nav-icon" style="color: #a5d6a7;"></i>
@@ -363,7 +365,7 @@
                                                 </a>
                                             </li>
 
-                               
+
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaHistoricoAtendidos", "IncidenciasITAnalyst")" class="nav-link">
                                                     <i class="fas fa-check-double nav-icon" style="color: #a5d6a7;"></i>
@@ -371,7 +373,7 @@
                                                 </a>
                                             </li>
 
-                                  
+
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ReporteITAnalyst", "IncidenciasITAnalyst")" class="nav-link">
                                                     <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
@@ -382,8 +384,8 @@
                                     </li>
                                 }
 
-                   
-                                @if (int.Parse(Session["RolUsuario"].ToString()) == 3)
+
+                                @if (rolUsuario == 1 || rolUsuario == 3)
                                 {
                                     <li class="nav-item has-treeview">
                                         <a href="#" class="nav-link">
@@ -394,7 +396,7 @@
                                         <ul class="nav nav-treeview"
                                             style="margin-top: 5px; padding-left: 25px;">
 
-                          
+
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaTicketsRegistrados", "IncidenciasITManager")" class="nav-link">
                                                     <i class="fas fa-tasks nav-icon" style="color: #a5d6a7;"></i>
@@ -402,7 +404,7 @@
                                                 </a>
                                             </li>
 
-                      
+
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ListaHistoricoTickets", "IncidenciasITManager")" class="nav-link">
                                                     <i class="fas fa-history nav-icon" style="color: #a5d6a7;"></i>
@@ -410,7 +412,7 @@
                                                 </a>
                                             </li>
 
-                        
+
                                             <li class="nav-item">
                                                 <a href="@Url.Action("ReporteITManager", "IncidenciasITManager")" class="nav-link">
                                                     <i class="fas fa-chart-line nav-icon" style="color: #a5d6a7;"></i>
@@ -420,7 +422,7 @@
                                         </ul>
                                     </li>
 
-                        
+
                                     <li class="nav-item">
                                         <a href="@Url.Action("ListaTiposTicket", "IncidenciasITManager")" class="nav-link">
                                             <i class="fas fa-tags nav-icon" style="color: #a5d6a7;"></i>
@@ -430,7 +432,7 @@
                                 }
                             </ul>
                         </li>
-     
+
                         <li class="nav-item has-treeview"
                             style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
                             <a href="#" class="nav-link toggle-menu"
@@ -441,28 +443,33 @@
                             </a>
                             <ul class="nav nav-treeview collapsible-content"
                                 style="margin-top: 5px; padding-left: 25px; display: none;">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("registro","Login")" class="nav-link">
-                                        <i class="fas fa-user-plus nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Registrar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ListarUsuarios","Login")" class="nav-link">
-                                        <i class="fas fa-list-alt nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Listar</p>
-                                    </a>
-                                </li>
+
+                                @if (rolUsuario == 1 || rolUsuario == 9)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("registro","Login")" class="nav-link">
+                                            <i class="fas fa-user-plus nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Registrar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ListarUsuarios","Login")" class="nav-link">
+                                            <i class="fas fa-list-alt nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Listar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Historial", "Empleados")" class="nav-link">
+                                            <i class="far fa-circle nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Historial Vacaciones</p>
+                                        </a>
+                                    </li>
+                                }
+
                                 <li class="nav-item">
                                     <a href="@Url.Action("Solicitar", "Empleados")" class="nav-link">
                                         <i class="far fa-circle nav-icon" style="color: #a5d6a7;"></i>
                                         <p style="color: #a5d6a7;">Solicitar Vacaciones</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Historial", "Empleados")" class="nav-link">
-                                        <i class="far fa-circle nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Historial Vacaciones</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -472,116 +479,121 @@
                                     </a>
                                 </li>
 
-                                
-                                @*<li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Evaluaciones de Desempeño</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("RegistroCapacitacion", "Empleados")" class="nav-link">
-                                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Registro Capacitación</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Lista Capacitación</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Gestión de Pagos</p>
-                                    </a>
-                                </li>*@
-                                
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item has-treeview"
-                            style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
-                            <a href="#" class="nav-link toggle-menu"
-                               style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
-                                <i class="fas fa-truck nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
-                                <p style="font-weight: 500;">Entregas</p>
-                                <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
-                            </a>
-                            <ul class="nav nav-treeview collapsible-content"
-                                style="margin-top: 5px; padding-left: 25px; display: none;">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Registrar","Entregas")" class="nav-link">
-                                        <i class="fas fa-plus-square nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Registrar una nueva entrega</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ListarEntregas","Entregas")" class="nav-link">
-                                        <i class="fas fa-clipboard-list nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Visualizar todas las entregas</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-             
-                        <li class="nav-item has-treeview"
-                            style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
-                            <a href="#" class="nav-link toggle-menu"
-                               style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
-                                <i class="fas fa-file-alt nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
-                                <p style="font-weight: 500;">Planes de Acción</p>
-                                <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
-                            </a>
-                            <ul class="nav nav-treeview collapsible-content"
-                                style="margin-top: 5px; padding-left: 25px; display: none;">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Registro","PlanDeAccion")" class="nav-link">
-                                        <i class="fas fa-folder-plus nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Registrar Plan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("ListarPlanesUsuario","PlanDeAccion")" class="nav-link">
-                                        <i class="fas fa-folder-open nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Listar Planes</p>
-                                    </a>
-                                </li>
 
                                 @*<li class="nav-item">
-                                    <a href="@Url.Action("VerificarEstado","PlanDeAccion")" class="nav-link">
-                                        <i class="fas fa-tasks nav-icon" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Verificar Estado</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-check-circle" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Verificar estado</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-user-tag" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Asignar responsabilidades</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-clock" style="color: #a5d6a7;"></i>
-                                        <p style="color: #a5d6a7;">Verificar plazos</p>
-                                    </a>
-                                </li>*@
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
+                        <p style="color: #a5d6a7;">Evaluaciones de Desempeño</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("RegistroCapacitacion", "Empleados")" class="nav-link">
+                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
+                        <p style="color: #a5d6a7;">Registro Capacitación</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
+                        <p style="color: #a5d6a7;">Lista Capacitación</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-people-carry" style="color: #a5d6a7;"></i>
+                        <p style="color: #a5d6a7;">Gestión de Pagos</p>
+                    </a>
+                </li>*@
+
                             </ul>
                         </li>
+
+                        @if (rolUsuario == 1 || rolUsuario == 10)
+                        {
+                            <li class="nav-item has-treeview"
+                                style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+                                <a href="#" class="nav-link toggle-menu"
+                                   style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-truck nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
+                                    <p style="font-weight: 500;">Entregas</p>
+                                    <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
+                                </a>
+                                <ul class="nav nav-treeview collapsible-content"
+                                    style="margin-top: 5px; padding-left: 25px; display: none;">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Registrar","Entregas")" class="nav-link">
+                                            <i class="fas fa-plus-square nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Registrar una nueva entrega</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ListarEntregas","Entregas")" class="nav-link">
+                                            <i class="fas fa-clipboard-list nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Visualizar todas las entregas</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+
+                        @if (rolUsuario == 1 || rolUsuario == 11)
+                        {
+                            <li class="nav-item has-treeview"
+                                style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+                                <a href="#" class="nav-link toggle-menu"
+                                   style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-file-alt nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
+                                    <p style="font-weight: 500;">Planes de Acción</p>
+                                    <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
+                                </a>
+                                <ul class="nav nav-treeview collapsible-content"
+                                    style="margin-top: 5px; padding-left: 25px; display: none;">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Registro","PlanDeAccion")" class="nav-link">
+                                            <i class="fas fa-folder-plus nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Registrar Plan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ListarPlanesUsuario","PlanDeAccion")" class="nav-link">
+                                            <i class="fas fa-folder-open nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Listar Planes</p>
+                                        </a>
+                                    </li>
+
+                                    @*<li class="nav-item">
+                        <a href="@Url.Action("VerificarEstado","PlanDeAccion")" class="nav-link">
+                            <i class="fas fa-tasks nav-icon" style="color: #a5d6a7;"></i>
+                            <p style="color: #a5d6a7;">Verificar Estado</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-check-circle" style="color: #a5d6a7;"></i>
+                            <p style="color: #a5d6a7;">Verificar estado</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-tag" style="color: #a5d6a7;"></i>
+                            <p style="color: #a5d6a7;">Asignar responsabilidades</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-clock" style="color: #a5d6a7;"></i>
+                            <p style="color: #a5d6a7;">Verificar plazos</p>
+                        </a>
+                    </li>*@
+                                </ul>
+                            </li>
+                        }
 
                     </ul>
-                </nav>
-            </div>
-        </aside>
+                    </nav>
+                </div>
+            </aside>
 
         <style>
 
