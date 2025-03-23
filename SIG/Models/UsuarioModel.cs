@@ -66,7 +66,13 @@ namespace SIG.Models
                 }
                 else
                 {
-                    throw new Exception("Usuario o contraseña incorrectos.");
+                    bool correo = context.Empleado.Any(u => u.correo_electronico == user.correo_electronico);
+                    if (correo)
+                    {
+                        return null;
+                    }
+
+                    throw new Exception("Usuario no existe.");
                 }
             }
         }
@@ -287,7 +293,8 @@ namespace SIG.Models
                 return context.Adm_Rol 
                     .Select(r => new SelectListItem
                     {
-                        Text = r.id.ToString(),
+                        Value = r.id.ToString(),
+                        Text = r.nombre_rol
                     })
                     .ToList();
             }

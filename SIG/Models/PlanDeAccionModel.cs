@@ -75,7 +75,7 @@ namespace SIG.Models
                     id = idSesion,
                     nombre_plan = plan.NombrePlan,
                     descripcion_plan = plan.DescripcionPlan,
-                    fecha_inicio = DateTime.Now,
+                    fecha_inicio = plan.FechaInicio,
                     fecha_finalizacion = plan.FechaFinalizacion ?? DateTime.Now.AddMonths(1),
                     estado = plan.Estado,
                     ResponsableId = plan.ResponsableId
@@ -238,13 +238,14 @@ namespace SIG.Models
         }
 
         // Guardar una evaluación
-        public bool GuardarEvaluacionTarea(int tareaId, int calificacion, string observacion)
+        public bool GuardarEvaluacionTarea(int tareaId, int estado, int calificacion, string observacion)
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
                 var tarea = context.PDA_Tarea.FirstOrDefault(t => t.id == tareaId);
                 if (tarea != null)
                 {
+                    tarea.estado_tarea = estado;
                     tarea.calificacion = calificacion;
                     tarea.observacion = observacion;
                     return context.SaveChanges() > 0;

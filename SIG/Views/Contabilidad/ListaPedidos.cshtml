@@ -77,7 +77,75 @@
         </div>
     </div>
 
- 
+    <div class="modal fade" id="ModalFacturar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="exampleModalLabel">Detalles de facturación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("FacturarPedido", "Contabilidad"))
+                    {
+                        <div class="modal-body">
+                            @Html.Hidden("idFacturar", "")
+                            @Html.Label("Tipo de venta", new { @for = "tipoVenta" })
+                            @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>, new { @class = "form-select", @id = "tipoVenta", @name = "tipoVenta", @required = "true" })
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Facturar</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalPagoRecibo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="exampleModalLabel">Pago y recibo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("ContaPagoFactura", "Contabilidad"))
+                    {
+                        <div class="modal-body">
+                            @Html.Hidden("idPagar", "")
+                            @Html.Hidden("tipo_venta", "", new { id = "tipo_venta" })
+                            @Html.Label("Tipo de venta", new { @for = "tipoVenta" })
+                            @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>, new { @class = "form-select", @id = "tipoVenta", @name = "tipoVenta", @disabled = "true" })
+                            <div id="metodo-container" style="display:none;">
+                                @Html.Label("Método de pago", new { @for = "metodo" })
+                                @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>, new { @class = "form-select", @id = "metodo", metodo = "metodo", @required = "true" })
+                            </div>
+
+                            <div id="financiera-container" style="display:none;">
+                                @Html.Label("Entidad Financiera", new { @for = "financieras" })
+                                @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>, new { @class = "form-select", @id = "financieras", @name = "financieras" })
+
+                                @Html.Label("Número de trasacción de referencia", new { @for = "referencia" })
+                                @Html.TextBoxFor(m => m.transaccionRef, new { @type = "number", @class = "form-control", @id = "referencia", @name = "referencia", @required = "true" })
+                            </div>
+                            <div id="Abono-container" style="display:none;">
+                                @Html.Label("Ingrese el monto a pagar", new { @for = "abono" })
+                                @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @required = "true" })
+                            </div>
+
+                            @Html.Label("Descripción de la transacción", new { @for = "referencia" })
+                            @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Pagar y generar recibo</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         $(document).ready(function () {
             $("#tablaPedidos").DataTable({
@@ -89,8 +157,98 @@
                 ordering: true,
                 info: true,
                 columnDefs: [
-                    { orderable: false, targets: [6] } 
+                    { orderable: false, targets: [6] }
                 ]
+            });
+        });
+
+        $(document).ready(function () {
+            function verificaTipoVentaYMetodoPago() {
+                var tipoVenta = $('#tipoVenta').val();
+                var metodoPago = $('#metodo').val();
+
+                $('#metodo-container').show();
+
+                // Visibilidad condicional
+                if (tipoVenta == '1' && metodoPago == '1') { // Venta al contado y efectivo
+                    $('#Abono-container').hide();
+                    $('#financiera-container').hide();
+                } else if (tipoVenta == '1' && metodoPago != '1') { // Venta a crédito con método diferente a efectivo
+                    $('#Abono-container').hide();
+                    $('#financiera-container').show();
+                }
+                else if (tipoVenta == '2' && metodoPago != '1') { // Venta a crédito con método diferente a efectivo
+                    $('#Abono-container').show();
+                    $('#financiera-container').show();
+                } else { // Venta a crédito y efectivo
+                    $('#Abono-container').show();
+                    $('#financiera-container').hide();
+                }
+            }
+
+            verificaTipoVentaYMetodoPago();
+
+            $('#tipoVenta').change(verificaTipoVentaYMetodoPago);
+            $('#metodo').change(verificaTipoVentaYMetodoPago);
+
+            $(document).on("click", ".AbrirModalPagar", function () {
+                var pedidoId = $(this).attr('data-id');
+                var tipoVenta = $(this).attr('data-tipo');
+                var totalTransaccion = parseFloat($(this).attr('data-total'));
+                $("#idPagar").val(pedidoId);
+                $("#tipoVenta").val(tipoVenta);
+                //$("#total_transaccion").val(totalTransaccion);
+                $("#ModalPagoRecibo").data("total", totalTransaccion);
+                verificaTipoVentaYMetodoPago();
+            });
+        });
+
+
+        $(document).on("click", ".AbrirModalFacturar", function () {
+            $("#idFacturar").val($(this).attr('data-id'));
+        });
+        $(document).on("click", ".AbrirModalPagar", function () {
+            $("#idPagar").val($(this).attr('data-id'));
+            $("#ModalPagoRecibo #tipoVenta").val($(this).attr('data-tipo'));
+            $("#ModalPagoRecibo #tipo_venta").val($(this).attr('data-tipo'));
+        });
+
+        $("#abono").on("input", function () {
+            var abono = parseFloat($(this).val());
+            var totalTransaccion = $("#ModalPagoRecibo").data("total");
+
+            if (abono > totalTransaccion) {
+                alert("El monto del abono no puede ser superior al total de la transacción: " + totalTransaccion.toFixed(2));
+                $(this).val(totalTransaccion.toFixed(2));
+            }
+        });
+        $(document).ready(function () {
+            $("#ModalPagoRecibo form").on("submit", function (e) {
+                e.preventDefault();
+
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: $(this).attr("method"),
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $('#ModalPagoRecibo').modal('hide');
+
+                            window.location.href = response.pdfUrl;
+
+
+                            setTimeout(function () {
+                                window.location.href = '/Contabilidad/ListaPedidos';
+                            }, 1000);
+                        } else {
+                            alert(response.message || "Hubo un error al procesar el pago.");
+                        }
+                    },
+                    error: function () {
+                        alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
+                    }
+                });
             });
         });
     </script>
@@ -204,7 +362,5 @@
             font-size: 20px;
             color: #01e173;
         }
-
-
     </style>
 </body>

@@ -85,6 +85,9 @@ namespace SIG.Controllers
                 return HttpNotFound();
             }
 
+            var estadosTarea = _planDeAccionModel.ListarEstadosTarea();
+            ViewBag.EstadosTarea = estadosTarea ?? new List<SelectListItem>();
+
             ViewBag.Plan = plan;
             return View(plan.Tareas);
         }
@@ -144,7 +147,7 @@ namespace SIG.Controllers
         }
 
         [HttpPost]
-        public JsonResult GuardarEvaluacion(int tareaId, int calificacion, string observacion)
+        public JsonResult GuardarEvaluacion(int tareaId, int estado, int calificacion, string observacion)
         {
             try
             {
@@ -154,10 +157,11 @@ namespace SIG.Controllers
                     return Json(new { success = false, message = "La tarea no existe." });
                 }
 
+                tarea.EstadoTareaId = estado;
                 tarea.Calificacion = calificacion;
                 tarea.Observacion = observacion;
 
-                bool resultado = _planDeAccionModel.GuardarEvaluacionTarea(tareaId, calificacion, observacion);
+                bool resultado = _planDeAccionModel.GuardarEvaluacionTarea(tareaId, estado, calificacion, observacion);
 
                 if (resultado)
                 {

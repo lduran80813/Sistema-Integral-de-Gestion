@@ -78,9 +78,18 @@ namespace SIG.Models
                                      where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2
                                      select x).Count();
 
-                fecha.ingresosTotales = (decimal)(from x in context.Venta_Factura
-                                      where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2
-                                      select x.total_transaccion).Sum();
+                if (fecha.datosInforme.Count > 0)
+                {
+                    fecha.ingresosTotales = (decimal)(from x in context.Venta_Factura
+                                                      where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2
+                                                      select x.total_transaccion).Sum();
+                } 
+                else
+                {
+                    fecha.ingresosTotales = 0;
+                }
+
+                
 
                 fecha.principalesClientes = context.top5Clientes(fecha.inicioCorte, fecha.finCorte).ToList();
 

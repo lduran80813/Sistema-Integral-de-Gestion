@@ -19,10 +19,17 @@
             </div>
         }
 
+        @if (TempData["cambioContrasena"] != null)
+        {
+            <div style="background: rgba(238, 253, 238, 0.9); border: 1px solid #27ae60; color: #27ae60; text-align: center; font-size: 14px; padding: 10px; border-radius: 10px; margin-bottom: 20px; ">
+                @TempData["cambioContrasena"]
+            </div>
+        }
+
         @using (Html.BeginForm("Login", "Login", FormMethod.Post))
         {
             <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.correo_electronico, new { @type = "email", @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);" })
+                @Html.TextBoxFor(m => m.correo_electronico, new { @type = "email", @class = "form-control form-control-lg", @placeholder = "Correo Electrónico", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
                 <div class="input-group-append">
                     <div class="input-group-text" style="border-radius: 8px; background: #f1f1f1;">
                         <span class="fas fa-envelope" style="color: #32a852;"></span>
@@ -31,7 +38,7 @@
             </div>
 
             <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);" })
+                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
                 <div class="input-group-append">
                     <div class="input-group-text" style="border-radius: 8px; background: #f1f1f1;">
                         <span class="fas fa-lock" style="color: #32a852;"></span>

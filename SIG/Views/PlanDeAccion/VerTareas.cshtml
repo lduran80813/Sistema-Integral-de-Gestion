@@ -45,7 +45,14 @@
                         <tr>
                             <td>@tarea.DescripcionTarea</td>
                             <td>@(tarea.Responsable?.Nombre ?? "No asignado")</td>
-                            <td>@tarea.EstadoTarea.Descripcion</td>
+                            <td>
+                                @Html.DropDownList(
+                                    $"estado-{tarea.Id}",
+                                    new SelectList(ViewBag.EstadosTarea, "Value", "Text", tarea.EstadoTarea.Id),
+                                    new { @class = "form-control", required = "true" }
+                                )
+                            </td>
+
                             <td>
                                 <input type="number" min="1" max="10" class="form-control" id="calificacion-@tarea.Id" value="@tarea.Calificacion">
                             </td>
@@ -90,6 +97,7 @@
 
         $('.guardar-evaluacion').on('click', function () {
             const tareaId = $(this).data('tarea-id');
+            const estado = $(`#estado-${tareaId}`).val();
             const calificacion = $(`#calificacion-${tareaId}`).val();
             const observacion = $(`#observacion-${tareaId}`).val();
 
@@ -103,7 +111,7 @@
                 return;
             }
 
-            $.post('@Url.Action("GuardarEvaluacion", "PlanDeAccion")', { tareaId, calificacion, observacion })
+            $.post('@Url.Action("GuardarEvaluacion", "PlanDeAccion")', { tareaId, estado, calificacion, observacion })
                 .done(function (response) {
                     Swal.fire({
                         title: "Éxito",

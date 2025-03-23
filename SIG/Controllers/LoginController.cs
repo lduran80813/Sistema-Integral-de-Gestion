@@ -58,7 +58,7 @@ namespace SIG.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.msj = "Ocurrió un error al intentar iniciar sesión. Inténtalo de nuevo más tarde.";
+                ViewBag.msj = "Verifique que el correo electrónico esté correcto. En caso contrario, intente más tarde";
                 return View(user);
             }
         }
@@ -96,6 +96,10 @@ namespace SIG.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
+            if (TempData["success"] != null)
+            {
+                TempData["cambioContrasena"] = TempData["success"];
+            }
             return RedirectToAction("Login", "Login");
         }
         [HttpPost]
@@ -121,7 +125,7 @@ namespace SIG.Controllers
 
                 if (resultado)
                 {
-                    ViewBag.msj = "La contraseña se ha actualizado exitosamente.";
+                    TempData["success"] = "La contraseña se ha actualizado exitosamente.";
                     return RedirectToAction("Logout", "Login");
                 }
                 else

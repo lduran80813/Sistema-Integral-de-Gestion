@@ -30,19 +30,25 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-3 mb-3">
                     @Html.LabelFor(m => m.ResponsableId, "Responsable", new { @class = "form-label" })
                     @Html.DropDownListFor(m => m.ResponsableId, (IEnumerable<SelectListItem>)ViewBag.Empleados, "Seleccione un responsable", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
                 </div>
                 <div class="col-md-3 mb-3">
+                    @Html.LabelFor(m => m.Estado, "Estado", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.Estado, (IEnumerable<SelectListItem>)ViewBag.Estados, new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                </div>
+                <div class="col-md-3 mb-3">
                     @Html.LabelFor(m => m.FechaInicio, "Fecha de Inicio", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.FechaInicio, new { @class = "form-control shadow-lg", type = "date", required = "true" })
+                    @Html.TextBoxFor(m => m.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control shadow-lg", type = "date", required = "true" })
                 </div>
                 <div class="col-md-3 mb-3">
                     @Html.LabelFor(m => m.FechaFinalizacion, "Fecha de Finalización", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.FechaFinalizacion, new { @class = "form-control shadow-lg", type = "date", required = "true" })
+                    @Html.TextBoxFor(m => m.FechaFinalizacion, "{0:yyyy-MM-dd}", new { @class = "form-control shadow-lg", type = "date", required = "true" })
                 </div>
             </div>
+
+
 
             <h3 class="mt-4">Tareas Asociadas</h3>
 

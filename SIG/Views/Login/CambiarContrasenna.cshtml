@@ -23,7 +23,7 @@
         @using (Html.BeginForm("CambiarContrasenna", "Login"))
         {
             <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña nueva", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);" })
+                @Html.TextBoxFor(m => m.contrasena, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Contraseña nueva", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
                 <div class="input-group-append">
                     <div class="input-group-text" style="border-radius: 8px; background: #f1f1f1;">
                         <span class="fas fa-lock" style="color: #32a852;"></span>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="input-group mb-4">
-                @Html.TextBoxFor(m => m.contrasenaConfirmar, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Confirmar contraseña", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);" })
+                @Html.TextBoxFor(m => m.contrasenaConfirmar, new { @type = "password", @class = "form-control form-control-lg", @placeholder = "Confirmar contraseña", @style = "border-radius: 8px; box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);", @required = "true" })
                 <div class="input-group-append">
                     <div class="input-group-text" style="border-radius: 8px; background: #f1f1f1;">
                         <span class="fas fa-lock" style="color: #32a852;"></span>
