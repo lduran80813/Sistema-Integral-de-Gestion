@@ -893,5 +893,10 @@ namespace SIG.BaseDatos
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
         }
+    
+        public virtual ObjectResult<ListarEntregas_Result> ListarEntregas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListarEntregas_Result>("ListarEntregas");
+        }
     }
 }

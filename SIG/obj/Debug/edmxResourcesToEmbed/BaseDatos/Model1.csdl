@@ -2007,6 +2007,7 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ListarEntregas" ReturnType="Collection(SistemaIntegralGestionModel.ListarEntregas_Result)" />
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2287,5 +2288,15 @@
     <Property Type="Int32" Name="IdProducto" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListarEntregas_Result">
+    <Property Type="Int32" Name="PedidoId" Nullable="true" />
+    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
+    <Property Type="String" Name="DireccionEntrega" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ArticulosEntregados" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ObservacionesAdicionales" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EstadoEntrega" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NombreDestinatario" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

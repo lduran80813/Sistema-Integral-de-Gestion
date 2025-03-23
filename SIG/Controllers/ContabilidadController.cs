@@ -377,6 +377,8 @@ namespace SIG.Controllers
         {
             RangoFecha reporte = new RangoFecha();
             reporte.cierreContable = contabilidadM.CierreContable(fechas);
+            reporte.inicioCorte = fechas.inicioCorte;
+            reporte.finCorte = fechas.finCorte;
 
             if (reporte.cierreContable != null)
                 return new ViewAsPdf("CierreContableReporte", reporte)
@@ -646,6 +648,7 @@ namespace SIG.Controllers
             Entidades.EstadosFinancieros ef = new Entidades.EstadosFinancieros();
             ef.BalanceGeneral = contabilidadM.BalanceGeneral(corte);
             ef.EstadoResultados = contabilidadM.EstadoResultados(corte);
+            ef.mesCorte = corte;
 
             if (ef.BalanceGeneral != null && ef.EstadoResultados != null)
                 return new ViewAsPdf("ContaEstadosFinancierosPDF", ef)

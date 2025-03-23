@@ -63,15 +63,15 @@
 
             row.innerHTML = `
                         <td>
-                            <select name="ListaTransacciones[\${rowIndex}].IdCuenta" class="form-select" required>
+                            <select name="ListaTransacciones[${rowIndex}].IdCuenta" class="form-select" required>
                                 ${document.querySelector("select[name='ListaTransacciones[0].IdCuenta']").innerHTML}
                             </select>
                         </td>
                         <td>
-                            <input type="number" name="ListaTransacciones[\${rowIndex}].Monto" class="form-control" required />
+                            <input type="number" name="ListaTransacciones[${rowIndex}].Monto" class="form-control" required />
                         </td>
                         <td>
-                            <input type="text" name="ListaTransacciones[\${rowIndex}].Descripcion" class="form-control" required />
+                            <input type="text" name="ListaTransacciones[${rowIndex}].Descripcion" class="form-control" required />
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" onclick="eliminarFila(this)">Eliminar</button>

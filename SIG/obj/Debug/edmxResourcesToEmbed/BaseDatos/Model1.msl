@@ -1023,5 +1023,19 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarEntregas" FunctionName="SistemaIntegralGestionModel.Store.ListarEntregas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarEntregas_Result">
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+          <ScalarProperty Name="DireccionEntrega" ColumnName="DireccionEntrega" />
+          <ScalarProperty Name="ArticulosEntregados" ColumnName="ArticulosEntregados" />
+          <ScalarProperty Name="ObservacionesAdicionales" ColumnName="ObservacionesAdicionales" />
+          <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
+          <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

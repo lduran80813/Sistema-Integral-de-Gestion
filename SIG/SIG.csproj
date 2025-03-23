@@ -445,6 +445,9 @@
     <Compile Include="BaseDatos\ListarCxP_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseDatos\ListarEntregas_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="BaseDatos\listaTipoVenta_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

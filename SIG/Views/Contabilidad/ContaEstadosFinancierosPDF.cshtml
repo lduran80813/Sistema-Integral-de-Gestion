@@ -70,7 +70,9 @@
 
     <div class="container">
         <h1>Reporte de estados financieros</h1>
-
+        <br />
+        @Html.Label("Periodo de corte:")
+        <input type="text" class="form-control" readonly value="@Model.mesCorte.ToString("MMMM yyyy", new System.Globalization.CultureInfo("es-ES"))" />
         <br />
         <h3>Balance General</h3>
         <table id="tablaBG" class="table table-bordered">

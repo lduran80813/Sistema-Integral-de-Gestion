@@ -60,10 +60,132 @@
     </div>
 </div>
 
+<div class="modal fade" id="ModalPagoRecibo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="exampleModalLabel">Pagar cuenta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("ContaCobroCxC", "Contabilidad"))
+                {
+                    @Html.Hidden("Id_Cuenta", "", new { id = "IdCuenta" })
+                    <div class="mb-3">
+                        @Html.Label("Saldo actual:", new { @for = "saldo" })
+                        <input type="text" id="saldo" class="form-control" readonly /> <!-- Cambiado a 'text' para control de formato -->
+                    </div>
+                    <div id="metodo-container" style="display:none;">
+                        @Html.Label("Método de pago", new { @for = "metodo" })
+                        @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>, new { @class = "form-select", @id = "metodo", metodo = "metodo", @required = "true" })
+                    </div>
+
+                    <div id="financiera-container" style="display:none;">
+                        @Html.Label("Entidad Financiera", new { @for = "financieras" })
+                        @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>, new { @class = "form-select", @id = "financieras", @name = "financieras" })
+
+                        @Html.Label("Número de trasacción de referencia", new { @for = "referencia" })
+                        @Html.TextBoxFor(m => m.transaccionRef, new { @type = "number", @class = "form-control", @id = "referencia", @name = "referencia", @required = "true" })
+                    </div>
+                    <div id="Abono-container" style="display:none;">
+                        @Html.Label("Ingrese el monto a pagar", new { @for = "abono" })
+                        @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @required = "true", @onkeypress = "return ValidarNumeros(this.id)" })
+                    </div>
+
+                    @Html.Label("Descripción de la transacción", new { @for = "referencia" })
+                    @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Pagar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $("#tablaCxC").DataTable({
             language: { url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json' }
+        });
+    });
+
+    function verificaTipoVentaYMetodoPago() {
+        var metodoPago = $('#metodo').val();
+
+        $('#metodo-container').show();
+
+        // Mostrar u ocultar el contenedor de financiera
+        if (metodoPago === '1') { // Efectivo
+            $('#financiera-container').hide();
+        } else { // Método diferente de efectivo
+            $('#financiera-container').show();
+        }
+
+        $('#Abono-container').show();
+    }
+
+    // Ejecutar la función al cambiar el método de pago
+    $('#metodo').change(verificaTipoVentaYMetodoPago);
+
+    $(document).on("click", ".AbrirModalPagar", function () {
+        // Captura y asigna el data-id y data-saldo al modal
+        var idCuenta = $(this).data('id');
+        var saldo = $(this).data('saldo');
+
+        $("#IdCuenta").val(idCuenta);
+        $("#saldo").val(saldo);
+
+        // Llama a la función para mostrar/ocultar el contenedor según el método de pago
+        verificaTipoVentaYMetodoPago();
+    });
+
+    $("#abono").on("input", function () {
+        var abono = parseFloat($(this).val());
+        var totalTransaccion = $("#ModalPagoRecibo").data("total");
+
+        if (abono > totalTransaccion) {
+            alert("El monto del abono no puede ser superior al total de la transacción: " + totalTransaccion.toFixed(2));
+            $(this).val(totalTransaccion.toFixed(2));
+        }
+    });
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    $(document).ready(function () {
+        $("#ModalPagoRecibo form").on("submit", function (e) {
+            e.preventDefault();
+
+            var formData = $(this).serialize();
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        $('#ModalPagoRecibo').modal('hide');
+
+                        window.location.href = response.pdfUrl;
+
+
+                        setTimeout(function () {
+                            window.location.href = '/Contabilidad/CxC';
+                        }, 1000);
+                    } else {
+                        alert(response.message || "Hubo un error al procesar el pago.");
+                    }
+                },
+                error: function () {
+                    alert("Ocurrió un error en la solicitud. Por favor, intenta de nuevo.");
+                }
+            });
         });
     });
 </script>
