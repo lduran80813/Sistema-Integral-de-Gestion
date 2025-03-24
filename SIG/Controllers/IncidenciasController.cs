@@ -167,8 +167,10 @@ namespace SIG.Controllers
             var respuesta = ticketM.ActualizarTicket(ticket);
 
             // Notificacion
-            notificacionesM.NuevaNotificacion(2, 3, 1, ticket.id_ticket, (int)ticket.id_tecnico); //Módulo 2, Notif básica 3, prioridad 1, idEnviar id_tecnico del Ticket
-
+            if (ticket.id_tecnico != null)
+            {
+                notificacionesM.NuevaNotificacion(2, 3, 1, ticket.id_ticket, (int)ticket.id_tecnico); //Módulo 2, Notif básica 3, prioridad 1, idEnviar id_tecnico del Ticket
+            }
 
             if (respuesta)
             {
@@ -189,7 +191,7 @@ namespace SIG.Controllers
             var respuesta = ticketM.CerrarTicket(ticket);
             if (respuesta)
             {
-                TempData["mensaje"] = "Ticket eliminado correctaqmente";
+                TempData["mensaje"] = "Ticket eliminado correctamente";
                 return RedirectToAction("ListaIncidenciasUsuario", "Incidencias");
             }                
             else
@@ -214,7 +216,7 @@ namespace SIG.Controllers
             var rolUsuario = int.Parse(Session["RolUsuario"].ToString());
             var idUsuario = int.Parse(Session["IdUsuario"].ToString());
 
-            if (respuesta != null && (rolUsuario == 3 || idUsuario == respuesta.id_usuario || idUsuario == respuesta.id_tecnico))
+            if (respuesta != null && (rolUsuario == 3 || rolUsuario == 1 || idUsuario == respuesta.id_usuario || idUsuario == respuesta.id_tecnico))
             {
                 CatalogosTicket();
                 ViewBag.Accion = accion;

@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\contaestadosfinancierospdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\contaestadosfinancierospdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\login\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\login\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\contabilidadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\contabilidadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\informeventa.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\informeventa.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\informeventaspdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\informeventaspdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\contabilidad\\contacierrecorte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\contabilidad\\contacierrecorte.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\ldied\\onedrive\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\empleados\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,79 +35,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ContaEstadosFinancierosPDF.cshtml",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaEstadosFinancierosPDF.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\ContaEstadosFinancierosPDF.cshtml",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaEstadosFinancierosPDF.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Contabilidad\\ContaEstadosFinancierosPDF.cshtml",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFQAAAAVAAAAAAAAAA==",
+              "Title": "registro.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\registro.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Login\\registro.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\registro.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Login\\registro.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADMAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T17:14:49.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InformeVenta.cshtml",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\InformeVenta.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\InformeVenta.cshtml",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\InformeVenta.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Contabilidad\\InformeVenta.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T17:00:04.819Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InformeVentasPDF.cshtml",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\InformeVentasPDF.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\InformeVentasPDF.cshtml",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\InformeVentasPDF.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Contabilidad\\InformeVentasPDF.cshtml",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAEwAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T16:53:27.338Z",
+              "WhenOpened": "2025-03-24T03:43:11.678Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ContabilidadController.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs",
-              "RelativeDocumentMoniker": "SIG\\Controllers\\ContabilidadController.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\ContabilidadController.cs",
-              "RelativeToolTip": "SIG\\Controllers\\ContabilidadController.cs",
-              "ViewState": "AgIAAHkCAAAAAAAAAAAgwIoCAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T16:42:32.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ContabilidadModel.cs",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ContabilidadModel.cs",
-              "RelativeDocumentMoniker": "SIG\\Models\\ContabilidadModel.cs",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ContabilidadModel.cs",
-              "RelativeToolTip": "SIG\\Models\\ContabilidadModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T16:07:56.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ContaCierreCorte.cshtml",
-              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaCierreCorte.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Contabilidad\\ContaCierreCorte.cshtml",
-              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Contabilidad\\ContaCierreCorte.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Contabilidad\\ContaCierreCorte.cshtml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwCsAAAA3AAAAAAAAAA==",
+              "Title": "Registro.cshtml",
+              "DocumentMoniker": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Empleados\\Registro.cshtml",
+              "RelativeDocumentMoniker": "SIG\\Views\\Empleados\\Registro.cshtml",
+              "ToolTip": "C:\\Users\\ldied\\OneDrive\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Empleados\\Registro.cshtml",
+              "RelativeToolTip": "SIG\\Views\\Empleados\\Registro.cshtml",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-23T16:42:23.899Z",
+              "WhenOpened": "2025-03-24T03:41:14.75Z",
               "EditorCaption": ""
             }
           ]

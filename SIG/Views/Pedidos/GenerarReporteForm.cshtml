@@ -19,6 +19,13 @@
         </div>
     </div>
 
+    @if (TempData["msj"] != null)
+    {
+        <div class="alert alert-info text-center" role="alert">
+            @TempData["msj"]
+        </div>
+    }
+
     @using (Html.BeginForm("GenerarReporte", "Pedidos", FormMethod.Post, new { @class = "form-reporte" }))
     {
         <div class="input-container">

@@ -79,7 +79,7 @@
                         ¿Desea cerrar el ticket <label id="Nombre"></label>?
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-delete">Eliminar</button>
+                        <button type="submit" class="btn btn-delete">Cerrar</button>
                     </div>
                 }
             </div>
@@ -94,6 +94,11 @@
                 url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
             }
         });
+    });
+
+    $(document).on("click", ".AbrirModal", function () {
+        $("#id_ticket").val($(this).attr('data-id'));
+        $("#Nombre").text($(this).attr('data-id'));
     });
 </script>
 

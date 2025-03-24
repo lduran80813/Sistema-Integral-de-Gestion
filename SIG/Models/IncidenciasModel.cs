@@ -68,7 +68,7 @@ namespace SIG.Models
                 int idSesion = int.Parse(HttpContext.Current.Session["IdUsuario"].ToString());
                 int RolSesion = int.Parse(HttpContext.Current.Session["RolUsuario"].ToString());
                 var query = (from x in context.Ticket
-                             where x.id_ticket == idTicket && (x.id_usuario == idSesion || x.id_tecnico == idSesion || RolSesion == 3) //permisos para ver el ticket
+                             where x.id_ticket == idTicket && (x.id_usuario == idSesion || x.id_tecnico == idSesion || RolSesion == 3 || RolSesion == 1) //permisos para ver el ticket
                              select x).FirstOrDefault();
 
                 if (query != null)
@@ -127,6 +127,16 @@ namespace SIG.Models
             }
 
             return (rowsAffected > 0 ? true : false);
+        }
+
+        public int ObtenerUsuario(int idTicket)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                return (from x in context.Ticket
+                        where x.id_ticket == idTicket
+                        select x.id_usuario).FirstOrDefault();
+            }
         }
 
         public List<TablaTicket> ListaTicketsRegistrados()
@@ -451,4 +461,6 @@ namespace SIG.Models
         }
 
     }
+
+    
 }

@@ -65,7 +65,7 @@ namespace SIG.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult EliminarPedido(int id)
         {
             try
@@ -174,12 +174,20 @@ namespace SIG.Controllers
         {
             if (proveedorId <= 0)
             {
-                ViewBag.ErrorMessage = "Por favor, seleccione un proveedor válido.";
+                TempData["msj"] = "Por favor, seleccione un proveedor válido.";
                 ViewBag.Proveedores = proveedoresModel.ListaProveedores();
                 return View("GenerarReporteForm");
             }
 
             var reporte = pedidosModel.GenerarReporte(proveedorId);
+
+            if (reporte.Count == 0)
+            {
+                TempData["msj"] = "No hay información disponible para el período indicado.";
+                ViewBag.Proveedores = proveedoresModel.ListaProveedores();
+                return View("GenerarReporteForm");
+            }
+
             ViewBag.Proveedores = proveedoresModel.ListaProveedores();
             ViewBag.ProveedorId = proveedorId; 
 

@@ -97,6 +97,11 @@ namespace SIG.Controllers
         public ActionResult CerrarTicket(Entidades.Ticket ticket)
         {
             var respuesta = ticketM.CerrarTicket(ticket);
+            
+            if (ticket.id_usuario == 0)
+            {
+                ticket.id_usuario = ticketM.ObtenerUsuario(ticket.id_ticket);
+            }
 
             // Notificaciones
             notificacionesM.NuevaNotificacion(2, 4, 1, ticket.id_ticket, (int)ticket.id_usuario); //Módulo 2, Notif básica 4, prioridad 1, idEnviar id_tecnico del Ticket
@@ -104,7 +109,7 @@ namespace SIG.Controllers
 
             if (respuesta)
             {
-                TempData["mensaje"] = "Ticket eliminado correctaqmente";
+                TempData["mensaje"] = "Ticket eliminado correctamente";
             }
             else
             {
@@ -156,8 +161,8 @@ namespace SIG.Controllers
             }
             else
             {
-                ViewBag.msj = "No se ha podido actualizar el Ticket";
-                return View();
+                TempData["mensaje"] = "No hubo cambio de información, no se actualizó el ticket";
+                return RedirectToAction("ListaTicketsAsignados", "IncidenciasITAnalyst");
             }
         }
 

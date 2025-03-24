@@ -28,7 +28,7 @@
 
                     <div class="mb-3">
                         @Html.LabelFor(m => m.fecha_pedido, "Fecha de Pedido", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.fecha_pedido, new { @class = "form-control form-control-lg shadow-lg", @type = "date", @required = "true" })
+                        @Html.TextBoxFor(m => m.fecha_pedido, "{0:yyyy-MM-dd}", new { @class = "form-control form-control-lg shadow-lg", @type = "date", @required = "true" })
                     </div>
 
                     <div class="mb-3">

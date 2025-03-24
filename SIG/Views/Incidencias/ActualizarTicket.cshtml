@@ -19,51 +19,56 @@
         </div>
     }
 
-    <div class="container">
-        @using (Html.BeginForm("ActualizarTicket", "Incidencias"))
-        {
-            @Html.AntiForgeryToken()
+<div class="container">
+    @using (Html.BeginForm("ActualizarTicket", "Incidencias"))
+    {
+        @Html.AntiForgeryToken()
 
-            <div class="mb-3">
-                @Html.Label("Id de Ticket")
-                @Html.TextBoxFor(m => m.id_ticket, new { @class = "form-control form-control-lg shadow-lg", @disabled = "true" })
-            </div>
+        @Html.HiddenFor(m => m.id_ticket)
+        @Html.HiddenFor(m => m.id_tecnico)
+        @Html.HiddenFor(m => m.prioridad)
 
-            <div class="mb-3">
-                @Html.Label("Título")
-                @Html.TextBoxFor(m => m.titulo, new { @class = "form-control shadow-lg", @maxlength = "20", @required = "true" })
-            </div>
 
-            <div class="mb-3">
-                @Html.Label("Tipo de incidente")
-                @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-control shadow-lg select-style", @disabled = "true" })
-            </div>
+        <div class="mb-3">
+            @Html.Label("Id de Ticket")
+            @Html.TextBoxFor(m => m.id_ticket, new { @class = "form-control form-control-lg shadow-lg", @disabled = "true" })
+        </div>
 
-            <div class="mb-3">
-                @Html.Label("Descripción")
-                @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control shadow-lg", @maxlength = "200", @rows = "4", @required = "true" })
-            </div>
+        <div class="mb-3">
+            @Html.Label("Título")
+            @Html.TextBoxFor(m => m.titulo, new { @class = "form-control shadow-lg", @maxlength = "20", @required = "true" })
+        </div>
 
-            <div class="mb-3">
-                @Html.Label("Comentarios Usuario")
-                @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control shadow-lg", @maxlength = "200", @rows = "4" })
-            </div>
+        <div class="mb-3">
+            @Html.Label("Tipo de incidente")
+            @Html.DropDownListFor(m => m.tipo_incidencia, ViewBag.Incidencias as List<SelectListItem>, new { @class = "form-control shadow-lg select-style", @disabled = "true" })
+        </div>
 
-            <div class="mb-3">
-                @Html.Label("Fecha de registro")
-                @Html.TextBoxFor(m => m.fecha_registro_usuario, new { @class = "form-control shadow-lg", @disabled = "true" })
-            </div>
+        <div class="mb-3">
+            @Html.Label("Descripción")
+            @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control shadow-lg", @maxlength = "200", @rows = "4", @required = "true" })
+        </div>
 
-            <div class="mb-3">
-                @Html.Label("Estado de incidente")
-                @Html.DropDownListFor(m => m.estado, ViewBag.Estados as List<SelectListItem>, new { @class = "form-control shadow-lg select-style", @disabled = "true" })
-            </div>
+        <div class="mb-3">
+            @Html.Label("Comentarios Usuario")
+            @Html.TextAreaFor(m => m.comentarios_usuario, new { @class = "form-control shadow-lg", @maxlength = "200", @rows = "4" })
+        </div>
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-gradient">Actualizar</button>
-            </div>
-        }
-    </div>
+        <div class="mb-3">
+            @Html.Label("Fecha de registro")
+            @Html.TextBoxFor(m => m.fecha_registro_usuario, new { @class = "form-control shadow-lg", @disabled = "true" })
+        </div>
+
+        <div class="mb-3">
+            @Html.Label("Estado de incidente")
+            @Html.DropDownListFor(m => m.estado, ViewBag.Estados as List<SelectListItem>, new { @class = "form-control shadow-lg select-style", @disabled = "true" })
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-gradient">Actualizar</button>
+        </div>
+    }
+</div>
 </div>
 
 <style>
