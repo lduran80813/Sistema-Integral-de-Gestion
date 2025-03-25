@@ -42,6 +42,7 @@ namespace SIG.Controllers
                     Session["Usuario"] = respuesta.nombre;
                     Session["IdUsuario"] = respuesta.id;
                     Session["RolUsuario"] = respuesta.rol_id;
+                    Session["Identificacion"] = usuarioM.ObtenerIdentificacion(respuesta.id);
 
 
                     Session["NombreRolUsuario"] = respuesta.rol_id.HasValue
@@ -241,7 +242,7 @@ namespace SIG.Controllers
                 }
                 else
                 {
-                    ViewBag.msj = "Error al registrar el usuario";
+                    ViewBag.msj = "El número de identificación del empleado ya se encuentra registrado.";
                 }
             }
 
@@ -274,7 +275,7 @@ namespace SIG.Controllers
         }
 
 
-
+        [HttpGet]
         public ActionResult Editar(int id)
         {
             try
@@ -299,6 +300,28 @@ namespace SIG.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult Editar(Empleado empleado)
+        {
+            if (ModelState.IsValid)
+            {
+                var resultado = usuarioM.EditarEmpleado(empleado);
+                if (resultado)
+                {
+                    TempData["msj"] = "Usuario actualizado exitosamente.";
+                    return RedirectToAction("ListarUsuarios");
+                }
+                ModelState.AddModelError("", "Error al editar el empleado. Intente nuevamente.");
+            }
+
+            ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
+            ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
+            ViewBag.Roles = usuarioM.ObtenerListaRoles();
+
+            return View(empleado);
+        }
+
+        [HttpGet]
         public ActionResult EditarEmp(int id)
         {
             try
@@ -321,31 +344,9 @@ namespace SIG.Controllers
                 ModelState.AddModelError("", $"Error al cargar el empleado: {ex.Message}");
                 return RedirectToAction("Index");
             }
-        }
+        }        
 
         [HttpPost]
-
-        public ActionResult Editar(Empleado empleado)
-        {
-            if (ModelState.IsValid)
-            {
-                var resultado = usuarioM.EditarEmpleado(empleado);
-                if (resultado)
-                {
-                    return RedirectToAction("ListarUsuarios");
-                }
-                ModelState.AddModelError("", "Error al editar el empleado. Intente nuevamente.");
-            }
-
-            ViewBag.Departamentos = usuarioM.ObtenerDepartamentos();
-            ViewBag.Puestos = usuarioM.ObtenerListaPuestos();
-            ViewBag.Roles = usuarioM.ObtenerListaRoles();
-
-            return View(empleado);
-        }
-
-        [HttpPost]
-
         public ActionResult EditarEmp(Empleado empleado)
         {
             if (ModelState.IsValid)

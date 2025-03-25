@@ -12,6 +12,13 @@
         </h2>
     </div>
 
+    @if (TempData["msj"] != null)
+    {
+    <div class="alert alert-info text-center" role="alert">
+        @TempData["msj"]
+    </div>
+    }
+
     <table id="tablaUsuarios" class="table table-modern">
         <thead>
             <tr>

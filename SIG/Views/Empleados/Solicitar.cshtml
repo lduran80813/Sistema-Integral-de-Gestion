@@ -17,10 +17,22 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="mb-3">
-                @Html.Label("Cédula del empleado", "", new { @class = "form-label" })
-                <input type="text" class="form-control shadow-lg" id="cedulaEmpleado" name="cedulaEmpleado" required placeholder="Ingrese la cédula del empleado" />
-            </div>
+            
+                int rolUsuario = int.Parse(Session["RolUsuario"].ToString());
+                if (rolUsuario == 1 || rolUsuario == 9)
+                {
+                    <div class="mb-3">
+                        @Html.Label("Cédula del empleado", "", new { @class = "form-label" })
+                        <input type="text" class="form-control shadow-lg" id="cedulaEmpleado" name="cedulaEmpleado" required placeholder="Ingrese la cédula del empleado" />
+                    </div>
+            }
+            else
+            {
+                <input hidden id="cedulaEmpleado" name="cedulaEmpleado" value="@Session["Identificacion"].ToString()" />
+                }
+
+
+
 
             <div class="row">
                 <div class="col-md-6 mb-3">

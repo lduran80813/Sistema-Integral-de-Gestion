@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     @Html.LabelFor(m => m.FechaEntrega, "Fecha de Entrega", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.FechaEntrega, new
+                    @Html.TextBoxFor(m => m.FechaEntrega, "{0:yyyy-MM-dd}", new
                     {
                         @class = "form-control shadow-lg",
                         @type = "date",

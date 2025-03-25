@@ -19,13 +19,6 @@
             </div>
         }
 
-        @if (!string.IsNullOrEmpty(ViewBag.msj))
-        {
-            <div class="alert alert-danger">
-                @ViewBag.msj
-            </div>
-        }
-
         @using (Html.BeginForm("registro", "Login", FormMethod.Post))
         {
             <div class="input-group mb-4">

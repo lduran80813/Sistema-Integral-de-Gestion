@@ -17,23 +17,9 @@ namespace SIG.Models
         {
             using (var context = new SistemaIntegralGestionEntities())
             {
-                var parameters = new List<SqlParameter>
-        {
-            new SqlParameter("@PedidoId", SqlDbType.Int) { Value = entrega.PedidoId },
-            new SqlParameter("@FechaEntrega", SqlDbType.DateTime) { Value = entrega.FechaEntrega ?? (object)DBNull.Value },
-            new SqlParameter("@DireccionEntrega", SqlDbType.NVarChar, 255) { Value = entrega.DireccionEntrega },
-            new SqlParameter("@ArticulosEntregados", SqlDbType.NVarChar, -1) { Value = entrega.ArticulosEntregados },
-            new SqlParameter("@ObservacionesAdicionales", SqlDbType.NVarChar, -1) { Value = entrega.ObservacionesAdicionales ?? (object)DBNull.Value },
-            new SqlParameter("@EstadoEntrega", SqlDbType.NVarChar, 50) { Value = entrega.EstadoEntrega },
-            new SqlParameter("@NombreDestinatario", SqlDbType.NVarChar, 100) { Value = entrega.NombreDestinatario },
-            new SqlParameter("@CorreoElectronico", SqlDbType.NVarChar, 100) { Value = entrega.CorreoElectronico },
-        };
+               var rowsAffected = context.RegistrarEntrega(entrega.PedidoId, entrega.FechaEntrega, entrega.DireccionEntrega, entrega.ArticulosEntregados, entrega.ObservacionesAdicionales);
 
-                var rowsAffected = context.Database.ExecuteSqlCommand(
-                    "EXEC RegistrarEntrega @PedidoId, @FechaEntrega, @DireccionEntrega, @ArticulosEntregados, @ObservacionesAdicionales, @EstadoEntrega, @NombreDestinatario, @CorreoElectronico",
-                    parameters.ToArray());
-
-                return rowsAffected > 0;
+                return rowsAffected != 0;
             }
         }
 

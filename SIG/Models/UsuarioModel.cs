@@ -392,6 +392,17 @@ namespace SIG.Models
             }
         }
 
+        public string ObtenerIdentificacion(int idUsuario)
+        {
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                string identificacion = (from x in context.Empleado
+                                        where x.id == idUsuario
+                                        select x.numero_identificacion).FirstOrDefault();
+
+                return identificacion;
+            }
+        }
 
     }
 }

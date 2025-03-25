@@ -44,7 +44,7 @@
                             <td>@item.tipo_incidencia</td>
                             <td>@item.estado</td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.id_ticket">
+                                <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalTicket" data-id="@item.id_ticket" data-name="@item.id_ticket">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -73,7 +73,7 @@
                 {
                     <div class="modal-body">
                         @Html.Hidden("id_ticket", "")
-                        ¿Desea cerrar el ticket <label id="ticketNumero"></label>?
+                        ¿Desea cerrar el ticket <label id="Nombre"></label>?
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-delete">Eliminar</button>
@@ -94,8 +94,8 @@
     });
 
     $(document).on("click", ".AbrirModal", function () {
-        var ticketId = $(this).data("id");
-        $("#ticketNumero").text(ticketId);
+        $("#id_ticket").val($(this).attr('data-id'));
+        $("#Nombre").text($(this).attr('data-name'));
     });
 </script>
 

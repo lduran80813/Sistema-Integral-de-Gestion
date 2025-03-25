@@ -34,29 +34,9 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    @Html.LabelFor(m => m.CorreoElectronico, "Correo Electrónico", new { @class = "form-label fw-bold" })
-                    @Html.TextBoxFor(m => m.CorreoElectronico, new { @class = "form-control shadow-lg", placeholder = "Ingrese el correo electrónico" })
-                </div>
-                <div class="col-md-6 mb-3">
-                    @Html.LabelFor(m => m.ClienteId, "Seleccionar Cliente", new { @class = "form-label fw-bold" })
-                    @Html.DropDownListFor(m => m.ClienteId, (SelectList)ViewBag.Clientes, "Seleccione un Cliente", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    @Html.LabelFor(m => m.EstadoEntrega, "Estado de Entrega", new { @class = "form-label fw-bold" })
-                    @Html.DropDownListFor(m => m.EstadoEntrega,
-                        new SelectList(new List<string> { "Pendiente", "En tránsito", "Entregado", "Cancelado" }),
-                        "Seleccione un estado",
-                        new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
-                </div>
-                <div class="col-md-6 mb-3">
-                    @Html.LabelFor(m => m.DireccionEntrega, "Dirección de Entrega", new { @class = "form-label fw-bold" })
-                    @Html.TextAreaFor(m => m.DireccionEntrega, new { @class = "form-control shadow-lg", @rows = "2", placeholder = "Ingrese la dirección de entrega" })
-                </div>
+            <div class="mb-3">
+                @Html.LabelFor(m => m.DireccionEntrega, "Dirección de Entrega", new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(m => m.DireccionEntrega, new { @class = "form-control shadow-lg", @rows = "2", placeholder = "Ingrese la dirección de entrega" })
             </div>
 
             <div class="mb-3">

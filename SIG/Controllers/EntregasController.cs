@@ -61,7 +61,7 @@ namespace SIG.Controllers
             if (!entrega.PedidoId.HasValue || !entregas.ExisteNumeroPedido(entrega.PedidoId))
             {
                 TempData["Error"] = $"El número de pedido {entrega.PedidoId} no existe. Verifique e intente nuevamente.";
-                return View(entrega);
+                return RedirectToAction("Registrar", "Entregas");
             }
 
             var resultado = entregas.RegistrarEntrega(entrega);

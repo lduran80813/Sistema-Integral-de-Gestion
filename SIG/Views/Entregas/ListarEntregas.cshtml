@@ -68,12 +68,32 @@
                     <td class="action-buttons">
                         <a href="@Url.Action("ActualizarEntrega", "Entregas", new { id = item.PedidoId })" class="btn btn-update"><i class="fa fa-edit"></i></a>
                         <a href="@Url.Action("EnviarNotificacion", "Entregas", new { id = item.PedidoId })" class="btn btn-gradient"><i class="fa fa-bell"></i></a>
-                        <a href="@Url.Action("CancelarEntrega", "Entregas", new { id = item.PedidoId })" class="btn btn-delete" onclick="return confirm('¿Está seguro de que desea cancelar esta entrega?');"><i class="fa fa-trash"></i></a>
+                        <a href="#" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalCancelarEntrega"
+                           data-id="@item.PedidoId">
+                            <i class="fa fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+</div>
+
+<div class="modal fade" id="ModalCancelarEntrega" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de que desea cancelar esta entrega?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" id="confirmarCancelacion" class="btn btn-delete">Cancelar entrega</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -85,6 +105,13 @@
                 url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
             }
         });
+    });
+
+    $(document).on("click", ".AbrirModal", function () {
+        var pedidoId = $(this).attr('data-id');
+
+        // Actualizar el enlace con el ID correcto
+        $("#confirmarCancelacion").attr("href", '@Url.Action("CancelarEntrega", "Entregas")' + '?id=' + pedidoId);
     });
 </script>
 

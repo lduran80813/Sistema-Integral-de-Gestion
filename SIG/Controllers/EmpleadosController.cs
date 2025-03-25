@@ -236,7 +236,7 @@ namespace SIG.Controllers
 
             var rolUsuario = Session["RolUsuario"] as int?;
 
-            if (rolUsuario == null || rolUsuario != 1)
+            if (!(rolUsuario == 1 || rolUsuario == 4))
             {
                 ViewBag.msj = "No tienes permisos para aprobar o rechazar solicitudes de vacaciones.";
                 return RedirectToAction("Index", "Home");
