@@ -480,6 +480,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="direccion" Type="varchar" MaxLength="255" />
           <Property Name="telefono" Type="varchar" MaxLength="50" />
           <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Venta_Estado">
           <Key>
@@ -2476,6 +2477,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__5F7E2DAC" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Venta_Estado">
           <Key>
@@ -4705,6 +4707,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySetMapping Name="Venta_Cliente">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
               <MappingFragment StoreEntitySet="Venta_Cliente">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />

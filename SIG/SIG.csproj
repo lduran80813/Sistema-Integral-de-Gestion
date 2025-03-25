@@ -580,6 +580,7 @@
     <Compile Include="BaseDatos\Venta_Tipo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\ContabilidadController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\EntregasController.cs" />
@@ -595,6 +596,7 @@
     <Compile Include="Entidades\Carrito.cs" />
     <Compile Include="Entidades\CategoriaIncidencia.cs" />
     <Compile Include="Entidades\CategoriaPlan.cs" />
+    <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\SolicitudVacacionViewModel.cs" />
     <Compile Include="Entidades\ConsultaEstadoFinanciero.cs" />
     <Compile Include="Entidades\CuentasCredito.cs" />
@@ -634,6 +636,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CatalogosModel.cs" />
+    <Compile Include="Models\ClientesModel.cs" />
     <Compile Include="Models\ContabilidadModel.cs" />
     <Compile Include="Models\EmpleadosModel.cs" />
     <Compile Include="Models\IncidenciasModel.cs" />
@@ -916,6 +919,9 @@
     <Content Include="Views\Empleados\HistorialPorUsuario.cshtml" />
     <Content Include="Views\Login\VerPerfil.cshtml" />
     <Content Include="Views\Login\EditarEmp.cshtml" />
+    <Content Include="Views\Clientes\Registro_Clientes.cshtml" />
+    <Content Include="Views\Clientes\ListaClientes.cshtml" />
+    <Content Include="Views\Clientes\ActualizarCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

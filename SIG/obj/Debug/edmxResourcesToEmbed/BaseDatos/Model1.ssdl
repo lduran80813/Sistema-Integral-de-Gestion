@@ -475,6 +475,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
     <Property Name="direccion" Type="varchar" MaxLength="255" />
     <Property Name="telefono" Type="varchar" MaxLength="50" />
     <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+    <Property Name="estado" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Venta_Estado">
     <Key>

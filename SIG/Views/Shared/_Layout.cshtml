@@ -235,6 +235,36 @@
                             </li>
                         }
 
+                        @if (rolUsuario == 1 || rolUsuario == 4 || rolUsuario == 6)
+                        {
+                            <li class="nav-item has-treeview"
+                                style="margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); border-radius: 8px;">
+                                <a href="#" class="nav-link toggle-menu"
+                                   style="color: #ffffff; display: flex; align-items: center; padding: 10px; border-radius: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-users nav-icon" style="color: #00e676; font-size: 20px; margin-right: 10px;"></i>
+                                    <p style="font-weight: 500;">Clientes</p>
+                                    <i class="fas fa-angle-down right expand-icon" style="margin-left: auto; color: #00e676;"></i>
+                                </a>
+                                <ul class="nav nav-treeview collapsible-content"
+                                    style="margin-top: 5px; padding-left: 25px; display: none;">
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Registro_Clientes", "Clientes")" class="nav-link">
+                                            <i class="fas fa-user-plus nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Registrar Cliente</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ListaClientes", "Clientes")" class="nav-link">
+                                            <i class="fas fa-list nav-icon" style="color: #a5d6a7;"></i>
+                                            <p style="color: #a5d6a7;">Lista de Clientes</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
                         @if (rolUsuario == 1 || rolUsuario == 8)
                         {

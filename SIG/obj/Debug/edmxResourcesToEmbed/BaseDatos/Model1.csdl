@@ -572,6 +572,7 @@
     <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__5F7E2DAC" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Venta_Estado">
     <Key>

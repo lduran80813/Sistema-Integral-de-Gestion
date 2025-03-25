@@ -1,0 +1,189 @@
+﻿@model List<SIG.Entidades.Cliente>
+@{
+    ViewBag.Title = "ListaClientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<body style="margin: 0; padding: 0; background-color: #101010;">
+    <div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+        <div class="text-center mb-4">
+            <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+                Clientes
+            </h2>
+        </div>
+
+        @if (ViewBag.msj != null)
+        {
+            <div class="alert alert-info text-center" role="alert">
+                @ViewBag.msj
+            </div>
+        }
+
+        <div class="d-flex justify-content-end mb-3">
+            <a href="@Url.Action("ExportarClientes", "Clientes")" class="btn btn-gradient">
+                <i class="fa fa-file-excel"></i> Exportar a Excel
+            </a>
+        </div>
+
+        <div>
+            <table id="tablaClientes" class="table table-modern">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Eliminar</th>
+                        <th>Actualizar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="@(item.estado == 1 ? "table-success" : "table-danger")">
+                            <td>@item.id</td>
+                            <td>@item.nombre</td>
+                            <td>@item.telefono</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalCliente" data-id="@item.id" data-name="@item.nombre">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-update" href="@Url.Action("ActualizarCliente", "Clientes", new { id = item.id })">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+
+<div class="modal fade" id="ModalCliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("EliminarCliente", "Clientes"))
+                {
+                    @Html.Hidden("id", "")
+                    <p>¿Desea eliminar el cliente <strong id="Nombre"></strong>?</p>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-delete">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#tablaClientes").DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            autoWidth: false,
+            responsive: true,
+            pageLength: 10
+        });
+    });
+
+    $(document).on("click", ".AbrirModal", function () {
+        $("#id").val($(this).data('id'));
+        $("#Nombre").text($(this).data('name'));
+    });
+</script>
+
+<style>
+    .table-modern {
+        border-radius: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        border: 1px solid black;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern thead {
+            background: black;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-delete {
+        background: linear-gradient(to right, #d9534f, #b52b27);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-delete:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #b52b27, #d9534f);
+        }
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+</style>
+

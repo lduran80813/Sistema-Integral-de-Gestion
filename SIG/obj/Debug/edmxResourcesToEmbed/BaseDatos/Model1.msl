@@ -497,6 +497,7 @@
     <EntitySetMapping Name="Venta_Cliente">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
         <MappingFragment StoreEntitySet="Venta_Cliente">
+          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />

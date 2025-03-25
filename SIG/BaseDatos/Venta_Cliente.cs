@@ -25,6 +25,7 @@ namespace SIG.BaseDatos
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string correo_electronico { get; set; }
+        public int estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta_Factura> Venta_Factura { get; set; }
