@@ -922,6 +922,7 @@
     <Content Include="Views\Clientes\Registro_Clientes.cshtml" />
     <Content Include="Views\Clientes\ListaClientes.cshtml" />
     <Content Include="Views\Clientes\ActualizarCliente.cshtml" />
+    <Content Include="Views\Contabilidad\IncluirProductoInventario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

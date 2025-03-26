@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%"; overflow-y: auto;">
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%" ; overflow-y: auto;">
     <div class="text-center mb-4">
         <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
             Ver Ticket
@@ -56,6 +56,53 @@
                 @Html.DropDownListFor(m => m.estado, ViewBag.Estados as List<SelectListItem>, new { @class = "form-control form-control-lg shadow-lg select-style", @disabled = "true" })
             </div>
 
+            if (Model.id_tecnico != null)
+            {
+                <div class="form-group">
+                    @Html.Label("Prioridad")
+                    @Html.DropDownListFor(m => m.prioridad, ViewBag.Prioridades as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Técnico asignado")
+                    @Html.DropDownListFor(m => m.id_tecnico, ViewBag.Tecnicos as List<SelectListItem>, new { @class = "form-control", @disabled = "true" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Comentarios Técnico")
+                    @Html.TextAreaFor(m => m.comentario_tecnico, new { @class = "form-control", @id = "exampleTextarea1", @rows = "4", @disabled = "true" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Fecha de asignada a Técnico")
+                    @Html.TextBoxFor(m => m.fecha_registra_tecnico, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+                </div>
+
+            }
+            else if (Model.id_tecnico == null && Model.estado == 4)
+            {
+                <div class="form-group">
+                    @Html.Label("Prioridad")
+                    <input type="text" class="form-control" value="No hubo prioridad asignada (caso fue cerrado por usuario)" disabled />
+                </div>
+                <div class="form-group">
+                    @Html.Label("Técnico asignado")
+                    <input type="text" class="form-control" value="No hubo técnico asignado (caso fue cerrado por usuario)" disabled />
+
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    @Html.Label("Técnico asignado")
+                    <input type="text" class="form-control" value="No hay técnico asignado" disabled />
+                </div>
+
+            }
+            <div class="form-group">
+                @Html.Label("Fecha de cierre")
+                @Html.TextBoxFor(m => m.fecha_cierre_ticket, new { @class = "form-control", @id = "exampleInputName1", @disabled = "true" })
+            </div>
+
+
+
             <div class="text-center mt-4">
                 <a class="btn btn-gradient" href="@Url.Action(ViewBag.Accion, ViewBag.Controlador)">Regresar</a>
             </div>
@@ -66,12 +113,12 @@
 <style>
 
     .select-style {
-        font-size: 1.5rem; 
-        height: 50px; 
+        font-size: 1.5rem;
+        height: 50px;
         padding: 10px;
     }
 
-    
+
     .d-flex.flex-column {
         max-height: 100%;
         overflow-y: scroll;

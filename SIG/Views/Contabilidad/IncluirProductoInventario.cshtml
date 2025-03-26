@@ -1,0 +1,117 @@
+﻿@model SIG.Entidades.Producto
+@{
+    ViewBag.Title = "IncluirProductoInventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
+    <div class="text-center mb-4">
+        <h2 style="font-weight: bold; color: #111111; border-bottom: 2px solid #111111; padding-bottom: 10px;">
+            Registro de Productos
+        </h2>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">
+            @if (ViewBag.msj != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    @ViewBag.msj
+                </div>
+            }
+            <div class="container">
+                @using (Html.BeginForm("IncluirProductoInventario", "Contabilidad"))
+                {
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.nombre, "Nombre del producto", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control form-control-lg shadow-lg", @id = "nombre", @name = "nombre", @required = "true", @placeholder = "Ingrese el nombre del producto" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.Label("Descripción", new { @for = "direccion" })
+                        @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control shadow-lg", @id = "direccion", @name = "direccion", @rows = "3", @required = "true", @placeholder = "Ingrese la descripción del producto" })
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.Label("Precio", new { @for = "precio" })
+                            @Html.TextBoxFor(m => m.precio, new { @class = "form-control shadow-lg", @type = "number", @id = "precio", @name = "precio", @required = "true", @placeholder = "Ingrese el precio" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.Label("Inventario", new { @for = "inventario" })
+                            @Html.TextBoxFor(m => m.inventario, new { @class = "form-control shadow-lg", @type = "number", @id = "inventario", @name = "inventario", @required = "true", @placeholder = "Ingrese el inventario" })
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-gradient">Registrar Producto</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .table-modern {
+        border: 1px solid black;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        background-color: #ffffff;
+        overflow: hidden;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .table-modern:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transform: scale(1.01);
+        }
+
+        .table-modern th, .table-modern td {
+            padding: 14px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+        }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
+    .btn-gradient {
+        background: linear-gradient(to right, #5b8c5a, #2f5930);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+        .btn-gradient:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2f5930, #5b8c5a);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+</style>
+
+
+

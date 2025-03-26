@@ -25,6 +25,19 @@ else
                         @ViewBag.msj
                     </div>
                 }
+
+                @if (TempData["mensaje"] != null)
+                {
+                    <div class="alert alert-info text-center" role="alert">
+                        @TempData["mensaje"]
+                    </div>
+                }
+
+                <div class="text-center">
+                    <a class="btn btn-gradient" href="@Url.Action("IncluirProductoInventario", "Contabilidad")">
+                        <i class="bi bi-plus"></i> Incluir producto</a>
+                </div>
+
                 <table id="tablaProductos" class="table table-modern">
                     <thead>
                         <tr>
