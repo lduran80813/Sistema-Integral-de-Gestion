@@ -28,6 +28,9 @@ namespace SIG.Controllers
         {
             try
             {
+
+                TempData["success"] = null;
+
                 if (!ModelState.IsValid)
                 {
                     var errores = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)).ToList();

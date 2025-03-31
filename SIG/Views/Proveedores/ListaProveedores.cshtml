@@ -26,7 +26,7 @@
 
         <div class="d-flex justify-content-end mb-3">
             <a href="@Url.Action("ExportarProveedores", "Proveedores")" class="btn btn-gradient">
-                <i class="fa fa-file-excel"></i> Exportar a Excel
+                Exportar a Excel
             </a>
         </div>
 
@@ -51,14 +51,21 @@
                             <td>@item.telefono</td>
                             <td>@(item.estado == 1 ? "Activo" : "Inactivo")</td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalProveedor" data-id="@item.id" data-name="@item.nombre">
-                                    <i class="fa fa-trash"></i> 
-                                </button>
+                                @if (item.estado == 1)
+                                {
+                                    <button type="button" class="btn btn-delete AbrirModal" data-bs-toggle="modal" data-bs-target="#ModalProveedor" data-id="@item.id" data-name="@item.nombre">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                }
+
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-update" href="@Url.Action("ActualizarProveedor", "Proveedores", new { id = item.id })">
-                                    <i class="fa fa-edit"></i> 
-                                </a>
+                                @if (item.estado == 1)
+                                {
+                                    <a class="btn btn-update" href="@Url.Action("ActualizarProveedor", "Proveedores", new { id = item.id })">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                }
                             </td>
                         </tr>
                     }

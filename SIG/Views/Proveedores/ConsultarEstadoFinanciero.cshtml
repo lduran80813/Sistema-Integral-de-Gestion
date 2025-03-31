@@ -100,17 +100,6 @@
                 }
             </tbody>
         </table>
-
-        <div class="text-center mt-4">
-            @using (Html.BeginForm("ExportarEstadoFinanciero", "Proveedores", FormMethod.Get))
-            {
-                @Html.Hidden("FechaInicio", Request.Form["FechaInicio"])
-                @Html.Hidden("FechaFin", Request.Form["FechaFin"])
-                <button type="submit" class="btn btn-gradient">
-                    <i class="bi bi-file-earmark-excel"></i> Exportar a Excel
-                </button>
-            }
-        </div>
     }
     else
     {
