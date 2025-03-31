@@ -21,8 +21,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Compra' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Compra' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Compra">
           <Property Name="id" Type="int" />
           <Property Name="proveedor_id" Type="int" />
@@ -33,8 +33,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Compra' no 
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Empleado' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Empleado' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Empleado">
           <Property Name="id" Type="int" />
           <Property Name="nombre" Type="varchar" MaxLength="100" />
@@ -49,8 +49,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Empleado' n
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Entrega' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Entrega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Entrega">
           <Property Name="id" Type="int" />
           <Property Name="pedido_id" Type="int" />
@@ -61,8 +61,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Entrega' no
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Factura' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Factura' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Factura">
           <Property Name="id" Type="int" />
           <Property Name="cliente_id" Type="int" />
@@ -76,8 +76,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Factura' no
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_PlanDeAccion">
           <Property Name="id" Type="int" />
           <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
@@ -87,8 +87,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_PlanDeAccio
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Proveedor' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Proveedor' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Proveedor">
           <Property Name="id" Type="int" />
           <Property Name="nombre" Type="varchar" MaxLength="255" />
@@ -96,8 +96,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Proveedor' 
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Ticket' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Ticket' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Ticket">
           <Property Name="id_ticket" Type="int" />
           <Property Name="id_usuario" Type="int" />
@@ -112,8 +112,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Ticket' no 
           <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
           <Property Name="fecha_cierre_ticket" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Usuario' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Usuario' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Usuario">
           <Property Name="id" Type="int" />
           <Property Name="usuario" Type="varchar" MaxLength="100" />
@@ -123,8 +123,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Usuario' no
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SistemaIntegralGestion.dbo.Audit_Vacaciones' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Audit_Vacaciones">
           <Property Name="id" Type="int" />
           <Property Name="empleado_id" Type="int" />
@@ -133,8 +133,8 @@ advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones'
           <Property Name="accion" Type="varchar" MaxLength="50" />
           <Property Name="fecha_hora" Type="datetime" />
         </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Audit_Venta_Producto">
           <Key>
             <PropertyRef Name="id_producto" />
@@ -5380,7 +5380,7 @@ advertencia 6002: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Venta_Produ
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

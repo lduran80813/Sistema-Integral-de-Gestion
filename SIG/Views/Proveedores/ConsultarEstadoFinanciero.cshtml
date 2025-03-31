@@ -48,6 +48,8 @@
             </table>
         </div>
 
+        <div id="proveedoresSeleccionados"></div>
+
         <div class="input-container">
             <label class="input-label">Fecha de Inicio</label>
             <div class="input-wrapper">
@@ -142,7 +144,7 @@
             $(boton).data("selected", true);
 
             // Agregar input hidden
-            inputContainer.append(`<input type="hidden" name="IdsProveedoresSeleccionados" value="${id}" id="proveedor-${id}">`);
+            inputContainer.append(`<input type="hidden" name="ProveedorIds" value="${id}" id="proveedor-${id}">`);
         } else {
             $(boton).css("background", "linear-gradient(to right, #b0b0b0, #808080)");
             $(boton).data("selected", false);

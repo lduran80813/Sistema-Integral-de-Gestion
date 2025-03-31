@@ -155,9 +155,9 @@ namespace SIG.Models
                                                  NombreProveedor = (from p in context.Proveedor
                                                                     where p.id == g.Key.Value
                                                                     select p.nombre).FirstOrDefault(),
-                                                 TotalComprasContado = (decimal)g.Where(x => x.t.descripcion == "Contado").Sum(x => x.c.total_compra),
-                                                 TotalComprasCredito = (decimal)g.Where(x => x.t.descripcion == "Crédito").Sum(x => x.c.total_compra),
-                                                 TotalCompras = (decimal)g.Sum(x => x.c.total_compra),
+                                                 TotalComprasContado = g.Where(x => x.t.descripcion == "Contado").Sum(x => (decimal?)x.c.total_compra) ?? 0m,
+                                                 TotalComprasCredito = g.Where(x => x.t.descripcion == "Crédito").Sum(x => (decimal?)x.c.total_compra) ?? 0m,
+                                                 TotalCompras = g.Sum(x => (decimal?)x.c.total_compra) ?? 0m,
                                                  FechaCorte = consulta.FechaFin
                                              }).ToList();
 
