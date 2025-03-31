@@ -38,9 +38,9 @@
                             <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
                             <td>@item.Saldo.ToString("N2")</td>
                             <td>
-                                <button type="button" class="btn btn-update AbrirModalPagar" data-bs-toggle="modal" data-bs-target="#ModalPagoRecibo"
+                                <button type="button" class="btn btn-history AbrirModalPagar" data-bs-toggle="modal" data-bs-target="#ModalPagoRecibo"
                                         data-id="@item.IdCompra" data-saldo="@item.Saldo">
-                                    Pagar
+                                    <i class="fa fa-credit-card"></i>
                                 </button>
                             </td>
                             <td>
@@ -59,49 +59,59 @@
         </a>
     </div>
 </div>
-
 <div class="modal fade" id="ModalPagoRecibo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);">
             <div class="modal-header">
-                <h5 class="modal-title fs-5" id="exampleModalLabel">Pagar cuenta</h5>
+                <h5 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">Pagar cuenta</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 @using (Html.BeginForm("ContaPagoCxP", "Contabilidad"))
                 {
                     @Html.Hidden("Id_Cuenta", "", new { id = "IdCuenta" })
+
                     <div class="mb-3">
-                        @Html.Label("Saldo actual:", new { @for = "saldo" })
-                        <input type="text" id="saldo" class="form-control" readonly /> <!-- Cambiado a 'text' para control de formato -->
+                        @Html.Label("Saldo actual:", new { @for = "saldo", @class = "form-label" })
+                        <input type="text" id="saldo" class="form-control" readonly />
                     </div>
-                    <div id="metodo-container" style="display:none;">
-                        @Html.Label("Método de pago", new { @for = "metodo" })
-                        @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>, new { @class = "form-select", @id = "metodo", metodo = "metodo", @required = "true" })
+
+                    <div id="metodo-container" style="display:none;" class="mb-3">
+                        @Html.Label("Método de pago", new { @for = "metodo", @class = "form-label" })
+                        @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>, new { @class = "form-control form-control-lg shadow-lg select-style", @id = "metodo", metodo = "metodo", @required = "true" })
                     </div>
 
                     <div id="financiera-container" style="display:none;">
-                        @Html.Label("Entidad Financiera", new { @for = "financieras" })
-                        @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>, new { @class = "form-select", @id = "financieras", @name = "financieras" })
+                        <div class="mb-3">
+                            @Html.Label("Entidad Financiera", new { @for = "financieras", @class = "form-label" })
+                            @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>, new { @class = "form-control form-control-lg shadow-lg select-style", @id = "financieras", @name = "financieras" })
+                        </div>
 
-                        @Html.Label("Número de trasacción de referencia", new { @for = "referencia" })
-                        @Html.TextBoxFor(m => m.transaccionRef, new { @type = "number", @class = "form-control", @id = "referencia", @name = "referencia", @required = "true" })
+                        <div class="mb-3">
+                            @Html.Label("Número de trasacción de referencia", new { @for = "referencia", @class = "form-label" })
+                            @Html.TextBoxFor(m => m.transaccionRef, new { @type = "number", @class = "form-control", @id = "referencia", @name = "referencia", @required = "true" })
+                        </div>
                     </div>
-                    <div id="Abono-container" style="display:none;">
-                        @Html.Label("Ingrese el monto a pagar", new { @for = "abono" })
+
+                    <div id="Abono-container" style="display:none;" class="mb-3">
+                        @Html.Label("Ingrese el monto a pagar", new { @for = "abono", @class = "form-label" })
                         @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @required = "true", @onkeypress = "return ValidarNumeros(this.id)" })
                     </div>
 
-                    @Html.Label("Descripción de la transacción", new { @for = "referencia" })
-                    @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
+                    <div class="mb-3">
+                        @Html.Label("Descripción de la transacción", new { @for = "referencia", @class = "form-label" })
+                        @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
+                    </div>
+
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Pagar</button>
+                        <button type="submit" class="btn btn-gradient">Pagar</button>
                     </div>
                 }
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     $(document).ready(function () {
@@ -115,21 +125,19 @@
 
         $('#metodo-container').show();
 
-        // Mostrar u ocultar el contenedor de financiera
-        if (metodoPago === '1') { // Efectivo
+        if (metodoPago === '1') {
             $('#financiera-container').hide();
-        } else { // Método diferente de efectivo
+        } else {
             $('#financiera-container').show();
         }
 
         $('#Abono-container').show();
     }
 
-    // Ejecutar la función al cambiar el método de pago
+
     $('#metodo').change(verificaTipoVentaYMetodoPago);
 
     $(document).on("click", ".AbrirModalPagar", function () {
-        // Captura y asigna el data-id y data-saldo al modal
         var idCuenta = $(this).data('id');
         var saldo = $(this).data('saldo');
 
@@ -137,7 +145,6 @@
         $("#IdCuenta").val(idCuenta);
         $("#saldo").val(saldo);
 
-        // Llama a la función para mostrar/ocultar el contenedor según el método de pago
         verificaTipoVentaYMetodoPago();
     });
 
@@ -163,6 +170,20 @@
 </script>
 
 <style>
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
     .table-modern {
         border: 1px solid black;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -232,4 +253,26 @@
             transform: scale(1.1);
             background: linear-gradient(to right, #2c3e50, #4a6d89);
         }
+
+    .btn-history {
+        background: linear-gradient(to right, #98c1d9, #6baed6);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .btn-history:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #5086a6, #346fa0);
+        }
+
+    .select-style {
+        text-align: left;
+        padding-left: 12px;
+        height: 50px;
+        font-size: 16px;
 </style>

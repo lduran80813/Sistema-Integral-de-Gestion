@@ -497,12 +497,12 @@
     <EntitySetMapping Name="Venta_Cliente">
       <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
         <MappingFragment StoreEntitySet="Venta_Cliente">
-          <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -649,6 +649,7 @@
           <ScalarProperty Name="direccion" ColumnName="direccion" />
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -875,6 +876,20 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListarEntregas" FunctionName="SistemaIntegralGestionModel.Store.ListarEntregas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarEntregas_Result">
+          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+          <ScalarProperty Name="DireccionEntrega" ColumnName="DireccionEntrega" />
+          <ScalarProperty Name="ArticulosEntregados" ColumnName="ArticulosEntregados" />
+          <ScalarProperty Name="ObservacionesAdicionales" ColumnName="ObservacionesAdicionales" />
+          <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
+          <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="listaTipoVenta" FunctionName="SistemaIntegralGestionModel.Store.listaTipoVenta">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.listaTipoVenta_Result">
@@ -1021,20 +1036,6 @@
           <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="Inventario" ColumnName="Inventario" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ListarEntregas" FunctionName="SistemaIntegralGestionModel.Store.ListarEntregas">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarEntregas_Result">
-          <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
-          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-          <ScalarProperty Name="DireccionEntrega" ColumnName="DireccionEntrega" />
-          <ScalarProperty Name="ArticulosEntregados" ColumnName="ArticulosEntregados" />
-          <ScalarProperty Name="ObservacionesAdicionales" ColumnName="ObservacionesAdicionales" />
-          <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
-          <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
-          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

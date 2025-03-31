@@ -46,10 +46,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="text-center">
+                <div class="d-flex justify-content-center gap-3 mt-3">
                     <button type="button" class="btn btn-update" onclick="agregarFila()">Agregar Fila</button>
                     <button type="submit" class="btn btn-gradient">Guardar</button>
                 </div>
+
             }
         </div>
     </div>
@@ -74,7 +75,7 @@
                             <input type="text" name="ListaTransacciones[${rowIndex}].Descripcion" class="form-control" required />
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger" onclick="eliminarFila(this)">Eliminar</button>
+                            <button type="button" class="btn btn-delete" onclick="eliminarFila(this)">Eliminar</button>
                         </td>
                     `;
             tableBody.appendChild(row);
@@ -88,6 +89,33 @@
     </script>
 
     <style>
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .form-control:focus {
+                box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+                border-color: #5b8c5a;
+            }
+
+        .form-select {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .form-select:focus {
+                box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+                border-color: #5b8c5a;
+            }
+
 
         .d-flex.flex-column {
             max-height: 100%;

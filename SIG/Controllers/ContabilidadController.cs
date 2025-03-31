@@ -524,6 +524,31 @@ namespace SIG.Controllers
         }
 
         [HttpGet]
+        public ActionResult IncluirProductoInventario()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult IncluirProductoInventario(Producto producto)
+        {
+            var respuesta = contabilidadM.Registro_Producto(producto);
+
+            // modificar todo esto de aquí para abajo y probar el método del modelo
+            if (respuesta)
+            {
+                TempData["mensaje"] = "Producto registrado exitosamente";
+                return RedirectToAction("Inventario", "Contabilidad");
+            }
+
+            else
+            {
+                ViewBag.msj = "No se ha podido registrar el producto";
+                return View();
+            }
+        }
+
+        [HttpGet]
         public ActionResult ListaPagosCxC(int id)
         {
             AjusteManualCuentasCredito ajuste = new AjusteManualCuentasCredito();

@@ -64,18 +64,18 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     @Html.Label("Departamento", new { @class = "form-label" })
-                    @Html.DropDownList("departamento_id", (IEnumerable<SelectListItem>)ViewBag.Departamentos, "Seleccione un departamento", new { @class = "form-control shadow-lg" })
+                    @Html.DropDownList("departamento_id", (IEnumerable<SelectListItem>)ViewBag.Departamentos, "Seleccione un departamento", new { @class = "form-control form-control-lg shadow-lg select-style" })
                 </div>
                 <div class="col-md-6 mb-3">
                     @Html.Label("Puesto", new { @class = "form-label" })
-                    @Html.DropDownList("puesto_id", (IEnumerable<SelectListItem>)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control shadow-lg" })
+                    @Html.DropDownList("puesto_id", (IEnumerable<SelectListItem>)ViewBag.Puestos, "Seleccione un puesto", new { @class = "form-control form-control-lg shadow-lg select-style" })
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-3">
                     @Html.Label("Rol", new { @class = "form-label" })
-                    @Html.DropDownList("rol_id", (IEnumerable<SelectListItem>)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control shadow-lg" })
+                    @Html.DropDownList("rol_id", (IEnumerable<SelectListItem>)ViewBag.Roles, "Seleccione un rol", new { @class = "form-control form-control-lg shadow-lg select-style" })
                 </div>
             </div>
 
@@ -100,6 +100,26 @@
 
 
 <style>
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 16px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .form-control:focus {
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            border-color: #5b8c5a;
+        }
+
+    .select-style {
+        text-align: left;
+        padding-left: 12px;
+        height: 50px;
+        font-size: 16px;
+    }
 
     .btn-gradient {
         background: linear-gradient(to right, #5b8c5a, #2f5930);

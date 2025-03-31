@@ -571,8 +571,8 @@
     <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__5F7E2DAC" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
     <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__5F7E2DAC" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
   </EntityType>
   <EntityType Name="Venta_Estado">
     <Key>
@@ -1879,6 +1879,7 @@
     <FunctionImport Name="listaMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.listaMetodoPago_Result)" />
     <FunctionImport Name="ListarCxC" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxC_Result)" />
     <FunctionImport Name="ListarCxP" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxP_Result)" />
+    <FunctionImport Name="ListarEntregas" ReturnType="Collection(SistemaIntegralGestionModel.ListarEntregas_Result)" />
     <FunctionImport Name="listaTipoVenta" ReturnType="Collection(SistemaIntegralGestionModel.listaTipoVenta_Result)" />
     <FunctionImport Name="NotificacionesVencimientoCuentas" ReturnType="Collection(SistemaIntegralGestionModel.NotificacionesVencimientoCuentas_Result)" />
     <FunctionImport Name="NuevaNotificacion" ReturnType="Collection(Int32)">
@@ -2008,7 +2009,6 @@
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="ListarEntregas" ReturnType="Collection(SistemaIntegralGestionModel.ListarEntregas_Result)" />
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2044,6 +2044,7 @@
     <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
     <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="estado" Nullable="false" />
   </ComplexType>
   <ComplexType Name="ConsultarDetallePedido_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -2196,6 +2197,16 @@
     <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
     <Property Type="Int64" Name="linea" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="ListarEntregas_Result">
+    <Property Type="Int32" Name="PedidoId" Nullable="true" />
+    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
+    <Property Type="String" Name="DireccionEntrega" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="ArticulosEntregados" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ObservacionesAdicionales" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="EstadoEntrega" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NombreDestinatario" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
+  </ComplexType>
   <ComplexType Name="listaTipoVenta_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
@@ -2289,15 +2300,5 @@
     <Property Type="Int32" Name="IdProducto" Nullable="false" />
     <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
     <Property Type="Int32" Name="Inventario" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="ListarEntregas_Result">
-    <Property Type="Int32" Name="PedidoId" Nullable="true" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
-    <Property Type="String" Name="DireccionEntrega" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="ArticulosEntregados" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="ObservacionesAdicionales" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="EstadoEntrega" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="NombreDestinatario" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
   </ComplexType>
 </Schema>

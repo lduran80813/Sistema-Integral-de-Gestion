@@ -37,7 +37,12 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr class="@(item.EstadoEntrega == "Entregado" ? "table-success" : item.EstadoEntrega == "Cancelado" ? "table-danger" : "")">
+                <tr class="@(item.EstadoEntrega == "Cancelado" ? "table-danger" :
+              item.EstadoEntrega == "Pendiente" ? "table-warning" :
+              item.EstadoEntrega == "En tránsito" ? "table-primary" :
+              item.EstadoEntrega == "Entregado" ? "table-success" : "")">
+
+
                     <td>@item.PedidoId</td>
                     <td>@(item.FechaEntrega.HasValue ? item.FechaEntrega.Value.ToString("dd/MM/yyyy") : "N/A")</td>
                     <td>@item.DireccionEntrega</td>
@@ -47,19 +52,19 @@
                         @switch (item.EstadoEntrega)
                         {
                             case "Pendiente":
-                                <span class="badge bg-warning">Pendiente</span>
+                                <span>Pendiente</span>
                                 break;
                             case "En tránsito":
-                                <span class="badge bg-info">En tránsito</span>
+                                <span>En tránsito</span>
                                 break;
                             case "Entregado":
-                                <span class="badge bg-success">Entregado</span>
+                                <span>Entregado</span>
                                 break;
                             case "Cancelado":
-                                <span class="badge bg-danger">Cancelado</span>
+                                <span>Cancelado</span>
                                 break;
                             default:
-                                <span class="badge bg-secondary">Desconocido</span>
+                                <span>Desconocido</span>
                                 break;
                         }
                     </td>

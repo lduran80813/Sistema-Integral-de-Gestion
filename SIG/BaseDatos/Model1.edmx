@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SistemaIntegralGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adm_Permiso">
           <Key>
             <PropertyRef Name="id" />
@@ -21,8 +21,120 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_rol" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Compra' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Compra">
+          <Property Name="id" Type="int" />
+          <Property Name="proveedor_id" Type="int" />
+          <Property Name="fecha_compra" Type="date" />
+          <Property Name="total_compra" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Empleado' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Empleado">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellidos" Type="varchar" MaxLength="255" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="correo_electronico" Type="varchar" MaxLength="100" />
+          <Property Name="departamento_id" Type="int" />
+          <Property Name="puesto_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Entrega' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Entrega">
+          <Property Name="id" Type="int" />
+          <Property Name="pedido_id" Type="int" />
+          <Property Name="fecha_entrega" Type="date" />
+          <Property Name="direccion_entrega" Type="varchar" MaxLength="255" />
+          <Property Name="articulos_entregados" Type="varchar" MaxLength="100" />
+          <Property Name="observaciones_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Factura' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Factura">
+          <Property Name="id" Type="int" />
+          <Property Name="cliente_id" Type="int" />
+          <Property Name="fecha_venta" Type="date" />
+          <Property Name="metodo_pago_id" Type="int" />
+          <Property Name="total_transaccion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="no_factura" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="estado_factura" Type="varchar" MaxLength="100" />
+          <Property Name="notas_adicionales" Type="varchar" MaxLength="100" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_PlanDeAccion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_PlanDeAccion">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre_plan" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_finalizacion" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Proveedor' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Proveedor">
+          <Property Name="id" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="255" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Ticket' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Ticket">
+          <Property Name="id_ticket" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="tipo_incidencia" Type="int" />
+          <Property Name="prioridad" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_registro_usuario" Type="datetime" />
+          <Property Name="fecha_registra_tecnico" Type="datetime" />
+          <Property Name="id_tecnico" Type="int" />
+          <Property Name="comentario_tecnico" Type="varchar" MaxLength="200" />
+          <Property Name="fecha_cierre_ticket" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Usuario' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Usuario">
+          <Property Name="id" Type="int" />
+          <Property Name="usuario" Type="varchar" MaxLength="100" />
+          <Property Name="contrasena" Type="varchar" MaxLength="255" />
+          <Property Name="rol_id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Vacaciones' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Audit_Vacaciones">
+          <Property Name="id" Type="int" />
+          <Property Name="empleado_id" Type="int" />
+          <Property Name="fecha_inicio" Type="date" />
+          <Property Name="fecha_fin" Type="date" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_hora" Type="datetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Audit_Venta_Producto">
           <Key>
             <PropertyRef Name="id_producto" />
@@ -1901,7 +2013,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <End Role="Prov_Pago" EntitySet="Prov_Pago" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SistemaIntegralGestionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2476,8 +2589,8 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__5F7E2DAC" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
           <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Venta_Factura" Relationship="Self.FK__Venta_Fac__clien__5F7E2DAC" FromRole="Venta_Cliente" ToRole="Venta_Factura" />
         </EntityType>
         <EntityType Name="Venta_Estado">
           <Key>
@@ -3702,28 +3815,28 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="nuevaContrasena" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CambiarEstadoLectura">
-          <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
+            <Parameter Name="IdNotificacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CancelarEntrega">
-          <Parameter Name="PedidoId" Mode="In" Type="Int32" />
+            <Parameter Name="PedidoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CantidadNotificacionesNuevas" ReturnType="Collection(Int32)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="cierre_contable" ReturnType="Collection(SistemaIntegralGestionModel.cierre_contable_Result)">
             <Parameter Name="Fecha_Inicio" Mode="In" Type="DateTime" />
             <Parameter Name="Fecha_Fin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ConsultarCarrito" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarCarrito_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarClientes" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarClientes_Result)" />
           <FunctionImport Name="ConsultarDetallePedido" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarDetallePedido_Result)">
-          <Parameter Name="IdPedido" Mode="In" Type="Int32" />
+            <Parameter Name="IdPedido" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(SistemaIntegralGestionModel.ConsultarPedidos_Result)" />
           <FunctionImport Name="datosRecibo" ReturnType="Collection(SistemaIntegralGestionModel.datosRecibo_Result)">
-          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="distribMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.distribMetodoPago_Result)">
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
@@ -3751,19 +3864,19 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GeneraFacturaDetalle" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaDetalle_Result)">
-          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GeneraFacturaEncabezado" ReturnType="Collection(SistemaIntegralGestionModel.GeneraFacturaEncabezado_Result)">
-          <Parameter Name="IdFactura" Mode="In" Type="Int32" />
+            <Parameter Name="IdFactura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GenerarBalanceGeneral" ReturnType="Collection(SistemaIntegralGestionModel.GenerarBalanceGeneral_Result)">
-          <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="GenerarEstadoResultados" ReturnType="Collection(SistemaIntegralGestionModel.GenerarEstadoResultados_Result)">
-          <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="GetEmpleadoById" ReturnType="Collection(SistemaIntegralGestionModel.GetEmpleadoById_Result)">
-          <Parameter Name="empleadoId" Mode="In" Type="Int32" />
+            <Parameter Name="empleadoId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="HistorialAjustesCxC" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxC_Result)" />
           <FunctionImport Name="HistorialAjustesCxP" ReturnType="Collection(SistemaIntegralGestionModel.HistorialAjustesCxP_Result)" />
@@ -3784,6 +3897,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <FunctionImport Name="listaMetodoPago" ReturnType="Collection(SistemaIntegralGestionModel.listaMetodoPago_Result)" />
           <FunctionImport Name="ListarCxC" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxC_Result)" />
           <FunctionImport Name="ListarCxP" ReturnType="Collection(SistemaIntegralGestionModel.ListarCxP_Result)" />
+          <FunctionImport Name="ListarEntregas" ReturnType="Collection(SistemaIntegralGestionModel.ListarEntregas_Result)" />
           <FunctionImport Name="listaTipoVenta" ReturnType="Collection(SistemaIntegralGestionModel.listaTipoVenta_Result)" />
           <FunctionImport Name="NotificacionesVencimientoCuentas" ReturnType="Collection(SistemaIntegralGestionModel.NotificacionesVencimientoCuentas_Result)" />
           <FunctionImport Name="NuevaNotificacion" ReturnType="Collection(Int32)">
@@ -3800,10 +3914,10 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
             <Parameter Name="NumeroCedula" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerHistorialSolicitudesVacaciones" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerHistorialSolicitudesVacaciones_Result)">
-          <Parameter Name="id_empleado" Mode="In" Type="Int32" />
+            <Parameter Name="id_empleado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ObtenerNotificaciones" ReturnType="Collection(SistemaIntegralGestionModel.ObtenerNotificaciones_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PagarCxC">
             <Parameter Name="Id_Pedido" Mode="In" Type="Int32" />
@@ -3898,22 +4012,21 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           </FunctionImport>
           <FunctionImport Name="sp_ListarTodasVacaciones" ReturnType="Collection(SistemaIntegralGestionModel.sp_ListarTodasVacaciones_Result)" />
           <FunctionImport Name="sp_ObtenerHistorialVacaciones" ReturnType="Collection(SistemaIntegralGestionModel.sp_ObtenerHistorialVacaciones_Result)">
-          <Parameter Name="empleado_id" Mode="In" Type="Int32" />
+            <Parameter Name="empleado_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="top5Clientes" ReturnType="Collection(SistemaIntegralGestionModel.top5Clientes_Result)">
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UltimoTicketUsuario" ReturnType="Collection(Int32)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ValidarCorreo" ReturnType="Collection(SistemaIntegralGestionModel.ValidarCorreo_Result)">
-          <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
-          <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ListarEntregas" ReturnType="Collection(SistemaIntegralGestionModel.ListarEntregas_Result)" />
         </EntityContainer>
         <ComplexType Name="actualizaInventario_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -3949,6 +4062,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="estado" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ConsultarDetallePedido_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -4101,6 +4215,16 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
           <Property Type="Int64" Name="linea" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="ListarEntregas_Result">
+          <Property Type="Int32" Name="PedidoId" Nullable="true" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
+          <Property Type="String" Name="DireccionEntrega" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ArticulosEntregados" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ObservacionesAdicionales" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EstadoEntrega" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NombreDestinatario" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
+        </ComplexType>
         <ComplexType Name="listaTipoVenta_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="100" />
@@ -4194,16 +4318,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <Property Type="Int32" Name="IdProducto" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="Inventario" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="ListarEntregas_Result">
-          <Property Type="Int32" Name="PedidoId" Nullable="true" />
-          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" />
-          <Property Type="String" Name="DireccionEntrega" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="ArticulosEntregados" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ObservacionesAdicionales" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="EstadoEntrega" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="NombreDestinatario" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="CorreoElectronico" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4707,12 +4821,12 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
           <EntitySetMapping Name="Venta_Cliente">
             <EntityTypeMapping TypeName="SistemaIntegralGestionModel.Venta_Cliente">
               <MappingFragment StoreEntitySet="Venta_Cliente">
-                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4859,6 +4973,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5085,6 +5200,20 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ListarEntregas" FunctionName="SistemaIntegralGestionModel.Store.ListarEntregas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarEntregas_Result">
+                <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="DireccionEntrega" ColumnName="DireccionEntrega" />
+                <ScalarProperty Name="ArticulosEntregados" ColumnName="ArticulosEntregados" />
+                <ScalarProperty Name="ObservacionesAdicionales" ColumnName="ObservacionesAdicionales" />
+                <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
+                <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="listaTipoVenta" FunctionName="SistemaIntegralGestionModel.Store.listaTipoVenta">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.listaTipoVenta_Result">
@@ -5234,20 +5363,6 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ListarEntregas" FunctionName="SistemaIntegralGestionModel.Store.ListarEntregas">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SistemaIntegralGestionModel.ListarEntregas_Result">
-                <ScalarProperty Name="PedidoId" ColumnName="PedidoId" />
-                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
-                <ScalarProperty Name="DireccionEntrega" ColumnName="DireccionEntrega" />
-                <ScalarProperty Name="ArticulosEntregados" ColumnName="ArticulosEntregados" />
-                <ScalarProperty Name="ObservacionesAdicionales" ColumnName="ObservacionesAdicionales" />
-                <ScalarProperty Name="EstadoEntrega" ColumnName="EstadoEntrega" />
-                <ScalarProperty Name="NombreDestinatario" ColumnName="NombreDestinatario" />
-                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -5265,7 +5380,7 @@ warning 6002: The table/view 'SistemaIntegralGestion.dbo.Audit_Venta_Producto' d
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

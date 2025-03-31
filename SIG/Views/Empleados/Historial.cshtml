@@ -49,40 +49,51 @@
                         <td>
                             @if (solicitud.Estado == "Pendiente")
                             {
-
-                                <div class="botones">
+                                <div class="botones flex-column gap-2">
                                     @using (Html.BeginForm("AprobarRechazarVacaciones", "Empleados", FormMethod.Post))
                                     {
                                         <input type="hidden" name="solicitudId" value="@solicitud.SolicitudId" />
                                         <input type="hidden" name="estado" value="Aprobado" />
-                                        <button type="submit" class="btn btn-gradient">Aprobar</button>
+                                        <button type="submit" class="btn btn-gradient" title="Aprobar">
+                                            <i class="fa fa-check-circle"></i>
+                                        </button>
                                     }
-                                    <button class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#rechazarModal_@solicitud.SolicitudId">Rechazar</button>
-                                    <div class="modal fade" id="rechazarModal_@solicitud.SolicitudId" tabindex="-1" aria-labelledby="rechazarModalLabel_@solicitud.SolicitudId" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Rechazar Solicitud</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <label for="motivoRechazo">Motivo de Rechazo:</label>
+                                    <button class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#rechazarModal_@solicitud.SolicitudId" title="Rechazar">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+
+                                <div class="modal fade" id="rechazarModal_@solicitud.SolicitudId" tabindex="-1" aria-labelledby="rechazarModalLabel_@solicitud.SolicitudId" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" style="font-weight: bold;">Rechazar Solicitud</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="motivoRechazo" class="form-label">Motivo de Rechazo:</label>
                                                     <textarea id="motivoRechazo" name="motivoRechazo" class="form-control" rows="4"></textarea>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <form action="@Url.Action("AprobarRechazarVacaciones", "Empleados")" method="post">
-                                                        <input type="hidden" name="solicitudId" value="@solicitud.SolicitudId" />
-                                                        <input type="hidden" name="estado" value="Rechazado" />
-                                                        <button type="submit" class="btn btn-delete">Confirmar Rechazo</button>
-                                                    </form>
-                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Cerrar</button>
+
+                                                <form action="@Url.Action("AprobarRechazarVacaciones", "Empleados")" method="post" style="margin: 0;">
+                                                    <input type="hidden" name="solicitudId" value="@solicitud.SolicitudId" />
+                                                    <input type="hidden" name="estado" value="Rechazado" />
+                                                    <button type="submit" class="btn btn-delete">Confirmar Rechazo</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             }
                         </td>
+
                     </tr>
                 }
             </tbody>
@@ -103,18 +114,32 @@
 
     <style>
 
-        .d-flex.flex-column {
-            max-height: 100%;
-            overflow-y: scroll;
-            display: none;
-            scrollbar-width: none;
+        .modal.fade .modal-dialog {
+            transition: none !important;
+            transform: none !important;
         }
+
+        .d-flex.flex-column {
+            overflow-y: auto;
+            max-height: 100%;
+        }
+
 
         .d-flex.flex-row {
             max-width: 100%;
             overflow-x: scroll;
             scrollbar-width: none;
             white-space: nowrap;
+        }
+
+
+        .d-flex.flex-column::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        .d-flex.flex-column {
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
         }
 
         .table-modern {
@@ -125,14 +150,19 @@
             border-collapse: collapse;
             width: 100%;
             font-family: 'Poppins', sans-serif;
+            font-size: 13px;
             border: 1px solid black;
             transition: all 0.5s ease-in-out;
         }
 
-            .table-modern:hover {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-                transform: scale(1.01);
+            .table-modern th,
+            .table-modern td {
+                padding: 6px 8px; 
+                text-align: center;
+                vertical-align: middle;
+                border: 1px solid black;
             }
+
 
             .table-modern thead {
                 background: black;
@@ -194,6 +224,11 @@
             border-radius: 6px;
             transition: transform 0.2s ease-in-out;
         }
+            .btn-gradient:hover {
+                transform: scale(1.1);
+                background: linear-gradient(to right, #2f5930, #5b8c5a);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            }
 
         .btn-delete {
             background: linear-gradient(to right, #d9534f, #b52b27);
@@ -205,6 +240,35 @@
             border-radius: 6px;
             transition: transform 0.2s ease-in-out;
         }
+            .btn-delete:hover {
+                transform: scale(1.1);
+                background: linear-gradient(to right, #d9534f, #b52b27);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            }
+
+
+        .btn-cancelar {
+            background: linear-gradient(to right, #6c757d, #495057);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+            .btn-cancelar:hover {
+                transform: scale(1.1);
+                background: linear-gradient(to right, #495057, #6c757d);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            }
+
+
     </style>
 
     <script src="~/root/plugins/jquery/jquery.min.js"></script>

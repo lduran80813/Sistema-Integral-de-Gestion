@@ -11,7 +11,7 @@
         </h2>
     </div>
 
-    <div class="info-box" style="max-width: 850px; margin: auto; padding: 10px; display: flex; align-items: center;">
+    <div class="info-box" style="max-width: 500px; margin: auto; padding: 10px; display: flex; align-items: center;">
         <div class="info-content" style="display: flex; align-items: center; gap: 10px;">
             <i class="bi bi-calendar-check" style="font-size: 22px; color: #01e173; display: flex; align-items: center;"></i>
             <p style="font-size: 16px; margin: 0; color: white;">Seleccione un rango de fechas para generar el reporte</p>
@@ -52,29 +52,53 @@
     @if (Model != null)
     {
         <br />
-        <h3 class="text-center">Resultados del Reporte</h3>
-        <div class="report-container">
-            <label>Casos Asignados:</label>
-            @Html.TextBoxFor(m => m.casosAsignados, new { @class = "form-control", @readonly = "true" })
-
-            <label>Casos Finalizados:</label>
-            @Html.TextBoxFor(m => m.casosFinalizados, new { @class = "form-control", @readonly = "true" })
-
-            <label>Casos Pendientes:</label>
-            @Html.TextBoxFor(m => m.casosPendientes, new { @class = "form-control", @readonly = "true" })
-
-            <label>Duración media (horas):</label>
-            @Html.TextBoxFor(m => m.duracionMedia, new { @class = "form-control", @readonly = "true" })
-
-            <label>Reporte generado:</label>
-            <input type="text" class="form-control" readonly value="@DateTime.Now" />
+        <br>
+        <br>
+        <div class="info-box" style="max-width: 500px; margin: auto; padding: 10px; display: flex; align-items: center;">
+            <div class="info-content" style="display: flex; align-items: center; gap: 10px;">
+                <i class="bi bi-bar-chart-line" style="font-size: 22px; color: #01e173; display: flex; align-items: center;"></i>
+                <p style="font-size: 16px; margin: 0; color: white;">Resultados</p>
+            </div>
         </div>
 
-        <div class="text-center mt-4">
-            <a href="@Url.Action("ReporteITManagerPDF", new { inicioCorte = Model.inicioCorte, finCorte = Model.finCorte, id_tecnico = Model.id_tecnico })" class="btn btn-gradient">
-                <i class="bi bi-file-earmark-pdf"></i> Descargar reporte PDF
+        <br>
+        <div class="report-container mb-4" style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; align-items: center; font-size: 14px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <label>Asignados:</label>
+                @Html.TextBoxFor(m => m.casosAsignados, new { @class = "form-control form-control-sm", @readonly = "true", style = "width: 100px;" })
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <label>Finalizados:</label>
+                @Html.TextBoxFor(m => m.casosFinalizados, new { @class = "form-control form-control-sm", @readonly = "true", style = "width: 100px;" })
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <label>Pendientes:</label>
+                @Html.TextBoxFor(m => m.casosPendientes, new { @class = "form-control form-control-sm", @readonly = "true", style = "width: 100px;" })
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <label>Duración (hrs):</label>
+                @Html.TextBoxFor(m => m.duracionMedia, new { @class = "form-control form-control-sm", @readonly = "true", style = "width: 110px;" })
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 6px;">
+                <label>Generado:</label>
+                <input type="text" class="form-control form-control-sm" readonly value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" style="width: 180px;" />
+            </div>
+        </div>
+
+
+
+        <div class="text-center mt-3">
+            <a href="@Url.Action("ReporteITManagerPDF", new { inicioCorte = Model.inicioCorte, finCorte = Model.finCorte, id_tecnico = Model.id_tecnico })"
+               class="btn btn-gradient">
+                Descargar PDF
             </a>
         </div>
+
+
     }
 </div>
 

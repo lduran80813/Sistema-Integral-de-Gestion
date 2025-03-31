@@ -19,43 +19,44 @@
                     @ViewBag.msj
                 </div>
             }
-            <div class="container">
-                @using (Html.BeginForm("ActualizarCliente", "Clientes"))
-                {
-                    @Html.HiddenFor(m => m.id)
+        <div class="container">
+            @using (Html.BeginForm("ActualizarCliente", "Clientes"))
+            {
+                @Html.HiddenFor(m => m.id)
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.nombre, "Nombre del cliente", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.nombre, new { @class = "form-control form-control-lg shadow-lg", @required = "true", @placeholder = "Ingrese el nombre del cliente" })
-                    </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.nombre, "Nombre del cliente", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control form-control-lg shadow-lg", @required = "true", @placeholder = "Ingrese el nombre del cliente" })
+                </div>
 
-                    <div class="mb-3">
-                        @Html.Label("Dirección", new { @class = "form-label" })
-                        @Html.TextAreaFor(m => m.direccion, new { @class = "form-control shadow-lg", @rows = "3", @required = "true", @placeholder = "Ingrese la dirección del cliente" })
-                    </div>
+                <div class="mb-3">
+                    @Html.Label("Dirección", new { @class = "form-label" })
+                    @Html.TextAreaFor(m => m.direccion, new { @class = "form-control shadow-lg", @rows = "3", @required = "true", @placeholder = "Ingrese la dirección del cliente" })
+                </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            @Html.Label("Teléfono", new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.telefono, new { @class = "form-control shadow-lg", @type = "tel", @required = "true", @placeholder = "Ingrese el número de teléfono" })
-                        </div>
-                        <div class="col-md-6">
-                            @Html.Label("Correo electrónico", new { @class = "form-label" })
-                            @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control shadow-lg", @type = "email", @required = "true", @placeholder = "Ingrese el correo electrónico" })
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("Teléfono", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.telefono, new { @class = "form-control shadow-lg", @type = "tel", @required = "true", @placeholder = "Ingrese el número de teléfono" })
                     </div>
+                    <div class="col-md-6">
+                        @Html.Label("Correo electrónico", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.correo_electronico, new { @class = "form-control shadow-lg", @type = "email", @required = "true", @placeholder = "Ingrese el correo electrónico" })
+                    </div>
+                </div>
 
-                    <br>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-gradient">
-                            <i class="fa fa-save"></i> Actualizar
-                        </button>
-                        <a href="@Url.Action("ListaClientes", "Clientes")" class="btn btn-delete">
-                            <i class="fa fa-times"></i> Cancelar
-                        </a>
-                    </div>
-                }
-            </div>
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-gradient" style="margin-right: 10px;">
+                        Actualizar
+                    </button>
+                    <a href="@Url.Action("ListaClientes", "Clientes")" class="btn btn-delete">
+                        Cancelar
+                    </a>
+                </div>
+
+            }
+        </div>
         </div>
     </div>
 </div>

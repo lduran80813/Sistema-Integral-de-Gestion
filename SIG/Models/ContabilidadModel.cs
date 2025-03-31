@@ -204,6 +204,26 @@ namespace SIG.Models
             }
         }
 
+        public bool Registro_Producto(Entidades.Producto producto)
+        {
+            var rowsAffected = 0;
+
+            using (var context = new SistemaIntegralGestionEntities())
+            {
+                var tProducto = new BaseDatos.Venta_Producto();
+
+                tProducto.nombre = producto.nombre;
+                tProducto.descripcion = producto.descripcion;
+                tProducto.precio = producto.precio;
+                tProducto.estado = 2;
+                tProducto.inventario = producto.inventario;
+
+                context.Venta_Producto.Add(tProducto);
+                rowsAffected = context.SaveChanges();
+            }
+            return (rowsAffected > 0 ? true : false);
+        }
+
     }
 
 }

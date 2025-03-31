@@ -4,6 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <body style="margin: 0; padding: 0; background-color: #101010;">
     <div class="d-flex flex-column min-vh-800" style="background-color: #f3f5f8; margin-left: 3.3%; padding: 20px; border-radius: 15px; height: auto; width: 100%">
         <div class="text-center mb-4">
@@ -36,7 +41,7 @@
                 <tbody>
                     @foreach (var item in Model.Pedidos)
                     {
-                        <tr class="@(item.estadoD == "Registrado" ? "table-success" : item.estadoD == "Al dia" ? "table-warning" : item.estadoD == "Pagado" ? "table-primary" : "")">
+                        <tr class="@(item.estadoD == "Registrado" ? "table-primary" : item.estadoD == "Al dia" ? "table-warning" : (item.estadoD == "Pagado" || item.estadoD == "Facturado") ? "table-success" : "")">
                             <td>@item.id</td>
                             <td>@(item.fecha.HasValue ? item.fecha.Value.ToString("dd/MM/yyyy") : "")</td>
                             <td>₡@item.monto.ToString("N2")</td>
@@ -49,7 +54,7 @@
                                     {
                                         <button type="button" class="btn btn-black AbrirModalFacturar" data-bs-toggle="modal" data-bs-target="#ModalFacturar"
                                                 data-id="@item.id">
-                                            <i class="bi bi-receipt icon-green"></i>
+                                            <i class="fa fa-file-text" style="color: white;"></i>
                                         </button>
                                     }
                                     else
@@ -58,15 +63,16 @@
                                         {
                                             <button type="button" class="btn btn-black AbrirModalPagar" data-bs-toggle="modal" data-bs-target="#ModalPagoRecibo"
                                                     data-id="@item.id" data-tipo="@item.tipo_venta" data-total="@item.total_transaccion.Value">
-                                                <i class="bi bi-cash icon-green"></i>
+                                                <i class="fa fa-credit-card" style="color: white;"></i>
                                             </button>
                                         }
                                         <a class="btn btn-black" href="@Url.Action("GenFacturaPdf", "Contabilidad", new { idFactura = item.id})">
-                                            <i class="bi bi-file-earmark-pdf icon-green"></i>
+                                            <i class="fa fa-download" style="color: white;"></i>
+
                                         </a>
                                     }
                                     <a class="btn btn-blue" href="@Url.Action("DetallePedido", "Contabilidad", new { idPedido = item.id})">
-                                        Ver Productos
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                 </div>
                             </td>
@@ -79,21 +85,24 @@
 
     <div class="modal fade" id="ModalFacturar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="exampleModalLabel">Detalles de facturación</h5>
+                    <h5 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">Detalles de facturación</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @using (Html.BeginForm("FacturarPedido", "Contabilidad"))
                     {
-                        <div class="modal-body">
-                            @Html.Hidden("idFacturar", "")
-                            @Html.Label("Tipo de venta", new { @for = "tipoVenta" })
-                            @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>, new { @class = "form-select", @id = "tipoVenta", @name = "tipoVenta", @required = "true" })
+                        @Html.Hidden("idFacturar", "")
+
+                        <div class="mb-3">
+                            @Html.Label("Tipo de venta", new { @for = "tipoVenta", @class = "form-label" })
+                            @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>,
+                                new { @class = "form-control form-control-lg shadow-lg select-style", @id = "tipoVenta", @name = "tipoVenta", @required = "true", style = "height: 50px;" })
                         </div>
+
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Facturar</button>
+                            <button type="submit" class="btn btn-gradient">Facturar</button>
                         </div>
                     }
                 </div>
@@ -103,41 +112,56 @@
 
     <div class="modal fade" id="ModalPagoRecibo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5" id="exampleModalLabel">Pago y recibo</h5>
+                    <h5 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">Pago y recibo</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @using (Html.BeginForm("ContaPagoFactura", "Contabilidad"))
                     {
-                        <div class="modal-body">
-                            @Html.Hidden("idPagar", "")
-                            @Html.Hidden("tipo_venta", "", new { id = "tipo_venta" })
-                            @Html.Label("Tipo de venta", new { @for = "tipoVenta" })
-                            @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>, new { @class = "form-select", @id = "tipoVenta", @name = "tipoVenta", @disabled = "true" })
-                            <div id="metodo-container" style="display:none;">
-                                @Html.Label("Método de pago", new { @for = "metodo" })
-                                @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>, new { @class = "form-select", @id = "metodo", metodo = "metodo", @required = "true" })
+                        @Html.Hidden("idPagar", "")
+                        @Html.Hidden("tipo_venta", "", new { id = "tipo_venta" })
+
+                    <div class="mb-3">
+                            @Html.Label("Tipo de venta", new { @for = "tipoVenta", @class = "form-label" })
+                            @Html.DropDownListFor(m => m.tipo_venta, ViewBag.TipoVentas as List<SelectListItem>,
+                                new { @class = "form-control shadow-sm select-style", @id = "tipoVenta", @name = "tipoVenta", @disabled = "true", style = "height: 50px;" })
+
+                    </div>
+
+                    <div id="metodo-container" style="display:none;" class="mb-3">
+                            @Html.Label("Método de pago", new { @for = "metodo", @class = "form-label" })
+                            @Html.DropDownListFor(m => m.metodo_pago, ViewBag.MetodoPago as List<SelectListItem>,
+                                new { @class = "form-control shadow-sm select-style", @id = "metodo", metodo = "metodo", @required = "true", style = "height: 50px;" })
+
+                    </div>
+
+                        <div id="financiera-container" style="display:none;">
+                            <div class="mb-3">
+                                @Html.Label("Entidad Financiera", new { @for = "financieras", @class = "form-label" })
+                                @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>,
+                                    new { @class = "form-control form-control-lg shadow-lg select-style", @id = "financieras", @name = "financieras" })
                             </div>
 
-                            <div id="financiera-container" style="display:none;">
-                                @Html.Label("Entidad Financiera", new { @for = "financieras" })
-                                @Html.DropDownListFor(m => m.entidadFinanciera, ViewBag.EntidadesFinancieras as List<SelectListItem>, new { @class = "form-select", @id = "financieras", @name = "financieras" })
-
-                                @Html.Label("Número de trasacción de referencia", new { @for = "referencia" })
+                            <div class="mb-3">
+                                @Html.Label("Número de trasacción de referencia", new { @for = "referencia", @class = "form-label" })
                                 @Html.TextBoxFor(m => m.transaccionRef, new { @type = "number", @class = "form-control", @id = "referencia", @name = "referencia", @required = "true" })
                             </div>
-                            <div id="Abono-container" style="display:none;">
-                                @Html.Label("Ingrese el monto a pagar", new { @for = "abono" })
-                                @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @required = "true" })
-                            </div>
+                        </div>
 
-                            @Html.Label("Descripción de la transacción", new { @for = "referencia" })
+                        <div id="Abono-container" style="display:none;" class="mb-3">
+                            @Html.Label("Ingrese el monto a pagar", new { @for = "abono", @class = "form-label" })
+                            @Html.TextBoxFor(m => m.montoPago, new { @class = "form-control", @id = "abono", @name = "abono", @required = "true" })
+                        </div>
+
+                        <div class="mb-3">
+                            @Html.Label("Descripción de la transacción", new { @for = "referencia", @class = "form-label" })
                             @Html.TextBoxFor(m => m.descripcion, new { @class = "form-control", @id = "referencia", @name = "referencia", @maxlength = "100", @required = "true" })
                         </div>
+
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Pagar y generar recibo</button>
+                            <button type="submit" class="btn btn-gradient">Pagar y generar recibo</button>
                         </div>
                     }
                 </div>
@@ -169,18 +193,17 @@
 
                 $('#metodo-container').show();
 
-                // Visibilidad condicional
-                if (tipoVenta == '1' && metodoPago == '1') { // Venta al contado y efectivo
+                if (tipoVenta == '1' && metodoPago == '1') {
                     $('#Abono-container').hide();
                     $('#financiera-container').hide();
-                } else if (tipoVenta == '1' && metodoPago != '1') { // Venta a crédito con método diferente a efectivo
+                } else if (tipoVenta == '1' && metodoPago != '1') {
                     $('#Abono-container').hide();
                     $('#financiera-container').show();
                 }
-                else if (tipoVenta == '2' && metodoPago != '1') { // Venta a crédito con método diferente a efectivo
+                else if (tipoVenta == '2' && metodoPago != '1') {
                     $('#Abono-container').show();
                     $('#financiera-container').show();
-                } else { // Venta a crédito y efectivo
+                } else {
                     $('#Abono-container').show();
                     $('#financiera-container').hide();
                 }
@@ -257,6 +280,22 @@
 
 
     <style>
+
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+            .form-control:focus {
+                box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+                border-color: #5b8c5a;
+            }
+
+
         .table-modern {
             border: 1px solid black;
             border-radius: 0;
@@ -302,12 +341,10 @@
                     background-color: #e6f7ff;
                 }
 
-                /* Cambio de color al pasar el cursor */
                 .table-modern tbody tr:hover {
-                    background-color: rgba(144, 238, 144, 1) !important; /* Verde claro sólido sin transparencia */
+                    background-color: rgba(144, 238, 144, 1) !important;
                 }
 
-                /* Animación de aparición */
                 .table-modern tbody tr.fade-in {
                     opacity: 0;
                     transform: scale(0.98);
@@ -316,7 +353,23 @@
                     transform: scale(1);
                 }
 
-        /* Botón negro con icono verde */
+        .btn-gradient {
+            background: linear-gradient(to right, #5b8c5a, #2f5930);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .btn-gradient:hover {
+                transform: scale(1.05);
+                background: linear-gradient(to right, #2f5930, #5b8c5a);
+            }
+
+
         .btn-black {
             background-color: #222222;
             border: none;
@@ -350,14 +403,13 @@
                 background: linear-gradient(to right, #2c3e50, #4a6d89);
             }
 
-        /* Alineación de botones */
+
         .btn-group {
             display: flex;
             gap: 5px;
             justify-content: center;
         }
 
-        /* Iconos verdes dentro de los botones negros */
         .icon-green {
             font-size: 20px;
             color: #01e173;

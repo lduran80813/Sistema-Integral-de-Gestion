@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5cd80e9de964467f986c781ad6695c8a" Name="Diagram1">
+      <Diagram DiagramId="fc330cab145c470c848a0324497b67dd" Name="Diagram1">
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Permiso" Width="1.5" PointX="3" PointY="24.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Adm_Rol" Width="1.5" PointX="0.75" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Catalogo_Compra" Width="1.5" PointX="3.75" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Catalogo_Compra" Width="1.5" PointX="3.75" PointY="33.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.CategoriaPlan" Width="1.5" PointX="6" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_CuentasContables" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_CuentasContables" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_CxC" Width="1.5" PointX="8.25" PointY="59.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_CxP" Width="1.5" PointX="8.25" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_CxP" Width="1.5" PointX="8.25" PointY="43" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_TipoTransaccion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Conta_Transaccion" Width="1.5" PointX="8.25" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.DiasVacacionesDisponibles" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
@@ -25,10 +25,10 @@
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Empleado" Width="1.5" PointX="6" PointY="22" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.EntidadesFinancieras" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Entregas" Width="1.5" PointX="8.25" PointY="62.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.EstadoCompra" Width="1.5" PointX="9.75" PointY="56.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.EstadoCompra" Width="1.5" PointX="9.75" PointY="56.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.EstadosFinancieros" Width="1.5" PointX="6" PointY="48.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.HistorialModificacion" Width="1.5" PointX="14.25" PointY="35.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.HistorialPedido" Width="1.5" PointX="14.25" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.HistorialModificacion" Width="1.5" PointX="14.25" PointY="35.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.HistorialPedido" Width="1.5" PointX="14.25" PointY="32.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Modulos" Width="1.5" PointX="9" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Notificaciones" Width="1.5" PointX="11.25" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Notificaciones_basicas" Width="1.5" PointX="9" PointY="13.25" IsExpanded="true" />
@@ -36,28 +36,28 @@
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.PDA_Estado" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.PDA_Tarea" Width="1.5" PointX="11.25" PointY="27.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.PDA_TipoAccion" Width="1.5" PointX="6" PointY="30.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Pedido" Width="1.5" PointX="12" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Pedido" Width="1.5" PointX="12" PointY="35" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.PlanDeAccion" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Compra" Width="1.5" PointX="6" PointY="34.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_CompraDetalle" Width="1.5" PointX="8.25" PointY="46.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Contacto" Width="1.5" PointX="6" PointY="51.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_CompraDetalle" Width="1.5" PointX="8.25" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Contacto" Width="1.5" PointX="6" PointY="51.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Pago" Width="1.5" PointX="14.25" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Producto" Width="1.5" PointX="6" PointY="54.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Proveedor" Width="1.5" PointX="3.75" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Prov_Producto" Width="1.5" PointX="6" PointY="54.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Proveedor" Width="1.5" PointX="3.75" PointY="35.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.SolicitudesVacaciones" Width="1.5" PointX="8.25" PointY="52.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket" Width="1.5" PointX="14.25" PointY="18.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Estado" Width="1.5" PointX="12" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Prioridad" Width="1.5" PointX="12" PointY="15" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Ticket_Tipo" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Carrito" Width="1.5" PointX="14.25" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Cliente" Width="1.5" PointX="3.75" PointY="39.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Estado" Width="1.5" PointX="3.75" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Cliente" Width="1.5" PointX="3.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Estado" Width="1.5" PointX="3.75" PointY="42.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Factura" Width="1.5" PointX="6" PointY="41.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_FacturaDetalle" Width="1.5" PointX="14.25" PointY="41.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_MetodoPago" Width="1.5" PointX="3.75" PointY="45" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Producto" Width="1.5" PointX="12" PointY="39.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_ProductoEstado" Width="1.5" PointX="9.75" PointY="40" IsExpanded="true" />
-        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Tipo" Width="1.5" PointX="3.75" PointY="47.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SistemaIntegralGestionModel.Venta_Tipo" Width="1.5" PointX="3.75" PointY="47.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SistemaIntegralGestionModel.Audit_Venta_Producto" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Adm_Permi__rol_i__282DF8C2" ManuallyRouted="false" />
         <AssociationConnector Association="SistemaIntegralGestionModel.FK__Empleado__rol_id__367C1819" ManuallyRouted="false" />
