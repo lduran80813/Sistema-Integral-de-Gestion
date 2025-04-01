@@ -26,6 +26,7 @@ namespace SIG.BaseDatos
         public int proveedor_id { get; set; }
         public decimal total_pedido { get; set; }
         public int EstadoCompraId { get; set; }
+        public int TipoCompraId { get; set; }
     
         public virtual EstadoCompra EstadoCompra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

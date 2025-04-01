@@ -13,11 +13,28 @@ namespace SIG.Controllers
     {
         private readonly PedidosModel pedidosModel = new PedidosModel();
         private readonly ProveedoresModel proveedoresModel = new ProveedoresModel();
+        private readonly CatalogosModel catalogosM = new CatalogosModel();
+
+        private void CargarTipoPedido()
+        {
+            var tipo = catalogosM.ConsultarTipoVenta();
+
+            List<SelectListItem> lstTipoVentas = new List<SelectListItem>();
+            foreach (var item in tipo)
+            {
+                lstTipoVentas.Add(new SelectListItem { Value = item.id.ToString(), Text = item.descripcion.ToString() });
+            }
+
+            ViewBag.TipoVentas = lstTipoVentas;
+        }
 
         [HttpGet]
         public ActionResult RegistrarPedido()
         {
             CargarProveedoresYEstados(excluirEstadoCancelado: true);
+            CargarTipoPedido();
+
+
             return View(new Entidades.Pedido());
         }
 
@@ -28,6 +45,7 @@ namespace SIG.Controllers
             {
                 ViewBag.msj = pedido == null ? "No se pudo procesar el pedido." : "El total de la compra no puede ser negativo.";
                 CargarProveedoresYEstados(excluirEstadoCancelado: true);
+                CargarTipoPedido();
                 return View(pedido ?? new Entidades.Pedido());
             }
 
@@ -35,6 +53,7 @@ namespace SIG.Controllers
             {
                 ViewBag.msj = "El proveedor seleccionado está inactivo.";
                 CargarProveedoresYEstados(excluirEstadoCancelado: true);
+                CargarTipoPedido();
                 return View(pedido);
             }
 
@@ -46,6 +65,7 @@ namespace SIG.Controllers
 
             ViewBag.msj = "Formulario incompleto o datos inválidos.";
             CargarProveedoresYEstados(excluirEstadoCancelado: true);
+            CargarTipoPedido();
             return View(pedido);
         }
 

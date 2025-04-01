@@ -3,6 +3,7 @@ using SIG.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace SIG.Models
 {
@@ -19,7 +20,8 @@ namespace SIG.Models
                     fecha_pedido = pedido.fecha_pedido,
                     proveedor_id = pedido.proveedor_id,
                     total_pedido = pedido.total_pedido,
-                    EstadoCompraId = pedido.EstadoCompraId
+                    EstadoCompraId = pedido.EstadoCompraId,
+                    TipoCompraId = pedido.TipoCompraId
                 };
 
                 context.Pedido.Add(nuevoPedido);
@@ -34,6 +36,8 @@ namespace SIG.Models
                         EstadoCompraId = nuevoPedido.EstadoCompraId
                     };
                     RegistrarHistorialPedido(historialPedido);
+
+                    rowsAffected = context.PagoProveedor(pedido.TipoCompraId, null, pedido.total_pedido, "Compra proveedor", int.Parse(HttpContext.Current.Session["IdUsuario"].ToString()), null);
                 }
             }
 
@@ -95,6 +99,7 @@ namespace SIG.Models
                     pedidoExistente.proveedor_id = pedido.proveedor_id;
                     pedidoExistente.total_pedido = pedido.total_pedido;
                     pedidoExistente.EstadoCompraId = pedido.EstadoCompraId;
+                    pedidoExistente.TipoCompraId = pedido.TipoCompraId;
 
                     rowsAffected = context.SaveChanges();
 

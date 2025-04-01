@@ -374,6 +374,7 @@
     <Property Name="proveedor_id" Type="Int32" Nullable="false" />
     <Property Name="total_pedido" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
     <Property Name="EstadoCompraId" Type="Int32" Nullable="false" />
+    <Property Name="TipoCompraId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="EstadoCompra" Relationship="Self.FK__Pedido__EstadoCo__498EEC8D" FromRole="Pedido" ToRole="EstadoCompra" />
     <NavigationProperty Name="HistorialModificacion" Relationship="Self.FK__Historial__Pedid__395884C4" FromRole="Pedido" ToRole="HistorialModificacion" />
     <NavigationProperty Name="HistorialPedido" Relationship="Self.FK__Historial__Pedid__3B40CD36" FromRole="Pedido" ToRole="HistorialPedido" />
@@ -2008,6 +2009,14 @@
     </FunctionImport>
     <FunctionImport Name="ValidarExistencias" ReturnType="Collection(SistemaIntegralGestionModel.ValidarExistencias_Result)">
       <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PagoProveedor">
+      <Parameter Name="Tipo_venta" Mode="In" Type="Int32" />
+      <Parameter Name="TransaccionReferencia" Mode="In" Type="Decimal" />
+      <Parameter Name="Monto" Mode="In" Type="Decimal" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Id_Usuario" Mode="In" Type="Int32" />
+      <Parameter Name="Metodo_Pago" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="actualizaInventario_Result">

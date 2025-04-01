@@ -21,36 +21,42 @@
                     @ViewBag.msj
                 </div>
             }
-            <div class="container">
-                @using (Html.BeginForm("RegistrarPedido", "Pedidos"))
-                {
-                    @Html.AntiForgeryToken()
+        <div class="container">
+            @using (Html.BeginForm("RegistrarPedido", "Pedidos"))
+            {
+                @Html.AntiForgeryToken()
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.fecha_pedido, "Fecha de Pedido", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.fecha_pedido, new { @class = "form-control form-control-lg shadow-lg", @type = "date", @required = "true" })
-                    </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.fecha_pedido, "Fecha de Pedido", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.fecha_pedido, new { @class = "form-control form-control-lg shadow-lg", @type = "date", @required = "true" })
+                </div>
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.proveedor_id, "Proveedor", new { @class = "form-label" })
-                        @Html.DropDownListFor(m => m.proveedor_id, new SelectList(ViewBag.Proveedores, "id", "nombre"), "Seleccione un proveedor", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
-                    </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.proveedor_id, "Proveedor", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.proveedor_id, new SelectList(ViewBag.Proveedores, "id", "nombre"), "Seleccione un proveedor", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                </div>
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.total_pedido, "Total del Pedido", new { @class = "form-label" })
-                        @Html.TextBoxFor(m => m.total_pedido, new { @class = "form-control shadow-lg", @type = "number", @step = "0.01", @min = "0", @required = "true", @placeholder = "Ingrese el total del pedido" })
-                    </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.total_pedido, "Total del Pedido", new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.total_pedido, new { @class = "form-control shadow-lg", @type = "number", @step = "0.01", @min = "0", @required = "true", @placeholder = "Ingrese el total del pedido" })
+                </div>
 
-                    <div class="mb-3">
-                        @Html.LabelFor(m => m.EstadoCompraId, "Estado de Compra", new { @class = "form-label" })
-                        @Html.DropDownListFor(m => m.EstadoCompraId, new SelectList(ViewBag.EstadosCompra, "id", "nombre"), "Seleccione un estado", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
-                    </div>
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.EstadoCompraId, "Estado de Compra", new { @class = "form-label" })
+                    @Html.DropDownListFor(m => m.EstadoCompraId, new SelectList(ViewBag.EstadosCompra, "id", "nombre"), "Seleccione un estado", new { @class = "form-control form-control-lg shadow-lg select-style", @required = "true" })
+                </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-gradient">Registrar Pedido</button>
-                    </div>
-                }
-            </div>
+                <div class="mb-3">
+                    @Html.Label("Tipo de venta", new { @for = "tipoCompraId", @class = "form-label" })
+                    @Html.DropDownListFor(m => m.TipoCompraId, ViewBag.TipoVentas as List<SelectListItem>,
+                        new { @class = "form-control form-control-lg shadow-lg select-style", @id = "tipoCompraId", @name = "tipoCompraId", @required = "true", style = "height: 50px;" })
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-gradient">Registrar Pedido</button>
+                </div>
+            }
+        </div>
         </div>
     </div>
 </div>

@@ -332,6 +332,7 @@
           <ScalarProperty Name="proveedor_id" ColumnName="proveedor_id" />
           <ScalarProperty Name="total_pedido" ColumnName="total_pedido" />
           <ScalarProperty Name="EstadoCompraId" ColumnName="EstadoCompraId" />
+          <ScalarProperty Name="TipoCompraId" ColumnName="TipoCompraId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1039,5 +1040,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PagoProveedor" FunctionName="SistemaIntegralGestionModel.Store.PagoProveedor" />
   </EntityContainerMapping>
 </Mapping>
