@@ -78,7 +78,7 @@ namespace SIG.Models
                                      where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2
                                      select x).Count();
 
-                if (fecha.datosInforme.Count > 0)
+                if (fecha.cantidadVentas > 0)
                 {
                     fecha.ingresosTotales = (decimal)(from x in context.Venta_Factura
                                                       where x.fecha_factura >= fecha.inicioCorte && x.fecha_factura <= fecha.finCorte && x.estado > 2

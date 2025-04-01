@@ -35,14 +35,14 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     @Html.LabelFor(m => m.usuario, "Usuario", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.usuario, new { @class = "form-control shadow-lg", required = "required", @readonly = "readonly" })
+                    @Html.TextBoxFor(m => m.usuario, new { @class = "form-control shadow-lg", @required = "required", @readonly = "readonly" })
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     @Html.LabelFor(m => m.telefono, "Teléfono", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control shadow-lg", required = "required" })
+                    @Html.TextBoxFor(m => m.telefono, new { @class = "form-control shadow-lg", @required = "required", @type = "number"})
                 </div>
                 <div class="col-md-6 mb-3">
                     @Html.LabelFor(m => m.direccion, "Dirección", new { @class = "form-label" })
