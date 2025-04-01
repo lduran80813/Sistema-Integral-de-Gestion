@@ -623,6 +623,35 @@ namespace SIG.BaseDatos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagoPedido", id_PedidoParameter, tipo_ventaParameter, metodo_PagoParameter, entidadFinancieraParameter, transaccionReferenciaParameter, montoParameter, descripcionParameter, id_UsuarioParameter);
         }
     
+        public virtual int PagoProveedor(Nullable<int> tipo_venta, Nullable<decimal> transaccionReferencia, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario, Nullable<int> metodo_Pago)
+        {
+            var tipo_ventaParameter = tipo_venta.HasValue ?
+                new ObjectParameter("Tipo_venta", tipo_venta) :
+                new ObjectParameter("Tipo_venta", typeof(int));
+    
+            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
+                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
+                new ObjectParameter("TransaccionReferencia", typeof(decimal));
+    
+            var montoParameter = monto.HasValue ?
+                new ObjectParameter("Monto", monto) :
+                new ObjectParameter("Monto", typeof(decimal));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var id_UsuarioParameter = id_Usuario.HasValue ?
+                new ObjectParameter("Id_Usuario", id_Usuario) :
+                new ObjectParameter("Id_Usuario", typeof(int));
+    
+            var metodo_PagoParameter = metodo_Pago.HasValue ?
+                new ObjectParameter("Metodo_Pago", metodo_Pago) :
+                new ObjectParameter("Metodo_Pago", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagoProveedor", tipo_ventaParameter, transaccionReferenciaParameter, montoParameter, descripcionParameter, id_UsuarioParameter, metodo_PagoParameter);
+        }
+    
         public virtual int ProcesarCarrito(Nullable<int> idCliente, Nullable<int> idUsuario, Nullable<int> estado, string notasAdicionales)
         {
             var idClienteParameter = idCliente.HasValue ?
@@ -897,35 +926,6 @@ namespace SIG.BaseDatos
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ValidarExistencias_Result>("ValidarExistencias", idUsuarioParameter);
-        }
-    
-        public virtual int PagoProveedor(Nullable<int> tipo_venta, Nullable<decimal> transaccionReferencia, Nullable<decimal> monto, string descripcion, Nullable<int> id_Usuario, Nullable<int> metodo_Pago)
-        {
-            var tipo_ventaParameter = tipo_venta.HasValue ?
-                new ObjectParameter("Tipo_venta", tipo_venta) :
-                new ObjectParameter("Tipo_venta", typeof(int));
-    
-            var transaccionReferenciaParameter = transaccionReferencia.HasValue ?
-                new ObjectParameter("TransaccionReferencia", transaccionReferencia) :
-                new ObjectParameter("TransaccionReferencia", typeof(decimal));
-    
-            var montoParameter = monto.HasValue ?
-                new ObjectParameter("Monto", monto) :
-                new ObjectParameter("Monto", typeof(decimal));
-    
-            var descripcionParameter = descripcion != null ?
-                new ObjectParameter("Descripcion", descripcion) :
-                new ObjectParameter("Descripcion", typeof(string));
-    
-            var id_UsuarioParameter = id_Usuario.HasValue ?
-                new ObjectParameter("Id_Usuario", id_Usuario) :
-                new ObjectParameter("Id_Usuario", typeof(int));
-    
-            var metodo_PagoParameter = metodo_Pago.HasValue ?
-                new ObjectParameter("Metodo_Pago", metodo_Pago) :
-                new ObjectParameter("Metodo_Pago", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PagoProveedor", tipo_ventaParameter, transaccionReferenciaParameter, montoParameter, descripcionParameter, id_UsuarioParameter, metodo_PagoParameter);
         }
     }
 }

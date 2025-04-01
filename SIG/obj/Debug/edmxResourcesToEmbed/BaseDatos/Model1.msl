@@ -963,6 +963,7 @@
     <FunctionImportMapping FunctionImportName="PagarCxC" FunctionName="SistemaIntegralGestionModel.Store.PagarCxC" />
     <FunctionImportMapping FunctionImportName="PagarCxP" FunctionName="SistemaIntegralGestionModel.Store.PagarCxP" />
     <FunctionImportMapping FunctionImportName="PagoPedido" FunctionName="SistemaIntegralGestionModel.Store.PagoPedido" />
+    <FunctionImportMapping FunctionImportName="PagoProveedor" FunctionName="SistemaIntegralGestionModel.Store.PagoProveedor" />
     <FunctionImportMapping FunctionImportName="ProcesarCarrito" FunctionName="SistemaIntegralGestionModel.Store.ProcesarCarrito" />
     <FunctionImportMapping FunctionImportName="RecordatorioCompraInsumos" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioCompraInsumos" />
     <FunctionImportMapping FunctionImportName="RecordatorioNotificaciones" FunctionName="SistemaIntegralGestionModel.Store.RecordatorioNotificaciones" />
@@ -1040,6 +1041,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="PagoProveedor" FunctionName="SistemaIntegralGestionModel.Store.PagoProveedor" />
   </EntityContainerMapping>
 </Mapping>
