@@ -22,8 +22,30 @@
                 @Html.TextBoxFor(m => m.correo_electronico, new { @type = "email", @class = "form-control form-control-lg", @id = "exampleInputEmail1", @placeholder = "Correo electrónico" })
             </div>
             <div class="text-center mt-4 font-weight-light">
-                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">RECUPERAR ACCESO</button>
+                <button type="submit" class="btn btn-update">Recuperar Acceso</button>
             </div>
         }
 
     </div>
+</div>
+<style>
+
+    .btn-update {
+        background: linear-gradient(to right, #65a9ca, #5481a2);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+    }
+
+        .btn-update:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #2c3e50, #4a6d89);
+        }
+</style>
