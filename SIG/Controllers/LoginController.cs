@@ -241,7 +241,7 @@ namespace SIG.Controllers
 
                 if (!registrado)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ListarUsuarios", "Login");
                 }
                 else
                 {

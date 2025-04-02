@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\rajasa\\documents\\github\\sistema-integral-de-gestion\\sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\models\\contabilidadmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\rajasa\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\login\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\login\\editar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\rajasa\\documents\\github\\sistema-integral-de-gestion\\sig\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\login\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|c:\\users\\rajasa\\documents\\github\\sistema-integral-de-gestion\\sig\\views\\login\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\login\\registro.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\sig\\views\\clientes\\listaclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F1E998F7-2064-46DC-9E38-B4A7E9AB56D0}|SIG\\SIG.csproj|solutionrelative:sig\\views\\clientes\\listaclientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,65 +31,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ContabilidadModel.cs",
-              "DocumentMoniker": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ContabilidadModel.cs",
-              "RelativeDocumentMoniker": "SIG\\Models\\ContabilidadModel.cs",
-              "ToolTip": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Models\\ContabilidadModel.cs",
-              "RelativeToolTip": "SIG\\Models\\ContabilidadModel.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAiwFIAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T23:16:04.786Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Editar.cshtml",
-              "DocumentMoniker": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\Editar.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Login\\Editar.cshtml",
-              "ToolTip": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\Editar.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Login\\Editar.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACwAAACGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T23:10:15.481Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "LoginController.cs",
               "DocumentMoniker": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\LoginController.cs",
               "RelativeDocumentMoniker": "SIG\\Controllers\\LoginController.cs",
               "ToolTip": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Controllers\\LoginController.cs",
               "RelativeToolTip": "SIG\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANsAAAAAAAAAAAAkwPMAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T14:03:23.601Z",
+              "WhenOpened": "2025-04-02T00:27:34.639Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "registro.cshtml",
               "DocumentMoniker": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\registro.cshtml",
               "RelativeDocumentMoniker": "SIG\\Views\\Login\\registro.cshtml",
               "ToolTip": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Login\\registro.cshtml",
               "RelativeToolTip": "SIG\\Views\\Login\\registro.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T14:02:39.612Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ListaClientes.cshtml",
-              "DocumentMoniker": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Clientes\\ListaClientes.cshtml",
-              "RelativeDocumentMoniker": "SIG\\Views\\Clientes\\ListaClientes.cshtml",
-              "ToolTip": "C:\\Users\\RAJASA\\Documents\\GitHub\\Sistema-Integral-de-Gestion\\SIG\\Views\\Clientes\\ListaClientes.cshtml",
-              "RelativeToolTip": "SIG\\Views\\Clientes\\ListaClientes.cshtml",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAEoAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T13:59:57.176Z"
+              "WhenOpened": "2025-04-02T00:27:26.293Z",
+              "EditorCaption": ""
             }
           ]
         }
